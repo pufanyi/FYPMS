@@ -5,7 +5,13 @@ package user;
  * It extends the User class and includes a supervisor ID field.
  */
 public class Supervisor implements User {
+    /**
+     * The ID of the supervisor.
+     */
     private final String supervisorID;
+    /**
+     * The password of a supervisor
+     */
     private final PasswordManager passwordManager;
 
     /**
