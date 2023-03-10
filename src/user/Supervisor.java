@@ -19,7 +19,7 @@ public class Supervisor implements User {
      *
      * @param supervisorID the ID of the supervisor.
      */
-    Supervisor(String supervisorID) {
+    public Supervisor(String supervisorID) {
         this.supervisorID = supervisorID;
         passwordManager = new PasswordManager();
     }

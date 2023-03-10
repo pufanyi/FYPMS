@@ -20,7 +20,7 @@ public class Student implements User {
      *
      * @param studentID the ID of the student.
      */
-    Student(String studentID) {
+    public Student(String studentID) {
         this.studentID = studentID;
         passwordManager = new PasswordManager();
     }

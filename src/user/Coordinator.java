@@ -15,7 +15,7 @@ public class Coordinator implements User{
      *
      * @param coordinatorID the ID of the coordinator
      */
-    Coordinator(String coordinatorID){
+    public Coordinator(String coordinatorID){
         this.coordintorID = coordinatorID;
         passwordManager = new PasswordManager();
     }
