@@ -1,5 +1,7 @@
 package user;
 
+import java.util.Objects;
+
 public class PasswordManager {
     private String password;
 
@@ -16,6 +18,6 @@ public class PasswordManager {
     }
 
     public boolean checkPassword(String input) {
-        return input.equals(password);
+        return Objects.equals(input, password);
     }
 }

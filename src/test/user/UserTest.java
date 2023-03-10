@@ -1,16 +1,21 @@
 package test.user;
 
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 import user.Coordinator;
 import user.Student;
 import user.Supervisor;
 import user.User;
+
 public class UserTest {
-    public void testUser(User user){
-        assertEquals("122", user.getUserID());
+    public void testUserID(User user, String id) {
+        assertEquals(id, user.getUserID());
         assertNotEquals("hahaha", user.getUserID());
+    }
+
+    public void testUserPassword(User user) {
         assertTrue(user.checkPassword("password"));
         user.setPassword("123456");
         assertTrue(user.checkPassword("123456"));
@@ -18,18 +23,38 @@ public class UserTest {
         assertFalse(user.checkPassword(null));
     }
 
+    public void testUserName(User user, String name) {
+        assertEquals(name, user.getUserName());
+        assertNotEquals("hahaha", user.getUserName());
+    }
+
     @Test
     public void testStudent() {
-        testUser(new Student("122", "pufanyi"));
+        String id = "Son";
+        String name = "Jin Qingyang";
+        User user = new Student(id, name);
+        testUserID(user, id);
+        testUserName(user, name);
+        testUserPassword(user);
     }
 
     @Test
-    public void testCoordinator(){
-        testUser(new Coordinator("122", "pufanyi"));
+    public void testCoordinator() {
+        String id = "Son";
+        String name = "Jin Qingyang";
+        User user = new Coordinator(id, name);
+        testUserID(user, id);
+        testUserName(user, name);
+        testUserPassword(user);
     }
 
     @Test
-    public void testSupervisor(){
-        testUser(new Supervisor("122", "pufanyi"));
+    public void testSupervisor() {
+        String id = "Son";
+        String name = "Jin Qingyang";
+        User user = new Supervisor(id, name);
+        testUserID(user, id);
+        testUserName(user, name);
+        testUserPassword(user);
     }
 }
