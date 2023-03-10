@@ -18,6 +18,6 @@ public class PasswordManager {
     }
 
     public boolean checkPassword(String input) {
-        return Objects.equals(input, password);
+        return input.equals(password);
     }
 }
