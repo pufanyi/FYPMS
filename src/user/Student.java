@@ -20,4 +20,24 @@ public class Student extends User {
         super(studentID);
         this.studentID = studentID;
     }
+
+    /**
+     * Gets the user ID of the user.
+     *
+     * @return the ID of the user.
+     */
+    @Override
+    public String getUserID() {
+        return null;
+    }
+
+    /**
+     * Sets the password for the user.
+     *
+     * @param password the new password for the user.
+     */
+    @Override
+    public void setPassword(String password) {
+
+    }
 }
