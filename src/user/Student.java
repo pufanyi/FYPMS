@@ -45,6 +45,12 @@ public class Student implements User {
         passwordManager.setPassword(password);
     }
 
+    /**
+     * check the user input of password
+     *
+     * @param input the password to check
+     * @return whether the password entered is correct
+     */
     public boolean checkPassword(String input){
         return passwordManager.checkPassword(input);
     }
