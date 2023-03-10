@@ -4,7 +4,11 @@ public class Coordinator implements User{
     /**
      * The ID of the coordinator
      */
-    private final String coordintorID;
+    private final String coordinatorID;
+    /**
+     * The name of the coordinator
+     */
+    private final String coordinatorName;
     /**
      * The password of a coordinator
      */
@@ -15,8 +19,9 @@ public class Coordinator implements User{
      *
      * @param coordinatorID the ID of the coordinator
      */
-    public Coordinator(String coordinatorID){
-        this.coordintorID = coordinatorID;
+    public Coordinator(String coordinatorID, String coordinatorName){
+        this.coordinatorID = coordinatorID;
+        this.coordinatorName = coordinatorName;
         passwordManager = new PasswordManager();
     }
 
@@ -26,7 +31,16 @@ public class Coordinator implements User{
      * @return the ID of the user
      */
     public String getUserID(){
-        return coordintorID;
+        return this.coordinatorID;
+    }
+
+    /**
+     * gets the name of the user
+     *
+     * @return name of the user
+     */
+    public String getUserName(){
+        return this.coordinatorName;
     }
 
     /**

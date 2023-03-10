@@ -20,16 +20,16 @@ public class UserTest {
 
     @Test
     public void testStudent() {
-        testUser(new Student("122"));
+        testUser(new Student("122", "pufanyi"));
     }
 
     @Test
     public void testCoordinator(){
-        testUser(new Coordinator("122"));
+        testUser(new Coordinator("122", "pufanyi"));
     }
 
     @Test
     public void testSupervisor(){
-        testUser(new Supervisor("122"));
+        testUser(new Supervisor("122", "pufanyi"));
     }
 }

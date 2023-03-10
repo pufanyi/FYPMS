@@ -10,6 +10,10 @@ public class Supervisor implements User {
      */
     private final String supervisorID;
     /**
+     * The name of the supervisor
+     */
+    private final String supervisorName;
+    /**
      * The password of a supervisor
      */
     private final PasswordManager passwordManager;
@@ -19,8 +23,9 @@ public class Supervisor implements User {
      *
      * @param supervisorID the ID of the supervisor.
      */
-    public Supervisor(String supervisorID) {
+    public Supervisor(String supervisorID, String supervisorName) {
         this.supervisorID = supervisorID;
+        this.supervisorName = supervisorName;
         passwordManager = new PasswordManager();
     }
 
@@ -34,6 +39,14 @@ public class Supervisor implements User {
         return this.supervisorID;
     }
 
+    /**
+     * Gets the username
+     *
+     * @return the name of the user
+     */
+    public String getUserName(){
+        return this.supervisorName;
+    }
     /**
      * Sets the password for the user.
      *

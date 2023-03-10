@@ -13,6 +13,13 @@ public interface User {
     String getUserID();
 
     /**
+     * Gets the username of the user
+     *
+     * @return the name of the user
+     */
+    String getUserName();
+
+    /**
      * Sets the password for the user.
      *
      * @param password the new password for the user.
