@@ -1,19 +1,25 @@
 package user;
 
+/**
+ * This class represents a user, which is the base class for other types of users.
+ * It includes a user ID and a password field.
+ */
 public class User {
+
     /**
-     * userID of a user
+     * The ID of the user.
      */
-    String userID;
+    private String userID;
+
     /**
-     * password of a user
+     * The password for the user.
      */
     private String password;
 
     /**
-     * constructor of a user
+     * Constructs a new User object with the specified user ID.
      *
-     * @param userID of the user
+     * @param userID the ID of the user.
      */
     public User(String userID) {
         this.userID = userID;
@@ -21,16 +27,18 @@ public class User {
     }
 
     /**
-     * get the userID of the user
+     * Gets the user ID of the user.
      *
-     * @return userID of the user
+     * @return the ID of the user.
      */
     public String getUserID() {
         return userID;
     }
 
     /**
-     * @param password - set the password for the user
+     * Sets the password for the user.
+     *
+     * @param password the new password for the user.
      */
     public void setPassword(String password) {
         this.password = password;

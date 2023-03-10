@@ -1,17 +1,23 @@
 package user;
 
+/**
+ * This class represents a student, which is a type of user.
+ * It extends the User class and includes a student ID field.
+ */
 public class Student extends User {
+
     /**
-     * studentID of the student
+     * The ID of the student.
      */
     private String studentID;
 
     /**
-     * constructor of a Student
+     * Constructs a new Student object with the specified student ID.
      *
-     * @param studentID of a student
+     * @param studentID the ID of the student.
      */
     public Student(String studentID) {
         super(studentID);
+        this.studentID = studentID;
     }
 }
