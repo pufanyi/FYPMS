@@ -1,6 +1,6 @@
 package user;
 
-public class Coordinator implements User{
+public class Coordinator implements User {
     /**
      * The ID of the coordinator
      */
@@ -19,7 +19,7 @@ public class Coordinator implements User{
      *
      * @param coordinatorID the ID of the coordinator
      */
-    public Coordinator(String coordinatorID, String coordinatorName){
+    public Coordinator(String coordinatorID, String coordinatorName) {
         this.coordinatorID = coordinatorID;
         this.coordinatorName = coordinatorName;
         passwordManager = new PasswordManager();
@@ -30,7 +30,7 @@ public class Coordinator implements User{
      *
      * @return the ID of the user
      */
-    public String getUserID(){
+    public String getUserID() {
         return this.coordinatorID;
     }
 
@@ -39,7 +39,7 @@ public class Coordinator implements User{
      *
      * @return name of the user
      */
-    public String getUserName(){
+    public String getUserName() {
         return this.coordinatorName;
     }
 
@@ -48,7 +48,7 @@ public class Coordinator implements User{
      *
      * @param password the new password for the user.
      */
-    public void setPassword(String password){
+    public void setPassword(String password) {
         passwordManager.setPassword(password);
     }
 
@@ -58,7 +58,7 @@ public class Coordinator implements User{
      * @param input the password to check
      * @return whether the password entered is correct
      */
-    public boolean checkPassword(String input){
+    public boolean checkPassword(String input) {
         return passwordManager.checkPassword(input);
     }
 }

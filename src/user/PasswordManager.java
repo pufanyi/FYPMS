@@ -1,7 +1,5 @@
 package user;
 
-import java.util.Objects;
-
 public class PasswordManager {
     private String password;
 

@@ -44,9 +44,10 @@ public class Supervisor implements User {
      *
      * @return the name of the user
      */
-    public String getUserName(){
+    public String getUserName() {
         return this.supervisorName;
     }
+
     /**
      * Sets the password for the user.
      *

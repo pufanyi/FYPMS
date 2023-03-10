@@ -45,9 +45,10 @@ public class Student implements User {
      *
      * @return the name of the user
      */
-    public String getUserName(){
+    public String getUserName() {
         return this.studentName;
     }
+
     /**
      * Sets the password for the user.
      *
@@ -64,7 +65,7 @@ public class Student implements User {
      * @param input the password to check
      * @return whether the password entered is correct
      */
-    public boolean checkPassword(String input){
+    public boolean checkPassword(String input) {
         return passwordManager.checkPassword(input);
     }
 }
