@@ -3,11 +3,7 @@ package project;
 import user.Supervisor;
 
 public class Project {
-    public enum Status {
-        AVAILABLE, RESERVED, UNAVAILABLE, ALLOCATED
-    }
-
-    Status status;
+    ProjectStatus status;
 
     /**
      * The ID of the project
@@ -25,13 +21,15 @@ public class Project {
     /**
      * the constructor of the project
      *
-     * @param projectID the ID of the project
+     * @param projectID    the ID of the project
+     * @param projectTitle the title of the project
+     * @param supervisor   the supervisor of the project
      */
     public Project(int projectID, String projectTitle, Supervisor supervisor) {
         this.projectID = projectID;
         this.projectTitle = projectTitle;
         this.supervisor = supervisor;
-        status = Status.AVAILABLE;
+        status = ProjectStatus.AVAILABLE;
     }
-    
+
 }
