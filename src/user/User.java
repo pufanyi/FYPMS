@@ -26,6 +26,4 @@ public interface User {
      * @return true if the password is correct, false otherwise
      */
     boolean checkPassword(String password);
-
-
 }
