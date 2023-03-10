@@ -33,4 +33,11 @@ public interface User {
      * @return true if the password is correct, false otherwise
      */
     boolean checkPassword(String password);
+
+    /**
+     * Gets the email of the user
+     *
+     * @return the email of the user
+     */
+    String getEmail();
 }

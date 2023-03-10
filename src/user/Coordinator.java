@@ -1,5 +1,8 @@
 package user;
 
+/**
+ * A class that represents a coordinator
+ */
 public class Coordinator implements User {
     /**
      * The ID of the coordinator
@@ -13,16 +16,31 @@ public class Coordinator implements User {
      * The password of a coordinator
      */
     private final PasswordManager passwordManager;
+    /**
+     * The email of a coordinator
+     */
+    private final String email;
 
     /**
      * constructor of a new Coordinator object with the specified coordinator ID
      *
      * @param coordinatorID the ID of the coordinator
      */
-    public Coordinator(String coordinatorID, String coordinatorName) {
+    public Coordinator(String coordinatorID, String coordinatorName, String email) {
         this.coordinatorID = coordinatorID;
         this.coordinatorName = coordinatorName;
-        passwordManager = new PasswordManager();
+        this.passwordManager = new PasswordManager();
+        this.email = email;
+    }
+
+    /**
+     * constructor of a new Coordinator object with the specified coordinator ID and password
+     */
+    public Coordinator(String coordinatorID, String coordinatorName, String email, String password) {
+        this.coordinatorID = coordinatorID;
+        this.coordinatorName = coordinatorName;
+        this.passwordManager = new PasswordManager(password);
+        this.email = email;
     }
 
     /**
@@ -60,5 +78,15 @@ public class Coordinator implements User {
      */
     public boolean checkPassword(String input) {
         return passwordManager.checkPassword(input);
+    }
+
+    /**
+     * gets the email of the user
+     *
+     * @return the email of the user
+     */
+    @Override
+    public String getEmail() {
+        return this.email;
     }
 }

@@ -18,22 +18,44 @@ public class Student implements User {
      * The password of a student
      */
     private final PasswordManager passwordManager;
+    /**
+     * The email of a student
+     */
+    private final String email;
 
     /**
-     * Constructs a new Student object with the specified student ID.
+     * Constructs a new Student object with the specified student ID and default password.
      *
-     * @param studentID the ID of the student.
+     * @param studentID   the ID of the student.
+     * @param studentName the name of the student.
+     * @param email       the email of the student.
      */
-    public Student(String studentID, String studentName) {
+    public Student(String studentID, String studentName, String email) {
         this.studentID = studentID;
         this.studentName = studentName;
-        passwordManager = new PasswordManager();
+        this.passwordManager = new PasswordManager();
+        this.email = email;
     }
 
     /**
-     * Gets the user ID of the user.
+     * Constructs a new Student object with the specified student ID and password.
      *
-     * @return the ID of the user.
+     * @param studentID   the ID of the student.
+     * @param studentName the name of the student.
+     * @param email       the email of the student.
+     * @param password    the password of the student.
+     */
+    public Student(String studentID, String studentName, String email, String password) {
+        this.studentID = studentID;
+        this.studentName = studentName;
+        this.passwordManager = new PasswordManager(password);
+        this.email = email;
+    }
+
+    /**
+     * Gets the email of the user
+     *
+     * @return the email of the user
      */
     @Override
     public String getUserID() {
@@ -45,6 +67,7 @@ public class Student implements User {
      *
      * @return the name of the user
      */
+    @Override
     public String getUserName() {
         return this.studentName;
     }
@@ -65,7 +88,18 @@ public class Student implements User {
      * @param input the password to check
      * @return whether the password entered is correct
      */
+    @Override
     public boolean checkPassword(String input) {
         return passwordManager.checkPassword(input);
+    }
+
+    /**
+     * Gets the email of the user
+     *
+     * @return the email of the user
+     */
+    @Override
+    public String getEmail() {
+        return this.email;
     }
 }

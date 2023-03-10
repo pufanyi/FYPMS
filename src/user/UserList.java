@@ -3,6 +3,9 @@ package user;
 import java.util.List;
 import java.util.ArrayList;
 
+/**
+ * A class that represents a list of users.
+ */
 public class UserList {
     /**
      * The list of users.
