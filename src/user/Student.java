@@ -9,19 +9,20 @@ public class Student implements User {
     /**
      * The ID of the student.
      */
-    private String studentID;
+    private final String studentID;
     /**
      * The password of a student
      */
-    private String password;
+    private final PasswordManager passwordManager;
 
     /**
      * Constructs a new Student object with the specified student ID.
      *
      * @param studentID the ID of the student.
      */
-    public Student(String studentID) {
+    Student(String studentID) {
         this.studentID = studentID;
+        passwordManager = new PasswordManager();
     }
 
     /**
@@ -31,7 +32,7 @@ public class Student implements User {
      */
     @Override
     public String getUserID() {
-        return null;
+        return studentID;
     }
 
     /**
@@ -41,6 +42,10 @@ public class Student implements User {
      */
     @Override
     public void setPassword(String password) {
+        passwordManager.setPassword(password);
+    }
 
+    public boolean checkPassword(String input){
+        return passwordManager.checkPassword(input);
     }
 }
