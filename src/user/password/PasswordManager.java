@@ -1,6 +1,8 @@
-package user;
+package user.password;
 
-import java.util.Objects;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Arrays;
 
 /**
  * A class manages the password of a user
@@ -9,13 +11,13 @@ public class PasswordManager {
     /**
      * The password of a user
      */
-    private String password;
+    private byte[] hashedPassword;
 
     /**
      * constructor of a new PasswordManager object with the default password
      */
     public PasswordManager() {
-        password = "password";
+        setPassword("password");
     }
 
     /**
@@ -24,7 +26,7 @@ public class PasswordManager {
      * @param password the password of the user
      */
     public PasswordManager(String password) {
-        this.password = password;
+        setPassword(password);
     }
 
     /**
@@ -32,8 +34,8 @@ public class PasswordManager {
      *
      * @param password the new password for the user.
      */
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword(@NotNull String password) {
+        this.hashedPassword = PasswordHashManager.hashPassword(password);
     }
 
     /**
@@ -43,6 +45,9 @@ public class PasswordManager {
      * @return true if the input password is the same as the password of the user, false otherwise
      */
     public boolean checkPassword(String input) {
-        return Objects.equals(input, password);
+        if (input == null) {
+            return false;
+        }
+        return Arrays.equals(PasswordHashManager.hashPassword(input), hashedPassword);
     }
 }
