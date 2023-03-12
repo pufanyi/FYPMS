@@ -1,5 +1,6 @@
 package user.singleuser;
 
+import org.jetbrains.annotations.NotNull;
 import user.password.PasswordManager;
 
 /**
@@ -47,7 +48,7 @@ public class Student implements User {
      * @param email       the email of the student.
      * @param password    the password of the student.
      */
-    public Student(String studentID, String studentName, String email, String password) {
+    public Student(String studentID, String studentName, String email, @NotNull String password) {
         this.studentID = studentID;
         this.studentName = studentName;
         this.passwordManager = new PasswordManager(password);
@@ -80,7 +81,7 @@ public class Student implements User {
      * @param password the new password for the user.
      */
     @Override
-    public void setPassword(String password) {
+    public void setPassword(@NotNull String password) {
         passwordManager.setPassword(password);
     }
 
@@ -91,7 +92,7 @@ public class Student implements User {
      * @return whether the password entered is correct
      */
     @Override
-    public boolean checkPassword(String input) {
+    public boolean checkPassword(@NotNull String input) {
         return passwordManager.checkPassword(input);
     }
 

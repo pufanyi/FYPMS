@@ -25,7 +25,7 @@ public class PasswordManager {
      *
      * @param password the password of the user
      */
-    public PasswordManager(String password) {
+    public PasswordManager(@NotNull String password) {
         setPassword(password);
     }
 
@@ -44,10 +44,7 @@ public class PasswordManager {
      * @param input the input password
      * @return true if the input password is the same as the password of the user, false otherwise
      */
-    public boolean checkPassword(String input) {
-        if (input == null) {
-            return false;
-        }
+    public boolean checkPassword(@NotNull String input) {
         return Arrays.equals(PasswordHashManager.hashPassword(input), hashedPassword);
     }
 }

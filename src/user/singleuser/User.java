@@ -1,5 +1,7 @@
 package user.singleuser;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * A class that represents a user
  */
@@ -23,7 +25,7 @@ public interface User {
      *
      * @param password the new password for the user.
      */
-    void setPassword(String password);
+    void setPassword(@NotNull String password);
 
     /**
      * Checks if the password is correct.
@@ -31,7 +33,7 @@ public interface User {
      * @param password the password to check
      * @return true if the password is correct, false otherwise
      */
-    boolean checkPassword(String password);
+    boolean checkPassword(@NotNull String password);
 
     /**
      * Gets the email of the user

@@ -1,5 +1,6 @@
 package user.userlist;
 
+import org.jetbrains.annotations.NotNull;
 import user.singleuser.User;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public class UserList {
      *
      * @param user the user to add
      */
-    public void addUser(User user) {
+    public void addUser(@NotNull User user) {
         users.add(user);
     }
 
@@ -35,7 +36,7 @@ public class UserList {
      *
      * @param user the user to remove
      */
-    public void removeUser(User user) {
+    public void removeUser(@NotNull User user) {
         users.remove(user);
     }
 

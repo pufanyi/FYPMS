@@ -17,7 +17,6 @@ public class PasswordManagerTest {
         passwordManager.setPassword("newPassword");
         assertTrue(passwordManager.checkPassword("newPassword"));
         assertFalse(passwordManager.checkPassword("password"));
-        assertFalse(passwordManager.checkPassword(null));
     }
 
     @Test
@@ -42,6 +41,5 @@ public class PasswordManagerTest {
         assertTrue(passwordManager.checkPassword("!@#$%^&*()"));
         assertFalse(passwordManager.checkPassword("password"));
         assertFalse(passwordManager.checkPassword(""));
-        assertFalse(passwordManager.checkPassword(null));
     }
 }

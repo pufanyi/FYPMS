@@ -1,5 +1,6 @@
 package user.singleuser;
 
+import org.jetbrains.annotations.NotNull;
 import user.password.PasswordManager;
 
 /**
@@ -38,7 +39,7 @@ public class Coordinator implements User {
     /**
      * constructor of a new Coordinator object with the specified coordinator ID and password
      */
-    public Coordinator(String coordinatorID, String coordinatorName, String email, String password) {
+    public Coordinator(String coordinatorID, String coordinatorName, String email, @NotNull String password) {
         this.coordinatorID = coordinatorID;
         this.coordinatorName = coordinatorName;
         this.passwordManager = new PasswordManager(password);
@@ -68,7 +69,7 @@ public class Coordinator implements User {
      *
      * @param password the new password for the user.
      */
-    public void setPassword(String password) {
+    public void setPassword(@NotNull String password) {
         passwordManager.setPassword(password);
     }
 
@@ -78,7 +79,7 @@ public class Coordinator implements User {
      * @param input the password to check
      * @return whether the password entered is correct
      */
-    public boolean checkPassword(String input) {
+    public boolean checkPassword(@NotNull String input) {
         return passwordManager.checkPassword(input);
     }
 

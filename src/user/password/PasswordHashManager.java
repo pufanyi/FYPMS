@@ -3,6 +3,8 @@
  */
 package user.password;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -32,7 +34,7 @@ public class PasswordHashManager {
      * @param password the password to be hashed
      * @return a byte array containing the hashed password
      */
-    public static byte[] hashPassword(String password) {
+    public static byte[] hashPassword(@NotNull String password) {
         return messageDigest.digest(password.getBytes());
     }
 }
