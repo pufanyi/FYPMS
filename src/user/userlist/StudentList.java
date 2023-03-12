@@ -1,4 +1,4 @@
-package user;
+package user.userlist;
 
 /**
  * A class that represents a list of students

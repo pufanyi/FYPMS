@@ -1,10 +1,10 @@
 package test.user;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
+import user.password.PasswordManager;
 
-import user.PasswordManager;
-
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PasswordManagerTest {
     /**

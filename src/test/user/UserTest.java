@@ -1,13 +1,12 @@
 package test.user;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import user.singleuser.Coordinator;
+import user.singleuser.Student;
+import user.singleuser.Supervisor;
+import user.singleuser.User;
 
-import static org.junit.Assert.*;
-
-import user.Coordinator;
-import user.Student;
-import user.Supervisor;
-import user.User;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class UserTest {
     public void testUserID(User user, String id) {

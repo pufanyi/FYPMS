@@ -1,4 +1,6 @@
-package user;
+package user.singleuser;
+
+import user.password.PasswordManager;
 
 /**
  * This class represents a student, which is a type of user.

@@ -1,4 +1,4 @@
-package user;
+package user.singleuser;
 
 /**
  * A class that represents a user

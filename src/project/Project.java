@@ -1,6 +1,6 @@
 package project;
 
-import user.Supervisor;
+import user.singleuser.Supervisor;
 
 public class Project {
     ProjectStatus status;

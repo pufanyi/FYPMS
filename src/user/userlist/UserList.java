@@ -1,4 +1,6 @@
-package user;
+package user.userlist;
+
+import user.singleuser.User;
 
 import java.util.List;
 import java.util.ArrayList;

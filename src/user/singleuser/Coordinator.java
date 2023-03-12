@@ -1,4 +1,6 @@
-package user;
+package user.singleuser;
+
+import user.password.PasswordManager;
 
 /**
  * A class that represents a coordinator
