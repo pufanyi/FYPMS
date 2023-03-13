@@ -5,11 +5,12 @@ import user.singleuser.User;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 /**
  * A class that represents a list of users.
  */
-public class UserList <UserType extends User> {
+public class UserList<UserType extends User> {
     /**
      * The list of users.
      */
@@ -36,8 +37,8 @@ public class UserList <UserType extends User> {
      *
      * @param user the user to remove
      */
-    public void removeUser(@NotNull UserType user) {
-        users.remove(user);
+    public void removeUser(@NotNull UserType user) throws NoSuchElementException {
+        users.remove(user.getUserID());
     }
 
     /**
@@ -45,28 +46,48 @@ public class UserList <UserType extends User> {
      *
      * @param userID the ID of the user to get
      * @return the user with the specified ID, or null if no such user exists
+     * @throws NoSuchElementException if no such user exists
      */
-    public UserType getUser(String userID) {
+    public UserType getUser(@NotNull String userID) throws NoSuchElementException {
         for (UserType user : users) {
             if (user.getUserID().equals(userID)) {
                 return user;
             }
         }
-        return null;
+        throw new NoSuchElementException("No user with ID " + userID + " exists.");
     }
 
     /**
      * Removes a user from the list of users.
      *
      * @param userID the ID of the user to remove
-     * @return true if the user was removed, false otherwise
+     * @throws NoSuchElementException if no such user exists
      */
-    public boolean removeUser(String userID) {
-        UserType user = getUser(userID);
-        if (user != null) {
-            removeUser(user);
+    public void removeUser(@NotNull String userID) throws NoSuchElementException {
+        removeUser(getUser(userID));
+    }
+
+    /**
+     * Checks if a user is in the list of users.
+     *
+     * @param userID the ID of the user to check
+     * @return true if the user is in the list of users, false otherwise
+     */
+    public boolean containsUser(@NotNull String userID) {
+        try {
+            getUser(userID);
             return true;
+        } catch (NoSuchElementException e) {
+            return false;
         }
-        return false;
+    }
+
+    /**
+     * Gets the number of users in the list.
+     *
+     * @return the number of users in the list
+     */
+    public int size() {
+        return users.size();
     }
 }

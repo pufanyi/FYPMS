@@ -109,4 +109,22 @@ public class Student implements User {
     public String getEmail() {
         return this.email;
     }
+
+    /**
+     * Gets the status of the student
+     *
+     * @return the status of the student
+     */
+    public StudentStatus getStatus() {
+        return this.status;
+    }
+
+    /**
+     * Sets the status of the student
+     *
+     * @param status the new status of the student
+     */
+    public void setStatus(StudentStatus status) {
+        this.status = status;
+    }
 }
