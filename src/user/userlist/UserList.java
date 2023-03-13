@@ -83,6 +83,21 @@ public class UserList<UserType extends User> {
     }
 
     /**
+     * Checks if a user is in the list of users.
+     *
+     * @param user the user to check
+     * @return true if the user is in the list of users, false otherwise
+     */
+    public boolean containsUser(@NotNull UserType user) {
+        try{
+            getUser(user.getUserID());
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
+    /**
      * Gets the number of users in the list.
      *
      * @return the number of users in the list

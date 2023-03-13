@@ -34,6 +34,10 @@ public class UserListTest {
         userList.addUser(student1);
         userList.addUser(student2);
         userList.addUser(student3);
-        
+        assertTrue(userList.containsUser("A1234567A"));
+        assertTrue(userList.containsUser(student2));
+        userList.removeUser(student1);
+        userList.removeUser(student2);
+        assertFalse(userList.containsUser(student1));
     }
 }
