@@ -16,6 +16,7 @@ public class PasswordManagerTest {
     public void testPasswordManager() {
         PasswordManager passwordManager = new PasswordManager();
         assertTrue(passwordManager.checkPassword("password"));
+        assertFalse(passwordManager.checkPassword("@@@@"));
         passwordManager.setPassword("newPassword");
         assertTrue(passwordManager.checkPassword("newPassword"));
         assertFalse(passwordManager.checkPassword("password"));
