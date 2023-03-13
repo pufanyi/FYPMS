@@ -36,8 +36,9 @@ public class UserList<UserType extends User> {
      * Removes a user from the list of users.
      *
      * @param user the user to remove
+     * @throws NoSuchElementException if no such user exists
      */
-    public void removeUser(@NotNull UserType user) throws NoSuchElementException{
+    public void removeUser(@NotNull UserType user) throws NoSuchElementException {
         users.remove(user);
     }
 
@@ -89,7 +90,7 @@ public class UserList<UserType extends User> {
      * @return true if the user is in the list of users, false otherwise
      */
     public boolean containsUser(@NotNull UserType user) {
-        try{
+        try {
             getUser(user.getUserID());
             return true;
         } catch (NoSuchElementException e) {
