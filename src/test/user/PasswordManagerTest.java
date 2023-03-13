@@ -1,5 +1,6 @@
 package test.user;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import user.password.PasswordManager;
 
@@ -11,6 +12,7 @@ public class PasswordManagerTest {
      * Tests the PasswordManager class.
      */
     @Test
+    @DisplayName("Test PasswordManager")
     public void testPasswordManager() {
         PasswordManager passwordManager = new PasswordManager();
         assertTrue(passwordManager.checkPassword("password"));
@@ -20,6 +22,7 @@ public class PasswordManagerTest {
     }
 
     @Test
+    @DisplayName("Test the Constructor of PasswordManager")
     public void testPasswordManagerConstructor() {
         PasswordManager passwordManager = new PasswordManager("newPassword");
         assertTrue(passwordManager.checkPassword("newPassword"));
@@ -27,6 +30,7 @@ public class PasswordManagerTest {
     }
 
     @Test
+    @DisplayName("Test the setPassword method of PasswordManager")
     public void testSetPassword() {
         PasswordManager passwordManager = new PasswordManager();
         passwordManager.setPassword("newPassword");
@@ -35,11 +39,13 @@ public class PasswordManagerTest {
     }
 
     @Test
+    @DisplayName("Check the special characters while setting password")
     public void testSpecialCharacters() {
         PasswordManager passwordManager = new PasswordManager();
         passwordManager.setPassword("!@#$%^&*()");
         assertTrue(passwordManager.checkPassword("!@#$%^&*()"));
         assertFalse(passwordManager.checkPassword("password"));
+        assertFalse(passwordManager.checkPassword("#$%^&*()"));
         assertFalse(passwordManager.checkPassword(""));
     }
 }

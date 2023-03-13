@@ -1,5 +1,6 @@
 package test.user;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import user.singleuser.Coordinator;
 import user.singleuser.Student;
@@ -32,6 +33,7 @@ public class UserTest {
     }
 
     @Test
+    @DisplayName("Test Student")
     public void testStudent() {
         String id = "Son";
         String name = "Jin Qingyang";
@@ -50,6 +52,7 @@ public class UserTest {
     }
 
     @Test
+    @DisplayName("Test Coordinator")
     public void testCoordinator() {
         String id = "Son";
         String name = "Jin Qingyang";
@@ -68,6 +71,7 @@ public class UserTest {
     }
 
     @Test
+    @DisplayName("Test Supervisor")
     public void testSupervisor() {
         String id = "Son";
         String name = "Jin Qingyang";
