@@ -37,8 +37,8 @@ public class UserList<UserType extends User> {
      *
      * @param user the user to remove
      */
-    public void removeUser(@NotNull UserType user) throws NoSuchElementException {
-        users.remove(user.getUserID());
+    public void removeUser(@NotNull UserType user) throws NoSuchElementException{
+        users.remove(user);
     }
 
     /**
