@@ -9,11 +9,11 @@ import java.util.ArrayList;
 /**
  * A class that represents a list of users.
  */
-public class UserList {
+public class UserList <UserType extends User> {
     /**
      * The list of users.
      */
-    final private List<User> users;
+    final private List<UserType> users;
 
     /**
      * Constructs a new UserList object.
@@ -27,7 +27,7 @@ public class UserList {
      *
      * @param user the user to add
      */
-    public void addUser(@NotNull User user) {
+    public void addUser(@NotNull UserType user) {
         users.add(user);
     }
 
@@ -36,7 +36,7 @@ public class UserList {
      *
      * @param user the user to remove
      */
-    public void removeUser(@NotNull User user) {
+    public void removeUser(@NotNull UserType user) {
         users.remove(user);
     }
 
@@ -46,8 +46,8 @@ public class UserList {
      * @param userID the ID of the user to get
      * @return the user with the specified ID, or null if no such user exists
      */
-    public User getUser(String userID) {
-        for (User user : users) {
+    public UserType getUser(String userID) {
+        for (UserType user : users) {
             if (user.getUserID().equals(userID)) {
                 return user;
             }
@@ -62,7 +62,7 @@ public class UserList {
      * @return true if the user was removed, false otherwise
      */
     public boolean removeUser(String userID) {
-        User user = getUser(userID);
+        UserType user = getUser(userID);
         if (user != null) {
             removeUser(user);
             return true;
