@@ -25,6 +25,10 @@ public class Student implements User {
      * The email of a student
      */
     private final String email;
+    /**
+     * The status of a student
+     */
+    private StudentStatus status;
 
     /**
      * Constructs a new Student object with the specified student ID and default password.
