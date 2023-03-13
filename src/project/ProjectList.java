@@ -15,6 +15,12 @@ public class ProjectList {
         projectList.add(project);
     }
 
+    /**
+     * Removes a project from the list of projects.
+     *
+     * @param project the project to remove
+     * @throws NoSuchElementException if no such project exists
+     */
     public void removeProject(Project project) {
         projectList.remove(project);
     }
