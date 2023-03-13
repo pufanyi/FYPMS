@@ -8,7 +8,7 @@ public class Project {
     /**
      * The ID of the project
      */
-    private int projectID;
+    private final Integer projectID;
     /**
      * the supervisor of the project
      */
@@ -30,5 +30,9 @@ public class Project {
         this.projectTitle = projectTitle;
         this.supervisor = supervisor;
         this.status = ProjectStatus.AVAILABLE;
+    }
+
+    public Integer getProjectID() {
+        return projectID;
     }
 }
