@@ -29,7 +29,6 @@ public class Project {
         this.projectID = projectID;
         this.projectTitle = projectTitle;
         this.supervisor = supervisor;
-        status = ProjectStatus.AVAILABLE;
+        this.status = ProjectStatus.AVAILABLE;
     }
-
 }
