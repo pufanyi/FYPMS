@@ -41,6 +41,7 @@ public class Project {
 
     /**
      * Get the ID of the project
+     *
      * @return the ID of the project
      */
     public Integer getProjectID() {
@@ -81,7 +82,7 @@ public class Project {
     /**
      * Display the whole information of the project
      */
-    public void display() {
+    public void displayProject() {
         if (status == ProjectStatus.AVAILABLE) {
             displayProjectID();
             displaySupervisorInformation();
@@ -94,5 +95,13 @@ public class Project {
         } else {
             throw new IllegalStateException("Project status is not AVAILABLE or ALLOCATED.");
         }
+    }
+
+    public void assignStudent(Student student) throws IllegalStateException {
+        if (status != ProjectStatus.AVAILABLE) {
+            throw new IllegalStateException("Project is not available for allocation.");
+        }
+        this.student = student;
+        this.status = ProjectStatus.ALLOCATED;
     }
 }
