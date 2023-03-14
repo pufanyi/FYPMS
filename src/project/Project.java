@@ -97,6 +97,12 @@ public class Project {
         }
     }
 
+    /**
+     * Assign a student to the project
+     *
+     * @param student the student to be assigned
+     * @throws IllegalStateException if the project is not available for allocation
+     */
     public void assignStudent(Student student) throws IllegalStateException {
         if (status != ProjectStatus.AVAILABLE) {
             throw new IllegalStateException("Project is not available for allocation.");
