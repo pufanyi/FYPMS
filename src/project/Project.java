@@ -13,7 +13,7 @@ public class Project {
     /**
      * the supervisor of the project
      */
-    private Supervisor supervisor;
+    private final Supervisor supervisor;
 
     /**
      * the student of the project
@@ -22,7 +22,7 @@ public class Project {
     /**
      * the title of the project
      */
-    private String projectTitle;
+    private final String projectTitle;
 
     /**
      * the constructor of the project
@@ -39,25 +39,60 @@ public class Project {
         this.status = ProjectStatus.AVAILABLE;
     }
 
+    /**
+     * Get the ID of the project
+     * @return the ID of the project
+     */
     public Integer getProjectID() {
         return projectID;
     }
 
+    /**
+     * Display the information of the supervisor
+     */
+    private void displaySupervisorInformation() {
+        System.out.println("Supervisor Name: " + supervisor.getUserName());
+        System.out.println("Supervisor Email Address: " + supervisor.getEmail());
+    }
+
+    /**
+     * Display the information of the student
+     */
+    private void displayStudentInformation() {
+        System.out.println("Student Name: " + student.getUserName());
+        System.out.println("Student Email Address: " + student.getEmail());
+    }
+
+    /**
+     * Display the ID of the project
+     */
+    private void displayProjectID() {
+        System.out.println("Project ID: " + projectID);
+    }
+
+    /**
+     * Display the information of the project
+     */
+    private void displayProjectInformation() {
+        System.out.println("Project Title: " + projectTitle);
+        System.out.println("Project Status: " + status);
+    }
+
+    /**
+     * Display the whole information of the project
+     */
     public void display() {
         if (status == ProjectStatus.AVAILABLE) {
-            System.out.println("Project ID: " + projectID);
-            System.out.println("Supervisor Name: " + supervisor.getUserName());
-            System.out.println("Supervisor Email Address: " + supervisor.getEmail());
-            System.out.println("Project Title: " + projectTitle);
-            System.out.println("Project Status: " + status);
+            displayProjectID();
+            displaySupervisorInformation();
+            displayProjectInformation();
+        } else if (status == ProjectStatus.ALLOCATED) {
+            displayProjectID();
+            displaySupervisorInformation();
+            displayStudentInformation();
+            displayProjectInformation();
         } else {
-            System.out.println("Project ID: " + projectID);
-            System.out.println("Supervisor Name: " + supervisor.getUserName());
-            System.out.println("Supervisor Email Address: " + supervisor.getEmail());
-            System.out.println("Student Name: " + student.getUserName());
-            System.out.println("Student Email Address: " + student.getEmail());
-            System.out.println("Project Title: " + projectTitle);
-            System.out.println("Project Status: " + status);
+            throw new IllegalStateException("Project status is not AVAILABLE or ALLOCATED.");
         }
     }
 }
