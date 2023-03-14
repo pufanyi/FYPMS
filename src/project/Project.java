@@ -43,7 +43,7 @@ public class Project {
         return projectID;
     }
 
-    public void display(){
+    public void display() {
         if (status == ProjectStatus.AVAILABLE) {
             System.out.println("Project ID: " + projectID);
             System.out.println("Supervisor Name: " + supervisor.getUserName());
