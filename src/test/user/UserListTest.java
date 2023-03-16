@@ -13,8 +13,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class UserListTest {
+    /**
+     * An array of students
+     */
     private Student[] students;
 
+    /**
+     * Set up the students
+     */
     @BeforeAll
     public void setUp() {
         students = new Student[3];
@@ -23,6 +29,10 @@ public class UserListTest {
         students[2] = new Student("78687", "jinqingyang", "jinqingyang@e.ntu.edu.sg");
     }
 
+    /**
+     * Create a user list with 3 students
+     * @return the user list
+     */
     private UserList<Student> createStudentList() {
         UserList<Student> userList = new UserList<>();
         userList.addUser(students[0]);
@@ -31,6 +41,9 @@ public class UserListTest {
         return userList;
     }
 
+    /**
+     * Test add user
+     */
     @Test
     @DisplayName("Test add user")
     public void addUserTest() {
@@ -40,6 +53,9 @@ public class UserListTest {
         assertThrows(NoSuchElementException.class, () -> userList.getUser("hahaha"));
     }
 
+    /**
+     * Test remove user
+     */
     @Test
     @DisplayName("Test remove user")
     public void removeUserTest(){
@@ -54,6 +70,9 @@ public class UserListTest {
         assertThrows(NoSuchElementException.class, () -> userList.getUser(students[1].getUserID()));
     }
 
+    /**
+     * Test contains user
+     */
     @Test
     @DisplayName("Test contains user")
     public void containUserTest(){
