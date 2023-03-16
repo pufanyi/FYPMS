@@ -1,6 +1,3 @@
-/**
- * The PasswordHashManager class provides a utility for hashing passwords using the SHA3-256 algorithm.
- */
 package user.password;
 
 import org.jetbrains.annotations.NotNull;
@@ -8,6 +5,9 @@ import org.jetbrains.annotations.NotNull;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * The PasswordHashManager class provides a utility for hashing passwords using the SHA3-256 algorithm.
+ */
 public class PasswordHashManager {
     /**
      * The hashing algorithm used to hash passwords
