@@ -14,6 +14,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ProjectListTest {
     Project[] projects;
 
+    /**
+     * Add all projects to the project list
+     */
     @BeforeAll
     public void addAllProjects() {
         Project project1 = new Project(233, "Project 1", new Supervisor("a", "b", "c"));
