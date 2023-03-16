@@ -30,6 +30,3 @@ bin/
 
 ### Mac OS ###
 .DS_Store
-
-### JAR FILES ###
-*.jar
