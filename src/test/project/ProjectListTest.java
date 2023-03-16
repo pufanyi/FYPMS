@@ -12,6 +12,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ProjectListTest {
+    /**
+     * An array of projects
+     */
     Project[] projects;
 
     /**
@@ -25,6 +28,9 @@ public class ProjectListTest {
         projects = new Project[]{project1, project2, project3};
     }
 
+    /**
+     * Test add project
+     */
     @Test
     @DisplayName("Test Add Project")
     public void testAddProject() {

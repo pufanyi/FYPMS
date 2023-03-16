@@ -12,19 +12,34 @@ import static org.junit.jupiter.api.Assertions.assertLinesMatch;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ProjectInformationDisplayTest {
+    /**
+     * The output stream for the test
+     */
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    /**
+     * The original output stream
+     */
     private final PrintStream originalOut = System.out;
 
+    /**
+     * Set up the output stream
+     */
     @BeforeAll
     public void setUpOutputStreams() {
         System.setOut(new PrintStream(outContent));
     }
 
+    /**
+     * Restore the output stream
+     */
     @AfterAll
     public void restoreOutputStreams() {
         System.setOut(originalOut);
     }
 
+    /**
+     * Test display available project information
+     */
     @Test
     @DisplayName("Display Information of Available Project")
     public void testDisplayAvailableProjectInformation() {
@@ -41,6 +56,9 @@ public class ProjectInformationDisplayTest {
         assertLinesMatch(expectedOutput.lines(), outContent.toString().lines());
     }
 
+    /**
+     * Test display addigned project information
+     */
     @Test
     @DisplayName("Display Information of Assigned Project")
     public void testDisplayAssignedProjectInformation() {
