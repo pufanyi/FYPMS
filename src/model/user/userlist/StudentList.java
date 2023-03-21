@@ -1,6 +1,6 @@
-package user.userlist;
+package model.user.userlist;
 
-import user.singleuser.Student;
+import model.user.singleuser.Student;
 
 /**
  * A class that represents a list of students

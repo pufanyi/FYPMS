@@ -1,7 +1,7 @@
-package project;
+package model.project;
 
-import user.singleuser.Student;
-import user.singleuser.Supervisor;
+import model.user.singleuser.Student;
+import model.user.singleuser.Supervisor;
 
 public class Project {
     ProjectStatus status;

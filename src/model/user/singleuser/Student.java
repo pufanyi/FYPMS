@@ -1,7 +1,10 @@
-package user.singleuser;
+package model.user.singleuser;
 
+import model.user.password.PasswordManager;
 import org.jetbrains.annotations.NotNull;
-import user.password.PasswordManager;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * This class represents a student, which is a type of user.
@@ -12,19 +15,19 @@ public class Student implements User {
     /**
      * The ID of the student.
      */
-    private final String studentID;
+    private String studentID;
     /**
      * The name of a student
      */
-    private final String studentName;
+    private String studentName;
     /**
      * The password of a student
      */
-    private final PasswordManager passwordManager;
+    private PasswordManager passwordManager;
     /**
      * The email of a student
      */
-    private final String email;
+    private String email;
     /**
      * The status of a student
      */
@@ -126,5 +129,50 @@ public class Student implements User {
      */
     public void setStatus(StudentStatus status) {
         this.status = status;
+    }
+
+    /**
+     * Converts the object to a map
+     *
+     * @return the map
+     */
+    @Override
+    public Map<String, String> toMap() {
+        Map<String, String> ans = new HashMap<>();
+        ans.put("studentID", studentID);
+        ans.put("studentName", studentName);
+        ans.put("email", email);
+        ans.put("status", status.toString());
+        ans.put("password", passwordManager.getPassword());
+        return ans;
+    }
+
+    /**
+     * Converts the map to an object
+     *
+     * @param informationMap the map
+     */
+    @Override
+    public void fromMap(Map<String, String> informationMap) {
+        StudentStatus status = StudentStatus.valueOf(informationMap.get("status"));
+        String password = informationMap.get("password");
+        this.status = status;
+        if (this.passwordManager == null) {
+            this.passwordManager = new PasswordManager();
+        }
+        this.passwordManager.setHashedPassword(password);
+    }
+
+    /**
+     * Constructs a new Student object with the specified student ID and password.
+     *
+     * @param informationMap the map
+     */
+    public Student(Map<String, String> informationMap) {
+        fromMap(informationMap);
+    }
+
+    public static User getUser(Map<String, String> informationMap) {
+        return new Student(informationMap);
     }
 }

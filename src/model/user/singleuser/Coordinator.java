@@ -1,7 +1,10 @@
-package user.singleuser;
+package model.user.singleuser;
 
 import org.jetbrains.annotations.NotNull;
-import user.password.PasswordManager;
+import model.user.password.PasswordManager;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A class that represents a coordinator
@@ -10,19 +13,19 @@ public class Coordinator implements User {
     /**
      * The ID of the coordinator
      */
-    private final String coordinatorID;
+    private String coordinatorID;
     /**
      * The name of the coordinator
      */
-    private final String coordinatorName;
+    private String coordinatorName;
     /**
      * The password of a coordinator
      */
-    private final PasswordManager passwordManager;
+    private PasswordManager passwordManager;
     /**
      * The email of a coordinator
      */
-    private final String email;
+    private String email;
 
     /**
      * constructor of a new Coordinator object with the specified coordinator ID
@@ -91,5 +94,49 @@ public class Coordinator implements User {
     @Override
     public String getEmail() {
         return this.email;
+    }
+
+    /**
+     * Converts the object to a map
+     *
+     * @return the map
+     */
+    @Override
+    public Map<String, String> toMap() {
+        Map<String, String> ansMap = new HashMap<>();
+        ansMap.put("coordinatorID", this.coordinatorID);
+        ansMap.put("coordinatorName", this.coordinatorName);
+        ansMap.put("email", this.email);
+        ansMap.put("password", this.passwordManager.getPassword());
+        return ansMap;
+    }
+
+    /**
+     * Converts the map to an object
+     *
+     * @param map the map
+     */
+    @Override
+    public void fromMap(Map<String, String> map) {
+        this.coordinatorID = map.get("coordinatorID");
+        this.coordinatorName = map.get("coordinatorName");
+        this.email = map.get("email");
+        if (this.passwordManager == null) {
+            this.passwordManager = new PasswordManager();
+        }
+        this.passwordManager.setHashedPassword(map.get("password"));
+    }
+
+    /**
+     * Converts the map to a coordinator object
+     *
+     * @param map the map
+     */
+    public Coordinator(Map<String, String> map) {
+        this.fromMap(map);
+    }
+
+    public static User getUser(Map<String, String> map) {
+        return new Coordinator(map);
     }
 }

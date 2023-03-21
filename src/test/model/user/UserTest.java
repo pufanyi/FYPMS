@@ -1,11 +1,11 @@
-package test.user;
+package test.model.user;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import user.singleuser.Coordinator;
-import user.singleuser.Student;
-import user.singleuser.Supervisor;
-import user.singleuser.User;
+import model.user.singleuser.Coordinator;
+import model.user.singleuser.Student;
+import model.user.singleuser.Supervisor;
+import model.user.singleuser.User;
 
 import static org.junit.jupiter.api.Assertions.*;
 

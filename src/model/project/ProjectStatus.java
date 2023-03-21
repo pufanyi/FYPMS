@@ -1,4 +1,4 @@
-package project;
+package model.project;
 
 public enum ProjectStatus {
     /**

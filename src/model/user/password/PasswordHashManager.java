@@ -1,9 +1,10 @@
-package user.password;
+package model.user.password;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 
 /**
  * The PasswordHashManager class provides a utility for hashing passwords using the SHA3-256 algorithm.
@@ -34,7 +35,7 @@ public class PasswordHashManager {
      * @param password the password to be hashed
      * @return a byte array containing the hashed password
      */
-    public static byte[] hashPassword(@NotNull String password) {
-        return messageDigest.digest(password.getBytes());
+    public static String hashPassword(@NotNull String password) {
+        return Arrays.toString(messageDigest.digest(password.getBytes()));
     }
 }

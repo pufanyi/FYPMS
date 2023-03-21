@@ -1,11 +1,12 @@
-package user.singleuser;
+package model.user.singleuser;
 
 import org.jetbrains.annotations.NotNull;
+import utils.iocontrol.Mappable;
 
 /**
  * A class that represents a user
  */
-public interface User {
+public interface User extends Mappable {
     /**
      * Gets the user ID of the user.
      *

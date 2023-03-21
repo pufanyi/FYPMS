@@ -1,16 +1,17 @@
-package user.userlist;
+package model.user.userlist;
 
+import model.user.singleuser.User;
 import org.jetbrains.annotations.NotNull;
-import user.singleuser.User;
+import utils.iocontrol.Saveable;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 /**
  * A class that represents a list of users.
  */
-public class UserList<UserType extends User> {
+public abstract class UserList<UserType extends User> extends Saveable {
     /**
      * The list of users.
      */
@@ -105,5 +106,15 @@ public class UserList<UserType extends User> {
      */
     public int size() {
         return users.size();
+    }
+
+    /**
+     * Gets the list of mappable objects.
+     *
+     * @return the list of mappable objects
+     */
+    @Override
+    public List<UserType> getListOfMappableObjects() {
+        return users;
     }
 }

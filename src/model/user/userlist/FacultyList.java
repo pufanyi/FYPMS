@@ -1,6 +1,6 @@
-package user.userlist;
+package model.user.userlist;
 
-import user.singleuser.Supervisor;
+import model.user.singleuser.Supervisor;
 
 /**
  * A class that represents a supervisor

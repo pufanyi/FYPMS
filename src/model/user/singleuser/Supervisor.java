@@ -1,7 +1,10 @@
-package user.singleuser;
+package model.user.singleuser;
 
+import model.user.password.PasswordManager;
 import org.jetbrains.annotations.NotNull;
-import user.password.PasswordManager;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * This class represents a supervisor, which is a type of user.
@@ -11,19 +14,19 @@ public class Supervisor implements User {
     /**
      * The ID of the supervisor.
      */
-    private final String supervisorID;
+    private String supervisorID;
     /**
      * The name of the supervisor
      */
-    private final String supervisorName;
+    private String supervisorName;
     /**
      * The password of a supervisor
      */
-    private final PasswordManager passwordManager;
+    private PasswordManager passwordManager;
     /**
      * The email of a supervisor
      */
-    private final String email;
+    private String email;
 
     /**
      * Constructs a new Supervisor object with the specified supervisor ID.
@@ -103,5 +106,50 @@ public class Supervisor implements User {
     @Override
     public String getEmail() {
         return this.email;
+    }
+
+
+    /**
+     * Converts the object to a map
+     *
+     * @return the map
+     */
+    @Override
+    public Map<String, String> toMap() {
+        Map<String, String> ansMap = new HashMap<>();
+        ansMap.put("supervisorID", this.supervisorID);
+        ansMap.put("supervisorName", this.supervisorName);
+        ansMap.put("email", this.email);
+        ansMap.put("password", this.passwordManager.getPassword());
+        return ansMap;
+    }
+
+    /**
+     * Converts the map to an object
+     *
+     * @param map the map
+     */
+    @Override
+    public void fromMap(Map<String, String> map) {
+        this.supervisorID = map.get("supervisorID");
+        this.supervisorName = map.get("supervisorName");
+        this.email = map.get("email");
+        if (this.passwordManager == null) {
+            this.passwordManager = new PasswordManager();
+        }
+        this.passwordManager.setPassword(map.get("password"));
+    }
+
+    /**
+     * Constructs a new Supervisor object from a map
+     *
+     * @param map the map
+     */
+    public Supervisor(Map<String, String> map) {
+        this.fromMap(map);
+    }
+
+    public static User getUser(Map<String, String> map) {
+        return new Supervisor(map);
     }
 }

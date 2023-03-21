@@ -1,11 +1,11 @@
-package test.user;
+package test.model.user;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import user.singleuser.Student;
-import user.userlist.UserList;
+import model.user.singleuser.Student;
+import model.user.userlist.UserList;
 
 import java.util.NoSuchElementException;
 

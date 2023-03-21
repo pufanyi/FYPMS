@@ -1,4 +1,4 @@
-package user.singleuser;
+package model.user.singleuser;
 
 public enum StudentStatus {
     PENDING,

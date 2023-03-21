@@ -1,12 +1,12 @@
-package test.project;
+package test.model.project;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import project.Project;
-import project.ProjectList;
-import user.singleuser.Supervisor;
+import model.project.Project;
+import model.project.ProjectList;
+import model.user.singleuser.Supervisor;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
