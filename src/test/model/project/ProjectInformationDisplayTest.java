@@ -1,9 +1,9 @@
 package test.model.project;
 
 import org.junit.jupiter.api.*;
-import model.project.Project;
-import model.user.Student;
-import model.user.Supervisor;
+import main.model.project.Project;
+import main.model.user.Student;
+import main.model.user.Supervisor;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;

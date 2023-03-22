@@ -4,8 +4,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import model.user.Supervisor;
-import repository.user.FacultyRepository;
+import main.model.user.Supervisor;
+import main.repository.user.FacultyRepository;
 
 import java.io.IOException;
 import java.util.NoSuchElementException;

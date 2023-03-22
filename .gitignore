@@ -35,4 +35,4 @@ bin/
 *.jar
 
 ### Path Files ###
-src/utils/config/Location.java
+src/main/utils/config/Location.java

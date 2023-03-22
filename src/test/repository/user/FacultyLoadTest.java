@@ -1,7 +1,7 @@
 package test.repository.user;
 
-import model.user.Supervisor;
-import repository.user.FacultyRepository;
+import main.model.user.Supervisor;
+import main.repository.user.FacultyRepository;
 
 import java.io.IOException;
 

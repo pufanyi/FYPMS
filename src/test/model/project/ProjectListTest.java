@@ -4,9 +4,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import model.project.Project;
-import model.project.ProjectList;
-import model.user.Supervisor;
+import main.model.project.Project;
+import main.model.project.ProjectList;
+import main.model.user.Supervisor;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

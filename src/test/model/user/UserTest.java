@@ -2,10 +2,10 @@ package test.model.user;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import model.user.Coordinator;
-import model.user.Student;
-import model.user.Supervisor;
-import model.user.User;
+import main.model.user.Coordinator;
+import main.model.user.Student;
+import main.model.user.Supervisor;
+import main.model.user.User;
 
 import static org.junit.jupiter.api.Assertions.*;
 

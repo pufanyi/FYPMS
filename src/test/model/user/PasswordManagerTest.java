@@ -2,7 +2,7 @@ package test.model.user;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import model.user.password.PasswordManager;
+import main.model.user.password.PasswordManager;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
