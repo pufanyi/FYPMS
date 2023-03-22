@@ -1,7 +1,7 @@
-package model.user.singleuser;
+package model.user;
 
-import org.jetbrains.annotations.NotNull;
 import model.user.password.PasswordManager;
+import utils.parameters.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -54,7 +54,7 @@ public class Coordinator implements User {
      *
      * @return the ID of the user
      */
-    public String getUserID() {
+    public String getID() {
         return this.coordinatorID;
     }
 
@@ -138,5 +138,19 @@ public class Coordinator implements User {
 
     public static User getUser(Map<String, String> map) {
         return new Coordinator(map);
+    }
+
+    public Coordinator() {
+        this.coordinatorID = "";
+        this.coordinatorName = "";
+        this.passwordManager = new PasswordManager();
+        this.email = "";
+    }
+
+    public boolean equals(Object o) {
+        if (o instanceof Coordinator c) {
+            return this.coordinatorID.equals(c.coordinatorID);
+        }
+        return false;
     }
 }

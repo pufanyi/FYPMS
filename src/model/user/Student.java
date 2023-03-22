@@ -1,7 +1,7 @@
-package model.user.singleuser;
+package model.user;
 
 import model.user.password.PasswordManager;
-import org.jetbrains.annotations.NotNull;
+import utils.parameters.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -68,7 +68,7 @@ public class Student implements User {
      * @return the email of the user
      */
     @Override
-    public String getUserID() {
+    public String getID() {
         return this.studentID;
     }
 
@@ -174,5 +174,20 @@ public class Student implements User {
 
     public static User getUser(Map<String, String> informationMap) {
         return new Student(informationMap);
+    }
+
+    public Student() {
+        this.email = "";
+        this.studentID = "";
+        this.studentName = "";
+        this.passwordManager = new PasswordManager();
+        this.status = StudentStatus.UNREGISTERED;
+    }
+
+    public boolean equals(Object o) {
+        if (o instanceof Student otherStudent) {
+            return this.studentID.equals(otherStudent.studentID);
+        }
+        return false;
     }
 }

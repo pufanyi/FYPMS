@@ -1,8 +1,7 @@
-package model.user.userlist;
+package repository.userlist;
 
-import model.user.singleuser.User;
-import org.jetbrains.annotations.NotNull;
-import utils.iocontrol.Saveable;
+import model.user.User;
+import utils.parameters.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +10,7 @@ import java.util.NoSuchElementException;
 /**
  * A class that represents a list of users.
  */
-public abstract class UserList<UserType extends User> extends Saveable {
+public abstract class UserList<UserType extends User> {
     /**
      * The list of users.
      */
@@ -52,7 +51,7 @@ public abstract class UserList<UserType extends User> extends Saveable {
      */
     public UserType getUser(@NotNull String userID) throws NoSuchElementException {
         for (UserType user : users) {
-            if (user.getUserID().equals(userID)) {
+            if (user.getID().equals(userID)) {
                 return user;
             }
         }
@@ -92,7 +91,7 @@ public abstract class UserList<UserType extends User> extends Saveable {
      */
     public boolean containsUser(@NotNull UserType user) {
         try {
-            getUser(user.getUserID());
+            getUser(user.getID());
             return true;
         } catch (NoSuchElementException e) {
             return false;
@@ -113,7 +112,6 @@ public abstract class UserList<UserType extends User> extends Saveable {
      *
      * @return the list of mappable objects
      */
-    @Override
     public List<UserType> getListOfMappableObjects() {
         return users;
     }

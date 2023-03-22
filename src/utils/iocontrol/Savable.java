@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 
-public abstract class Saveable<MappableObject extends Mappable> {
+public abstract class Savable<MappableObject extends Mappable> {
     /**
      * Gets the list of mappable objects.
      *

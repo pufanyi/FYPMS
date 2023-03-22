@@ -1,6 +1,6 @@
-package model.user.userlist;
+package repository.userlist;
 
-import model.user.singleuser.Student;
+import model.user.Student;
 
 /**
  * A class that represents a list of students

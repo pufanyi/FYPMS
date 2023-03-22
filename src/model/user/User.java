@@ -1,18 +1,18 @@
-package model.user.singleuser;
+package model.user;
 
-import org.jetbrains.annotations.NotNull;
-import utils.iocontrol.Mappable;
+import model.Model;
+import utils.parameters.NotNull;
 
 /**
  * A class that represents a user
  */
-public interface User extends Mappable {
+public interface User extends Model {
     /**
      * Gets the user ID of the user.
      *
      * @return the ID of the user.
      */
-    String getUserID();
+    String getID();
 
     /**
      * Gets the username of the user

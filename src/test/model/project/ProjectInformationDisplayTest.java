@@ -2,8 +2,8 @@ package test.model.project;
 
 import org.junit.jupiter.api.*;
 import model.project.Project;
-import model.user.singleuser.Student;
-import model.user.singleuser.Supervisor;
+import model.user.Student;
+import model.user.Supervisor;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;

@@ -1,6 +1,6 @@
-package model.user.userlist;
+package repository.userlist;
 
-import model.user.singleuser.Coordinator;
+import model.user.Coordinator;
 
 import java.util.List;
 import java.util.Map;
@@ -14,7 +14,6 @@ public class CoordinatorList extends UserList<Coordinator> {
      *
      * @param listOfMappableObjects the list of mappable objects
      */
-    @Override
     public void setListOfMappableObjects(List<Map<String, String>> listOfMappableObjects) {
         for (Map<String, String> map : listOfMappableObjects) {
             String coordinatorID = map.get("coordinatorID");

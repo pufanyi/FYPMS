@@ -4,8 +4,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import model.user.singleuser.Student;
-import model.user.userlist.UserList;
+import model.user.Student;
+import repository.userlist.UserList;
 
 import java.util.NoSuchElementException;
 
@@ -48,8 +48,8 @@ public class UserListTest {
     @DisplayName("Test add user")
     public void addUserTest() {
         UserList<Student> userList = createStudentList();
-        assertSame(students[0], userList.getUser(students[0].getUserID()));
-        assertNotSame(students[1], userList.getUser(students[0].getUserID()));
+        assertSame(students[0], userList.getUser(students[0].getID()));
+        assertNotSame(students[1], userList.getUser(students[0].getID()));
         assertThrows(NoSuchElementException.class, () -> userList.getUser("hahaha"));
     }
 
@@ -67,7 +67,7 @@ public class UserListTest {
         assertTrue(userList.containsUser(students[0]));
         assertFalse(userList.containsUser(students[1]));
         assertTrue(userList.containsUser(students[2]));
-        assertThrows(NoSuchElementException.class, () -> userList.getUser(students[1].getUserID()));
+        assertThrows(NoSuchElementException.class, () -> userList.getUser(students[1].getID()));
     }
 
     /**
@@ -89,9 +89,9 @@ public class UserListTest {
     public void getUserTest(){
         UserList<Student> userList = createStudentList();
         for (Student student : students) {
-            assertSame(student, userList.getUser(student.getUserID()));
+            assertSame(student, userList.getUser(student.getID()));
         }
-        assertNotSame(students[0], userList.getUser(students[1].getUserID()));
+        assertNotSame(students[0], userList.getUser(students[1].getID()));
         assertThrows(NoSuchElementException.class, () -> userList.getUser("hahaha"));
     }
 

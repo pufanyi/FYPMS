@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import model.project.Project;
 import model.project.ProjectList;
-import model.user.singleuser.Supervisor;
+import model.user.Supervisor;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

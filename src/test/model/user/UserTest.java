@@ -2,17 +2,17 @@ package test.model.user;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import model.user.singleuser.Coordinator;
-import model.user.singleuser.Student;
-import model.user.singleuser.Supervisor;
-import model.user.singleuser.User;
+import model.user.Coordinator;
+import model.user.Student;
+import model.user.Supervisor;
+import model.user.User;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class UserTest {
     public void testUserID(User user, String id) {
-        assertEquals(id, user.getUserID());
-        assertNotEquals("hahaha", user.getUserID());
+        assertEquals(id, user.getID());
+        assertNotEquals("hahaha", user.getID());
     }
 
     public void testUserPassword(User user, String password) {
