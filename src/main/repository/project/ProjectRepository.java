@@ -1,12 +1,12 @@
-package main.repository.user;
+package main.repository.project;
 
-import main.model.user.Student;
+import main.model.project.Project;
 import main.repository.Repository;
 
 import java.util.List;
 import java.util.Map;
 
-public class StudentRepository extends Repository<Student> {
+public class ProjectRepository extends Repository<Project> {
     @Override
     public String getFilePath() {
         // TODO: Implement this method
@@ -21,14 +21,5 @@ public class StudentRepository extends Repository<Student> {
     @Override
     public void setAll(List<Map<String, String>> listOfMappableObjects) {
         // TODO: Implement this method
-    }
-
-    StudentRepository() {
-        super();
-        load();
-    }
-
-    public static StudentRepository getInstance() {
-        return new StudentRepository();
     }
 }

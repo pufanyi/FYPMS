@@ -3,7 +3,6 @@ package main.repository;
 import main.model.Model;
 import main.utils.iocontrol.Savable;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -47,7 +46,7 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
         }
     }
 
-    public void add(ModelObject modelObject) throws IllegalArgumentException, IOException {
+    public void add(ModelObject modelObject) throws IllegalArgumentException {
         if (contains(modelObject.getID())) {
             throw new IllegalArgumentException("A model object with ID " + modelObject.getID() + " already exists.");
         } else {
@@ -56,7 +55,7 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
         }
     }
 
-    public void remove(String modelObjectID) throws NoSuchElementException, IOException {
+    public void remove(String modelObjectID) throws NoSuchElementException {
         listOfModelObjects.remove(getByID(modelObjectID));
         save(getFilePath());
     }
@@ -69,27 +68,27 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
         return listOfModelObjects.size();
     }
 
-    public void clear() throws IOException {
+    public void clear() {
         listOfModelObjects.clear();
         save(getFilePath());
     }
 
-    public void update(ModelObject modelObject) throws NoSuchElementException, IOException {
+    public void update(ModelObject modelObject) throws NoSuchElementException {
         ModelObject oldModelObject = getByID(modelObject.getID());
         listOfModelObjects.set(listOfModelObjects.indexOf(oldModelObject), modelObject);
         save(getFilePath());
     }
 
-    public void updateAll(List<ModelObject> modelObjects) throws IOException {
+    public void updateAll(List<ModelObject> modelObjects) {
         listOfModelObjects = modelObjects;
         save(getFilePath());
     }
 
-    public void load() throws IOException {
+    public void load()  {
         load(getFilePath());
     }
 
-    public void save() throws IOException {
+    public void save()  {
         save(getFilePath());
     }
 

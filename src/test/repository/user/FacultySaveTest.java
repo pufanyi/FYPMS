@@ -3,8 +3,6 @@ package test.repository.user;
 import main.model.user.Supervisor;
 import main.repository.user.FacultyRepository;
 
-import java.io.IOException;
-
 public class FacultySaveTest {
     private static Supervisor[] supervisors;
 
@@ -15,7 +13,7 @@ public class FacultySaveTest {
         supervisors[2] = new Supervisor("78687", "jinqingyang", "jinqingyang@e.ntu.edu.sg");
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         setUp();
         FacultyRepository facultyRepository = new FacultyRepository();
         facultyRepository.add(supervisors[0]);

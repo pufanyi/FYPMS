@@ -1,13 +1,12 @@
 package test.repository.user;
 
+import main.model.user.Supervisor;
+import main.repository.user.FacultyRepository;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import main.model.user.Supervisor;
-import main.repository.user.FacultyRepository;
 
-import java.io.IOException;
 import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -24,7 +23,7 @@ public class UserRepositoryTest {
         supervisors[2] = new Supervisor("78687", "jinqingyang", "jinqingyang@e.ntu.edu.sg");
     }
 
-    private FacultyRepository createFacultyList() throws IOException {
+    private FacultyRepository createFacultyList() {
         FacultyRepository facultyRepository = new FacultyRepository();
         facultyRepository.add(supervisors[0]);
         facultyRepository.add(supervisors[1]);
@@ -37,7 +36,7 @@ public class UserRepositoryTest {
      */
     @Test
     @DisplayName("Test add user")
-    public void addUserTest() throws IOException {
+    public void addUserTest() {
         FacultyRepository facultyRepository = new FacultyRepository();
         assertTrue(facultyRepository.isEmpty());
         facultyRepository.add(supervisors[0]);
@@ -49,7 +48,7 @@ public class UserRepositoryTest {
 
     @Test
     @DisplayName("Test get all")
-    public void getAllTest() throws IOException {
+    public void getAllTest() {
         FacultyRepository facultyRepository = createFacultyList();
         assertEquals(3, facultyRepository.getAll().size());
         assertEquals(supervisors[0], facultyRepository.getAll().get(0));
@@ -62,7 +61,7 @@ public class UserRepositoryTest {
      */
     @Test
     @DisplayName("Test remove user")
-    public void removeUserTest() throws IOException {
+    public void removeUserTest() {
         FacultyRepository facultyRepository = createFacultyList();
         assertEquals(3, facultyRepository.size());
         assertTrue(facultyRepository.contains(supervisors[0].getID()));
@@ -81,7 +80,7 @@ public class UserRepositoryTest {
      */
     @Test
     @DisplayName("Test contains user")
-    public void containUserTest() throws IOException {
+    public void containUserTest() {
         FacultyRepository facultyRepository = createFacultyList();
         assertTrue(facultyRepository.contains(supervisors[0].getID()));
         assertTrue(facultyRepository.contains(supervisors[1].getID()));
@@ -91,7 +90,7 @@ public class UserRepositoryTest {
 
     @Test
     @DisplayName("Test get user")
-    public void getUserTest() throws IOException {
+    public void getUserTest() {
         FacultyRepository facultyRepository = createFacultyList();
         assertEquals(supervisors[0], facultyRepository.getByID(supervisors[0].getID()));
         assertEquals(supervisors[1], facultyRepository.getByID(supervisors[1].getID()));
@@ -101,7 +100,7 @@ public class UserRepositoryTest {
 
     @Test
     @DisplayName("Test user size")
-    public void userSizeTest() throws IOException {
+    public void userSizeTest() {
         FacultyRepository facultyRepository = new FacultyRepository();
         assertEquals(0, facultyRepository.size());
         facultyRepository.add(supervisors[0]);

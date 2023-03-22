@@ -31,4 +31,13 @@ public class FacultyRepository extends Repository<Supervisor> {
             getAll().add(new Supervisor(map));
         }
     }
+
+    public FacultyRepository() {
+        super();
+        load();
+    }
+
+    public static FacultyRepository getInstance() {
+        return new FacultyRepository();
+    }
 }

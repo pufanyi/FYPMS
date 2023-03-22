@@ -1,41 +1,46 @@
 package main.model.project;
 
+import main.model.Model;
 import main.model.user.Student;
 import main.model.user.Supervisor;
+import main.repository.user.FacultyRepository;
+import main.repository.user.StudentRepository;
 
-public class Project {
+import java.util.Map;
+
+public class Project extends Model {
     ProjectStatus status;
 
     /**
      * The ID of the project
      */
-    private final Integer projectID;
+    private String projectID;
     /**
      * the supervisor of the project
      */
-    private final Supervisor supervisor;
+    private String supervisorID;
 
     /**
      * the student of the project
      */
-    private Student student;
+    private String studentID;
     /**
      * the title of the project
      */
-    private final String projectTitle;
+    private String projectTitle;
 
     /**
      * the constructor of the project
      *
      * @param projectID    the ID of the project
      * @param projectTitle the title of the project
-     * @param supervisor   the supervisor of the project
+     * @param supervisorID the supervisor of the project
      */
-    public Project(int projectID, String projectTitle, Supervisor supervisor) {
+    public Project(String projectID, String projectTitle, String supervisorID) {
         this.projectID = projectID;
         this.projectTitle = projectTitle;
-        this.supervisor = supervisor;
-        this.student = null;
+        this.supervisorID = supervisorID;
+        this.studentID = "NULL";
         this.status = ProjectStatus.AVAILABLE;
     }
 
@@ -44,7 +49,7 @@ public class Project {
      *
      * @return the ID of the project
      */
-    public Integer getProjectID() {
+    public String getProjectID() {
         return projectID;
     }
 
@@ -52,6 +57,7 @@ public class Project {
      * Display the information of the supervisor
      */
     private void displaySupervisorInformation() {
+        Supervisor supervisor = FacultyRepository.getInstance().getByID(supervisorID);
         System.out.println("Supervisor Name: " + supervisor.getUserName());
         System.out.println("Supervisor Email Address: " + supervisor.getEmail());
     }
@@ -60,6 +66,7 @@ public class Project {
      * Display the information of the student
      */
     private void displayStudentInformation() {
+        Student student = StudentRepository.getInstance().getByID(studentID);
         System.out.println("Student Name: " + student.getUserName());
         System.out.println("Student Email Address: " + student.getEmail());
     }
@@ -103,11 +110,37 @@ public class Project {
      * @param student the student to be assigned
      * @throws IllegalStateException if the project is not available for allocation
      */
-    public void assignStudent(Student student) throws IllegalStateException {
+    public void assignStudent(String studentID) throws IllegalStateException {
         if (status != ProjectStatus.AVAILABLE) {
             throw new IllegalStateException("Project is not available for allocation.");
         }
-        this.student = student;
+        this.studentID = studentID;
         this.status = ProjectStatus.ALLOCATED;
+    }
+
+    @Override
+    public String getID() {
+        return projectID;
+    }
+
+    /**
+     * Converts the object to a map
+     *
+     * @return the map
+     */
+    @Override
+    public Map<String, String> toMap() {
+        // TODO: Implement this method
+        return null;
+    }
+
+    /**
+     * Converts the map to an object
+     *
+     * @param map the map
+     */
+    @Override
+    public void fromMap(Map<String, String> map) {
+        // TODO: Implement this method
     }
 }

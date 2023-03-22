@@ -24,10 +24,14 @@ public abstract class Savable<MappableObject extends Mappable> {
      * Saves the list of mappable objects to a file.
      *
      * @param FILE_PATH the path of the file to save to
-     * @throws IOException if you cannot write to the file
      */
-    public void save(final String FILE_PATH) throws IOException {
-        PrintWriter printWriter = new PrintWriter(new FileWriter(FILE_PATH));
+    public void save(final String FILE_PATH) {
+        PrintWriter printWriter;
+        try {
+            printWriter = new PrintWriter(new FileWriter(FILE_PATH));
+        } catch (IOException e) {
+            throw new RuntimeException("Data could not be saved to file: " + FILE_PATH);
+        }
         final List<MappableObject> listOfMappableObjects = getAll();
         for (MappableObject mappableObject : listOfMappableObjects) {
             printWriter.println(StringAndMapConvertor.mapToString(mappableObject.toMap()));
@@ -39,14 +43,22 @@ public abstract class Savable<MappableObject extends Mappable> {
      * Loads the list of mappable objects from a file.
      *
      * @param FILE_PATH the path of the file to load from
-     * @throws IOException if you cannot read from the file
      */
-    public void load(final String FILE_PATH) throws IOException {
+    public void load(final String FILE_PATH) {
         List<Map<String, String>> listOfMappableObjects = new ArrayList<>();
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(FILE_PATH));
+        BufferedReader bufferedReader;
+        try {
+            bufferedReader = new BufferedReader(new FileReader(FILE_PATH));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("Data could not be loaded from file: " + FILE_PATH);
+        }
         String line;
-        while ((line = bufferedReader.readLine()) != null) {
-            listOfMappableObjects.add(StringAndMapConvertor.stringToMap(line));
+        try {
+            while ((line = bufferedReader.readLine()) != null) {
+                listOfMappableObjects.add(StringAndMapConvertor.stringToMap(line));
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Data could not be loaded from file: " + FILE_PATH);
         }
         setAll(listOfMappableObjects);
     }
