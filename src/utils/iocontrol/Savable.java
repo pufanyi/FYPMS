@@ -30,8 +30,9 @@ public abstract class Savable<MappableObject extends Mappable> {
         PrintWriter printWriter = new PrintWriter(new FileWriter(FILE_PATH));
         final List<MappableObject> listOfMappableObjects = getAll();
         for (MappableObject mappableObject : listOfMappableObjects) {
-            printWriter.println(StringAndMapConvertor.toString(mappableObject.toMap()));
+            printWriter.println(StringAndMapConvertor.mapToString(mappableObject.toMap()));
         }
+        printWriter.close();
     }
 
     /**
@@ -45,7 +46,7 @@ public abstract class Savable<MappableObject extends Mappable> {
         BufferedReader bufferedReader = new BufferedReader(new FileReader(FILE_PATH));
         String line;
         while ((line = bufferedReader.readLine()) != null) {
-            listOfMappableObjects.add(StringAndMapConvertor.toMap(line));
+            listOfMappableObjects.add(StringAndMapConvertor.stringToMap(line));
         }
         setAll(listOfMappableObjects);
     }

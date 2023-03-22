@@ -4,7 +4,7 @@ import utils.parameters.NotNull;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
+import java.util.Base64;
 
 /**
  * The PasswordHashManager class provides a utility for hashing passwords using the SHA3-256 algorithm.
@@ -36,6 +36,6 @@ public class PasswordHashManager {
      * @return a byte array containing the hashed password
      */
     public static String hashPassword(@NotNull String password) {
-        return Arrays.toString(messageDigest.digest(password.getBytes()));
+        return Base64.getEncoder().encodeToString(messageDigest.digest(password.getBytes()));
     }
 }

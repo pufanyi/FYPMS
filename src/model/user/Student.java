@@ -10,7 +10,7 @@ import java.util.Map;
  * This class represents a student, which is a type of user.
  * It extends the User class and includes a student ID field.
  */
-public class Student implements User {
+public class Student extends User {
 
     /**
      * The ID of the student.
@@ -186,7 +186,7 @@ public class Student implements User {
 
     public boolean equals(Object o) {
         if (o instanceof Student otherStudent) {
-            return this.studentID.equals(otherStudent.studentID);
+            return o.hashCode() == this.hashCode();
         }
         return false;
     }

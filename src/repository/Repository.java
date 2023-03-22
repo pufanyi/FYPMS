@@ -38,7 +38,7 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
         throw new NoSuchElementException("No model object with ID " + modelObjectID + " exists.");
     }
 
-    public boolean findByID(String modelObjectID) {
+    public boolean contains(String modelObjectID) {
         try {
             getByID(modelObjectID);
             return true;
@@ -48,7 +48,7 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
     }
 
     public void add(ModelObject modelObject) throws IllegalArgumentException, IOException {
-        if (findByID(modelObject.getID())) {
+        if (contains(modelObject.getID())) {
             throw new IllegalArgumentException("A model object with ID " + modelObject.getID() + " already exists.");
         } else {
             listOfModelObjects.add(modelObject);

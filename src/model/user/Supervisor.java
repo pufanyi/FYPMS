@@ -10,7 +10,7 @@ import java.util.Map;
  * This class represents a supervisor, which is a type of user.
  * It extends the User class and includes a supervisor ID field.
  */
-public class Supervisor implements User {
+public class Supervisor extends User {
     /**
      * The ID of the supervisor.
      */
@@ -162,7 +162,7 @@ public class Supervisor implements User {
 
     public boolean equals(Object o) {
         if (o instanceof Supervisor supervisor) {
-            return this.supervisorID.equals(supervisor.supervisorID);
+            return o.hashCode() == this.hashCode();
         }
         return false;
     }

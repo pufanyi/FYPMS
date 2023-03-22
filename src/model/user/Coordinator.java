@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * A class that represents a coordinator
  */
-public class Coordinator implements User {
+public class Coordinator extends User {
     /**
      * The ID of the coordinator
      */
@@ -149,7 +149,7 @@ public class Coordinator implements User {
 
     public boolean equals(Object o) {
         if (o instanceof Coordinator c) {
-            return this.coordinatorID.equals(c.coordinatorID);
+            return o.hashCode() == this.hashCode();
         }
         return false;
     }

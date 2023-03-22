@@ -2,6 +2,7 @@ package model;
 
 import utils.iocontrol.Mappable;
 
-public interface Model extends Mappable {
-    String getID();
+public abstract class Model extends Mappable {
+    public abstract String getID();
+
 }

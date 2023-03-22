@@ -51,7 +51,7 @@ public class PasswordManager {
      * @return true if the input password is the same as the password of the user, false otherwise
      */
     public boolean checkPassword(@NotNull String input) {
-        return input.equals(hashedPassword);
+        return PasswordHashManager.hashPassword(input).equals(hashedPassword);
     }
 
     /**

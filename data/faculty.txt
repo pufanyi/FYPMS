@@ -1,0 +1,3 @@
+supervisorName=Lucas;password=wAZ9SvTofwDbrGO2FWgoI3BZFy0bvqxnQnNF1qn9pIQ=;supervisorID=A1234567A;email=Lucas@e.ntu.edu.sg
+supervisorName=pufanyi;password=wAZ9SvTofwDbrGO2FWgoI3BZFy0bvqxnQnNF1qn9pIQ=;supervisorID=12345;email=pufanyi@e.ntu.edu.sg
+supervisorName=jinqingyang;password=wAZ9SvTofwDbrGO2FWgoI3BZFy0bvqxnQnNF1qn9pIQ=;supervisorID=78687;email=jinqingyang@e.ntu.edu.sg
