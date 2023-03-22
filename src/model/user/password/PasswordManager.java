@@ -1,6 +1,6 @@
 package model.user.password;
 
-import org.jetbrains.annotations.NotNull;
+import utils.parameters.NotNull;
 
 /**
  * A class manages the password of a user

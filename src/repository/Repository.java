@@ -3,11 +3,15 @@ package repository;
 import model.Model;
 import utils.iocontrol.Savable;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-public abstract class Repository<ModelObject extends Model> extends Savable<ModelObject> {
+public abstract class Repository<ModelObject extends Model> extends Savable<ModelObject> implements Iterable<ModelObject> {
+    public abstract String getFilePath();
+
     List<ModelObject> listOfModelObjects;
 
     public Repository() {
@@ -21,7 +25,7 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
      * @return the list of mappable objects
      */
     @Override
-    public List<ModelObject> getListOfMappableObjects() {
+    public List<ModelObject> getAll() {
         return listOfModelObjects;
     }
 
@@ -43,15 +47,59 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
         }
     }
 
-    public void add(ModelObject modelObject) throws IllegalArgumentException {
+    public void add(ModelObject modelObject) throws IllegalArgumentException, IOException {
         if (findByID(modelObject.getID())) {
             throw new IllegalArgumentException("A model object with ID " + modelObject.getID() + " already exists.");
         } else {
             listOfModelObjects.add(modelObject);
+            save(getFilePath());
         }
     }
 
-    public void remove(String modelObjectID) throws NoSuchElementException {
+    public void remove(String modelObjectID) throws NoSuchElementException, IOException {
         listOfModelObjects.remove(getByID(modelObjectID));
+        save(getFilePath());
+    }
+
+    public boolean isEmpty() {
+        return listOfModelObjects.isEmpty();
+    }
+
+    public int size() {
+        return listOfModelObjects.size();
+    }
+
+    public void clear() throws IOException {
+        listOfModelObjects.clear();
+        save(getFilePath());
+    }
+
+    public void update(ModelObject modelObject) throws NoSuchElementException, IOException {
+        ModelObject oldModelObject = getByID(modelObject.getID());
+        listOfModelObjects.set(listOfModelObjects.indexOf(oldModelObject), modelObject);
+        save(getFilePath());
+    }
+
+    public void updateAll(List<ModelObject> modelObjects) throws IOException {
+        listOfModelObjects = modelObjects;
+        save(getFilePath());
+    }
+
+    public void load() throws IOException {
+        load(getFilePath());
+    }
+
+    public void save() throws IOException {
+        save(getFilePath());
+    }
+
+    /**
+     * Returns an iterator over elements of type {@code T}.
+     *
+     * @return an Iterator.
+     */
+    @Override
+    public Iterator<ModelObject> iterator() {
+        return listOfModelObjects.iterator();
     }
 }

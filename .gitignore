@@ -33,3 +33,6 @@ bin/
 
 ### JAR Files ###
 *.jar
+
+### Path Files ###
+src/utils/config/Location.java

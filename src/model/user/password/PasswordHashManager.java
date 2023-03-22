@@ -1,6 +1,6 @@
 package model.user.password;
 
-import org.jetbrains.annotations.NotNull;
+import utils.parameters.NotNull;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

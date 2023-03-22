@@ -11,14 +11,14 @@ public abstract class Savable<MappableObject extends Mappable> {
      *
      * @return the list of mappable objects
      */
-    public abstract List<MappableObject> getListOfMappableObjects();
+    public abstract List<MappableObject> getAll();
 
     /**
      * Sets the list of mappable objects.
      *
      * @param listOfMappableObjects the list of mappable objects
      */
-    public abstract void setListOfMappableObjects(List<Map<String, String>> listOfMappableObjects);
+    public abstract void setAll(List<Map<String, String>> listOfMappableObjects);
 
     /**
      * Saves the list of mappable objects to a file.
@@ -28,7 +28,7 @@ public abstract class Savable<MappableObject extends Mappable> {
      */
     public void save(final String FILE_PATH) throws IOException {
         PrintWriter printWriter = new PrintWriter(new FileWriter(FILE_PATH));
-        final List<MappableObject> listOfMappableObjects = getListOfMappableObjects();
+        final List<MappableObject> listOfMappableObjects = getAll();
         for (MappableObject mappableObject : listOfMappableObjects) {
             printWriter.println(StringAndMapConvertor.toString(mappableObject.toMap()));
         }
@@ -47,6 +47,6 @@ public abstract class Savable<MappableObject extends Mappable> {
         while ((line = bufferedReader.readLine()) != null) {
             listOfMappableObjects.add(StringAndMapConvertor.toMap(line));
         }
-        setListOfMappableObjects(listOfMappableObjects);
+        setAll(listOfMappableObjects);
     }
 }
