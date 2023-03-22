@@ -22,4 +22,13 @@ public class ProjectRepository extends Repository<Project> {
     public void setAll(List<Map<String, String>> listOfMappableObjects) {
         // TODO: Implement this method
     }
+
+    ProjectRepository() {
+        super();
+        load();
+    }
+
+    public static ProjectRepository getInstance() {
+        return new ProjectRepository();
+    }
 }
