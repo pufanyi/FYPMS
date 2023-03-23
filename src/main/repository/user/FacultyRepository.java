@@ -8,12 +8,12 @@ import java.util.List;
 import java.util.Map;
 
 public class FacultyRepository extends Repository<Supervisor> {
-    final private static String FILE_PATH = "/data/faculty.txt";
+    final private static String FILE_PATH = "/data/user/faculty.txt";
 
     /**
-     * Gets the file path.
+     * Gets the path of the repository file.
      *
-     * @return the file path
+     * @return the path of the repository file
      */
     @Override
     public String getFilePath() {

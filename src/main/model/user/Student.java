@@ -130,6 +130,9 @@ public class Student extends User {
         String password = informationMap.get("password");
         this.status = status;
         setPassword(password);
+        this.studentID = informationMap.get("studentID");
+        this.studentName = informationMap.get("studentName");
+        this.email = informationMap.get("email");
     }
 
     /**

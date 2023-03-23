@@ -84,11 +84,11 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
         save(getFilePath());
     }
 
-    public void load()  {
+    public void load() {
         load(getFilePath());
     }
 
-    public void save()  {
+    public void save() {
         save(getFilePath());
     }
 
@@ -100,5 +100,27 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
     @Override
     public Iterator<ModelObject> iterator() {
         return listOfModelObjects.iterator();
+    }
+
+    public interface RepositoryRule<ModelObject> {
+        boolean isMatch(ModelObject modelObject);
+    }
+
+    @SafeVarargs
+    public final List<ModelObject> findByRules(RepositoryRule<ModelObject>... rules) {
+        List<ModelObject> modelObjects = new ArrayList<>();
+        for (ModelObject modelObject : listOfModelObjects) {
+            boolean isMatch = true;
+            for (RepositoryRule<ModelObject> rule : rules) {
+                if (!rule.isMatch(modelObject)) {
+                    isMatch = false;
+                    break;
+                }
+            }
+            if (isMatch) {
+                modelObjects.add(modelObject);
+            }
+        }
+        return modelObjects;
     }
 }

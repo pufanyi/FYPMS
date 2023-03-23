@@ -2,10 +2,7 @@ package test.repository.user;
 
 import main.model.user.Supervisor;
 import main.repository.user.FacultyRepository;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.*;
 
 import java.util.NoSuchElementException;
 
@@ -21,6 +18,11 @@ public class UserRepositoryTest {
         supervisors[0] = new Supervisor("A1234567A", "Lucas", "Lucas@e.ntu.edu.sg");
         supervisors[1] = new Supervisor("12345", "pufanyi", "pufanyi@e.ntu.edu.sg");
         supervisors[2] = new Supervisor("78687", "jinqingyang", "jinqingyang@e.ntu.edu.sg");
+    }
+
+    @BeforeEach
+    public void setUpEach() {
+        FacultyRepository.getInstance().clear();
     }
 
     private FacultyRepository createFacultyList() {
@@ -115,5 +117,16 @@ public class UserRepositoryTest {
         assertEquals(1, facultyRepository.size());
         facultyRepository.remove(supervisors[2].getID());
         assertEquals(0, facultyRepository.size());
+    }
+
+    @Test
+    @DisplayName("Find By Rules Test")
+    public void findByRulesTest() {
+        FacultyRepository facultyRepository = createFacultyList();
+        assertEquals(3, facultyRepository.findByRules(supervisor -> true).size());
+        assertEquals(1, facultyRepository.findByRules(supervisor -> supervisor.getID().equals("A1234567A")).size());
+        assertEquals(2, facultyRepository.findByRules(supervisor -> supervisor.getID().equals("A1234567A") || supervisor.getID().equals("12345")).size());
+        assertEquals(0, facultyRepository.findByRules(supervisor -> supervisor.getID().equals("A1234567A") && supervisor.getID().equals("12345")).size());
+        assertEquals(0, facultyRepository.findByRules(supervisor -> supervisor.getID().equals("A1234567A"), supervisor -> supervisor.getID().equals("12345")).size());
     }
 }

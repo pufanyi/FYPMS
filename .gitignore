@@ -36,3 +36,20 @@ bin/
 
 ### Path Files ###
 src/main/utils/config/Location.java
+
+### LaTeX Build Files ###
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.nav
+*.snm
+*.vrb
+*.xdv
+*.bbl
+*.blg
+*.dvi
+*.idx

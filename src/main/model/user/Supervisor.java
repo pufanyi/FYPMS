@@ -1,6 +1,5 @@
 package main.model.user;
 
-import main.model.user.password.PasswordManager;
 import main.utils.parameters.NotNull;
 
 import java.util.HashMap;
@@ -20,10 +19,6 @@ public class Supervisor extends User {
      */
     private String supervisorName;
     /**
-     * The password of a supervisor
-     */
-    private PasswordManager passwordManager;
-    /**
      * The email of a supervisor
      */
     private String email;
@@ -38,7 +33,6 @@ public class Supervisor extends User {
     public Supervisor(String supervisorID, String supervisorName, String email) {
         this.supervisorID = supervisorID;
         this.supervisorName = supervisorName;
-        this.passwordManager = new PasswordManager();
         this.email = email;
     }
 
@@ -54,7 +48,6 @@ public class Supervisor extends User {
         super(password);
         this.supervisorID = supervisorID;
         this.supervisorName = supervisorName;
-        this.passwordManager = new PasswordManager(password);
         this.email = email;
     }
 
@@ -100,7 +93,7 @@ public class Supervisor extends User {
         ansMap.put("supervisorID", this.supervisorID);
         ansMap.put("supervisorName", this.supervisorName);
         ansMap.put("email", this.email);
-        ansMap.put("password", this.passwordManager.getPassword());
+        ansMap.put("password", getPassword());
         return ansMap;
     }
 
@@ -114,10 +107,7 @@ public class Supervisor extends User {
         this.supervisorID = map.get("supervisorID");
         this.supervisorName = map.get("supervisorName");
         this.email = map.get("email");
-        if (this.passwordManager == null) {
-            this.passwordManager = new PasswordManager();
-        }
-        this.passwordManager.setPassword(map.get("password"));
+        setPassword(map.get("password"));
     }
 
     /**

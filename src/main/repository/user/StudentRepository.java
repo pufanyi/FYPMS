@@ -7,6 +7,10 @@ import java.util.List;
 import java.util.Map;
 
 public class StudentRepository extends Repository<Student> {
+    /**
+     * Gets the path of the repository file.
+     * @return the path of the repository file
+     */
     @Override
     public String getFilePath() {
         // TODO: Implement this method
