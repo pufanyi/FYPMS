@@ -1,6 +1,5 @@
 package main.model.user;
 
-import main.model.user.password.PasswordManager;
 import main.utils.parameters.NotNull;
 
 import java.util.HashMap;
@@ -11,7 +10,6 @@ import java.util.Map;
  * It extends the User class and includes a student ID field.
  */
 public class Student extends User {
-
     /**
      * The ID of the student.
      */
@@ -20,10 +18,6 @@ public class Student extends User {
      * The name of a student
      */
     private String studentName;
-    /**
-     * The password of a student
-     */
-    private PasswordManager passwordManager;
     /**
      * The email of a student
      */
@@ -43,7 +37,6 @@ public class Student extends User {
     public Student(String studentID, String studentName, String email) {
         this.studentID = studentID;
         this.studentName = studentName;
-        this.passwordManager = new PasswordManager();
         this.email = email;
     }
 
@@ -56,9 +49,9 @@ public class Student extends User {
      * @param password    the password of the student.
      */
     public Student(String studentID, String studentName, String email, @NotNull String password) {
+        super(password);
         this.studentID = studentID;
         this.studentName = studentName;
-        this.passwordManager = new PasswordManager(password);
         this.email = email;
     }
 
@@ -80,27 +73,6 @@ public class Student extends User {
     @Override
     public String getUserName() {
         return this.studentName;
-    }
-
-    /**
-     * Sets the password for the user.
-     *
-     * @param password the new password for the user.
-     */
-    @Override
-    public void setPassword(@NotNull String password) {
-        passwordManager.setPassword(password);
-    }
-
-    /**
-     * check the user input of password
-     *
-     * @param input the password to check
-     * @return whether the password entered is correct
-     */
-    @Override
-    public boolean checkPassword(@NotNull String input) {
-        return passwordManager.checkPassword(input);
     }
 
     /**
@@ -143,7 +115,7 @@ public class Student extends User {
         ans.put("studentName", studentName);
         ans.put("email", email);
         ans.put("status", status.toString());
-        ans.put("password", passwordManager.getPassword());
+        ans.put("password", getPassword());
         return ans;
     }
 
@@ -157,10 +129,7 @@ public class Student extends User {
         StudentStatus status = StudentStatus.valueOf(informationMap.get("status"));
         String password = informationMap.get("password");
         this.status = status;
-        if (this.passwordManager == null) {
-            this.passwordManager = new PasswordManager();
-        }
-        this.passwordManager.setHashedPassword(password);
+        setPassword(password);
     }
 
     /**
@@ -177,10 +146,10 @@ public class Student extends User {
     }
 
     public Student() {
+        super();
         this.email = "";
         this.studentID = "";
         this.studentName = "";
-        this.passwordManager = new PasswordManager();
         this.status = StudentStatus.UNREGISTERED;
     }
 

@@ -43,6 +43,7 @@ public class Coordinator extends User {
      * constructor of a new Coordinator object with the specified coordinator ID and password
      */
     public Coordinator(String coordinatorID, String coordinatorName, String email, @NotNull String password) {
+        super(password);
         this.coordinatorID = coordinatorID;
         this.coordinatorName = coordinatorName;
         this.passwordManager = new PasswordManager(password);
@@ -65,25 +66,6 @@ public class Coordinator extends User {
      */
     public String getUserName() {
         return this.coordinatorName;
-    }
-
-    /**
-     * sets the password for the user
-     *
-     * @param password the new password for the user.
-     */
-    public void setPassword(@NotNull String password) {
-        passwordManager.setPassword(password);
-    }
-
-    /**
-     * check the user input of the password
-     *
-     * @param input the password to check
-     * @return whether the password entered is correct
-     */
-    public boolean checkPassword(@NotNull String input) {
-        return passwordManager.checkPassword(input);
     }
 
     /**
@@ -118,13 +100,22 @@ public class Coordinator extends User {
      */
     @Override
     public void fromMap(Map<String, String> map) {
-        this.coordinatorID = map.get("coordinatorID");
-        this.coordinatorName = map.get("coordinatorName");
-        this.email = map.get("email");
-        if (this.passwordManager == null) {
-            this.passwordManager = new PasswordManager();
-        }
-        this.passwordManager.setHashedPassword(map.get("password"));
+        setCoordinatorName(map.get("coordinatorName"));
+        setCoordinatorID(map.get("coordinatorID"));
+        setEmail(map.get("email"));
+        setPassword(map.get("password"));
+    }
+
+    public void setCoordinatorID(String coordinatorID) {
+        this.coordinatorID = coordinatorID;
+    }
+
+    public void setCoordinatorName(String coordinatorName) {
+        this.coordinatorName = coordinatorName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     /**

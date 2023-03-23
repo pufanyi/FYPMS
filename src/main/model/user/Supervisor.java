@@ -51,6 +51,7 @@ public class Supervisor extends User {
      * @param password       the password of the supervisor.
      */
     public Supervisor(String supervisorID, String supervisorName, String email, @NotNull String password) {
+        super(password);
         this.supervisorID = supervisorID;
         this.supervisorName = supervisorName;
         this.passwordManager = new PasswordManager(password);
@@ -75,27 +76,6 @@ public class Supervisor extends User {
     @Override
     public String getUserName() {
         return this.supervisorName;
-    }
-
-    /**
-     * Sets the password for the user.
-     *
-     * @param password the new password for the user.
-     */
-    @Override
-    public void setPassword(@NotNull String password) {
-        passwordManager.setPassword(password);
-    }
-
-    /**
-     * Checks if the password is correct.
-     *
-     * @param password the password to check
-     * @return true if the password is correct, false otherwise
-     */
-    @Override
-    public boolean checkPassword(@NotNull String password) {
-        return passwordManager.checkPassword(password);
     }
 
     /**
@@ -156,7 +136,6 @@ public class Supervisor extends User {
     public Supervisor() {
         this.supervisorID = "";
         this.supervisorName = "";
-        this.passwordManager = new PasswordManager();
         this.email = "";
     }
 
