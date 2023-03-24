@@ -71,11 +71,14 @@
     stringstyle=\color{redstrings},
     numberstyle=\color{graynumbers},
     basicstyle=\ttfamily\footnotesize,
-    frame=l,
-    framesep=12pt,
-    xleftmargin=12pt,
+	frame=single,
+    framesep=6pt,
+    xleftmargin=30pt,
     tabsize=4,
     captionpos=b,
+	language=Java,
+	numbers=left,
+	numbersep=15pt,
 }
 
 % 脚注
@@ -119,6 +122,9 @@
 	\item 大致理解 \texttt{Controller} 部分，完整读完题目
 \end{itemize}
 
+\subsection{Use Case Diagram}
+
+\includegraphics[width=0.8\textwidth]{diagrams/use_case_diagram.pdf}
 
 \section{Codes}
 
@@ -199,6 +205,12 @@ public class Location {
 \subsubsection{\texttt{Supervisor(Map<String, String> map)}}
 
 通过 \texttt{Map} 来构造 \texttt{Model}。
+
+\begin{lstlisting}[language=Java]
+	public Supervisor(Map<String, String> map) {
+		fromMap(map);
+	}
+\end{lstlisting}
 
 \subsection{\texttt{Repository}}
 
