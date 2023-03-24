@@ -1,5 +1,7 @@
 package main.model.request;
 
-public class Request {
+import main.model.Model;
+
+public abstract class Request extends Model {
     // TODO: Implement this class
 }
