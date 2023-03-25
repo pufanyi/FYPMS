@@ -11,6 +11,10 @@ public class ViewRequestHistory extends CoordinatorRequest implements ViewReques
      * The request to be viewed
      */
     private Request request;
+    /**
+     * The type of the request
+     */
+    private static final String requestType = "View request history";
 
     /**
      * Constructs a new ViewRequestHistory object with the specified request.
@@ -32,7 +36,9 @@ public class ViewRequestHistory extends CoordinatorRequest implements ViewReques
 
     public void view() {
         RequestRepository requestRepository = RequestRepository.getInstance();
-        for(Request request : requestRepository)
+        for(Request request : requestRepository){
             request.displayRequest();
+            System.out.println("Request type: " + requestType);
+        }
     }
 }

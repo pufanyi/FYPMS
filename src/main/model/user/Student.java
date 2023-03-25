@@ -26,7 +26,13 @@ public class Student extends User {
      * The status of a student
      */
     private StudentStatus status;
+    /**
+     * The ID of the supervisor
+     */
     private String supervisorID;
+    /**
+     * The ID of the project
+     */
     private String projectID;
 
     /**
@@ -173,5 +179,37 @@ public class Student extends User {
             return o.hashCode() == this.hashCode();
         }
         return false;
+    }
+
+    /**
+     * Gets the ID of the supervisor
+     * @return the ID of the supervisor
+     */
+    public String getSupervisorID() {
+        return supervisorID;
+    }
+
+    /**
+     * Sets the ID of the supervisor
+     * @param supervisorID the ID of the supervisor
+     */
+    public void setSupervisorID(String supervisorID) {
+        this.supervisorID = supervisorID;
+    }
+
+    /**
+     * Gets the ID of the project
+     * @return the ID of the project
+     */
+    public String getProjectID() {
+        return projectID;
+    }
+
+    /**
+     * Sets the ID of the project
+     * @param projectID the ID of the project
+     */
+    public void setProjectID(String projectID) {
+        this.projectID = projectID;
     }
 }
