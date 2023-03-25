@@ -3,6 +3,7 @@ package main.model.project;
 import main.model.Model;
 import main.model.user.Student;
 import main.model.user.Supervisor;
+import main.repository.project.ProjectRepository;
 import main.repository.user.FacultyRepository;
 import main.repository.user.StudentRepository;
 
@@ -42,15 +43,6 @@ public class Project extends Model {
         this.supervisorID = supervisorID;
         this.studentID = "NULL";
         this.status = ProjectStatus.AVAILABLE;
-    }
-
-    /**
-     * Get the ID of the project
-     *
-     * @return the ID of the project
-     */
-    public String getProjectID() {
-        return projectID;
     }
 
     /**
@@ -178,6 +170,10 @@ public class Project extends Model {
         return status;
     }
 
+    /**
+     * Get the ID of the project
+     * @return the ID of the project
+     */
     @Override
     public String getID() {
         return projectID;
