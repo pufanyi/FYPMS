@@ -242,7 +242,7 @@ public class FacultyRepository extends Repository<Supervisor> {
 
 \begin{itemize}
 	\item \texttt{@Override public String getFilePath()}
-	\item \texttt{@Override public void seeAll(List<Map<String, String>> data)}
+	\item \texttt{@Override public void setAll(List<Map<String, String>> data)}
 	\item \texttt{public FacultyRepository()}
 	\item \texttt{public static FacultyRepository getInstance()}
 \end{itemize}
@@ -262,7 +262,7 @@ public class FacultyRepository extends Repository<Supervisor> {
     }
 \end{lstlisting}
 
-\subsubsection{\texttt{seeAll(List<Map<String, String>> data)}}
+\subsubsection{\texttt{setAll(List<Map<String, String>> data)}}
 
 给你的是一个 \texttt{List<Map<String, String>>}，你需要把它转换成你需要的类型。
 
@@ -313,7 +313,7 @@ public class FacultyRepository extends Repository<Supervisor> {
 \subsubsection{\texttt{add}}
 
 \begin{lstlisting}[language=Java]
-    public void add(String modelObjectID) throws IllegalArgumentException
+    public void add(ModelObject modelObject) throws IllegalArgumentException
 \end{lstlisting}
 
 抛出 \texttt{IllegalArgumentException} 的原因是因为 \texttt{modelObject} 的 \texttt{ID} 已经存在了。
@@ -340,7 +340,7 @@ public class FacultyRepository extends Repository<Supervisor> {
 \subsubsection{\texttt{update}}
 
 \begin{lstlisting}[language=Java]
-	public void update(ModelObject) throws NoSuchElementException
+	public void update(ModelObject modelObject) throws NoSuchElementException
 \end{lstlisting}
 
 将原来 \texttt{ID} 为 \texttt{modelObject} 的 \texttt{Model} 替换成 \texttt{modelObject}。
