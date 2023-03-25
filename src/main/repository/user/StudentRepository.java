@@ -6,15 +6,18 @@ import main.repository.Repository;
 import java.util.List;
 import java.util.Map;
 
+import static main.utils.config.Location.LOCATION;
+
 public class StudentRepository extends Repository<Student> {
+    private static final String FILE_PATH = "/data/user/student.txt";
+
     /**
      * Gets the path of the repository file.
      * @return the path of the repository file
      */
     @Override
     public String getFilePath() {
-        // TODO: Implement this method
-        return null;
+        return LOCATION + FILE_PATH;
     }
 
     /**

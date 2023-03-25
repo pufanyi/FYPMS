@@ -6,11 +6,17 @@ import main.repository.Repository;
 import java.util.List;
 import java.util.Map;
 
+import static main.utils.config.Location.LOCATION;
+
 public class CoordinatorRepository extends Repository<Coordinator> {
+    /**
+     * The path of the repository file.
+     */
+    private static final String FILE_PATH = "/data/user/coordinator.txt";
+
     @Override
     public String getFilePath() {
-        // TODO: Implement this method
-        return null;
+        return LOCATION + FILE_PATH;
     }
 
     /**
@@ -20,7 +26,9 @@ public class CoordinatorRepository extends Repository<Coordinator> {
      */
     @Override
     public void setAll(List<Map<String, String>> listOfMappableObjects) {
-        // TODO: Implement this method
+        for (Map<String, String> map : listOfMappableObjects) {
+            getAll().add(new Coordinator(map));
+        }
     }
 
     CoordinatorRepository() {

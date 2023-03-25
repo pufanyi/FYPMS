@@ -18,8 +18,6 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
         listOfModelObjects = new ArrayList<>();
     }
 
-    public abstract String getRequestType();
-
     /**
      * Gets the list of mappable objects.
      *

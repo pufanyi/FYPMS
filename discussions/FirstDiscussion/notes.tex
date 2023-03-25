@@ -381,7 +381,7 @@ public class FacultyRepository extends Repository<Supervisor> {
 	);
     facultyRepository.findByRules(
 		supervisor -> supervisor.getID().equals("A1234567A"),
-		supervisor -> supervisor.getID().equals("12345")
+		supervisor -> supervisor.getName().equals("12345")
 	);
 \end{lstlisting}
 

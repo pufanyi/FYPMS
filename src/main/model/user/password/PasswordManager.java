@@ -13,6 +13,7 @@ public class PasswordManager {
 
     /**
      * Set the hashed password of a user
+     *
      * @param hashedPassword the hashed password of a user
      */
     public void setHashedPassword(String hashedPassword) {
