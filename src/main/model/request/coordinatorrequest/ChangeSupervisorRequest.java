@@ -13,7 +13,6 @@ public class ChangeSupervisorRequest extends CoordinatorRequest implements Reque
     }
 
     public ChangeSupervisorRequest(Map<String, Object> map) {
-        super(map);
         this.supervisorID = (String) map.get("supervisorID");
     }
 
@@ -26,9 +25,14 @@ public class ChangeSupervisorRequest extends CoordinatorRequest implements Reque
     }
 
     @Override
-    public Map<String, Object> toMap() {
-        Map<String, Object> map = super.toMap();
+    public Map<String, String> toMap() {
+        Map<String, String> map = super.toMap();
         map.put("supervisorID", supervisorID);
         return map;
+    }
+
+    @Override
+    public void fromMap(Map<String, String> map) {
+        this.supervisorID = map.get("supervisorID");
     }
 }
