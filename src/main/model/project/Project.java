@@ -118,6 +118,13 @@ public class Project extends Model {
         this.status = ProjectStatus.ALLOCATED;
     }
 
+    /**
+     * Set the status of the project
+     */
+    public void setStatus(ProjectStatus status) {
+        this.status = status;
+    }
+
     @Override
     public String getID() {
         return projectID;
