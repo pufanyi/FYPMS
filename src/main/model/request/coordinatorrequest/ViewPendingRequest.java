@@ -1,8 +1,11 @@
 package main.model.request.coordinatorrequest;
 
 import main.model.request.Request;
+import main.model.request.RequestRepository;
+import main.model.request.RequestStatus;
 import main.model.request.RequestView;
 
+import java.util.List;
 import java.util.Map;
 
 public class ViewPendingRequest extends CoordinatorRequest implements RequestView{
@@ -31,6 +34,7 @@ public class ViewPendingRequest extends CoordinatorRequest implements RequestVie
      */
     @Override
     public void view() {
+        List<Request> requestList = RequestRepository.getInstance().findByRules(request1 -> request1.getStatus() == RequestStatus.PENDING);
 
     }
 }
