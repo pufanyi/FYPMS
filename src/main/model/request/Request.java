@@ -11,7 +11,7 @@ public abstract class Request extends Model {
 
     private String requestID;
 
-    Request() {
+    protected Request() {
         requestID = generateID();
     }
 
