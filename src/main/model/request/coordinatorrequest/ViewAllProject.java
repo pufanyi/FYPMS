@@ -29,7 +29,8 @@ public class ViewAllProject extends CoordinatorRequest implements RequestView {
     /**
      * View all the projects
      */
-    public void viewAllProject() {
+    @Override
+    public void view() {
         ProjectRepository projectRepository = ProjectRepository.getInstance();
         for(Project project : projectRepository)
             project.displayProject();
