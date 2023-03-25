@@ -107,7 +107,7 @@ public class Project extends Model {
     /**
      * Assign a student to the project
      *
-     * @param student the student to be assigned
+     * @param studentID the student to be assigned
      * @throws IllegalStateException if the project is not available for allocation
      */
     public void assignStudent(String studentID) throws IllegalStateException {
@@ -123,6 +123,13 @@ public class Project extends Model {
      */
     public void setStatus(ProjectStatus status) {
         this.status = status;
+    }
+
+    /**
+     * Get the status of the project
+     */
+    public ProjectStatus getStatus() {
+        return status;
     }
 
     @Override

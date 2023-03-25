@@ -45,14 +45,18 @@ public class DeregisterStudent extends CoordinatorRequest implements RequestChan
 
     @Override
     public Map<String, String> toMap() {
-        return null;
+        // TODO: fill in the map
     }
     @Override
     public void fromMap(Map<String, String> studentMap) {
-
+        // TODO: fill in the map
     }
 
-    public void deregisterStudent() {
+    public void deregisterStudent() throws IllegalStateException {
+        if(student.getStatus() != StudentStatus.REGISTERED)
+            throw new IllegalStateException("Student is not registered");
+        if(project.getStatus() != ProjectStatus.ALLOCATED)
+            throw new IllegalStateException("Project is not allocated");
         student.setStatus(StudentStatus.DEREGISTERED);
         project.setStatus(ProjectStatus.AVAILABLE);
     }
