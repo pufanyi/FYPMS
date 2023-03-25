@@ -8,6 +8,7 @@ import main.model.user.StudentStatus;
 import main.repository.project.ProjectRepository;
 import main.repository.user.StudentRepository;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class DeregisterStudent extends CoordinatorRequest implements ChangeRequest {
@@ -45,23 +46,37 @@ public class DeregisterStudent extends CoordinatorRequest implements ChangeReque
         super();
         this.studentID = studentID;
         this.projectID = projectID;
+        student = StudentRepository.getInstance().getByID(studentID);
+        project = ProjectRepository.getInstance().getByID(projectID);
+        studentStatus = student.getStatus();
+        projectStatus = project.getStatus();
     }
 
     @Override
     public Map<String, String> toMap() {
-        // TODO: fill in the map
-        return null;
+        Map<String, String> ans = new HashMap<>();
+        ans.put("studentID", studentID);
+        ans.put("projectID", projectID);
+        ans.put("studentStatus", student.getStatus().toString());
+        ans.put("projectStatus", project.getStatus().toString());
+        return ans;
     }
     @Override
-    public void fromMap(Map<String, String> studentMap) {
-        // TODO: fill in the map
+    public void fromMap(Map<String, String> map) {
+        this.studentID = map.get("studentID");
+        this.projectID = map.get("projectID");
+        this.studentStatus = StudentStatus.valueOf(map.get("studentStatus"));
+        this.projectStatus = ProjectStatus.valueOf(map.get("projectStatus"));
     }
 
+    /**
+     * Deregister the student and update the status of the student and the project
+     * @throws IllegalStateException if the student is not registered or the project is not allocated
+     */
     public void deregisterStudent() throws IllegalStateException {
-        student = StudentRepository.getInstance().getByID(studentID);
-        if(student.getStatus() != StudentStatus.REGISTERED)
+        if(studentStatus != StudentStatus.REGISTERED)
             throw new IllegalStateException("Student is not registered");
-        if(project.getStatus() != ProjectStatus.ALLOCATED)
+        if(projectStatus != ProjectStatus.ALLOCATED)
             throw new IllegalStateException("Project is not allocated");
         student.setStatus(StudentStatus.DEREGISTERED);
         project.setStatus(ProjectStatus.AVAILABLE);

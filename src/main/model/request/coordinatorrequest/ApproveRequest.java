@@ -33,6 +33,7 @@ public class ApproveRequest extends CoordinatorRequest implements ChangeRequest 
     public ApproveRequest(String requestID) {
         super();
         this.requestID = requestID;
+        request = RequestRepository.getInstance().getByID(requestID);
     }
 
     @Override
@@ -55,7 +56,6 @@ public class ApproveRequest extends CoordinatorRequest implements ChangeRequest 
      * @throws IllegalStateException if the request is not pending
      */
     public void approve() throws IllegalStateException{
-        request = RequestRepository.getInstance().getByID(requestID);
         if(request.getStatus() != RequestStatus.PENDING)
             throw new IllegalStateException("Request is not pending");
         else if(request.getStatus() == RequestStatus.APPROVED)
