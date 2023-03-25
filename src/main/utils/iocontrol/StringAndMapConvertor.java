@@ -5,15 +5,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class StringAndMapConvertor {
-    private static final String DELIMITER = "=";
-    private static final String SEPARATOR = ";";
+import static main.utils.iocontrol.ObjectOutputControlCharacters.DELIMITER_STRING;
+import static main.utils.iocontrol.ObjectOutputControlCharacters.SEPARATOR_STRING;
 
+public class StringAndMapConvertor {
     public static Map<String, String> stringToMap(String string) {
         Map<String, String> map = new HashMap<>();
-        String[] pairs = string.split(SEPARATOR);
+        String[] pairs = string.split(SEPARATOR_STRING);
         for (String pair : pairs) {
-            String[] keyValue = pair.split(DELIMITER);
+            String[] keyValue = pair.split(DELIMITER_STRING);
             map.put(keyValue[0], keyValue[1]);
         }
         return map;
@@ -22,8 +22,8 @@ public class StringAndMapConvertor {
     public static String mapToString(Map<String, String> map) {
         List<String> pairs = new ArrayList<>();
         for (Map.Entry<String, String> entry : map.entrySet()) {
-            pairs.add(entry.getKey() + DELIMITER + entry.getValue());
+            pairs.add(entry.getKey() + DELIMITER_STRING + entry.getValue());
         }
-        return String.join(SEPARATOR, pairs);
+        return String.join(SEPARATOR_STRING, pairs);
     }
 }
