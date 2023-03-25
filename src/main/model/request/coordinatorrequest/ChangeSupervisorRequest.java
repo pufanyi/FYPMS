@@ -20,6 +20,11 @@ public class ChangeSupervisorRequest extends CoordinatorRequest implements Reque
      */
     private String supervisorID;
 
+    /**
+     * The constructor of the request
+     * @param project the project to be changed
+     * @param supervisor the supervisor to be changed
+     */
     public ChangeSupervisorRequest(Project project, Supervisor supervisor) {
         super();
         this.project = project;
@@ -37,6 +42,9 @@ public class ChangeSupervisorRequest extends CoordinatorRequest implements Reque
         //TODO: fill in the map
     }
 
+    /**
+     * Change the supervisor of the project
+     */
     public void changeSupervisor() {
         supervisorID = supervisor.getID();
         project.setSupervisorID(supervisorID);
