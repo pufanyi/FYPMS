@@ -118,8 +118,49 @@ public class Project extends Model {
         this.status = ProjectStatus.ALLOCATED;
     }
 
+    /**
+     * Set the student ID of the project
+     */
     public void setStudentID(String studentID) {
         this.studentID = studentID;
+    }
+
+    /**
+     * Get the student ID of the project
+     * @return the student ID of the project
+     */
+    public String getStudentID() {
+        return studentID;
+    }
+
+    /**
+     * Set the supervisor ID of the project
+     */
+    public void setSupervisorID(String supervisorID) {
+        this.supervisorID = supervisorID;
+    }
+
+    /**
+     * Get the supervisor ID of the project
+     * @return the supervisor ID of the project
+     */
+    public String getSupervisorID() {
+        return supervisorID;
+    }
+
+    /**
+     * Set the title of the project
+     */
+    public void setProjectTitle(String projectTitle) {
+        this.projectTitle = projectTitle;
+    }
+
+    /**
+     *
+     * @return the title of the project
+     */
+    public String getProjectTitle() {
+        return projectTitle;
     }
 
     /**
@@ -131,6 +172,7 @@ public class Project extends Model {
 
     /**
      * Get the status of the project
+     * @return the status of the project
      */
     public ProjectStatus getStatus() {
         return status;

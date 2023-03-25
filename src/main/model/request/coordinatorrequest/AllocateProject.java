@@ -35,6 +35,10 @@ public class AllocateProject extends CoordinatorRequest implements RequestChange
         // TODO: fill in the map
     }
 
+    /**
+     *  Allocate the project to the student
+     * @throws IllegalStateException if the student is already registered or the project is already allocated
+     */
     public void allocateProject() throws IllegalStateException {
         if(student.getStatus() == StudentStatus.REGISTERED)
             throw new IllegalStateException("Student is already registered");

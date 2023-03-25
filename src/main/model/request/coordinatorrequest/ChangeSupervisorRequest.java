@@ -1,38 +1,44 @@
 package main.model.request.coordinatorrequest;
 
+import main.model.project.Project;
 import main.model.request.RequestChange;
+import main.model.user.Supervisor;
 
 import java.util.Map;
 
 public class ChangeSupervisorRequest extends CoordinatorRequest implements RequestChange {
+    /**
+     * The project to be changed
+     */
+    private Project project;
+    /**
+     * The supervisor to be changed
+     */
+    private Supervisor supervisor;
+    /**
+     * The supervisor ID to be changed
+     */
     private String supervisorID;
 
-    public ChangeSupervisorRequest(String supervisorID) {
+    public ChangeSupervisorRequest(Project project, Supervisor supervisor) {
         super();
-        this.supervisorID = supervisorID;
-    }
-
-    public ChangeSupervisorRequest(Map<String, Object> map) {
-        this.supervisorID = (String) map.get("supervisorID");
-    }
-
-    public String getSupervisorID() {
-        return supervisorID;
-    }
-
-    public void setSupervisorID(String supervisorID) {
-        this.supervisorID = supervisorID;
+        this.project = project;
+        this.supervisor = supervisor;
     }
 
     @Override
     public Map<String, String> toMap() {
-        Map<String, String> map = super.toMap();
-        map.put("supervisorID", supervisorID);
-        return map;
+        //TODO: fill in the map
+        return null;
     }
 
     @Override
     public void fromMap(Map<String, String> map) {
-        this.supervisorID = map.get("supervisorID");
+        //TODO: fill in the map
+    }
+
+    public void changeSupervisor() {
+        supervisorID = supervisor.getID();
+        project.setSupervisorID(supervisorID);
     }
 }
