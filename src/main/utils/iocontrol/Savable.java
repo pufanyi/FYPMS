@@ -1,8 +1,8 @@
 package main.utils.iocontrol;
 
 import java.io.*;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public abstract class Savable<MappableObject extends Mappable> {
@@ -25,18 +25,13 @@ public abstract class Savable<MappableObject extends Mappable> {
      *
      * @param FILE_PATH the path of the file to save to
      */
-    public void save(final String FILE_PATH) {
-        PrintWriter printWriter;
-        try {
-            printWriter = new PrintWriter(new FileWriter(FILE_PATH));
-        } catch (IOException e) {
-            throw new RuntimeException("Data could not be saved to file: " + FILE_PATH);
-        }
+    public void save(final String FILE_PATH) throws IOException {
+        ObjectOutputStream objectOutput = new ObjectOutputStream(new FileOutputStream(FILE_PATH));
         final List<MappableObject> listOfMappableObjects = getAll();
         for (MappableObject mappableObject : listOfMappableObjects) {
-            printWriter.println(StringAndMapConvertor.mapToString(mappableObject.toMap()));
+            objectOutput.writeObject(mappableObject.toMap());
         }
-        printWriter.close();
+        objectOutput.close();
     }
 
     /**
@@ -44,22 +39,18 @@ public abstract class Savable<MappableObject extends Mappable> {
      *
      * @param FILE_PATH the path of the file to load from
      */
-    public void load(final String FILE_PATH) {
+    public void load(final String FILE_PATH) throws IOException {
+        ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(FILE_PATH));
         List<Map<String, String>> listOfMappableObjects = new ArrayList<>();
-        BufferedReader bufferedReader;
         try {
-            bufferedReader = new BufferedReader(new FileReader(FILE_PATH));
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException("Data could not be loaded from file: " + FILE_PATH);
-        }
-        String line;
-        try {
-            while ((line = bufferedReader.readLine()) != null) {
-                listOfMappableObjects.add(StringAndMapConvertor.stringToMap(line));
+            while (true) {
+                Map<String, String> map = (Map<String, String>) objectInputStream.readObject();
+                listOfMappableObjects.add(map);
             }
-        } catch (IOException e) {
-            throw new RuntimeException("Data could not be loaded from file: " + FILE_PATH);
+        } catch (EOFException e) {
+            objectInputStream.close();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
-        setAll(listOfMappableObjects);
     }
 }
