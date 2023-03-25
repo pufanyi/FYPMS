@@ -416,5 +416,17 @@ public class FacultyRepository extends Repository<Supervisor> {
 
 例子看 \texttt{test} 目录下的代码。
 
+\subsection{\texttt{@NotNull}}
+
+如果像保证一个函数的传入参数不为 \texttt{null}，可以这样写：
+
+\begin{lstlisting}[language=Java]
+	public void add(@NotNull String modelObjectID) {
+		...
+	}
+\end{lstlisting}
+
+如果传入 \texttt{modelObjectID} 为 \texttt{null}，那么会抛出 \texttt{NullPointerException}。
+
 \end{document}
 
