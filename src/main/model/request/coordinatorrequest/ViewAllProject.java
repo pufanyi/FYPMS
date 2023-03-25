@@ -11,6 +11,10 @@ public class ViewAllProject extends CoordinatorRequest implements ViewRequest {
      * The project to be viewed
      */
     private Project project;
+    /**
+     * The type of the request
+     */
+    private static final String requestType = "View all projects";
 
     public ViewAllProject() {
         super();

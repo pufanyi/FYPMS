@@ -13,6 +13,10 @@ public class ViewPendingRequest extends CoordinatorRequest implements ViewReques
      * The request to be viewed
      */
     private Request request;
+    /**
+     * The type of the request
+     */
+    private static final String requestType = "View pending request";
 
     public ViewPendingRequest() {
         super();
@@ -37,6 +41,7 @@ public class ViewPendingRequest extends CoordinatorRequest implements ViewReques
         List<Request> requestList = RequestRepository.getInstance().findByRules(request1 -> request1.getStatus() == RequestStatus.PENDING);
         for(Request request : requestList) {
             request.displayRequest();
+            System.out.println("Request type: " + requestType);
         }
     }
 }
