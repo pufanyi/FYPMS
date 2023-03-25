@@ -3,6 +3,8 @@ package main.model.request;
 import main.model.Model;
 import main.repository.request.RequestRepository;
 
+import java.util.Map;
+
 public abstract class Request extends Model {
     /**
      * The status of the request.

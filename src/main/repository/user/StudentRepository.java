@@ -24,7 +24,9 @@ public class StudentRepository extends Repository<Student> {
      */
     @Override
     public void setAll(List<Map<String, String>> listOfMappableObjects) {
-        // TODO: Implement this method
+        for (Map<String, String> map : listOfMappableObjects) {
+            getAll().add(new Student(map));
+        }
     }
 
     StudentRepository() {
