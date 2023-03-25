@@ -1,20 +1,21 @@
 package main.model.request.coordinatorrequest;
 
 import main.model.request.Request;
-import main.model.request.RequestRepository;
-import main.model.request.RequestStatus;
 import main.model.request.RequestView;
+import main.model.request.RequestRepository;
 
-import java.util.List;
 import java.util.Map;
 
-public class ViewPendingRequest extends CoordinatorRequest implements RequestView{
+public class ViewRequestHistory extends CoordinatorRequest implements RequestView{
     /**
      * The request to be viewed
      */
     private Request request;
 
-    public ViewPendingRequest() {
+    /**
+     * Constructs a new ViewRequestHistory object with the specified request.
+     */
+    public ViewRequestHistory() {
         super();
     }
 
@@ -29,14 +30,9 @@ public class ViewPendingRequest extends CoordinatorRequest implements RequestVie
         //TODO: fill in the map
     }
 
-    /**
-     * View all the pending requests -- by displaying the ID of the request
-     */
-    @Override
     public void view() {
-        List<Request> requestList = RequestRepository.getInstance().findByRules(request1 -> request1.getStatus() == RequestStatus.PENDING);
-        for(Request request : requestList) {
+        RequestRepository requestRepository = RequestRepository.getInstance();
+        for(Request request : requestRepository)
             request.displayRequest();
-        }
     }
 }

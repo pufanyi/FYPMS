@@ -52,4 +52,12 @@ public abstract class Request extends Model {
     public void setStatus(RequestStatus status) {
         this.status = status;
     }
+
+    /**
+     * Display the request.
+     */
+    public void displayRequest() {
+        System.out.println("Request ID: " + requestID);
+        System.out.println("Request Status: " + status);
+    }
 }
