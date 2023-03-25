@@ -2,7 +2,7 @@ package main.model.request.coordinatorrequest;
 
 import main.model.request.Request;
 import main.model.request.ViewRequest;
-import main.model.request.RequestRepository;
+import main.repository.request.RequestRepository;
 
 import java.util.Map;
 
