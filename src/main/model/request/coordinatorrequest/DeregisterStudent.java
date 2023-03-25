@@ -46,6 +46,7 @@ public class DeregisterStudent extends CoordinatorRequest implements RequestChan
     @Override
     public Map<String, String> toMap() {
         // TODO: fill in the map
+        return null;
     }
     @Override
     public void fromMap(Map<String, String> studentMap) {
@@ -59,5 +60,6 @@ public class DeregisterStudent extends CoordinatorRequest implements RequestChan
             throw new IllegalStateException("Project is not allocated");
         student.setStatus(StudentStatus.DEREGISTERED);
         project.setStatus(ProjectStatus.AVAILABLE);
+        project.setStudentID(null);
     }
 }

@@ -118,6 +118,10 @@ public class Project extends Model {
         this.status = ProjectStatus.ALLOCATED;
     }
 
+    public void setStudentID(String studentID) {
+        this.studentID = studentID;
+    }
+
     /**
      * Set the status of the project
      */
