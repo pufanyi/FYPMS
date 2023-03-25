@@ -2,13 +2,13 @@ package main.model.request.coordinatorrequest;
 
 import main.model.project.Project;
 import main.model.project.ProjectStatus;
-import main.model.request.RequestChange;
+import main.model.request.ChangeRequest;
 import main.model.user.Student;
 import main.model.user.StudentStatus;
 
 import java.util.Map;
 
-public class DeregisterStudent extends CoordinatorRequest implements RequestChange {
+public class DeregisterStudent extends CoordinatorRequest implements ChangeRequest {
     /**
      * The student to be deregistered
      */

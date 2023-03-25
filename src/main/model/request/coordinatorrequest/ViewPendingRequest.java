@@ -3,12 +3,12 @@ package main.model.request.coordinatorrequest;
 import main.model.request.Request;
 import main.model.request.RequestRepository;
 import main.model.request.RequestStatus;
-import main.model.request.RequestView;
+import main.model.request.ViewRequest;
 
 import java.util.List;
 import java.util.Map;
 
-public class ViewPendingRequest extends CoordinatorRequest implements RequestView{
+public class ViewPendingRequest extends CoordinatorRequest implements ViewRequest {
     /**
      * The request to be viewed
      */

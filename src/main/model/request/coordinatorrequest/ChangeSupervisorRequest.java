@@ -1,12 +1,12 @@
 package main.model.request.coordinatorrequest;
 
 import main.model.project.Project;
-import main.model.request.RequestChange;
+import main.model.request.ChangeRequest;
 import main.model.user.Supervisor;
 
 import java.util.Map;
 
-public class ChangeSupervisorRequest extends CoordinatorRequest implements RequestChange {
+public class ChangeSupervisorRequest extends CoordinatorRequest implements ChangeRequest {
     /**
      * The project to be changed
      */

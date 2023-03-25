@@ -1,10 +1,10 @@
 package main.model.request.studentrequest;
 
-import main.model.request.RequestView;
+import main.model.request.ViewRequest;
 
 import java.util.Map;
 
-public class ViewProjectListRequest extends StudentRequest implements RequestView {
+public class ViewProjectListRequest extends StudentRequest implements ViewRequest {
     /**
      * Converts the object to a map
      *

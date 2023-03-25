@@ -1,12 +1,12 @@
 package main.model.request.coordinatorrequest;
 
 import main.model.request.Request;
-import main.model.request.RequestView;
+import main.model.request.ViewRequest;
 import main.model.request.RequestRepository;
 
 import java.util.Map;
 
-public class ViewRequestHistory extends CoordinatorRequest implements RequestView{
+public class ViewRequestHistory extends CoordinatorRequest implements ViewRequest {
     /**
      * The request to be viewed
      */

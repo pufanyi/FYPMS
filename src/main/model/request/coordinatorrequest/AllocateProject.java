@@ -2,13 +2,13 @@ package main.model.request.coordinatorrequest;
 
 import main.model.project.Project;
 import main.model.project.ProjectStatus;
-import main.model.request.RequestChange;
+import main.model.request.ChangeRequest;
 import main.model.user.Student;
 import main.model.user.StudentStatus;
 
 import java.util.Map;
 
-public class AllocateProject extends CoordinatorRequest implements RequestChange{
+public class AllocateProject extends CoordinatorRequest implements ChangeRequest {
     private Student student;
     private Project project;
     private StudentStatus studentStatus;

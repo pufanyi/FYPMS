@@ -1,12 +1,12 @@
 package main.model.request.coordinatorrequest;
 
 import main.model.project.Project;
-import main.model.request.RequestView;
+import main.model.request.ViewRequest;
 import main.repository.project.ProjectRepository;
 
 import java.util.Map;
 
-public class ViewAllProject extends CoordinatorRequest implements RequestView {
+public class ViewAllProject extends CoordinatorRequest implements ViewRequest {
     /**
      * The project to be viewed
      */

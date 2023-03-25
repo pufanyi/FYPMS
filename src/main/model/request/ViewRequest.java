@@ -1,6 +1,6 @@
 package main.model.request;
 
-public interface RequestView{
+public interface ViewRequest {
     /**
      * View
      */
