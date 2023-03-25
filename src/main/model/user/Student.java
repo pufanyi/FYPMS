@@ -26,6 +26,8 @@ public class Student extends User {
      * The status of a student
      */
     private StudentStatus status;
+    private String supervisorID;
+    private String projectID;
 
     /**
      * Constructs a new Student object with the specified student ID and default password.
@@ -38,6 +40,9 @@ public class Student extends User {
         this.studentID = studentID;
         this.studentName = studentName;
         this.email = email;
+        this.status = StudentStatus.UNREGISTERED;
+        supervisorID = "NULL";
+        projectID = "NULL";
     }
 
     /**
@@ -53,6 +58,9 @@ public class Student extends User {
         this.studentID = studentID;
         this.studentName = studentName;
         this.email = email;
+        this.status = StudentStatus.UNREGISTERED;
+        supervisorID = "NULL";
+        projectID = "NULL";
     }
 
     /**
@@ -116,6 +124,8 @@ public class Student extends User {
         ans.put("email", email);
         ans.put("status", status.toString());
         ans.put("password", getPassword());
+        ans.put("supervisorID", supervisorID);
+        ans.put("projectID", projectID);
         return ans;
     }
 
@@ -133,6 +143,8 @@ public class Student extends User {
         this.studentID = informationMap.get("studentID");
         this.studentName = informationMap.get("studentName");
         this.email = informationMap.get("email");
+        this.supervisorID = informationMap.get("supervisorID");
+        this.projectID = informationMap.get("projectID");
     }
 
     /**

@@ -12,8 +12,17 @@ public class CreateProject extends SupervisorRequest implements CreateRequest{
      * The project to be created
      */
     private Project project;
+    /**
+     * The supervisor of the project
+     */
     private Supervisor supervisor;
+    /**
+     * The ID of the project
+     */
     private String projectID;
+    /**
+     * The title of the project
+     */
     private String projectTitle;
 
     /**
