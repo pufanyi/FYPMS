@@ -1,24 +1,23 @@
 package main.model.request.studentrequest;
 
-import main.model.request.Request;
 import main.model.request.RequestType;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class StudentRegistrationRequest extends StudentRequest {
-    private final RequestType requestType = RequestType.STUDENT_REGISTRATION;
+public class StudentDeregistrationRequest extends StudentRequest {
+    private final RequestType requestType = RequestType.STUDENT_DEREGISTRATION;
     private String studentID;
     private String supervisorID;
     private String projectID;
 
-    public StudentRegistrationRequest(String studentID, String supervisorID, String projectID) {
+    public StudentDeregistrationRequest(String studentID, String supervisorID, String projectID) {
         this.studentID = studentID;
         this.supervisorID = supervisorID;
         this.projectID = projectID;
     }
 
-    public StudentRegistrationRequest(Map<String, String> map) {
+    public StudentDeregistrationRequest(Map<String, String> map) {
         fromMap(map);
     }
 

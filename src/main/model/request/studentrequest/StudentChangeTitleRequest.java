@@ -1,24 +1,25 @@
 package main.model.request.studentrequest;
 
-import main.model.request.Request;
 import main.model.request.RequestType;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class StudentRegistrationRequest extends StudentRequest {
-    private final RequestType requestType = RequestType.STUDENT_REGISTRATION;
+public class StudentChangeTitleRequest extends StudentRequest {
+    private final RequestType requestType = RequestType.STUDENT_CHANGE_TITLE;
     private String studentID;
     private String supervisorID;
     private String projectID;
+    private String newTitle;
 
-    public StudentRegistrationRequest(String studentID, String supervisorID, String projectID) {
+    public StudentChangeTitleRequest(String studentID, String supervisorID, String projectID, String newTitle) {
         this.studentID = studentID;
         this.supervisorID = supervisorID;
         this.projectID = projectID;
+        this.newTitle = newTitle;
     }
 
-    public StudentRegistrationRequest(Map<String, String> map) {
+    public StudentChangeTitleRequest(Map<String, String> map) {
         fromMap(map);
     }
 
@@ -46,6 +47,14 @@ public class StudentRegistrationRequest extends StudentRequest {
         this.projectID = projectID;
     }
 
+    public String getNewTitle() {
+        return newTitle;
+    }
+
+    public void setNewTitle(String newTitle) {
+        this.newTitle = newTitle;
+    }
+
     public RequestType getRequestType() {
         return requestType;
     }
@@ -61,6 +70,7 @@ public class StudentRegistrationRequest extends StudentRequest {
         map.put("StudentID", studentID);
         map.put("SupervisorID", supervisorID);
         map.put("ProjectID", projectID);
+        map.put("NewTitle", newTitle);
         map.put("RequestType", requestType.toString());
         return map;
     }
@@ -75,5 +85,6 @@ public class StudentRegistrationRequest extends StudentRequest {
         this.studentID = map.get("StudentID");
         this.supervisorID = map.get("SupervisorID");
         this.projectID = map.get("ProjectID");
+        this.newTitle = map.get("NewTitle");
     }
 }
