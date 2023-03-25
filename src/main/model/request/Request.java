@@ -12,10 +12,6 @@ public abstract class Request extends Model {
      * The ID of the request.
      */
     private String requestID = "";
-    /**
-     * The type of the request.
-     */
-    private String requestType;
 
     /**
      * The constructor of the request.
@@ -62,7 +58,6 @@ public abstract class Request extends Model {
      */
     public void displayRequest() {
         System.out.println("Request ID: " + requestID);
-        System.out.println("Request Type: " + requestType);
         System.out.println("Request Status: " + status);
     }
 }
