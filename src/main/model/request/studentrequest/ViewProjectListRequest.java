@@ -27,4 +27,11 @@ public class ViewProjectListRequest extends StudentRequest implements RequestVie
     }
 
 
+    /**
+     * View
+     */
+    @Override
+    public void view() {
+        // TODO: Implement this method
+    }
 }
