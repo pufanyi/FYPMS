@@ -46,7 +46,8 @@ public class ApproveRequest extends CoordinatorRequest implements ChangeRequest 
 
     @Override
     public void fromMap(Map<String, String> map) {
-
+        this.requestID = map.get("requestID");
+        this.status = RequestStatus.valueOf(map.get("status"));
     }
 
     /**

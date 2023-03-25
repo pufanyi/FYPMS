@@ -5,6 +5,8 @@ import main.model.project.ProjectStatus;
 import main.model.request.ChangeRequest;
 import main.model.user.Student;
 import main.model.user.StudentStatus;
+import main.repository.project.ProjectRepository;
+import main.repository.user.StudentRepository;
 
 import java.util.Map;
 
@@ -14,33 +16,35 @@ public class DeregisterStudent extends CoordinatorRequest implements ChangeReque
      */
     private Student student;
     /**
+     * The ID of the student
+     */
+    private String studentID;
+    /**
      * The project to be deregistered
      */
     private Project project;
     /**
+     * The ID of the project
+     */
+    private String projectID;
+    /**
      * The status of the student
      */
     private StudentStatus studentStatus;
+    /**
+     * The status of the project
+     */
     private ProjectStatus projectStatus;
 
     /**
      *
-     * @param student
-     * @param project
+     * @param studentID the ID of the student
+     * @param projectID the ID of the project
      */
-    public DeregisterStudent(Student student, Project project) {
+    public DeregisterStudent(String studentID, String projectID) {
         super();
-        this.student = student;
-        this.project = project;
-    }
-
-    /**
-     *
-     * @param studentMap
-     */
-    public DeregisterStudent(Map<String, Object> studentMap) {
-        this.student = (Student) studentMap.get("student");
-        this.project = (Project) studentMap.get("project");
+        this.studentID = studentID;
+        this.projectID = projectID;
     }
 
     @Override
@@ -54,6 +58,7 @@ public class DeregisterStudent extends CoordinatorRequest implements ChangeReque
     }
 
     public void deregisterStudent() throws IllegalStateException {
+        student = StudentRepository.getInstance().getByID(studentID);
         if(student.getStatus() != StudentStatus.REGISTERED)
             throw new IllegalStateException("Student is not registered");
         if(project.getStatus() != ProjectStatus.ALLOCATED)
