@@ -20,12 +20,17 @@ public class Coordinator implements User {
      * The email of a coordinator
      */
     private String email;
+    /**
+     * The password of a coordinator
+     */
     private String hashedPassword;
 
     /**
-     * constructor of a new Coordinator object with the specified coordinator ID
+     * constructor of a new Coordinator object with the specified coordinator ID,Name and email
      *
      * @param coordinatorID the ID of the coordinator
+     * @param coordinatorName the name of the coordinator
+     * @param email the email of the coordinator
      */
     public Coordinator(String coordinatorID, String coordinatorName, String email) {
         this.coordinatorID = coordinatorID;
