@@ -9,7 +9,7 @@ import java.util.Map;
  * This class represents a student, which is a type of user.
  * It extends the User class and includes a student ID field.
  */
-public class Student extends User {
+public class Student implements User {
     /**
      * The ID of the student.
      */
@@ -34,6 +34,7 @@ public class Student extends User {
      * The ID of the project
      */
     private String projectID;
+    private String hashedPassword;
 
     /**
      * Constructs a new Student object with the specified student ID and default password.
@@ -54,19 +55,19 @@ public class Student extends User {
     /**
      * Constructs a new Student object with the specified student ID and password.
      *
-     * @param studentID   the ID of the student.
-     * @param studentName the name of the student.
-     * @param email       the email of the student.
-     * @param password    the password of the student.
+     * @param studentID      the ID of the student.
+     * @param studentName    the name of the student.
+     * @param email          the email of the student.
+     * @param hashedPassword the password of the student.
      */
-    public Student(String studentID, String studentName, String email, @NotNull String password) {
-        super(password);
+    public Student(String studentID, String studentName, String email, @NotNull String hashedPassword) {
         this.studentID = studentID;
         this.studentName = studentName;
         this.email = email;
         this.status = StudentStatus.UNREGISTERED;
         supervisorID = "NULL";
         projectID = "NULL";
+        this.hashedPassword = hashedPassword;
     }
 
     /**
@@ -118,42 +119,6 @@ public class Student extends User {
     }
 
     /**
-     * Converts the object to a map
-     *
-     * @return the map
-     */
-    @Override
-    public Map<String, String> toMap() {
-        Map<String, String> ans = new HashMap<>();
-        ans.put("studentID", studentID);
-        ans.put("studentName", studentName);
-        ans.put("email", email);
-        ans.put("status", status.toString());
-        ans.put("password", getPassword());
-        ans.put("supervisorID", supervisorID);
-        ans.put("projectID", projectID);
-        return ans;
-    }
-
-    /**
-     * Converts the map to an object
-     *
-     * @param informationMap the map
-     */
-    @Override
-    public void fromMap(Map<String, String> informationMap) {
-        StudentStatus status = StudentStatus.valueOf(informationMap.get("status"));
-        String password = informationMap.get("password");
-        this.status = status;
-        setPassword(password);
-        this.studentID = informationMap.get("studentID");
-        this.studentName = informationMap.get("studentName");
-        this.email = informationMap.get("email");
-        this.supervisorID = informationMap.get("supervisorID");
-        this.projectID = informationMap.get("projectID");
-    }
-
-    /**
      * Constructs a new Student object with the specified student ID and password.
      *
      * @param informationMap the map
@@ -183,6 +148,7 @@ public class Student extends User {
 
     /**
      * Gets the ID of the supervisor
+     *
      * @return the ID of the supervisor
      */
     public String getSupervisorID() {
@@ -191,6 +157,7 @@ public class Student extends User {
 
     /**
      * Sets the ID of the supervisor
+     *
      * @param supervisorID the ID of the supervisor
      */
     public void setSupervisorID(String supervisorID) {
@@ -199,6 +166,7 @@ public class Student extends User {
 
     /**
      * Gets the ID of the project
+     *
      * @return the ID of the project
      */
     public String getProjectID() {
@@ -207,9 +175,18 @@ public class Student extends User {
 
     /**
      * Sets the ID of the project
+     *
      * @param projectID the ID of the project
      */
     public void setProjectID(String projectID) {
         this.projectID = projectID;
+    }
+
+    public String getHashedPassword() {
+        return hashedPassword;
+    }
+
+    public void setHashedPassword(String hashedPassword) {
+        this.hashedPassword = hashedPassword;
     }
 }

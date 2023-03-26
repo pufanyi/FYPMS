@@ -1,4 +1,4 @@
-package main.model.user.password;
+package main.controller.password;
 
 import main.utils.parameters.NotNull;
 
@@ -61,6 +61,10 @@ public class PasswordManager {
      * @return the hashed password of the user
      */
     public String getPassword() {
+        return hashedPassword;
+    }
+
+    public String toString() {
         return hashedPassword;
     }
 }

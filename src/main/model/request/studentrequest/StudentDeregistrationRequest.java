@@ -1,12 +1,15 @@
 package main.model.request.studentrequest;
 
+import main.model.request.RequestStatus;
 import main.model.request.RequestType;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class StudentDeregistrationRequest extends StudentRequest {
+public class StudentDeregistrationRequest implements StudentRequest {
+    public String requestID;
     private final RequestType requestType = RequestType.STUDENT_DEREGISTRATION;
+    private RequestStatus requestStatus = RequestStatus.PENDING;
     private String studentID;
     private String supervisorID;
     private String projectID;
@@ -50,29 +53,40 @@ public class StudentDeregistrationRequest extends StudentRequest {
     }
 
     /**
-     * Converts the object to a map
-     *
-     * @return the map
+     * Get the ID of the request.
      */
     @Override
-    public Map<String, String> toMap() {
-        Map<String, String> map = new HashMap<>();
-        map.put("StudentID", studentID);
-        map.put("SupervisorID", supervisorID);
-        map.put("ProjectID", projectID);
-        map.put("RequestType", requestType.toString());
-        return map;
+    public String getID() {
+        return requestID;
     }
 
     /**
-     * Converts the map to an object
+     * Get the status of the request.
      *
-     * @param map the map
+     * @return the status of the request.
      */
     @Override
-    public void fromMap(Map<String, String> map) {
-        this.studentID = map.get("StudentID");
-        this.supervisorID = map.get("SupervisorID");
-        this.projectID = map.get("ProjectID");
+    public RequestStatus getStatus() {
+        return requestStatus;
+    }
+
+    /**
+     * Set the status of the request.
+     *
+     * @param status the status of the request.
+     */
+    @Override
+    public void setStatus(RequestStatus status) {
+        this.requestStatus = status;
+    }
+
+    /**
+     * Get the type of the request.
+     *
+     * @return the type of the request.
+     */
+    @Override
+    public RequestType getType() {
+        return requestType;
     }
 }

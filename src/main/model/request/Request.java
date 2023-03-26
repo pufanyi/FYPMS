@@ -1,61 +1,31 @@
 package main.model.request;
 
 import main.model.Model;
-import main.repository.request.RequestRepository;
 
-import java.util.Map;
-
-public abstract class Request extends Model {
-    /**
-     * The status of the request.
-     */
-    private RequestStatus status;
-    /**
-     * The ID of the request.
-     */
-    private final String requestID;
-
-    /**
-     * The constructor of the request.
-     */
-    public Request(String requestID) {
-        this.requestID = requestID;
-        this.status = RequestStatus.PENDING;
-    }
-
-    public Request() {
-        this.requestID = null;
-        this.status = RequestStatus.PENDING;
-    }
-
+public interface Request extends Model {
     /**
      * Get the ID of the request.
      */
-    public String getID() {
-        return requestID;
-    }
+    String getID();
 
     /**
      * Get the status of the request.
+     *
      * @return the status of the request.
      */
-    public RequestStatus getStatus() {
-        return status;
-    }
+    RequestStatus getStatus();
 
     /**
      * Set the status of the request.
+     *
      * @param status the status of the request.
      */
-    public void setStatus(RequestStatus status) {
-        this.status = status;
-    }
+    void setStatus(RequestStatus status);
 
     /**
-     * Display the request.
+     * Get the type of the request.
+     *
+     * @return the type of the request.
      */
-    public void displayRequest() {
-        System.out.println("Request ID: " + requestID);
-        System.out.println("Request Status: " + status);
-    }
+    RequestType getType();
 }

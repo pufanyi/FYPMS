@@ -1,4 +1,4 @@
-package main.model.user.password;
+package main.controller.password;
 
 import main.utils.parameters.NotNull;
 

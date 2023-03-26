@@ -9,7 +9,7 @@ import main.repository.user.StudentRepository;
 
 import java.util.Map;
 
-public class Project extends Model {
+public class Project implements Model {
     ProjectStatus status;
 
     /**

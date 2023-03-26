@@ -1,15 +1,13 @@
 package main.model.user;
 
-import main.model.user.password.PasswordManager;
 import main.utils.parameters.NotNull;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
  * A class that represents a coordinator
  */
-public class Coordinator extends User {
+public class Coordinator implements User {
     /**
      * The ID of the coordinator
      */
@@ -19,13 +17,10 @@ public class Coordinator extends User {
      */
     private String coordinatorName;
     /**
-     * The password of a coordinator
-     */
-    private PasswordManager passwordManager;
-    /**
      * The email of a coordinator
      */
     private String email;
+    private String hashedPassword;
 
     /**
      * constructor of a new Coordinator object with the specified coordinator ID
@@ -35,7 +30,6 @@ public class Coordinator extends User {
     public Coordinator(String coordinatorID, String coordinatorName, String email) {
         this.coordinatorID = coordinatorID;
         this.coordinatorName = coordinatorName;
-        this.passwordManager = new PasswordManager();
         this.email = email;
     }
 
@@ -43,10 +37,8 @@ public class Coordinator extends User {
      * constructor of a new Coordinator object with the specified coordinator ID and password
      */
     public Coordinator(String coordinatorID, String coordinatorName, String email, @NotNull String password) {
-        super(password);
         this.coordinatorID = coordinatorID;
         this.coordinatorName = coordinatorName;
-        this.passwordManager = new PasswordManager(password);
         this.email = email;
     }
 
@@ -68,6 +60,16 @@ public class Coordinator extends User {
         return this.coordinatorName;
     }
 
+    @Override
+    public String getHashedPassword() {
+        return this.hashedPassword;
+    }
+
+    @Override
+    public void setHashedPassword(String hashedPassword) {
+        this.hashedPassword = hashedPassword;
+    }
+
     /**
      * gets the email of the user
      *
@@ -77,34 +79,6 @@ public class Coordinator extends User {
     public String getEmail() {
         return this.email;
     }
-
-    /**
-     * Converts the object to a map
-     *
-     * @return the map
-     */
-//    @Override
-//    public Map<String, String> toMap() {
-//        Map<String, String> ansMap = new HashMap<>();
-//        ansMap.put("coordinatorID", this.coordinatorID);
-//        ansMap.put("coordinatorName", this.coordinatorName);
-//        ansMap.put("email", this.email);
-//        ansMap.put("password", this.passwordManager.getPassword());
-//        return ansMap;
-//    }
-
-    /**
-     * Converts the map to an object
-     *
-     * @param map the map
-     */
-//    @Override
-//    public void fromMap(Map<String, String> map) {
-//        setCoordinatorName(map.get("coordinatorName"));
-//        setCoordinatorID(map.get("coordinatorID"));
-//        setEmail(map.get("email"));
-//        setPassword(map.get("password"));
-//    }
 
     public void setCoordinatorID(String coordinatorID) {
         this.coordinatorID = coordinatorID;
@@ -134,7 +108,6 @@ public class Coordinator extends User {
     public Coordinator() {
         this.coordinatorID = "";
         this.coordinatorName = "";
-        this.passwordManager = new PasswordManager();
         this.email = "";
     }
 

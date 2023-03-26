@@ -16,6 +16,7 @@ public class FacultySaveTest {
     public static void main(String[] args) {
         setUp();
         FacultyRepository facultyRepository = new FacultyRepository();
+        facultyRepository.clear();
         facultyRepository.add(supervisors[0]);
         facultyRepository.add(supervisors[1]);
         facultyRepository.add(supervisors[2]);

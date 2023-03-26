@@ -1,19 +1,22 @@
 package main.model.request.studentrequest;
 
+import main.model.request.RequestStatus;
 import main.model.request.RequestType;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class StudentChangeTitleRequest extends StudentRequest {
+public class StudentChangeTitleRequest implements StudentRequest {
+    private String requestID;
     private final RequestType requestType = RequestType.STUDENT_CHANGE_TITLE;
+    private RequestStatus requestStatus = RequestStatus.PENDING;
     private String studentID;
     private String supervisorID;
     private String projectID;
     private String newTitle;
 
-    public StudentChangeTitleRequest(String studentID, String supervisorID, String projectID, String newTitle) {
-        super();
+    public StudentChangeTitleRequest(String requestID, String studentID, String supervisorID, String projectID, String newTitle) {
+        this.requestID = requestID;
         this.studentID = studentID;
         this.supervisorID = supervisorID;
         this.projectID = projectID;
@@ -21,7 +24,6 @@ public class StudentChangeTitleRequest extends StudentRequest {
     }
 
     public StudentChangeTitleRequest(Map<String, String> map) {
-        super();
         fromMap(map);
     }
 
@@ -62,31 +64,40 @@ public class StudentChangeTitleRequest extends StudentRequest {
     }
 
     /**
-     * Converts the object to a map
-     *
-     * @return the map
+     * Get the ID of the request.
      */
     @Override
-    public Map<String, String> toMap() {
-        Map<String, String> map = new HashMap<>();
-        map.put("StudentID", studentID);
-        map.put("SupervisorID", supervisorID);
-        map.put("ProjectID", projectID);
-        map.put("NewTitle", newTitle);
-        map.put("RequestType", requestType.toString());
-        return map;
+    public String getID() {
+        return this.requestID;
     }
 
     /**
-     * Converts the map to an object
+     * Get the status of the request.
      *
-     * @param map the map
+     * @return the status of the request.
      */
     @Override
-    public void fromMap(Map<String, String> map) {
-        this.studentID = map.get("StudentID");
-        this.supervisorID = map.get("SupervisorID");
-        this.projectID = map.get("ProjectID");
-        this.newTitle = map.get("NewTitle");
+    public RequestStatus getStatus() {
+        return this.requestStatus;
+    }
+
+    /**
+     * Set the status of the request.
+     *
+     * @param status the status of the request.
+     */
+    @Override
+    public void setStatus(RequestStatus status) {
+        this.requestStatus = status;
+    }
+
+    /**
+     * Get the type of the request.
+     *
+     * @return the type of the request.
+     */
+    @Override
+    public RequestType getType() {
+        return null;
     }
 }

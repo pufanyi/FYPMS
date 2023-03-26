@@ -9,7 +9,7 @@ import java.util.Map;
  * This class represents a supervisor, which is a type of user.
  * It extends the User class and includes a supervisor ID field.
  */
-public class Supervisor extends User {
+public class Supervisor implements User {
     /**
      * The ID of the supervisor.
      */
@@ -22,6 +22,7 @@ public class Supervisor extends User {
      * The email of a supervisor
      */
     private String email;
+    private String hashedPassword;
 
     /**
      * Constructs a new Supervisor object with the specified supervisor ID.
@@ -42,10 +43,10 @@ public class Supervisor extends User {
      * @param supervisorID   the ID of the supervisor.
      * @param supervisorName the name of the supervisor.
      * @param email          the email of the supervisor.
-     * @param password       the password of the supervisor.
+     * @param hashedPassword       the password of the supervisor.
      */
-    public Supervisor(String supervisorID, String supervisorName, String email, @NotNull String password) {
-        super(password);
+    public Supervisor(String supervisorID, String supervisorName, String email, @NotNull String hashedPassword) {
+        this.hashedPassword = hashedPassword;
         this.supervisorID = supervisorID;
         this.supervisorName = supervisorName;
         this.email = email;
@@ -71,6 +72,16 @@ public class Supervisor extends User {
         return this.supervisorName;
     }
 
+    @Override
+    public String getHashedPassword() {
+        return this.hashedPassword;
+    }
+
+    @Override
+    public void setHashedPassword(String hashedPassword) {
+        this.hashedPassword = hashedPassword;
+    }
+
     /**
      * Gets the email of the user
      *
@@ -80,35 +91,6 @@ public class Supervisor extends User {
     public String getEmail() {
         return this.email;
     }
-
-
-    /**
-     * Converts the object to a map
-     *
-     * @return the map
-     */
-//    @Override
-//    public Map<String, String> toMap() {
-//        Map<String, String> ansMap = new HashMap<>();
-//        ansMap.put("supervisorID", this.supervisorID);
-//        ansMap.put("supervisorName", this.supervisorName);
-//        ansMap.put("email", this.email);
-//        ansMap.put("password", getPassword());
-//        return ansMap;
-//    }
-
-    /**
-     * Converts the map to an object
-     *
-     * @param map the map
-     */
-//    @Override
-//    public void fromMap(Map<String, String> map) {
-//        this.supervisorID = map.get("supervisorID");
-//        this.supervisorName = map.get("supervisorName");
-//        this.email = map.get("email");
-//        setPassword(map.get("password"));
-//    }
 
     /**
      * Constructs a new Supervisor object from a map

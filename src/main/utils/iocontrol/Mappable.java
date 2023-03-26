@@ -4,13 +4,13 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class Mappable {
+public interface Mappable {
     /**
      * Converts the object to a map
      *
      * @return the map
      */
-    public Map<String, String> toMap() {
+    default Map<String, String> toMap() {
         Map<String, String> map = new HashMap<>();
         Field[] fields = getClass().getDeclaredFields();
         for (Field field : fields) {
@@ -29,7 +29,7 @@ public abstract class Mappable {
      *
      * @param map the map
      */
-    public void fromMap(Map<String, String> map) {
+    default void fromMap(Map<String, String> map) {
         Field[] fields = getClass().getDeclaredFields();
         for (Field field : fields) {
             try {
@@ -39,9 +39,5 @@ public abstract class Mappable {
                 e.printStackTrace();
             }
         }
-    }
-
-    public String toString() {
-        return toMap().toString();
     }
 }
