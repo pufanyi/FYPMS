@@ -24,6 +24,7 @@ public class StudentDeregistrationRequest implements StudentRequest {
         fromMap(map);
     }
 
+    @Override
     public String getStudentID() {
         return studentID;
     }
@@ -78,15 +79,5 @@ public class StudentDeregistrationRequest implements StudentRequest {
     @Override
     public void setStatus(RequestStatus status) {
         this.requestStatus = status;
-    }
-
-    /**
-     * Get the type of the request.
-     *
-     * @return the type of the request.
-     */
-    @Override
-    public RequestType getType() {
-        return requestType;
     }
 }

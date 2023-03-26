@@ -59,6 +59,7 @@ public class StudentChangeTitleRequest implements StudentRequest {
         this.newTitle = newTitle;
     }
 
+    @Override
     public RequestType getRequestType() {
         return requestType;
     }
@@ -89,15 +90,5 @@ public class StudentChangeTitleRequest implements StudentRequest {
     @Override
     public void setStatus(RequestStatus status) {
         this.requestStatus = status;
-    }
-
-    /**
-     * Get the type of the request.
-     *
-     * @return the type of the request.
-     */
-    @Override
-    public RequestType getType() {
-        return null;
     }
 }

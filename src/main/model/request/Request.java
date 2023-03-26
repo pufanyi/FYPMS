@@ -27,5 +27,5 @@ public interface Request extends Model {
      *
      * @return the type of the request.
      */
-    RequestType getType();
+    RequestType getRequestType();
 }
