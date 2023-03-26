@@ -22,6 +22,10 @@ public class ViewHisProject extends SupervisorRequest implements ViewRequest {
      */
     private String supervisorID;
 
+    public ViewHisProject(String requestID) {
+        super(requestID);
+    }
+
     @Override
     public Map<String, String> toMap() {
         //TODO: fill in the map

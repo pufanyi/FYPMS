@@ -83,28 +83,28 @@ public class Coordinator extends User {
      *
      * @return the map
      */
-    @Override
-    public Map<String, String> toMap() {
-        Map<String, String> ansMap = new HashMap<>();
-        ansMap.put("coordinatorID", this.coordinatorID);
-        ansMap.put("coordinatorName", this.coordinatorName);
-        ansMap.put("email", this.email);
-        ansMap.put("password", this.passwordManager.getPassword());
-        return ansMap;
-    }
+//    @Override
+//    public Map<String, String> toMap() {
+//        Map<String, String> ansMap = new HashMap<>();
+//        ansMap.put("coordinatorID", this.coordinatorID);
+//        ansMap.put("coordinatorName", this.coordinatorName);
+//        ansMap.put("email", this.email);
+//        ansMap.put("password", this.passwordManager.getPassword());
+//        return ansMap;
+//    }
 
     /**
      * Converts the map to an object
      *
      * @param map the map
      */
-    @Override
-    public void fromMap(Map<String, String> map) {
-        setCoordinatorName(map.get("coordinatorName"));
-        setCoordinatorID(map.get("coordinatorID"));
-        setEmail(map.get("email"));
-        setPassword(map.get("password"));
-    }
+//    @Override
+//    public void fromMap(Map<String, String> map) {
+//        setCoordinatorName(map.get("coordinatorName"));
+//        setCoordinatorID(map.get("coordinatorID"));
+//        setEmail(map.get("email"));
+//        setPassword(map.get("password"));
+//    }
 
     public void setCoordinatorID(String coordinatorID) {
         this.coordinatorID = coordinatorID;

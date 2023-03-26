@@ -12,7 +12,7 @@ public class ApproveRequest extends SupervisorRequest implements ChangeRequest {
     /**
      * The requestID to be approved
      */
-    private String requestID;
+    private String approvingRequestID;
     /**
      * The type of the request
      */
@@ -24,31 +24,25 @@ public class ApproveRequest extends SupervisorRequest implements ChangeRequest {
     /**
      * The request to be approved
      */
-    private Request request;
+    private Request approvingRequest;
 
     /**
      * Constructs a new ApproveRequest object with the specified request.
      * @param requestID the requestID to be approved
      */
-    public ApproveRequest(String requestID) {
-        super();
-        this.requestID = requestID;
-        request = RequestRepository.getInstance().getByID(requestID);
+    public ApproveRequest(String requestID, String approvingRequestID) {
+        super(requestID);
+        this.approvingRequestID = approvingRequestID;
+        approvingRequest = RequestRepository.getInstance().getByID(approvingRequestID);
     }
 
     @Override
     public Map<String, String> toMap() {
         Map<String, String> ans = new HashMap<>();
         ans.put("requestType", requestType);
-        ans.put("requestID", requestID);
-        ans.put("status", request.getStatus().toString());
+        ans.put("requestID", approvingRequestID);
+        ans.put("status", approvingRequest.getStatus().toString());
         return ans;
-    }
-
-    @Override
-    public void fromMap(Map<String, String> map) {
-        this.requestID = map.get("requestID");
-        this.status = RequestStatus.valueOf(map.get("status"));
     }
 
     /**
@@ -56,10 +50,10 @@ public class ApproveRequest extends SupervisorRequest implements ChangeRequest {
      * @throws IllegalStateException if the request is not pending
      */
     public void approve() throws IllegalStateException{
-        if(request.getStatus() != RequestStatus.PENDING)
+        if(approvingRequest.getStatus() != RequestStatus.PENDING)
             throw new IllegalStateException("Request is not pending");
-        else if(request.getStatus() == RequestStatus.APPROVED)
+        else if(approvingRequest.getStatus() == RequestStatus.APPROVED)
             throw new IllegalStateException("Request is already approved");
-        request.setStatus(RequestStatus.APPROVED);
+        approvingRequest.setStatus(RequestStatus.APPROVED);
     }
 }

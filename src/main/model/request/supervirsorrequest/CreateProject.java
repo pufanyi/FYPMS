@@ -28,8 +28,8 @@ public class CreateProject extends SupervisorRequest implements CreateRequest{
     /**
      * Constructs a new CreateProject object with the specified project.
      */
-    public CreateProject(Supervisor supervisor, String projectTitle) {
-        super();
+    public CreateProject(String requestID, Supervisor supervisor, String projectTitle) {
+        super(requestID);
         this.supervisor = supervisor;
         this.projectTitle = projectTitle;
     }

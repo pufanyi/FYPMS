@@ -13,23 +13,14 @@ public abstract class Request extends Model {
     /**
      * The ID of the request.
      */
-    private String requestID = "";
+    private final String requestID;
 
     /**
      * The constructor of the request.
      */
-    protected Request() {
-        requestID = generateID();
-        status = RequestStatus.PENDING;
-    }
-
-    /**
-     *
-     * Generate the ID of the request.
-     * @return the ID of the request.
-     */
-    public String generateID() {
-        return RequestRepository.getInstance().size() + "";
+    public Request(String requestID) {
+        this.requestID = requestID;
+        this.status = RequestStatus.PENDING;
     }
 
     /**

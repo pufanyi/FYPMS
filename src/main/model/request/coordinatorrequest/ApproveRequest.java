@@ -12,7 +12,7 @@ public class ApproveRequest extends CoordinatorRequest implements ChangeRequest 
     /**
      * The requestID to be approved
      */
-    private String requestID;
+    private String approvingRequestID;
     /**
      * The type of the request
      */
@@ -30,9 +30,9 @@ public class ApproveRequest extends CoordinatorRequest implements ChangeRequest 
      * Constructs a new ApproveRequest object with the specified request.
      * @param requestID the requestID to be approved
      */
-    public ApproveRequest(String requestID) {
-        super();
-        this.requestID = requestID;
+    public ApproveRequest(String requestID, String approvingRequestID) {
+        super(requestID);
+        this.approvingRequestID = approvingRequestID;
         request = RequestRepository.getInstance().getByID(requestID);
     }
 
@@ -40,16 +40,16 @@ public class ApproveRequest extends CoordinatorRequest implements ChangeRequest 
     public Map<String, String> toMap() {
         Map<String, String> ans = new HashMap<>();
         ans.put("requestType", requestType);
-        ans.put("requestID", requestID);
+        ans.put("requestID", approvingRequestID);
         ans.put("status", request.getStatus().toString());
         return ans;
     }
 
-    @Override
-    public void fromMap(Map<String, String> map) {
-        this.requestID = map.get("requestID");
-        this.status = RequestStatus.valueOf(map.get("status"));
-    }
+//    @Override
+//    public void fromMap(Map<String, String> map) {
+//        this.requestID = map.get("requestID");
+//        this.status = RequestStatus.valueOf(map.get("status"));
+//    }
 
     /**
      * Approve the request

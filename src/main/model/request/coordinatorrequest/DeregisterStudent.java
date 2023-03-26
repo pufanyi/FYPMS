@@ -42,8 +42,8 @@ public class DeregisterStudent extends CoordinatorRequest implements ChangeReque
      * @param studentID the ID of the student
      * @param projectID the ID of the project
      */
-    public DeregisterStudent(String studentID, String projectID) {
-        super();
+    public DeregisterStudent(String requestID, String studentID, String projectID) {
+        super(requestID);
         this.studentID = studentID;
         this.projectID = projectID;
         student = StudentRepository.getInstance().getByID(studentID);

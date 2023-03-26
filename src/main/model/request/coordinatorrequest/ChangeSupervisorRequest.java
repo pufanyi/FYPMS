@@ -25,8 +25,8 @@ public class ChangeSupervisorRequest extends CoordinatorRequest implements Chang
      * @param project the project to be changed
      * @param supervisor the supervisor to be changed
      */
-    public ChangeSupervisorRequest(Project project, Supervisor supervisor) {
-        super();
+    public ChangeSupervisorRequest(String requestID, Project project, Supervisor supervisor) {
+        super(requestID);
         this.project = project;
         this.supervisor = supervisor;
     }

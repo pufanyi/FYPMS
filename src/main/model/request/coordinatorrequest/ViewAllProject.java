@@ -16,8 +16,8 @@ public class ViewAllProject extends CoordinatorRequest implements ViewRequest {
      */
     private static final String requestType = "View all projects";
 
-    public ViewAllProject() {
-        super();
+    public ViewAllProject(String requestID) {
+        super(requestID);
     }
     @Override
     public Map<String, String> toMap() {

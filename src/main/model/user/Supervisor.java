@@ -87,28 +87,28 @@ public class Supervisor extends User {
      *
      * @return the map
      */
-    @Override
-    public Map<String, String> toMap() {
-        Map<String, String> ansMap = new HashMap<>();
-        ansMap.put("supervisorID", this.supervisorID);
-        ansMap.put("supervisorName", this.supervisorName);
-        ansMap.put("email", this.email);
-        ansMap.put("password", getPassword());
-        return ansMap;
-    }
+//    @Override
+//    public Map<String, String> toMap() {
+//        Map<String, String> ansMap = new HashMap<>();
+//        ansMap.put("supervisorID", this.supervisorID);
+//        ansMap.put("supervisorName", this.supervisorName);
+//        ansMap.put("email", this.email);
+//        ansMap.put("password", getPassword());
+//        return ansMap;
+//    }
 
     /**
      * Converts the map to an object
      *
      * @param map the map
      */
-    @Override
-    public void fromMap(Map<String, String> map) {
-        this.supervisorID = map.get("supervisorID");
-        this.supervisorName = map.get("supervisorName");
-        this.email = map.get("email");
-        setPassword(map.get("password"));
-    }
+//    @Override
+//    public void fromMap(Map<String, String> map) {
+//        this.supervisorID = map.get("supervisorID");
+//        this.supervisorName = map.get("supervisorName");
+//        this.email = map.get("email");
+//        setPassword(map.get("password"));
+//    }
 
     /**
      * Constructs a new Supervisor object from a map

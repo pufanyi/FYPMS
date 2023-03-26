@@ -12,7 +12,7 @@ public class RejectRequest extends CoordinatorRequest implements ChangeRequest {
     /**
      * The requestID to be rejected
      */
-    private String requestID;
+    private String rejectingRequestID;
     /**
      * The type of the request
      */
@@ -30,27 +30,27 @@ public class RejectRequest extends CoordinatorRequest implements ChangeRequest {
      * Constructs a new RejectRequest object with the specified request.
      * @param requestID the requestID to be rejected
      */
-    public RejectRequest(String requestID) {
-        super();
-        this.requestID = requestID;
-        request = RequestRepository.getInstance().getByID(requestID);
-        status = request.getStatus();
+    public RejectRequest(String requestID, String rejectingRequestID) {
+        super(requestID);
+        this.rejectingRequestID = rejectingRequestID;
+        this.request = RequestRepository.getInstance().getByID(rejectingRequestID);
+        this.status = request.getStatus();
     }
 
     @Override
     public Map<String, String> toMap() {
         Map<String, String> ans = new HashMap<>();
         ans.put("requestType", requestType);
-        ans.put("requestID", requestID);
+        ans.put("requestID", rejectingRequestID);
         ans.put("status", request.getStatus().toString());
         return ans;
     }
 
-    @Override
-    public void fromMap(Map<String, String> map) {
-        this.requestID = map.get("requestID");
-        this.status = RequestStatus.valueOf(map.get("status"));
-    }
+//    @Override
+//    public void fromMap(Map<String, String> map) {
+//        this.requestID = map.get("requestID");
+//        this.status = RequestStatus.valueOf(map.get("status"));
+//    }
 
     /**
      * Reject the request

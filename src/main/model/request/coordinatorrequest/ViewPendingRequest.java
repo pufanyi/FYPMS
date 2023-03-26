@@ -10,16 +10,12 @@ import java.util.Map;
 
 public class ViewPendingRequest extends CoordinatorRequest implements ViewRequest {
     /**
-     * The request to be viewed
-     */
-    private Request request;
-    /**
      * The type of the request
      */
     private static final String requestType = "View pending request";
 
-    public ViewPendingRequest() {
-        super();
+    public ViewPendingRequest(String requestID) {
+        super(requestID);
     }
 
     @Override

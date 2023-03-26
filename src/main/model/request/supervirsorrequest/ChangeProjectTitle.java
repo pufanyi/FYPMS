@@ -25,8 +25,8 @@ public class ChangeProjectTitle extends SupervisorRequest implements ChangeReque
      */
     private static final String requestType = "Change project title";
 
-    public ChangeProjectTitle(String projectID, String newTitle) {
-        super();
+    public ChangeProjectTitle(String requestID, String projectID, String newTitle) {
+        super(requestID);
         this.projectID = projectID;
         this.newTitle = newTitle;
     }

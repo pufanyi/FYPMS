@@ -19,8 +19,8 @@ public class AllocateProject extends CoordinatorRequest implements ChangeRequest
      * @param student The student to be allocated
      * @param project The project to be allocated
      */
-    public AllocateProject(Student student, Project project) {
-        super();
+    public AllocateProject(String requestID, Student student, Project project) {
+        super(requestID);
         this.student = student;
         this.project = project;
     }
