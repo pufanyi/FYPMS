@@ -5,10 +5,8 @@ import main.repository.user.FacultyRepository;
 
 public class FacultyLoadTest {
     public static void main(String[] args) {
-        FacultyRepository facultyRepository = new FacultyRepository();
-        facultyRepository.load();
-        for (Supervisor supervisor : facultyRepository) {
-            System.out.println(supervisor);
+        for (Supervisor supervisor : FacultyRepository.getInstance()) {
+            System.out.println(supervisor.toMap());
         }
     }
 }

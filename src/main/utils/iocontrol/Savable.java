@@ -1,6 +1,7 @@
 package main.utils.iocontrol;
 
 import java.io.*;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
@@ -18,14 +19,14 @@ public abstract class Savable<MappableObject extends Mappable> {
      *
      * @param listOfMappableObjects the list of mappable objects
      */
-    public abstract void setAll(List<Map<String, String>> listOfMappableObjects);
+    public abstract void setAll(List<Map<String, String>> listOfMappableObjects) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException;
 
     /**
      * Saves the list of mappable objects to a file.
      *
      * @param FILE_PATH the path of the file to save to
      */
-    public void save(final String FILE_PATH) {
+    protected void save(final String FILE_PATH) {
         PrintWriter printWriter;
         try {
             printWriter = new PrintWriter(new FileWriter(FILE_PATH));
@@ -44,7 +45,7 @@ public abstract class Savable<MappableObject extends Mappable> {
      *
      * @param FILE_PATH the path of the file to load from
      */
-    public void load(final String FILE_PATH) {
+    protected void load(final String FILE_PATH) {
         List<Map<String, String>> listOfMappableObjects = new ArrayList<>();
         BufferedReader bufferedReader;
         try {
@@ -60,6 +61,10 @@ public abstract class Savable<MappableObject extends Mappable> {
         } catch (IOException e) {
             throw new RuntimeException("Data could not be loaded from file: " + FILE_PATH);
         }
-        setAll(listOfMappableObjects);
+        try {
+            setAll(listOfMappableObjects);
+        } catch (NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
+            throw new RuntimeException("Data could not be loaded from file: " + FILE_PATH);
+        }
     }
 }

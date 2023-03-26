@@ -12,7 +12,6 @@ public class RequestFactory {
             case "STUDENT_REGISTRATION" -> new StudentRegistrationRequest(map);
             case "STUDENT_DEREGISRATION" -> new StudentDeregistrationRequest(map);
             case "STUDENT_CHANGE_TITLE" -> new StudentChangeTitleRequest(map);
-            default -> null;
         };
     }
 }

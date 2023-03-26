@@ -3,10 +3,8 @@ package main.repository;
 import main.model.Model;
 import main.utils.iocontrol.Savable;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.lang.reflect.InvocationTargetException;
+import java.util.*;
 
 public abstract class Repository<ModelObject extends Model> extends Savable<ModelObject> implements Iterable<ModelObject> {
     public abstract String getFilePath();
@@ -85,6 +83,7 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
     }
 
     public void load() {
+        this.listOfModelObjects = new ArrayList<>();
         load(getFilePath());
     }
 

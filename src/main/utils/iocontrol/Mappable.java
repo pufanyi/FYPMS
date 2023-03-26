@@ -11,16 +11,24 @@ public interface Mappable {
      * @return the map
      */
     default Map<String, String> toMap() {
+        System.err.println("in");
         Map<String, String> map = new HashMap<>();
         Field[] fields = getClass().getDeclaredFields();
         for (Field field : fields) {
+            System.err.println(field.getName() + " in");
             try {
                 field.setAccessible(true);
-                map.put(field.getName(), field.get(this).toString());
+                try {
+                    map.put(field.getName(), field.get(this).toString());
+                } catch (NullPointerException e) {
+                    map.put(field.getName(), null);
+                }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
+            System.err.println(field.getName() + " out");
         }
+        System.err.println("out");
         return map;
     }
 
