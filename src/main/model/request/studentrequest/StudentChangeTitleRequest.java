@@ -13,6 +13,7 @@ public class StudentChangeTitleRequest extends StudentRequest {
     private String newTitle;
 
     public StudentChangeTitleRequest(String studentID, String supervisorID, String projectID, String newTitle) {
+        super();
         this.studentID = studentID;
         this.supervisorID = supervisorID;
         this.projectID = projectID;
@@ -20,6 +21,7 @@ public class StudentChangeTitleRequest extends StudentRequest {
     }
 
     public StudentChangeTitleRequest(Map<String, String> map) {
+        super();
         fromMap(map);
     }
 

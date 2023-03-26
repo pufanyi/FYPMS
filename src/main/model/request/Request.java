@@ -23,6 +23,11 @@ public abstract class Request extends Model {
         this.status = RequestStatus.PENDING;
     }
 
+    public Request() {
+        this.requestID = null;
+        this.status = RequestStatus.PENDING;
+    }
+
     /**
      * Get the ID of the request.
      */

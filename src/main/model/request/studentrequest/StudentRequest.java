@@ -11,5 +11,9 @@ public abstract class StudentRequest extends Request {
     public StudentRequest(String requestID) {
         super(requestID);
     }
+
+    public StudentRequest() {
+        super();
+    }
     // TODO: implement this class
 }
