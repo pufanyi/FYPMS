@@ -15,10 +15,9 @@ public class ProjectManager {
         ProjectRepository.getInstance().update(p1);
     }
 
-    public static List<Project> viewAvailableProjects() {
-        return ProjectRepository.getInstance().findByRules(
-                project -> project.getStatus() == ProjectStatus.AVAILABLE
-        );
+    public static void viewAvailableProjects() throws ModelNotFoundException {
+        for(Project p : ProjectRepository.getInstance().findByRules(p -> p.getStatus() == ProjectStatus.AVAILABLE))
+            p.displayProject();
     }
 
     public static void createProject(String projectID, String projectTitle, String supervisorID) throws ModelAlreadyExistsException {
@@ -32,8 +31,9 @@ public class ProjectManager {
         ProjectRepository.getInstance().update(p1);
     }
 
-    public static List<Project> viewAllProject() {
-        return ProjectRepository.getInstance().getList();
+    public static void viewAllProject() throws ModelNotFoundException {
+        for(Project p : ProjectRepository.getInstance())
+            p.displayProject();
     }
 
     public static void deallocateProject(String projectID) throws ModelNotFoundException {
