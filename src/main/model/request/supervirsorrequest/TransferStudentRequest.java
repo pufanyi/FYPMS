@@ -75,6 +75,7 @@ public class TransferStudentRequest implements SupervisorRequest{
      * Get the ID of the supervisor
      * @return The ID of the supervisor
      */
+    @Override
     public String getSupervisorID() {
         return supervisorID;
     }
@@ -147,6 +148,9 @@ public class TransferStudentRequest implements SupervisorRequest{
         return requestType;
     }
 
+    /**
+     * Display the information of the request
+     */
     @Override
     public void display() {
         System.out.println("Request ID: " + requestID);

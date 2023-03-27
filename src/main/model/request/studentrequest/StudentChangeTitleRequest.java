@@ -23,7 +23,7 @@ public class StudentChangeTitleRequest implements StudentRequest {
      */
     private String studentID;
     /**
-     * The ID of the supervisor
+     * The ID of the supervisor who deals with the request
      */
     private String supervisorID;
     /**
@@ -34,10 +34,6 @@ public class StudentChangeTitleRequest implements StudentRequest {
      * The new title of the project
      */
     private String newTitle;
-    /**
-     * The ID of the coordinator who deals with the request
-     */
-    private String coordinatorID = null;
 
     /**
      * Constructor
@@ -93,18 +89,6 @@ public class StudentChangeTitleRequest implements StudentRequest {
 
     public void setNewTitle(String newTitle) {
         this.newTitle = newTitle;
-    }
-
-    public String getCoordinatorID() {
-        return coordinatorID;
-    }
-
-    /**
-     * Set the ID of the coordinator who deals with the request
-     * @param coordinatorID The ID of the coordinator
-     */
-    public void setCoordinatorID(String coordinatorID) {
-        this.coordinatorID = coordinatorID;
     }
 
     /**

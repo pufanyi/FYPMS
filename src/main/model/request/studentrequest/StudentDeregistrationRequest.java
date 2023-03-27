@@ -7,50 +7,104 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class StudentDeregistrationRequest implements StudentRequest {
+    /**
+     * The ID of the request
+     */
     public String requestID;
+    /**
+     * The type of the request
+     */
     private final RequestType requestType = RequestType.STUDENT_DEREGISTRATION;
+    /**
+     * The status of the request
+     */
     private RequestStatus requestStatus = RequestStatus.PENDING;
+    /**
+     * The ID of the student
+     */
     private String studentID;
+    /**
+     * The ID of the supervisor
+     */
     private String supervisorID;
+    /**
+     * The ID of the project
+     */
     private String projectID;
+    /**
+     * The ID of the coordinator who deals with the request
+     */
+    private String coordinatorID = null;
 
+    /**
+     * Constructor
+     * @param requestID The ID of the request
+     * @param studentID The ID of the student
+     * @param supervisorID The ID of the supervisor
+     * @param projectID The ID of the project
+     */
     public StudentDeregistrationRequest(String requestID, String studentID, String supervisorID, String projectID) {
         this.studentID = studentID;
         this.supervisorID = supervisorID;
         this.projectID = projectID;
     }
 
+    /**
+     * Constructor
+     * @param map The map of the request
+     */
     public StudentDeregistrationRequest(Map<String, String> map) {
         fromMap(map);
     }
 
+    /**
+     * Get the ID of the student.
+     * @return the ID of the student.
+     */
     @Override
     public String getStudentID() {
         return studentID;
     }
 
-    public void setStudentID(String studentID) {
-        this.studentID = studentID;
-    }
-
+    /**
+     * Get the ID of the supervisor.
+     * @return the ID of the supervisor.
+     */
     public String getSupervisorID() {
         return supervisorID;
     }
 
-    public void setSupervisorID(String supervisorID) {
-        this.supervisorID = supervisorID;
-    }
-
+    /**
+     * Get the project ID of the request.
+     * @return the project ID of the request.
+     */
     public String getProjectID() {
         return projectID;
     }
 
-    public void setProjectID(String projectID) {
-        this.projectID = projectID;
-    }
-
+    /**
+     * Get the request type.
+     * @return the request type.
+     */
+    @Override
     public RequestType getRequestType() {
         return requestType;
+    }
+
+    /**
+     * Get the ID of the coordinator who deals with the request.
+     * @return the ID of the coordinator who deals with the request.
+     */
+    public String getCoordinatorID() {
+        return coordinatorID;
+    }
+
+    /**
+     * Set the ID of the coordinator who deals with the request.
+     * @param coordinatorID the ID of the coordinator who deals with the request.
+     */
+    public void setCoordinatorID(String coordinatorID) {
+        this.coordinatorID = coordinatorID;
     }
 
     /**
@@ -81,6 +135,9 @@ public class StudentDeregistrationRequest implements StudentRequest {
         this.requestStatus = status;
     }
 
+    /**
+     * Display the information of the request.
+     */
     @Override
     public void display() {
         System.out.println("Request ID: " + requestID);
