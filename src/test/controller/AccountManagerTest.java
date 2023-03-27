@@ -1,8 +1,7 @@
 package test.controller;
 
 import main.controller.account.AccountManager;
-import main.controller.account.password.PasswordIncorrectException;
-import main.model.user.Student;
+import main.utils.exception.user.PasswordIncorrectException;
 import main.model.user.User;
 import main.model.user.UserType;
 import main.repository.user.CoordinatorRepository;
@@ -12,7 +11,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class AccountManagerTest {
     /**

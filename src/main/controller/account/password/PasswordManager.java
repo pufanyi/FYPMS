@@ -1,7 +1,7 @@
 package main.controller.account.password;
 
-import main.controller.account.user.UserFinder;
 import main.model.user.User;
+import main.utils.exception.user.PasswordIncorrectException;
 
 /**
  * A class manages the password of a user

@@ -3,7 +3,6 @@ package main.model.project;
 import main.model.Model;
 import main.model.user.Student;
 import main.model.user.Supervisor;
-import main.repository.project.ProjectRepository;
 import main.repository.user.FacultyRepository;
 import main.repository.user.StudentRepository;
 
@@ -115,6 +114,15 @@ public class Project implements Model {
     }
 
     /**
+     * Get the student ID of the project
+     *
+     * @return the student ID of the project
+     */
+    public String getStudentID() {
+        return studentID;
+    }
+
+    /**
      * Set the student ID of the project
      */
     public void setStudentID(String studentID) {
@@ -122,11 +130,12 @@ public class Project implements Model {
     }
 
     /**
-     * Get the student ID of the project
-     * @return the student ID of the project
+     * Get the supervisor ID of the project
+     *
+     * @return the supervisor ID of the project
      */
-    public String getStudentID() {
-        return studentID;
+    public String getSupervisorID() {
+        return supervisorID;
     }
 
     /**
@@ -137,11 +146,10 @@ public class Project implements Model {
     }
 
     /**
-     * Get the supervisor ID of the project
-     * @return the supervisor ID of the project
+     * @return the title of the project
      */
-    public String getSupervisorID() {
-        return supervisorID;
+    public String getProjectTitle() {
+        return projectTitle;
     }
 
     /**
@@ -152,11 +160,12 @@ public class Project implements Model {
     }
 
     /**
+     * Get the status of the project
      *
-     * @return the title of the project
+     * @return the status of the project
      */
-    public String getProjectTitle() {
-        return projectTitle;
+    public ProjectStatus getStatus() {
+        return status;
     }
 
     /**
@@ -167,15 +176,8 @@ public class Project implements Model {
     }
 
     /**
-     * Get the status of the project
-     * @return the status of the project
-     */
-    public ProjectStatus getStatus() {
-        return status;
-    }
-
-    /**
      * Get the ID of the project
+     *
      * @return the ID of the project
      */
     @Override

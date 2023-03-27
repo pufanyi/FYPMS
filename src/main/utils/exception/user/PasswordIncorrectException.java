@@ -1,4 +1,4 @@
-package main.controller.account.password;
+package main.utils.exception.user;
 
 public class PasswordIncorrectException extends Exception {
     public PasswordIncorrectException() {

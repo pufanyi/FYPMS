@@ -1,21 +1,22 @@
 package main.repository;
 
 import main.model.Model;
-import main.utils.iocontrol.Mappable;
 import main.utils.iocontrol.Savable;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 public abstract class Repository<ModelObject extends Model> extends Savable<ModelObject> implements Iterable<ModelObject> {
-    public abstract String getFilePath();
-
     List<ModelObject> listOfModelObjects;
 
     public Repository() {
         super();
         listOfModelObjects = new ArrayList<>();
     }
+
+    public abstract String getFilePath();
 
     /**
      * Gets the list of mappable objects.
@@ -29,6 +30,7 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
 
     /**
      * method to get the by ID
+     *
      * @param modelObjectID
      * @return
      * @throws NoSuchElementException
@@ -108,10 +110,6 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
         return listOfModelObjects.iterator();
     }
 
-    public interface RepositoryRule<ModelObject> {
-        boolean isMatch(ModelObject modelObject);
-    }
-
     @SafeVarargs
     public final List<ModelObject> findByRules(RepositoryRule<ModelObject>... rules) {
         List<ModelObject> modelObjects = new ArrayList<>();
@@ -132,5 +130,9 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
 
     public List<ModelObject> getList() {
         return findByRules();
+    }
+
+    public interface RepositoryRule<ModelObject> {
+        boolean isMatch(ModelObject modelObject);
     }
 }

@@ -1,7 +1,6 @@
 package main.model.user;
 
 import main.model.Model;
-import main.utils.parameters.NotNull;
 
 /**
  * A class that represents a user
@@ -24,6 +23,7 @@ public interface User extends Model {
     String getHashedPassword();
 
     void setHashedPassword(String hashedPassword);
+
     /**
      * Gets the email of the user
      *

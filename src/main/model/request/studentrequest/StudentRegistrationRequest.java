@@ -1,10 +1,8 @@
 package main.model.request.studentrequest;
 
-import main.model.request.Request;
 import main.model.request.RequestStatus;
 import main.model.request.RequestType;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class StudentRegistrationRequest implements StudentRequest {
@@ -39,10 +37,11 @@ public class StudentRegistrationRequest implements StudentRequest {
 
     /**
      * Constructor
-     * @param requestID The ID of the request
-     * @param studentID The ID of the student
+     *
+     * @param requestID    The ID of the request
+     * @param studentID    The ID of the student
      * @param supervisorID The ID of the supervisor
-     * @param projectID The ID of the project
+     * @param projectID    The ID of the project
      */
     public StudentRegistrationRequest(String requestID, String studentID, String supervisorID, String projectID) {
         this.requestID = requestID;
@@ -53,6 +52,7 @@ public class StudentRegistrationRequest implements StudentRequest {
 
     /**
      * Constructor
+     *
      * @param map The map of the request
      */
     public StudentRegistrationRequest(Map<String, String> map) {
@@ -61,6 +61,7 @@ public class StudentRegistrationRequest implements StudentRequest {
 
     /**
      * Get the ID of the student.
+     *
      * @return the ID of the student.
      */
     public String getStudentID() {
@@ -69,6 +70,7 @@ public class StudentRegistrationRequest implements StudentRequest {
 
     /**
      * Get the ID of the supervisor.
+     *
      * @return the ID of the supervisor.
      */
     public String getSupervisorID() {
@@ -77,6 +79,7 @@ public class StudentRegistrationRequest implements StudentRequest {
 
     /**
      * Get the ID of the project.
+     *
      * @return the ID of the project.
      */
     public String getProjectID() {
@@ -85,6 +88,7 @@ public class StudentRegistrationRequest implements StudentRequest {
 
     /**
      * Get the type of the request.
+     *
      * @return the type of the request.
      */
     @Override
@@ -94,6 +98,7 @@ public class StudentRegistrationRequest implements StudentRequest {
 
     /**
      * Get the ID of the coordinator who deals with the request.
+     *
      * @return the ID of the coordinator who deals with the request.
      */
     public String getCoordinatorID() {
@@ -102,6 +107,7 @@ public class StudentRegistrationRequest implements StudentRequest {
 
     /**
      * Set the ID of the coordinator who deals with the request.
+     *
      * @param coordinatorID the ID of the coordinator who deals with the request.
      */
     public void setCoordinatorID(String coordinatorID) {

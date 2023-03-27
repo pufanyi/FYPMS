@@ -28,9 +28,9 @@ public class Coordinator implements User {
     /**
      * constructor of a new Coordinator object with the specified coordinator ID,Name and email
      *
-     * @param coordinatorID the ID of the coordinator
+     * @param coordinatorID   the ID of the coordinator
      * @param coordinatorName the name of the coordinator
-     * @param email the email of the coordinator
+     * @param email           the email of the coordinator
      */
     public Coordinator(String coordinatorID, String coordinatorName, String email) {
         this.coordinatorID = coordinatorID;
@@ -45,6 +45,28 @@ public class Coordinator implements User {
         this.coordinatorID = coordinatorID;
         this.coordinatorName = coordinatorName;
         this.email = email;
+    }
+
+    /**
+     * Converts the map to a coordinator object
+     *
+     * @param map the map
+     */
+    public Coordinator(Map<String, String> map) {
+        this.fromMap(map);
+    }
+
+    /**
+     * default constructor
+     */
+    public Coordinator() {
+        this.coordinatorID = "";
+        this.coordinatorName = "";
+        this.email = "";
+    }
+
+    public static User getUser(Map<String, String> map) {
+        return new Coordinator(map);
     }
 
     /**
@@ -86,7 +108,17 @@ public class Coordinator implements User {
     }
 
     /**
+     * setter for the email
+     *
+     * @param email the coordinator's email to be set
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    /**
      * setter for the coordinatorID
+     *
      * @param coordinatorID the coordinator's ID to be set
      */
     public void setCoordinatorID(String coordinatorID) {
@@ -95,39 +127,10 @@ public class Coordinator implements User {
 
     /**
      * setter for the coordinatorName
+     *
      * @param coordinatorName the coordinator's name to be set
      */
     public void setCoordinatorName(String coordinatorName) {
         this.coordinatorName = coordinatorName;
-    }
-
-    /**
-     * setter for the email
-     * @param email the coordinator's email to be set
-     */
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    /**
-     * Converts the map to a coordinator object
-     *
-     * @param map the map
-     */
-    public Coordinator(Map<String, String> map) {
-        this.fromMap(map);
-    }
-
-    public static User getUser(Map<String, String> map) {
-        return new Coordinator(map);
-    }
-
-    /**
-     *  default constructor
-     */
-    public Coordinator() {
-        this.coordinatorID = "";
-        this.coordinatorName = "";
-        this.email = "";
     }
 }

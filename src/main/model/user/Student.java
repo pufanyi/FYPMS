@@ -2,7 +2,6 @@ package main.model.user;
 
 import main.utils.parameters.NotNull;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -71,6 +70,30 @@ public class Student implements User {
     }
 
     /**
+     * Constructs a new Student object with the specified student ID and password.
+     *
+     * @param informationMap the map
+     */
+    public Student(Map<String, String> informationMap) {
+        fromMap(informationMap);
+    }
+
+    /**
+     * default constructor for Student class
+     */
+    public Student() {
+        super();
+        this.email = "";
+        this.studentID = "";
+        this.studentName = "";
+        this.status = StudentStatus.UNREGISTERED;
+    }
+
+    public static User getUser(Map<String, String> informationMap) {
+        return new Student(informationMap);
+    }
+
+    /**
      * Gets the email of the user
      *
      * @return the email of the user
@@ -119,30 +142,6 @@ public class Student implements User {
     }
 
     /**
-     * Constructs a new Student object with the specified student ID and password.
-     *
-     * @param informationMap the map
-     */
-    public Student(Map<String, String> informationMap) {
-        fromMap(informationMap);
-    }
-
-    public static User getUser(Map<String, String> informationMap) {
-        return new Student(informationMap);
-    }
-
-    /**
-     *  default constructor for Student class
-     */
-    public Student() {
-        super();
-        this.email = "";
-        this.studentID = "";
-        this.studentName = "";
-        this.status = StudentStatus.UNREGISTERED;
-    }
-
-    /**
      * Gets the ID of the supervisor
      *
      * @return the ID of the supervisor
@@ -180,6 +179,7 @@ public class Student implements User {
 
     /**
      * getter for the password
+     *
      * @return hashedPassword
      */
     public String getHashedPassword() {
@@ -188,6 +188,7 @@ public class Student implements User {
 
     /**
      * setter for the password
+     *
      * @param hashedPassword the password that to be set
      */
     public void setHashedPassword(String hashedPassword) {

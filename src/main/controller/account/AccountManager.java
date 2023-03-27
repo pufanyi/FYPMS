@@ -1,6 +1,6 @@
 package main.controller.account;
 
-import main.controller.account.password.PasswordIncorrectException;
+import main.utils.exception.user.PasswordIncorrectException;
 import main.controller.account.password.PasswordManager;
 import main.controller.account.user.UserAdder;
 import main.controller.account.user.UserFinder;

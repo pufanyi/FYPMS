@@ -1,13 +1,14 @@
 package test.model.user;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import main.model.user.Coordinator;
 import main.model.user.Student;
 import main.model.user.Supervisor;
 import main.model.user.User;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class UserTest {
     public void testUserID(User user, String id) {

@@ -5,15 +5,15 @@ import main.model.request.RequestType;
 
 import java.util.Map;
 
-public class TransferStudentRequest implements SupervisorRequest{
-    /**
-     * The ID of the request
-     */
-    private String requestID;
+public class TransferStudentRequest implements SupervisorRequest {
     /**
      * The type of the request
      */
     private final RequestType requestType = RequestType.SUPERVISOR_TRANSFER_STUDENT;
+    /**
+     * The ID of the request
+     */
+    private String requestID;
     /**
      * The status of the request
      */
@@ -41,11 +41,12 @@ public class TransferStudentRequest implements SupervisorRequest{
 
     /**
      * Constructor
-     * @param requestID The ID of the request
-     * @param projectID The ID of the project
-     * @param supervisorID The ID of the supervisor
+     *
+     * @param requestID       The ID of the request
+     * @param projectID       The ID of the project
+     * @param supervisorID    The ID of the supervisor
      * @param newSupervisorID The ID of the new supervisor
-     * @param studentID The ID of the student
+     * @param studentID       The ID of the student
      */
     public TransferStudentRequest(String requestID, String projectID, String supervisorID, String newSupervisorID, String studentID) {
         this.requestID = requestID;
@@ -57,6 +58,7 @@ public class TransferStudentRequest implements SupervisorRequest{
 
     /**
      * Constructor
+     *
      * @param map The map of the request
      */
     public TransferStudentRequest(Map<String, String> map) {
@@ -65,6 +67,7 @@ public class TransferStudentRequest implements SupervisorRequest{
 
     /**
      * Get the ID of the project
+     *
      * @return The ID of the project
      */
     public String getProjectID() {
@@ -73,6 +76,7 @@ public class TransferStudentRequest implements SupervisorRequest{
 
     /**
      * Get the ID of the supervisor
+     *
      * @return The ID of the supervisor
      */
     @Override
@@ -82,6 +86,7 @@ public class TransferStudentRequest implements SupervisorRequest{
 
     /**
      * Set the ID of the supervisor
+     *
      * @param supervisorID The ID of the supervisor to be set
      */
     public void setSupervisorID(String supervisorID) {
@@ -90,6 +95,7 @@ public class TransferStudentRequest implements SupervisorRequest{
 
     /**
      * Get the ID of the new supervisor
+     *
      * @return The ID of the new supervisor
      */
     public String getNewSupervisorID() {
@@ -98,6 +104,7 @@ public class TransferStudentRequest implements SupervisorRequest{
 
     /**
      * Get the ID of the student
+     *
      * @return The ID of the student
      */
     public String getStudentID() {
@@ -106,6 +113,7 @@ public class TransferStudentRequest implements SupervisorRequest{
 
     /**
      * Get the ID of the coordinator
+     *
      * @return The ID of the coordinator
      */
     public String getCoordinatorID() {
@@ -114,6 +122,7 @@ public class TransferStudentRequest implements SupervisorRequest{
 
     /**
      * Set the ID of the coordinator
+     *
      * @param coordinatorID The ID of the coordinator
      */
     public void setCoordinatorID(String coordinatorID) {
@@ -122,6 +131,7 @@ public class TransferStudentRequest implements SupervisorRequest{
 
     /**
      * Get the ID of the request
+     *
      * @return The ID of the request
      */
     @Override
@@ -131,6 +141,7 @@ public class TransferStudentRequest implements SupervisorRequest{
 
     /**
      * Get the status of the request
+     *
      * @return The status of the request
      */
     @Override
@@ -140,6 +151,7 @@ public class TransferStudentRequest implements SupervisorRequest{
 
     /**
      * Set the status of the request
+     *
      * @param status the status of the request.
      */
     @Override
@@ -149,6 +161,7 @@ public class TransferStudentRequest implements SupervisorRequest{
 
     /**
      * Get the type of the request
+     *
      * @return The type of the request
      */
     @Override
