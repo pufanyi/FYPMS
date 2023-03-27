@@ -58,28 +58,6 @@ public class StudentRegistrationRequest implements StudentRequest {
      *
      * @return the map
      */
-    @Override
-    public Map<String, String> toMap() {
-        Map<String, String> map = new HashMap<>();
-        map.put("StudentID", studentID);
-        map.put("SupervisorID", supervisorID);
-        map.put("ProjectID", projectID);
-        map.put("RequestType", requestType.toString());
-        return map;
-    }
-
-    /**
-     * Converts the map to an object
-     *
-     * @param map the map
-     */
-    @Override
-    public void fromMap(Map<String, String> map) {
-        this.studentID = map.get("StudentID");
-        this.supervisorID = map.get("SupervisorID");
-        this.projectID = map.get("ProjectID");
-    }
-
     /**
      * Get the ID of the request.
      */
