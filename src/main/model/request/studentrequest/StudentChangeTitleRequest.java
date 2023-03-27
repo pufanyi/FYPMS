@@ -7,12 +7,33 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class StudentChangeTitleRequest implements StudentRequest {
+    /**
+     * The ID of the request
+     */
     private String requestID;
+    /**
+     * The type of the request
+     */
     private final RequestType requestType = RequestType.STUDENT_CHANGE_TITLE;
+    /**
+     * The status of the request
+     */
     private RequestStatus requestStatus = RequestStatus.PENDING;
+    /**
+     * The ID of the student
+     */
     private String studentID;
+    /**
+     * The ID of the supervisor
+     */
     private String supervisorID;
+    /**
+     * The ID of the project
+     */
     private String projectID;
+    /**
+     * The new title of the project
+     */
     private String newTitle;
 
     public StudentChangeTitleRequest(String requestID, String studentID, String supervisorID, String projectID, String newTitle) {
@@ -90,5 +111,10 @@ public class StudentChangeTitleRequest implements StudentRequest {
     @Override
     public void setStatus(RequestStatus status) {
         this.requestStatus = status;
+    }
+
+    @Override
+    public void view(){
+        return;
     }
 }
