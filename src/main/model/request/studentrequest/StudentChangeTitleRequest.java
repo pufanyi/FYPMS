@@ -3,7 +3,6 @@ package main.model.request.studentrequest;
 import main.model.request.RequestStatus;
 import main.model.request.RequestType;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class StudentChangeTitleRequest implements StudentRequest {
