@@ -4,6 +4,7 @@ import main.controller.project.ProjectManager;
 import main.model.request.Request;
 import main.model.request.RequestStatus;
 import main.model.request.supervirsorrequest.TransferStudentRequest;
+import main.repository.project.ProjectRepository;
 import main.repository.request.RequestRepository;
 import main.utils.exception.repository.ModelAlreadyExistsException;
 import main.utils.exception.repository.ModelNotFoundException;
@@ -43,7 +44,8 @@ public class SupervisorRequestManager {
 
     }
 
-    public static void createProject(String supervisorID) {
-
+    public static void createProject(String supervisorID, String title) throws ModelAlreadyExistsException {
+        String projectID = ProjectRepository.getInstance().size() + "";
+        ProjectManager.createProject(projectID, supervisorID, title);
     }
 }
