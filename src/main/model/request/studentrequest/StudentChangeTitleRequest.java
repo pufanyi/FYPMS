@@ -113,7 +113,9 @@ public class StudentChangeTitleRequest implements StudentRequest {
     }
 
     @Override
-    public void view(){
-        return;
+    public void display(){
+        System.out.println("Request ID: " + requestID);
+        System.out.println("Request Type: " + requestType);
+        System.out.println("Request Status: " + requestStatus);
     }
 }

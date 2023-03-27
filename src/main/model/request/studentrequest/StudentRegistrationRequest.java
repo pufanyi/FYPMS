@@ -88,6 +88,9 @@ public class StudentRegistrationRequest implements StudentRequest {
     }
 
     @Override
-    public void view() {
+    public void display() {
+        System.out.println("Request ID: " + requestID);
+        System.out.println("Request Type: " + requestType);
+        System.out.println("Request Status: " + requestStatus);
     }
 }
