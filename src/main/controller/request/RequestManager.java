@@ -3,6 +3,7 @@ package main.controller.request;
 import main.model.project.Project;
 import main.model.project.ProjectStatus;
 import main.model.request.Request;
+import main.model.request.studentrequest.StudentChangeTitleRequest;
 import main.model.request.studentrequest.StudentDeregistrationRequest;
 import main.model.request.studentrequest.StudentRegistrationRequest;
 import main.model.request.supervirsorrequest.TransferStudentRequest;
@@ -23,7 +24,7 @@ public class RequestManager {
         ProjectRepository.getInstance().update(project);
     }
 
-    public void deregisterStudent(String projectID, String studentID, String supervisorID) throws ModelNotFoundException, IllegalStateException, StudentStatusException, ProjectStatusException {
+    public void deregisterStudent(String projectID, String studentID, String supervisorID) throws ModelNotFoundException, IllegalStateException, StudentStatusException {
         String requestID = RequestRepository.getInstance().size() + "";
         Request request = new StudentDeregistrationRequest(requestID, projectID, studentID, supervisorID);
         Project project = ProjectRepository.getInstance().getByID(projectID);
@@ -34,8 +35,8 @@ public class RequestManager {
         if (!project.getStudentID().equals(studentID)) {
             throw new IllegalStateException("Student is not allocated to this project");
         }
-        if (student.getStatus() != StudentStatus.REGISTERED) {
-            throw new StudentStatusException("Student is not registered");
+        if (student.getStatus() == StudentStatus.UNREGISTERED) {
+            throw new StudentStatusException(student.getStatus());
         }
         project.setStatus(ProjectStatus.AVAILABLE);
         project.setStudentID("");
@@ -44,7 +45,7 @@ public class RequestManager {
         StudentRepository.getInstance().update(student);
     }
 
-    public void registerStudent(String projectID, String studentID, String supervisorID) throws ModelNotFoundException, StudentStatusException {
+    public void registerStudent(String projectID, String studentID, String supervisorID) throws ModelNotFoundException, StudentStatusException, IllegalStateException {
         String requestID = RequestRepository.getInstance().size() + "";
         Request request = new StudentRegistrationRequest(requestID, projectID, studentID, supervisorID);
         Project project = ProjectRepository.getInstance().getByID(projectID);
@@ -56,14 +57,19 @@ public class RequestManager {
             throw new StudentStatusException(student.getStatus());
         }
         if (student.getStatus() == StudentStatus.DEREGISTERED) {
-            throw new IllegalStateException("Student is already registered to project");
+            throw new StudentStatusException(student.getStatus());
         }
+        project.setStatus(ProjectStatus.RESERVED);
+        project.setStudentID(studentID);
+        student.setStatus(StudentStatus.PENDING);
+        ProjectRepository.getInstance().update(project);
+        StudentRepository.getInstance().update(student);
     }
 
-    public void changeProjectTitle(String projectID, String newTitle) throws ModelNotFoundException {
-        Project p1 = ProjectRepository.getInstance().getByID(projectID);
-        p1.setProjectTitle(newTitle);
-        ProjectRepository.getInstance().update(p1);
+    public void changeProjectTitle(String projectID, String newTitle, String studentID, String supervisorID) throws ModelNotFoundException {
+        String requestID = RequestRepository.getInstance().size() + "";
+        Request request = new StudentChangeTitleRequest(requestID, projectID, newTitle, studentID, supervisorID);
+
     }
 
     public void viewAllRequest() {
@@ -79,7 +85,7 @@ public class RequestManager {
     }
 
     public void approveRequest(String requestID) {
-
+        
     }
 
     public void rejectRequest(String requestID) {
