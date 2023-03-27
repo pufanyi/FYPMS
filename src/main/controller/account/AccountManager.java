@@ -2,9 +2,12 @@ package main.controller.account;
 
 import main.controller.account.password.PasswordIncorrectException;
 import main.controller.account.password.PasswordManager;
+import main.controller.account.user.UserAdder;
 import main.controller.account.user.UserFinder;
+import main.controller.account.user.UserUpdater;
 import main.model.user.Student;
 import main.model.user.User;
+import main.model.user.UserFactory;
 import main.model.user.UserType;
 
 import java.util.NoSuchElementException;
@@ -26,16 +29,12 @@ public class AccountManager {
             throws PasswordIncorrectException, NoSuchElementException {
         User user = UserFinder.findUser(userID, userType);
         PasswordManager.changePassword(user, oldPassword, newPassword);
-        updateUser(user);
+        UserUpdater.updateUser(user);
     }
 
     public static void register(UserType userType, String userID, String password, String name, String email)
             throws NoSuchElementException {
-        User user = switch (userType) {
-            case STUDENT -> new Student(userID, password, name, email);
-            case FACULTY -> null;
-            case COORDINATOR -> null;
-        };
-        updateUser(user);
+        User user = UserFactory.create(userType, userID, password, name, email);
+        UserAdder.addUser(user);
     }
 }
