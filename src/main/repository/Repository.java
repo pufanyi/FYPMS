@@ -26,6 +26,12 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
         return listOfModelObjects;
     }
 
+    /**
+     * method to get the by ID
+     * @param modelObjectID
+     * @return
+     * @throws NoSuchElementException
+     */
     public ModelObject getByID(String modelObjectID) throws NoSuchElementException {
         for (ModelObject modelObject : listOfModelObjects) {
             if (modelObject.getID().equals(modelObjectID)) {

@@ -85,14 +85,26 @@ public class Coordinator implements User {
         return this.email;
     }
 
+    /**
+     * setter for the coordinatorID
+     * @param coordinatorID the coordinator's ID to be set
+     */
     public void setCoordinatorID(String coordinatorID) {
         this.coordinatorID = coordinatorID;
     }
 
+    /**
+     * setter for the coordinatorName
+     * @param coordinatorName the coordinator's name to be set
+     */
     public void setCoordinatorName(String coordinatorName) {
         this.coordinatorName = coordinatorName;
     }
 
+    /**
+     * setter for the email
+     * @param email the coordinator's email to be set
+     */
     public void setEmail(String email) {
         this.email = email;
     }
@@ -110,6 +122,9 @@ public class Coordinator implements User {
         return new Coordinator(map);
     }
 
+    /**
+     *  default constructor
+     */
     public Coordinator() {
         this.coordinatorID = "";
         this.coordinatorName = "";

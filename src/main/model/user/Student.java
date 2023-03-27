@@ -131,6 +131,9 @@ public class Student implements User {
         return new Student(informationMap);
     }
 
+    /**
+     *  default constructor for Student class
+     */
     public Student() {
         super();
         this.email = "";
@@ -182,10 +185,18 @@ public class Student implements User {
         this.projectID = projectID;
     }
 
+    /**
+     * getter for the password
+     * @return hashedPassword
+     */
     public String getHashedPassword() {
         return hashedPassword;
     }
 
+    /**
+     * setter for the password
+     * @param hashedPassword the password that to be set
+     */
     public void setHashedPassword(String hashedPassword) {
         this.hashedPassword = hashedPassword;
     }

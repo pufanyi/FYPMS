@@ -31,10 +31,14 @@ public class CoordinatorRepository extends Repository<Coordinator> {
         }
     }
 
+    /**
+     * constructor
+     */
     CoordinatorRepository() {
         super();
         load();
     }
+
 
     public static CoordinatorRepository getInstance() {
         return new CoordinatorRepository();

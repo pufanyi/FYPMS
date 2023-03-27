@@ -105,6 +105,9 @@ public class Supervisor implements User {
         return new Supervisor(map);
     }
 
+    /**
+     *  default constructor for Supervisor class
+     */
     public Supervisor() {
         this.supervisorID = "";
         this.supervisorName = "";
