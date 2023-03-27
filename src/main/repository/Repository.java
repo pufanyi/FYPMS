@@ -1,6 +1,7 @@
 package main.repository;
 
 import main.model.Model;
+import main.utils.iocontrol.Mappable;
 import main.utils.iocontrol.Savable;
 
 import java.lang.reflect.InvocationTargetException;
@@ -22,7 +23,7 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
      * @return the list of mappable objects
      */
     @Override
-    public List<ModelObject> getAll() {
+    protected List<ModelObject> getAll() {
         return listOfModelObjects;
     }
 
@@ -127,5 +128,9 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
             }
         }
         return modelObjects;
+    }
+
+    public List<ModelObject> getList() {
+        return findByRules();
     }
 }

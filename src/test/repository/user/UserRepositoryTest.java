@@ -48,16 +48,6 @@ public class UserRepositoryTest {
         assertThrows(NoSuchElementException.class, () -> facultyRepository.getByID("hahaha"));
     }
 
-    @Test
-    @DisplayName("Test get all")
-    public void getAllTest() {
-        FacultyRepository facultyRepository = createFacultyList();
-        assertEquals(3, facultyRepository.getAll().size());
-        assertEquals(supervisors[0], facultyRepository.getAll().get(0));
-        assertEquals(supervisors[1], facultyRepository.getAll().get(1));
-        assertEquals(supervisors[2], facultyRepository.getAll().get(2));
-    }
-
     /**
      * Test remove user
      */
