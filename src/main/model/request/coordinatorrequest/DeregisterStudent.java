@@ -179,7 +179,7 @@ public class DeregisterStudent extends CoordinatorRequest implements ChangeReque
     public void setStatus(RequestStatus status) {
         this.status = status;
     }
-    
+
     @Override
     public void view() {
         return;

@@ -1,67 +1,154 @@
 package main.model.request.coordinatorrequest;
 
 import main.model.request.ChangeRequest;
-import main.model.request.Request;
 import main.model.request.RequestStatus;
-import main.repository.request.RequestRepository;
+import main.model.request.RequestType;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class RejectRequest extends CoordinatorRequest implements ChangeRequest {
     /**
-     * The requestID to be rejected
+     * The ID of the request
      */
-    private String rejectingRequestID;
+    private String requestID;
     /**
-     * The type of the request
+     * The ID of the supervisor
      */
-    private static final String requestType = "Reject request";
+    private String supervisorID;
+    /**
+     * The ID of the project
+     */
+    private String projectID;
+    /**
+     * The ID of the student
+     */
+    private String studentID;
     /**
      * The status of the request
      */
-    private RequestStatus status;
+    private RequestStatus status = RequestStatus.PENDING;
     /**
-     * The request to be rejected
+     * The type of the request
      */
-    private Request request;
+    private final RequestType requestType = RequestType.COORDINATOR_REJECT_REQUEST;
 
     /**
-     * Constructs a new RejectRequest object with the specified request.
-     * @param requestID the requestID to be rejected
+     * Constructor for RejectRequest
+     * @param requestID the ID of the request
+     * @param supervisorID the ID of the supervisor
+     * @param projectID the ID of the project
+     * @param studentID the ID of the student
      */
-    public RejectRequest(String requestID, String rejectingRequestID) {
-        super(requestID);
-        this.rejectingRequestID = rejectingRequestID;
-        this.request = RequestRepository.getInstance().getByID(rejectingRequestID);
-        this.status = request.getStatus();
+    public RejectRequest(String requestID, String supervisorID, String projectID, String studentID) {
+        this.requestID = requestID;
+        this.supervisorID = supervisorID;
+        this.projectID = projectID;
+        this.studentID = studentID;
+    }
+
+    /**
+     * Constructor for RejectRequest
+     * @param map the map of the request
+     */
+    public RejectRequest(Map<String, String> map) {
+        fromMap(map);
+    }
+
+    /**
+     * Get the ID of the supervisor
+     * @return the ID of the supervisor
+     */
+    public String getSupervisorID() {
+        return supervisorID;
+    }
+
+    /**
+     * Set the ID of the supervisor
+     * @param supervisorID the ID of the supervisor
+     */
+    public void setSupervisorID(String supervisorID) {
+        this.supervisorID = supervisorID;
+    }
+
+    /**
+     * Get the ID of the project
+     * @return the ID of the project
+     */
+    public String getProjectID() {
+        return projectID;
+    }
+
+    /**
+     * Set the ID of the project
+     * @param projectID the ID of the project
+     */
+    public void setProjectID(String projectID) {
+        this.projectID = projectID;
+    }
+
+    /**
+     * Get the ID of the student
+     * @return the ID of the student
+     */
+    public String getStudentID() {
+        return studentID;
+    }
+
+    /**
+     * Set the ID of the student
+     * @param studentID the ID of the student
+     */
+    public void setStudentID(String studentID) {
+        this.studentID = studentID;
+    }
+
+    /**
+     * Get the ID of the request
+     * @return the ID of the request
+     */
+    @Override
+    public String getID() {
+        return requestID;
+    }
+
+    /**
+     * Set the ID of the request
+     * @return the ID of the request
+     */
+    @Override
+    public RequestStatus getStatus() {
+        return status;
+    }
+
+    /**
+     * Set the status of the request
+     * @param status the status of the request.
+     */
+    @Override
+    public void setStatus(RequestStatus status) {
+        this.status = status;
+    }
+
+    /**
+     * Get the type of the request
+     * @return the type of the request
+     */
+    @Override
+    public RequestType getRequestType() {
+        return requestType;
     }
 
     @Override
-    public Map<String, String> toMap() {
-        Map<String, String> ans = new HashMap<>();
-        ans.put("requestType", requestType);
-        ans.put("requestID", rejectingRequestID);
-        ans.put("status", request.getStatus().toString());
-        return ans;
+    public void view() {
+        return;
     }
 
-//    @Override
-//    public void fromMap(Map<String, String> map) {
-//        this.requestID = map.get("requestID");
-//        this.status = RequestStatus.valueOf(map.get("status"));
+//    public void reject() throws IllegalStateException{
+//        if(request.getStatus() != RequestStatus.PENDING)
+//            throw new IllegalStateException("Request is not pending");
+//        else if(request.getStatus() == RequestStatus.APPROVED) {
+//            throw new IllegalStateException("Request is already approved");
+//        }
+//        request.setStatus(RequestStatus.DENIED);
 //    }
-
-    /**
-     * Reject the request
-     * @throws IllegalStateException if the request is not pending
-     */
-    public void reject() throws IllegalStateException{
-        if(request.getStatus() != RequestStatus.PENDING)
-            throw new IllegalStateException("Request is not pending");
-        else if(request.getStatus() == RequestStatus.APPROVED) {
-            throw new IllegalStateException("Request is already approved");
-        }
-        request.setStatus(RequestStatus.DENIED);
-    }
 }
