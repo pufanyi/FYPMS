@@ -10,6 +10,15 @@ import java.util.Map;
 public class FacultyRepository extends Repository<Supervisor> {
     final private static String FILE_PATH = "/data/user/faculty.txt";
 
+    public FacultyRepository() {
+        super();
+        load();
+    }
+
+    public static FacultyRepository getInstance() {
+        return new FacultyRepository();
+    }
+
     /**
      * Gets the path of the repository file.
      *
@@ -30,14 +39,5 @@ public class FacultyRepository extends Repository<Supervisor> {
         for (Map<String, String> map : listOfMappableObjects) {
             getAll().add(new Supervisor(map));
         }
-    }
-
-    public FacultyRepository() {
-        super();
-        load();
-    }
-
-    public static FacultyRepository getInstance() {
-        return new FacultyRepository();
     }
 }

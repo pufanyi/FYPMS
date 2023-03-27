@@ -1,8 +1,7 @@
 package main.repository.request;
 
-import main.model.request.RequestFactory;
 import main.model.request.Request;
-import main.model.request.RequestType;
+import main.model.request.RequestFactory;
 import main.repository.Repository;
 import main.utils.config.Location;
 
@@ -10,16 +9,16 @@ import java.util.List;
 import java.util.Map;
 
 public class RequestRepository extends Repository<Request> {
-    public static RequestRepository getInstance() {
-        return new RequestRepository();
-    }
+    private static final String FILE_PATH = "/data/request/request.txt";
 
     RequestRepository() {
         super();
         load();
     }
 
-    private static final String FILE_PATH = "/data/request/request.txt";
+    public static RequestRepository getInstance() {
+        return new RequestRepository();
+    }
 
     @Override
     public String getFilePath() {

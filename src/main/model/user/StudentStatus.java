@@ -6,7 +6,7 @@ public enum StudentStatus {
      */
     PENDING,
     /**
-     *  the student has deregistered a project
+     * the student has deregistered a project
      */
     DEREGISTERED,
     /**

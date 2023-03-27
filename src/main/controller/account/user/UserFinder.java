@@ -1,6 +1,5 @@
 package main.controller.account.user;
 
-import main.model.user.Coordinator;
 import main.model.user.User;
 import main.model.user.UserType;
 import main.repository.user.CoordinatorRepository;

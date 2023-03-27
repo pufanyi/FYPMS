@@ -7,13 +7,13 @@ import java.util.Map;
 
 public class StudentChangeTitleRequest implements StudentRequest {
     /**
-     * The ID of the request
-     */
-    private String requestID;
-    /**
      * The type of the request
      */
     private final RequestType requestType = RequestType.STUDENT_CHANGE_TITLE;
+    /**
+     * The ID of the request
+     */
+    private String requestID;
     /**
      * The status of the request
      */
@@ -37,11 +37,12 @@ public class StudentChangeTitleRequest implements StudentRequest {
 
     /**
      * Constructor
-     * @param requestID The ID of the request
-     * @param studentID The ID of the student
+     *
+     * @param requestID    The ID of the request
+     * @param studentID    The ID of the student
      * @param supervisorID The ID of the supervisor
-     * @param projectID The ID of the project
-     * @param newTitle The new title of the project
+     * @param projectID    The ID of the project
+     * @param newTitle     The new title of the project
      */
     public StudentChangeTitleRequest(String requestID, String studentID, String supervisorID, String projectID, String newTitle) {
         this.requestID = requestID;
@@ -53,6 +54,7 @@ public class StudentChangeTitleRequest implements StudentRequest {
 
     /**
      * Constructor
+     *
      * @param map The map of the request
      */
     public StudentChangeTitleRequest(Map<String, String> map) {
@@ -93,6 +95,7 @@ public class StudentChangeTitleRequest implements StudentRequest {
 
     /**
      * Get the type of the request.
+     *
      * @return the type of the request.
      */
     @Override
@@ -132,7 +135,7 @@ public class StudentChangeTitleRequest implements StudentRequest {
      * display the information of the request.
      */
     @Override
-    public void display(){
+    public void display() {
         System.out.println("Request ID: " + requestID);
         System.out.println("Request Type: " + requestType);
         System.out.println("Request Status: " + requestStatus);

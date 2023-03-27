@@ -2,8 +2,8 @@ package main.utils.iocontrol;
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public abstract class Savable<MappableObject extends Mappable> {
@@ -63,7 +63,8 @@ public abstract class Savable<MappableObject extends Mappable> {
         }
         try {
             setAll(listOfMappableObjects);
-        } catch (NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
+        } catch (NoSuchMethodException | InvocationTargetException | InstantiationException |
+                 IllegalAccessException e) {
             throw new RuntimeException("Data could not be loaded from file: " + FILE_PATH);
         }
     }

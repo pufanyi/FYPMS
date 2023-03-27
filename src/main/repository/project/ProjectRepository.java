@@ -4,13 +4,21 @@ import main.model.project.Project;
 import main.repository.Repository;
 
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import static main.utils.config.Location.LOCATION;
 
 public class ProjectRepository extends Repository<Project> {
     private static final String FILE_PATH = "/data/project/project.txt";
+
+    ProjectRepository() {
+        super();
+        load();
+    }
+
+    public static ProjectRepository getInstance() {
+        return new ProjectRepository();
+    }
 
     @Override
     public String getFilePath() {
@@ -27,14 +35,5 @@ public class ProjectRepository extends Repository<Project> {
         for (Map<String, String> map : listOfMappableObjects) {
             getAll().add(new Project(map));
         }
-    }
-
-    ProjectRepository() {
-        super();
-        load();
-    }
-
-    public static ProjectRepository getInstance() {
-        return new ProjectRepository();
     }
 }

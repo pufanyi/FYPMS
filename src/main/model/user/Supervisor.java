@@ -2,7 +2,6 @@ package main.model.user;
 
 import main.utils.parameters.NotNull;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -43,13 +42,35 @@ public class Supervisor implements User {
      * @param supervisorID   the ID of the supervisor.
      * @param supervisorName the name of the supervisor.
      * @param email          the email of the supervisor.
-     * @param hashedPassword       the password of the supervisor.
+     * @param hashedPassword the password of the supervisor.
      */
     public Supervisor(String supervisorID, String supervisorName, String email, @NotNull String hashedPassword) {
         this.hashedPassword = hashedPassword;
         this.supervisorID = supervisorID;
         this.supervisorName = supervisorName;
         this.email = email;
+    }
+
+    /**
+     * Constructs a new Supervisor object from a map
+     *
+     * @param map the map
+     */
+    public Supervisor(Map<String, String> map) {
+        this.fromMap(map);
+    }
+
+    /**
+     * default constructor for Supervisor class
+     */
+    public Supervisor() {
+        this.supervisorID = "";
+        this.supervisorName = "";
+        this.email = "";
+    }
+
+    public static User getUser(Map<String, String> map) {
+        return new Supervisor(map);
     }
 
     /**
@@ -90,27 +111,5 @@ public class Supervisor implements User {
     @Override
     public String getEmail() {
         return this.email;
-    }
-
-    /**
-     * Constructs a new Supervisor object from a map
-     *
-     * @param map the map
-     */
-    public Supervisor(Map<String, String> map) {
-        this.fromMap(map);
-    }
-
-    public static User getUser(Map<String, String> map) {
-        return new Supervisor(map);
-    }
-
-    /**
-     *  default constructor for Supervisor class
-     */
-    public Supervisor() {
-        this.supervisorID = "";
-        this.supervisorName = "";
-        this.email = "";
     }
 }

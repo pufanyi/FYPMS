@@ -14,6 +14,18 @@ public class CoordinatorRepository extends Repository<Coordinator> {
      */
     private static final String FILE_PATH = "/data/user/coordinator.txt";
 
+    /**
+     * constructor
+     */
+    CoordinatorRepository() {
+        super();
+        load();
+    }
+
+    public static CoordinatorRepository getInstance() {
+        return new CoordinatorRepository();
+    }
+
     @Override
     public String getFilePath() {
         return LOCATION + FILE_PATH;
@@ -29,18 +41,5 @@ public class CoordinatorRepository extends Repository<Coordinator> {
         for (Map<String, String> map : listOfMappableObjects) {
             getAll().add(new Coordinator(map));
         }
-    }
-
-    /**
-     * constructor
-     */
-    CoordinatorRepository() {
-        super();
-        load();
-    }
-
-
-    public static CoordinatorRepository getInstance() {
-        return new CoordinatorRepository();
     }
 }

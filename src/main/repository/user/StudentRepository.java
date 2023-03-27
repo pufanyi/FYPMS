@@ -11,8 +11,18 @@ import static main.utils.config.Location.LOCATION;
 public class StudentRepository extends Repository<Student> {
     private static final String FILE_PATH = "/data/user/student.txt";
 
+    StudentRepository() {
+        super();
+        load();
+    }
+
+    public static StudentRepository getInstance() {
+        return new StudentRepository();
+    }
+
     /**
      * Gets the path of the repository file.
+     *
      * @return the path of the repository file
      */
     @Override
@@ -30,14 +40,5 @@ public class StudentRepository extends Repository<Student> {
         for (Map<String, String> map : listOfMappableObjects) {
             getAll().add(new Student(map));
         }
-    }
-
-    StudentRepository() {
-        super();
-        load();
-    }
-
-    public static StudentRepository getInstance() {
-        return new StudentRepository();
     }
 }

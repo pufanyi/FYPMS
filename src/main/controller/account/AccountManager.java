@@ -5,14 +5,11 @@ import main.controller.account.password.PasswordManager;
 import main.controller.account.user.UserAdder;
 import main.controller.account.user.UserFinder;
 import main.controller.account.user.UserUpdater;
-import main.model.user.Student;
 import main.model.user.User;
 import main.model.user.UserFactory;
 import main.model.user.UserType;
 
 import java.util.NoSuchElementException;
-
-import static main.controller.account.user.UserUpdater.updateUser;
 
 public class AccountManager {
     public static User login(UserType userType, String userID, String password)
