@@ -5,10 +5,6 @@ import main.model.project.Project;
 import main.model.project.ProjectStatus;
 import main.model.request.Request;
 import main.model.request.RequestStatus;
-import main.model.request.studentrequest.StudentChangeTitleRequest;
-import main.model.request.studentrequest.StudentDeregistrationRequest;
-import main.model.request.studentrequest.StudentRegistrationRequest;
-import main.model.request.supervirsorrequest.TransferStudentRequest;
 import main.model.user.Student;
 import main.model.user.StudentStatus;
 import main.repository.project.ProjectRepository;
@@ -19,6 +15,12 @@ import main.utils.exception.repository.ModelAlreadyExistsException;
 import main.utils.exception.repository.ModelNotFoundException;
 
 public class CoordinatorRequestManager {
+    /**
+     * Transfer a student to a new supervisor
+     * @param request the request to be processed
+     * @param newSupervisor the supervisor ID of the supervisor that the student is going to be transferred to
+     * @throws ModelNotFoundException if the request is not found
+     */
     public static void transferToNewSupervisor(Request request, String newSupervisor) throws ModelNotFoundException {
         if(request.getStatus() == RequestStatus.APPROVED){
             String projectID = request.getProjectID();
@@ -30,6 +32,13 @@ public class CoordinatorRequestManager {
         }
     }
 
+    /**
+     * deregister a student from a project
+     * @param request the request to be processed
+     * @throws ModelNotFoundException if the request is not found
+     * @throws IllegalStateException if the project is not in progress
+     * @throws StudentStatusException if the student is not registered
+     */
     public static void deregisterStudent(Request request) throws ModelNotFoundException, IllegalStateException, StudentStatusException {
         if(request.getStatus() == RequestStatus.APPROVED){
             String projectID = request.getProjectID();
