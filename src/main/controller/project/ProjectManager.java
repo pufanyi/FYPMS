@@ -19,7 +19,31 @@ public class ProjectManager {
         );
     }
 
-    public void createProject(){
-
+    public void createProject(String projectID, String projectTitle, String supervisorID){
+        Project p1=new Project(projectID,projectTitle,supervisorID);
+        ProjectRepository.getInstance().add(p1);
     }
+
+    public void transferToNewSupervisor(String projectID,String supervisorID){
+        Project p1=ProjectRepository.getInstance().getByID(projectID);
+        p1.setSupervisorID(supervisorID);
+        ProjectRepository.getInstance().update(p1);
+    }
+
+    public List<Project> viewAllProject(){
+        return ProjectRepository.getInstance().getList();
+    }
+
+    public void deallocateProject(String projectID){
+        Project p1=ProjectRepository.getInstance().getByID(projectID);
+        p1.setStudentID("");
+        ProjectRepository.getInstance().update(p1);
+    }
+
+    public void allocateProject(String projectID,String studentID){
+        Project p1=ProjectRepository.getInstance().getByID(projectID);
+        p1.setStudentID(studentID);
+        ProjectRepository.getInstance().update(p1);
+    }
+
 }
