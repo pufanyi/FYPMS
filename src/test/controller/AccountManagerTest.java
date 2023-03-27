@@ -1,6 +1,7 @@
 package test.controller;
 
 import main.controller.account.AccountManager;
+import main.controller.account.password.PasswordIncorrectException;
 import main.model.user.Student;
 import main.model.user.User;
 import main.model.user.UserType;
@@ -11,8 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AccountManagerTest {
     /**
@@ -30,5 +30,13 @@ public class AccountManagerTest {
     public void testRegister() {
         AccountManager.register(UserType.STUDENT, "FPU001", "Pu Fanyi", "FPU001@e.ntu.edu.sg");
         assertEquals("FPU001@e.ntu.edu.sg", StudentRepository.getInstance().getByID("FPU001").getEmail());
+    }
+
+    @Test
+    @DisplayName("Test Login")
+    public void testLogin() throws PasswordIncorrectException {
+        User user = AccountManager.register(UserType.STUDENT, "FPU001", "Pu Fanyi", "FPU001@e.ntu.edu.sg");
+        assertEquals(user.getID(), AccountManager.login(UserType.STUDENT, "FPU001", "password").getID());
+        assertThrows(PasswordIncorrectException.class, () -> AccountManager.login(UserType.STUDENT, "FPU001", "wrong password"));
     }
 }

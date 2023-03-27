@@ -142,13 +142,6 @@ public class Student implements User {
         this.status = StudentStatus.UNREGISTERED;
     }
 
-    public boolean equals(Object o) {
-        if (o instanceof Student otherStudent) {
-            return o.hashCode() == this.hashCode();
-        }
-        return false;
-    }
-
     /**
      * Gets the ID of the supervisor
      *

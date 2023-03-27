@@ -113,12 +113,4 @@ public class Supervisor implements User {
         this.supervisorName = "";
         this.email = "";
     }
-
-    public boolean equals(Object o) {
-        if (o instanceof Supervisor supervisor) {
-            return o.hashCode() == this.hashCode();
-        }
-        return false;
-    }
-
 }

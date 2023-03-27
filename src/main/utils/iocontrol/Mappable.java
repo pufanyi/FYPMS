@@ -42,7 +42,12 @@ public interface Mappable {
         for (Field field : fields) {
             try {
                 field.setAccessible(true);
-                field.set(this, map.get(field.getName()));
+                if (field.getType().isEnum()) {
+                    Enum<?> enumValue = Enum.valueOf((Class<Enum>) field.getType(), map.get(field.getName()));
+                    field.set(this, enumValue);
+                } else {
+                    field.set(this, map.get(field.getName()));
+                }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }

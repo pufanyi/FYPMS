@@ -1,5 +1,6 @@
 package main.controller.account.password;
 
+import main.controller.account.user.UserFinder;
 import main.model.user.User;
 
 /**
@@ -10,6 +11,11 @@ public class PasswordManager {
         return user.getHashedPassword().equals(PasswordHashManager.hashPassword(password));
     }
 
-    public static void changePassword(User userID, String oldPassword, String newPassword) throws PasswordIncorrectException {
+    public static void changePassword(User user, String oldPassword, String newPassword) throws PasswordIncorrectException {
+        if (checkPassword(user, oldPassword)) {
+            user.setHashedPassword(PasswordHashManager.hashPassword(newPassword));
+        } else {
+            throw new PasswordIncorrectException();
+        }
     }
 }

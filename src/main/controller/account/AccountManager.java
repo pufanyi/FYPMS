@@ -34,13 +34,19 @@ public class AccountManager {
 
     public static void register(UserType userType, String userID, String password, String name, String email)
             throws IllegalArgumentException {
+//        System.err.println("Registering:");
+//        System.err.println("\t" + "UserType = " + userType);
+//        System.err.println("\t" + "UserID = " + userID);
+//        System.err.println("\t" + "Name = " + name);
+//        System.err.println("\t" + "Email = " + email);
         User user = UserFactory.create(userType, userID, password, name, email);
         UserAdder.addUser(user);
     }
 
-    public static void register(UserType userType, String userID, String name, String email)
+    public static User register(UserType userType, String userID, String name, String email)
             throws IllegalArgumentException {
         User user = UserFactory.create(userType, userID, "password", name, email);
         UserAdder.addUser(user);
+        return user;
     }
 }

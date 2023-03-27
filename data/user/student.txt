@@ -1,1 +1,1 @@
-studentIDFPU001hashedPasswordFPU001@e.ntu.edu.sgstudentNamepasswordsupervisorIDNULLprojectIDNULLemailPu FanyistatusUNREGISTERED
+studentIDFPU001hashedPasswordwAZ9SvTofwDbrGO2FWgoI3BZFy0bvqxnQnNF1qn9pIQ=studentNamePu FanyisupervisorIDNULLprojectIDNULLemailFPU001@e.ntu.edu.sgstatusUNREGISTERED

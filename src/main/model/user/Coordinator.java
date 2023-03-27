@@ -130,11 +130,4 @@ public class Coordinator implements User {
         this.coordinatorName = "";
         this.email = "";
     }
-
-    public boolean equals(Object o) {
-        if (o instanceof Coordinator c) {
-            return o.hashCode() == this.hashCode();
-        }
-        return false;
-    }
 }
