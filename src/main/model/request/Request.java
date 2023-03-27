@@ -28,4 +28,6 @@ public interface Request extends Model {
      * @return the type of the request.
      */
     RequestType getRequestType();
+
+    void view();
 }

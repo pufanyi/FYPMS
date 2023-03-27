@@ -1,7 +1,6 @@
 package main.model.request.supervirsorrequest;
 
 import main.model.project.Project;
-import main.model.request.ViewRequest;
 import main.model.user.Supervisor;
 import main.repository.project.ProjectRepository;
 

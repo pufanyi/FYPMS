@@ -2,8 +2,5 @@ package main.model.request.supervirsorrequest;
 
 import main.model.request.Request;
 
-public abstract class SupervisorRequest extends Request {
-    public SupervisorRequest(String requestID) {
-        super(requestID);
-    }
+public interface SupervisorRequest extends Request {
 }

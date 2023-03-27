@@ -1,7 +1,6 @@
 package main.model.request.coordinatorrequest;
 
 import main.model.project.Project;
-import main.model.request.ViewRequest;
 import main.repository.project.ProjectRepository;
 
 import java.util.Map;

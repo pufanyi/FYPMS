@@ -7,11 +7,11 @@ import main.model.request.studentrequest.StudentRegistrationRequest;
 import java.util.Map;
 
 public class RequestFactory {
-    public static Request createRequest(Map<String, String> map) {
-        return switch (map.get("RequestType")) {
-            case "STUDENT_REGISTRATION" -> new StudentRegistrationRequest(map);
-            case "STUDENT_DEREGISRATION" -> new StudentDeregistrationRequest(map);
-            case "STUDENT_CHANGE_TITLE" -> new StudentChangeTitleRequest(map);
+    public static Request createRequest(RequestType requestType) {
+        return switch (requestType) {
+            case STUDENT_REGISTRATION -> new StudentRegistrationRequest(map);
+            case STUDENT_DEREGISTRATION -> new StudentDeregistrationRequest(map);
+            case STUDENT_CHANGE_TITLE -> new StudentChangeTitleRequest(map);
         };
     }
 }

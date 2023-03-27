@@ -86,4 +86,8 @@ public class StudentRegistrationRequest implements StudentRequest {
     public void setStatus(RequestStatus status) {
         this.requestStatus = status;
     }
+
+    @Override
+    public void view() {
+    }
 }
