@@ -2,7 +2,6 @@ package main.boundary.welecome;
 
 import main.boundary.BoundaryStrings;
 import main.boundary.account.LoginUI;
-import main.boundary.account.RegisterUI;
 import main.utils.exception.ui.PageBackException;
 
 import java.util.Scanner;

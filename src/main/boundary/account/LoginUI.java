@@ -16,7 +16,7 @@ public class LoginUI {
     public static void login() throws PageBackException {
         System.out.println(BoundaryStrings.separator);
         UserType domain = DomainGetter.getDomain();
-        String userID = UserIDGetter.getUserID(false);
+        String userID = UserIDGetter.getUserID();
         String password = PasswordGetter.getPassword();
         try {
             AccountManager.login(domain, userID, password);
