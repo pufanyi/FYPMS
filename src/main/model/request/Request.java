@@ -29,5 +29,5 @@ public interface Request extends Model {
      */
     RequestType getRequestType();
 
-    void view();
+    void display();
 }
