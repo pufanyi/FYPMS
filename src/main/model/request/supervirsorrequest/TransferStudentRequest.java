@@ -81,6 +81,14 @@ public class TransferStudentRequest implements SupervisorRequest{
     }
 
     /**
+     * Set the ID of the supervisor
+     * @param supervisorID The ID of the supervisor to be set
+     */
+    public void setSupervisorID(String supervisorID) {
+        this.supervisorID = supervisorID;
+    }
+
+    /**
      * Get the ID of the new supervisor
      * @return The ID of the new supervisor
      */
