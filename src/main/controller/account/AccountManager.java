@@ -7,15 +7,13 @@ import main.controller.account.user.UserUpdater;
 import main.model.user.User;
 import main.model.user.UserFactory;
 import main.model.user.UserType;
+import main.utils.exception.model.PasswordIncorrectException;
 import main.utils.exception.repository.ModelAlreadyExistsException;
 import main.utils.exception.repository.ModelNotFoundException;
-import main.utils.exception.model.PasswordIncorrectException;
-
-import java.util.NoSuchElementException;
 
 public class AccountManager {
     public static User login(UserType userType, String userID, String password)
-            throws PasswordIncorrectException, NoSuchElementException, ModelNotFoundException {
+            throws PasswordIncorrectException, ModelNotFoundException, ModelAlreadyExistsException {
         User user = UserFinder.findUser(userID, userType);
         if (PasswordManager.checkPassword(user, password)) {
             return user;
@@ -25,7 +23,7 @@ public class AccountManager {
     }
 
     public static void changePassword(UserType userType, String userID, String oldPassword, String newPassword)
-            throws PasswordIncorrectException, NoSuchElementException, ModelNotFoundException {
+            throws PasswordIncorrectException, ModelAlreadyExistsException, ModelNotFoundException {
         User user = UserFinder.findUser(userID, userType);
         PasswordManager.changePassword(user, oldPassword, newPassword);
         UserUpdater.updateUser(user);

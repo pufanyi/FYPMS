@@ -8,7 +8,6 @@ import main.utils.iocontrol.Savable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 public abstract class Repository<ModelObject extends Model> extends Savable<ModelObject> implements Iterable<ModelObject> {
     List<ModelObject> listOfModelObjects;
@@ -63,7 +62,7 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
         }
     }
 
-    public void remove(String modelObjectID) throws NoSuchElementException, ModelNotFoundException {
+    public void remove(String modelObjectID) throws ModelAlreadyExistsException, ModelNotFoundException {
         listOfModelObjects.remove(getByID(modelObjectID));
         save(getFilePath());
     }
@@ -81,7 +80,7 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
         save(getFilePath());
     }
 
-    public void update(ModelObject modelObject) throws NoSuchElementException, ModelNotFoundException {
+    public void update(ModelObject modelObject) throws ModelNotFoundException {
         ModelObject oldModelObject = getByID(modelObject.getID());
         listOfModelObjects.set(listOfModelObjects.indexOf(oldModelObject), modelObject);
         save(getFilePath());

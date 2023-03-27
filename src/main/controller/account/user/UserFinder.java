@@ -7,18 +7,16 @@ import main.repository.user.FacultyRepository;
 import main.repository.user.StudentRepository;
 import main.utils.exception.repository.ModelNotFoundException;
 
-import java.util.NoSuchElementException;
-
 public class UserFinder {
     private static User findStudent(String userID) throws ModelNotFoundException {
         return StudentRepository.getInstance().getByID(userID);
     }
 
-    private static User findFaculty(String userID) throws NoSuchElementException, ModelNotFoundException {
+    private static User findFaculty(String userID) throws ModelNotFoundException {
         return FacultyRepository.getInstance().getByID(userID);
     }
 
-    private static User findCoordinator(String userID) throws NoSuchElementException, ModelNotFoundException {
+    private static User findCoordinator(String userID) throws ModelNotFoundException {
         return CoordinatorRepository.getInstance().getByID(userID);
     }
 

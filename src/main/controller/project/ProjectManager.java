@@ -9,7 +9,7 @@ import main.utils.exception.repository.ModelNotFoundException;
 import java.util.List;
 
 public class ProjectManager {
-    public void changeProjectTitle(String projectID, String newTitle) throws ModelNotFoundException {
+    public void changeProjectTitle(String projectID, String newTitle) throws ModelNotFoundException, ModelAlreadyExistsException {
         Project p1 = ProjectRepository.getInstance().getByID(projectID);
         p1.setProjectTitle(newTitle);
         ProjectRepository.getInstance().update(p1);
