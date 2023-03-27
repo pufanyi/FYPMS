@@ -1,12 +1,8 @@
 package main.model.request.coordinatorrequest;
 
-import main.model.project.Project;
-import main.model.project.ProjectStatus;
 import main.model.request.ChangeRequest;
 import main.model.request.RequestStatus;
 import main.model.request.RequestType;
-import main.model.user.Student;
-import main.model.user.StudentStatus;
 
 import java.util.Map;
 
@@ -75,37 +71,69 @@ public class AllocateProject extends CoordinatorRequest implements ChangeRequest
         this.studentID = studentID;
     }
 
+    /**
+     * Get the ID of the project to be allocated
+     * @return the ID of the project to be allocated
+     */
     public String getProjectID() {
         return projectID;
     }
 
+    /**
+     * Set the ID of the project to be allocated
+     * @param projectID the ID of the project to be allocated
+     */
     public void setProjectID(String projectID) {
         this.projectID = projectID;
     }
 
+    /**
+     * Get the ID of the supervisor of the project
+     * @return the ID of the supervisor of the project
+     */
     public String getSupervisorID() {
         return supervisorID;
     }
 
+    /**
+     * Set the ID of the supervisor of the project
+     * @param supervisorID the ID of the supervisor of the project
+     */
     public void setSupervisorID(String supervisorID) {
         this.supervisorID = supervisorID;
     }
 
+    /**
+     * Get the ID of the request
+     * @return the ID of the request
+     */
     @Override
     public String getID() {
         return requestID;
     }
 
+    /**
+     * Set the ID of the request
+     * @param status the status of the request.
+     */
     @Override
     public void setStatus(RequestStatus status) {
         this.status = status;
     }
 
+    /**
+     * Get the status of the request
+     * @return the status of the request
+     */
     @Override
     public RequestStatus getStatus() {
         return status;
     }
 
+    /**
+     * Get the type of the request
+     * @return the type of the request
+     */
     @Override
     public RequestType getRequestType() {
         return requestType;
