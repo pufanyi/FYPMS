@@ -12,14 +12,14 @@ public abstract class Savable<MappableObject extends Mappable> {
      *
      * @return the list of mappable objects
      */
-    public abstract List<MappableObject> getAll();
+    protected abstract List<MappableObject> getAll();
 
     /**
      * Sets the list of mappable objects.
      *
      * @param listOfMappableObjects the list of mappable objects
      */
-    public abstract void setAll(List<Map<String, String>> listOfMappableObjects) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException;
+    protected abstract void setAll(List<Map<String, String>> listOfMappableObjects) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException;
 
     /**
      * Saves the list of mappable objects to a file.
