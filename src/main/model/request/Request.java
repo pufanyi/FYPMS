@@ -9,6 +9,18 @@ public interface Request extends Model {
     String getID();
 
     /**
+     * Get the ID of the project.
+     * @return the ID of the project.
+     */
+    String getProjectID();
+
+    /**
+     * Get the ID of the student.
+     * @return the ID of the student.
+     */
+    String getStudentID();
+
+    /**
      * Get the status of the request.
      *
      * @return the status of the request.
