@@ -23,7 +23,7 @@ public class RequestManager {
         ProjectRepository.getInstance().update(project);
     }
 
-    public void deregisterStudent(String projectID, String studentID, String supervisorID) throws ModelNotFoundException, IllegalStateException, StudentStatusException, ProjectStatusException {
+    public void deregisterStudent(String projectID, String studentID, String supervisorID) throws ModelNotFoundException, IllegalStateException, StudentStatusException {
         String requestID = RequestRepository.getInstance().size() + "";
         Request request = new StudentDeregistrationRequest(requestID, projectID, studentID, supervisorID);
         Project project = ProjectRepository.getInstance().getByID(projectID);

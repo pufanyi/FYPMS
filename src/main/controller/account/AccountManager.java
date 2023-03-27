@@ -4,12 +4,16 @@ import main.controller.account.password.PasswordManager;
 import main.controller.account.user.UserAdder;
 import main.controller.account.user.UserFinder;
 import main.controller.account.user.UserUpdater;
-import main.model.user.User;
-import main.model.user.UserFactory;
-import main.model.user.UserType;
+import main.model.user.*;
+import main.repository.user.CoordinatorRepository;
+import main.repository.user.FacultyRepository;
+import main.repository.user.StudentRepository;
 import main.utils.exception.model.PasswordIncorrectException;
 import main.utils.exception.repository.ModelAlreadyExistsException;
 import main.utils.exception.repository.ModelNotFoundException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AccountManager {
     public static User login(UserType userType, String userID, String password)
@@ -27,6 +31,23 @@ public class AccountManager {
         User user = UserFinder.findUser(userID, userType);
         PasswordManager.changePassword(user, oldPassword, newPassword);
         UserUpdater.updateUser(user);
+    }
+
+    public static List<User> getUsersByUserName(String userName) {
+        List<Student> studentList = StudentRepository.getInstance().findByRules(
+                student -> student.getUserName().equals(userName)
+        );
+        List<Coordinator> coordinatorList = CoordinatorRepository.getInstance().findByRules(
+                coordinator -> coordinator.getUserName().equals(userName)
+        );
+        List<Supervisor> supervisorList = FacultyRepository.getInstance().findByRules(
+                supervisor -> supervisor.getUserName().equals(userName)
+        );
+        List<User> userList = new ArrayList<>();
+        userList.addAll(studentList);
+        userList.addAll(coordinatorList);
+        userList.addAll(supervisorList);
+        return userList;
     }
 
     public static User register(UserType userType, String userID, String password, String name, String email)
