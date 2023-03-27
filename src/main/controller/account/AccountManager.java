@@ -13,7 +13,7 @@ import main.utils.exception.repository.ModelNotFoundException;
 
 public class AccountManager {
     public static User login(UserType userType, String userID, String password)
-            throws PasswordIncorrectException, ModelNotFoundException, ModelAlreadyExistsException {
+            throws PasswordIncorrectException, ModelNotFoundException {
         User user = UserFinder.findUser(userID, userType);
         if (PasswordManager.checkPassword(user, password)) {
             return user;
@@ -29,21 +29,15 @@ public class AccountManager {
         UserUpdater.updateUser(user);
     }
 
-    public static void register(UserType userType, String userID, String password, String name, String email)
+    public static User register(UserType userType, String userID, String password, String name, String email)
             throws ModelAlreadyExistsException {
-//        System.err.println("Registering:");
-//        System.err.println("\t" + "UserType = " + userType);
-//        System.err.println("\t" + "UserID = " + userID);
-//        System.err.println("\t" + "Name = " + name);
-//        System.err.println("\t" + "Email = " + email);
         User user = UserFactory.create(userType, userID, password, name, email);
         UserAdder.addUser(user);
+        return user;
     }
 
     public static User register(UserType userType, String userID, String name, String email)
             throws ModelAlreadyExistsException {
-        User user = UserFactory.create(userType, userID, "password", name, email);
-        UserAdder.addUser(user);
-        return user;
+        return register(userType, userID, "password", name, email);
     }
 }
