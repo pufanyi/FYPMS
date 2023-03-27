@@ -2,6 +2,7 @@ package main.repository.request;
 
 import main.model.request.RequestFactory;
 import main.model.request.Request;
+import main.model.request.RequestType;
 import main.repository.Repository;
 import main.utils.config.Location;
 
@@ -34,7 +35,7 @@ public class RequestRepository extends Repository<Request> {
     public void setAll(List<Map<String, String>> listOfMappableObjects) {
         List<Request> requests = getAll();
         for (Map<String, String> map : listOfMappableObjects) {
-            Request request = RequestFactory.createRequest(map);
+            Request request = RequestFactory.createRequest(RequestType.valueOf(map.get("requestType")));
             requests.add(request);
         }
     }
