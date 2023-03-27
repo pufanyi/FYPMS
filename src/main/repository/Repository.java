@@ -1,6 +1,8 @@
 package main.repository;
 
 import main.model.Model;
+import main.utils.exception.repository.ModelAlreadyExistsException;
+import main.utils.exception.repository.ModelNotFoundException;
 import main.utils.iocontrol.Savable;
 
 import java.util.ArrayList;
@@ -33,36 +35,35 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
      *
      * @param modelObjectID
      * @return
-     * @throws NoSuchElementException
      */
-    public ModelObject getByID(String modelObjectID) throws NoSuchElementException {
+    public ModelObject getByID(String modelObjectID) throws ModelNotFoundException {
         for (ModelObject modelObject : listOfModelObjects) {
             if (modelObject.getID().equals(modelObjectID)) {
                 return modelObject;
             }
         }
-        throw new NoSuchElementException("No model object with ID " + modelObjectID + " exists.");
+        throw new ModelNotFoundException("No model object with ID " + modelObjectID + " exists.");
     }
 
     public boolean contains(String modelObjectID) {
         try {
             getByID(modelObjectID);
             return true;
-        } catch (NoSuchElementException e) {
+        } catch (ModelNotFoundException e) {
             return false;
         }
     }
 
-    public void add(ModelObject modelObject) throws IllegalArgumentException {
+    public void add(ModelObject modelObject) throws ModelAlreadyExistsException {
         if (contains(modelObject.getID())) {
-            throw new IllegalArgumentException("A model object with ID " + modelObject.getID() + " already exists.");
+            throw new ModelAlreadyExistsException("A model object with ID " + modelObject.getID() + " already exists.");
         } else {
             listOfModelObjects.add(modelObject);
             save(getFilePath());
         }
     }
 
-    public void remove(String modelObjectID) throws NoSuchElementException {
+    public void remove(String modelObjectID) throws NoSuchElementException, ModelNotFoundException {
         listOfModelObjects.remove(getByID(modelObjectID));
         save(getFilePath());
     }
@@ -80,7 +81,7 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
         save(getFilePath());
     }
 
-    public void update(ModelObject modelObject) throws NoSuchElementException {
+    public void update(ModelObject modelObject) throws NoSuchElementException, ModelNotFoundException {
         ModelObject oldModelObject = getByID(modelObject.getID());
         listOfModelObjects.set(listOfModelObjects.indexOf(oldModelObject), modelObject);
         save(getFilePath());

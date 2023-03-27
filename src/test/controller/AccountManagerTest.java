@@ -1,12 +1,14 @@
 package test.controller;
 
 import main.controller.account.AccountManager;
-import main.utils.exception.user.PasswordIncorrectException;
 import main.model.user.User;
 import main.model.user.UserType;
 import main.repository.user.CoordinatorRepository;
 import main.repository.user.FacultyRepository;
 import main.repository.user.StudentRepository;
+import main.utils.exception.repository.ModelAlreadyExistsException;
+import main.utils.exception.repository.ModelNotFoundException;
+import main.utils.exception.model.PasswordIncorrectException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -27,14 +29,14 @@ public class AccountManagerTest {
 
     @Test
     @DisplayName("Test Register")
-    public void testRegister() {
+    public void testRegister() throws ModelNotFoundException, ModelAlreadyExistsException {
         AccountManager.register(UserType.STUDENT, "FPU001", "Pu Fanyi", "FPU001@e.ntu.edu.sg");
         assertEquals("FPU001@e.ntu.edu.sg", StudentRepository.getInstance().getByID("FPU001").getEmail());
     }
 
     @Test
     @DisplayName("Test Login")
-    public void testLogin() throws PasswordIncorrectException {
+    public void testLogin() throws PasswordIncorrectException, ModelNotFoundException, ModelAlreadyExistsException {
         User user = AccountManager.register(UserType.STUDENT, "FPU001", "Pu Fanyi", "FPU001@e.ntu.edu.sg");
         assertEquals(user.getID(), AccountManager.login(UserType.STUDENT, "FPU001", "password").getID());
         assertThrows(PasswordIncorrectException.class, () -> AccountManager.login(UserType.STUDENT, "FPU001", "wrong password"));

@@ -2,9 +2,9 @@ package test.repository.user;
 
 import main.model.user.Supervisor;
 import main.repository.user.FacultyRepository;
+import main.utils.exception.repository.ModelAlreadyExistsException;
+import main.utils.exception.repository.ModelNotFoundException;
 import org.junit.jupiter.api.*;
-
-import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -25,7 +25,7 @@ public class UserRepositoryTest {
         FacultyRepository.getInstance().clear();
     }
 
-    private FacultyRepository createFacultyList() {
+    private FacultyRepository createFacultyList() throws ModelAlreadyExistsException {
         FacultyRepository facultyRepository = new FacultyRepository();
         facultyRepository.add(supervisors[0]);
         facultyRepository.add(supervisors[1]);
@@ -38,14 +38,14 @@ public class UserRepositoryTest {
      */
     @Test
     @DisplayName("Test add user")
-    public void addUserTest() {
+    public void addUserTest() throws ModelNotFoundException, ModelAlreadyExistsException {
         FacultyRepository facultyRepository = new FacultyRepository();
         assertTrue(facultyRepository.isEmpty());
         facultyRepository.add(supervisors[0]);
         assertFalse(facultyRepository.isEmpty());
         assertEquals(1, facultyRepository.size());
         assertNotSame(supervisors[1], facultyRepository.getByID(supervisors[0].getID()));
-        assertThrows(NoSuchElementException.class, () -> facultyRepository.getByID("hahaha"));
+        assertThrows(ModelNotFoundException.class, () -> facultyRepository.getByID("hahaha"));
     }
 
     /**
@@ -53,7 +53,7 @@ public class UserRepositoryTest {
      */
     @Test
     @DisplayName("Test remove user")
-    public void removeUserTest() {
+    public void removeUserTest() throws ModelNotFoundException, ModelAlreadyExistsException {
         FacultyRepository facultyRepository = createFacultyList();
         assertEquals(3, facultyRepository.size());
         assertTrue(facultyRepository.contains(supervisors[0].getID()));
@@ -64,7 +64,7 @@ public class UserRepositoryTest {
         assertTrue(facultyRepository.contains(supervisors[0].getID()));
         assertFalse(facultyRepository.contains(supervisors[1].getID()));
         assertTrue(facultyRepository.contains(supervisors[2].getID()));
-        assertThrows(NoSuchElementException.class, () -> facultyRepository.remove("hahaha"));
+        assertThrows(ModelNotFoundException.class, () -> facultyRepository.remove("hahaha"));
     }
 
     /**
@@ -72,7 +72,7 @@ public class UserRepositoryTest {
      */
     @Test
     @DisplayName("Test contains user")
-    public void containUserTest() {
+    public void containUserTest() throws ModelAlreadyExistsException {
         FacultyRepository facultyRepository = createFacultyList();
         assertTrue(facultyRepository.contains(supervisors[0].getID()));
         assertTrue(facultyRepository.contains(supervisors[1].getID()));
@@ -82,17 +82,17 @@ public class UserRepositoryTest {
 
     @Test
     @DisplayName("Test get user")
-    public void getUserTest() {
+    public void getUserTest() throws ModelNotFoundException, ModelAlreadyExistsException {
         FacultyRepository facultyRepository = createFacultyList();
         assertEquals(supervisors[0], facultyRepository.getByID(supervisors[0].getID()));
         assertEquals(supervisors[1], facultyRepository.getByID(supervisors[1].getID()));
         assertEquals(supervisors[2], facultyRepository.getByID(supervisors[2].getID()));
-        assertThrows(NoSuchElementException.class, () -> facultyRepository.getByID("hahaha"));
+        assertThrows(ModelNotFoundException.class, () -> facultyRepository.getByID("hahaha"));
     }
 
     @Test
     @DisplayName("Test user size")
-    public void userSizeTest() {
+    public void userSizeTest() throws ModelNotFoundException, ModelAlreadyExistsException {
         FacultyRepository facultyRepository = new FacultyRepository();
         assertEquals(0, facultyRepository.size());
         facultyRepository.add(supervisors[0]);
@@ -111,7 +111,7 @@ public class UserRepositoryTest {
 
     @Test
     @DisplayName("Find By Rules Test")
-    public void findByRulesTest() {
+    public void findByRulesTest() throws ModelAlreadyExistsException {
         FacultyRepository facultyRepository = createFacultyList();
         assertEquals(3, facultyRepository.findByRules(supervisor -> true).size());
         assertEquals(1, facultyRepository.findByRules(supervisor -> supervisor.getID().equals("A1234567A")).size());

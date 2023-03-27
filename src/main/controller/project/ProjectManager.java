@@ -3,11 +3,13 @@ package main.controller.project;
 import main.model.project.Project;
 import main.model.project.ProjectStatus;
 import main.repository.project.ProjectRepository;
+import main.utils.exception.repository.ModelAlreadyExistsException;
+import main.utils.exception.repository.ModelNotFoundException;
 
 import java.util.List;
 
 public class ProjectManager {
-    public void changeProjectTitle(String projectID, String newTitle) {
+    public void changeProjectTitle(String projectID, String newTitle) throws ModelNotFoundException {
         Project p1 = ProjectRepository.getInstance().getByID(projectID);
         p1.setProjectTitle(newTitle);
         ProjectRepository.getInstance().update(p1);
@@ -19,12 +21,12 @@ public class ProjectManager {
         );
     }
 
-    public void createProject(String projectID, String projectTitle, String supervisorID) {
+    public void createProject(String projectID, String projectTitle, String supervisorID) throws ModelAlreadyExistsException {
         Project p1 = new Project(projectID, projectTitle, supervisorID);
         ProjectRepository.getInstance().add(p1);
     }
 
-    public void transferToNewSupervisor(String projectID, String supervisorID) {
+    public void transferToNewSupervisor(String projectID, String supervisorID) throws ModelNotFoundException {
         Project p1 = ProjectRepository.getInstance().getByID(projectID);
         p1.setSupervisorID(supervisorID);
         ProjectRepository.getInstance().update(p1);
@@ -34,13 +36,13 @@ public class ProjectManager {
         return ProjectRepository.getInstance().getList();
     }
 
-    public void deallocateProject(String projectID) {
+    public void deallocateProject(String projectID) throws ModelNotFoundException {
         Project p1 = ProjectRepository.getInstance().getByID(projectID);
         p1.setStudentID("");
         ProjectRepository.getInstance().update(p1);
     }
 
-    public void allocateProject(String projectID, String studentID) {
+    public void allocateProject(String projectID, String studentID) throws ModelNotFoundException {
         Project p1 = ProjectRepository.getInstance().getByID(projectID);
         p1.setStudentID(studentID);
         ProjectRepository.getInstance().update(p1);

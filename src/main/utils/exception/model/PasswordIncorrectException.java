@@ -1,4 +1,4 @@
-package main.utils.exception.user;
+package main.utils.exception.model;
 
 public class PasswordIncorrectException extends Exception {
     public PasswordIncorrectException() {

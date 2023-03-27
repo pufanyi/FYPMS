@@ -5,6 +5,7 @@ import main.model.user.Student;
 import main.model.user.Supervisor;
 import main.repository.user.FacultyRepository;
 import main.repository.user.StudentRepository;
+import main.utils.exception.repository.ModelNotFoundException;
 
 import java.util.Map;
 
@@ -51,7 +52,7 @@ public class Project implements Model {
     /**
      * Display the information of the supervisor
      */
-    private void displaySupervisorInformation() {
+    private void displaySupervisorInformation() throws ModelNotFoundException {
         Supervisor supervisor = FacultyRepository.getInstance().getByID(supervisorID);
         System.out.println("Supervisor Name: " + supervisor.getUserName());
         System.out.println("Supervisor Email Address: " + supervisor.getEmail());
@@ -60,7 +61,7 @@ public class Project implements Model {
     /**
      * Display the information of the student
      */
-    private void displayStudentInformation() {
+    private void displayStudentInformation() throws ModelNotFoundException {
         Student student = StudentRepository.getInstance().getByID(studentID);
         System.out.println("Student Name: " + student.getUserName());
         System.out.println("Student Email Address: " + student.getEmail());
@@ -84,7 +85,7 @@ public class Project implements Model {
     /**
      * Display the whole information of the project
      */
-    public void displayProject() {
+    public void displayProject() throws ModelNotFoundException {
         if (status == ProjectStatus.AVAILABLE) {
             displayProjectID();
             displaySupervisorInformation();

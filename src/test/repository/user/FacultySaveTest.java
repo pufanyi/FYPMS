@@ -2,6 +2,7 @@ package test.repository.user;
 
 import main.model.user.Supervisor;
 import main.repository.user.FacultyRepository;
+import main.utils.exception.repository.ModelAlreadyExistsException;
 
 public class FacultySaveTest {
     private static Supervisor[] supervisors;
@@ -13,7 +14,7 @@ public class FacultySaveTest {
         supervisors[2] = new Supervisor("78687", "jinqingyang", "jinqingyang@e.ntu.edu.sg");
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ModelAlreadyExistsException {
         setUp();
         FacultyRepository facultyRepository = new FacultyRepository();
         facultyRepository.clear();
