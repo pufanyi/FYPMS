@@ -1,4 +1,4 @@
-package test.ui;
+package test.ui.account;
 
 import main.boundary.account.LoginUI;
 import main.utils.exception.ui.PageBackException;
