@@ -14,7 +14,7 @@ public class StudentDeregistrationRequest implements StudentRequest {
     private String supervisorID;
     private String projectID;
 
-    public StudentDeregistrationRequest(String studentID, String supervisorID, String projectID) {
+    public StudentDeregistrationRequest(String requestID, String studentID, String supervisorID, String projectID) {
         this.studentID = studentID;
         this.supervisorID = supervisorID;
         this.projectID = projectID;

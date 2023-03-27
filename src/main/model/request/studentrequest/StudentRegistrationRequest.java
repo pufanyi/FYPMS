@@ -15,7 +15,8 @@ public class StudentRegistrationRequest implements StudentRequest {
     private RequestStatus requestStatus = RequestStatus.PENDING;
     private String requestID;
 
-    public StudentRegistrationRequest(String studentID, String supervisorID, String projectID) {
+    public StudentRegistrationRequest(String requestID, String studentID, String supervisorID, String projectID) {
+        this.requestID = requestID;
         this.studentID = studentID;
         this.supervisorID = supervisorID;
         this.projectID = projectID;
