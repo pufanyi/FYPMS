@@ -80,4 +80,11 @@ public class StudentDeregistrationRequest implements StudentRequest {
     public void setStatus(RequestStatus status) {
         this.requestStatus = status;
     }
+
+    @Override
+    public void display() {
+        System.out.println("Request ID: " + requestID);
+        System.out.println("Request Type: " + requestType);
+        System.out.println("Request Status: " + requestStatus);
+    }
 }
