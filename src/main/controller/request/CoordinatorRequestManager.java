@@ -1,5 +1,6 @@
 package main.controller.request;
 
+import main.controller.project.ProjectManager;
 import main.model.project.Project;
 import main.model.project.ProjectStatus;
 import main.model.request.Request;
@@ -18,7 +19,7 @@ import main.utils.exception.repository.ModelAlreadyExistsException;
 import main.utils.exception.repository.ModelNotFoundException;
 
 public class CoordinatorRequestManager {
-    public void transferToNewSupervisor(Request request, String newSupervisor) throws ModelNotFoundException {
+    public static void transferToNewSupervisor(Request request, String newSupervisor) throws ModelNotFoundException {
         if(request.getStatus() == RequestStatus.APPROVED){
             String projectID = request.getProjectID();
             Project project = ProjectRepository.getInstance().getByID(projectID);
@@ -29,53 +30,63 @@ public class CoordinatorRequestManager {
         }
     }
 
-    public void deregisterStudent(Request request) throws ModelNotFoundException, IllegalStateException, StudentStatusException {
+    public static void deregisterStudent(Request request) throws ModelNotFoundException, IllegalStateException, StudentStatusException {
         if(request.getStatus() == RequestStatus.APPROVED){
             String projectID = request.getProjectID();
-            Project project = ProjectRepository.getInstance().getByID(projectID);
             String studentID = request.getStudentID();
             Student student = StudentRepository.getInstance().getByID(studentID);
-            project.setStatus(ProjectStatus.AVAILABLE);
-            project.setStudentID("");
+            ProjectManager.deallocateProject(projectID);
             student.setStatus(StudentStatus.DEREGISTERED);
-            ProjectRepository.getInstance().update(project);
             StudentRepository.getInstance().update(student);
         }
     }
 
-    public void registerStudent(Request request) throws ModelNotFoundException {
+    public static void registerStudent(Request request) throws ModelNotFoundException {
         if(request.getStatus() == RequestStatus.APPROVED){
             String projectID = request.getProjectID();
-            Project project = ProjectRepository.getInstance().getByID(projectID);
             String studentID = request.getStudentID();
             Student student = StudentRepository.getInstance().getByID(studentID);
-            project.setStatus(ProjectStatus.ALLOCATED);
-            project.setStudentID(studentID);
+            ProjectManager.allocateProject(projectID, studentID);
             student.setStatus(StudentStatus.REGISTERED);
-            ProjectRepository.getInstance().update(project);
             StudentRepository.getInstance().update(student);
         }
     }
 
-    public void changeProjectTitle(String projectID, String newTitle, String studentID, String supervisorID) throws ModelNotFoundException {
-        String requestID = RequestRepository.getInstance().size() + "";
-        Request request = new StudentChangeTitleRequest(requestID, projectID, newTitle, studentID, supervisorID);
-
+    public static void changeProjectTitle(String requestID, String newtitle) throws ModelNotFoundException, ModelAlreadyExistsException {
+        Request request = RequestRepository.getInstance().getByID(requestID);
+        if(request.getStatus() == RequestStatus.APPROVED){
+            String projectID = request.getProjectID();
+            ProjectManager.changeProjectTitle(projectID, newtitle);
+        }
     }
 
     public void viewAllRequest() {
-
+        for (Request request : RequestRepository.getInstance()) {
+            request.display();
+        }
     }
 
     public void viewPendingRequest() {
-
+        for (Request request : RequestRepository.getInstance().findByRules(request -> request.getStatus() == RequestStatus.PENDING)) {
+            request.display();
+        }
     }
 
-    public void approveRequest(String requestID) {
-        
+    public void approveRequest(String requestID) throws ModelNotFoundException, IllegalStateException {
+        Request request = RequestRepository.getInstance().getByID(requestID);
+        if(request.getStatus() != RequestStatus.PENDING){
+            throw new IllegalStateException("Request is not pending");
+        }
+        request.setStatus(RequestStatus.APPROVED);
+        RequestRepository.getInstance().update(request);
     }
 
-    public void rejectRequest(String requestID) {
-
+    public void rejectRequest(String requestID) throws ModelNotFoundException, IllegalStateException {
+        Request request = RequestRepository.getInstance().getByID(requestID);
+        if(request.getStatus() != RequestStatus.PENDING){
+            throw new IllegalStateException("Request is not pending");
+        }
+        request.setStatus(RequestStatus.DENIED);
+        RequestRepository.getInstance().update(request);
     }
 }

@@ -3,6 +3,7 @@ package main.controller.request;
 import main.model.project.Project;
 import main.model.project.ProjectStatus;
 import main.model.request.Request;
+import main.model.request.studentrequest.StudentChangeTitleRequest;
 import main.model.request.studentrequest.StudentDeregistrationRequest;
 import main.model.request.studentrequest.StudentRegistrationRequest;
 import main.model.request.supervirsorrequest.TransferStudentRequest;
@@ -16,7 +17,7 @@ import main.utils.exception.repository.ModelAlreadyExistsException;
 import main.utils.exception.repository.ModelNotFoundException;
 
 public class StudentRequestManager {
-    public void deregisterStudent(String projectID, String studentID, String supervisorID) throws IllegalStateException, StudentStatusException, ModelAlreadyExistsException, ModelNotFoundException {
+    public static void deregisterStudent(String projectID, String studentID, String supervisorID) throws IllegalStateException, StudentStatusException, ModelAlreadyExistsException, ModelNotFoundException {
         String requestID = RequestRepository.getInstance().size() + "";
         Request request = new StudentDeregistrationRequest(requestID, projectID, studentID, supervisorID);
         Project project = ProjectRepository.getInstance().getByID(projectID);
@@ -33,7 +34,7 @@ public class StudentRequestManager {
         }
     }
 
-    public void registerStudent(String projectID, String studentID, String supervisorID) throws ModelNotFoundException, StudentStatusException, IllegalStateException {
+    public static void registerStudent(String projectID, String studentID, String supervisorID) throws ModelNotFoundException, StudentStatusException, IllegalStateException {
         String requestID = RequestRepository.getInstance().size() + "";
         Request request = new StudentRegistrationRequest(requestID, projectID, studentID, supervisorID);
         Project project = ProjectRepository.getInstance().getByID(projectID);
@@ -54,8 +55,16 @@ public class StudentRequestManager {
         StudentRepository.getInstance().update(student);
     }
 
-    public void viewAllRequestByStudent(String studentID) {
+    public static void viewAllRequestByStudent(String studentID) {
+        for (Request request : RequestRepository.getInstance().findByRules(request -> request.getStudentID().equals(studentID))) {
+            request.display();
+        }
+    }
 
+    public static void changeProjectTitle(String projectID, String newTitle, String studentID, String supervisorID) throws ModelNotFoundException, ModelAlreadyExistsException {
+        String requestID = RequestRepository.getInstance().size() + "";
+        Request request = new StudentChangeTitleRequest(requestID, projectID, newTitle, studentID, supervisorID);
+        RequestRepository.getInstance().add(request);
     }
 }
 
