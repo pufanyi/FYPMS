@@ -34,7 +34,19 @@ public class StudentChangeTitleRequest implements StudentRequest {
      * The new title of the project
      */
     private String newTitle;
+    /**
+     * The ID of the coordinator who deals with the request
+     */
+    private String coordinatorID = null;
 
+    /**
+     * Constructor
+     * @param requestID The ID of the request
+     * @param studentID The ID of the student
+     * @param supervisorID The ID of the supervisor
+     * @param projectID The ID of the project
+     * @param newTitle The new title of the project
+     */
     public StudentChangeTitleRequest(String requestID, String studentID, String supervisorID, String projectID, String newTitle) {
         this.requestID = requestID;
         this.studentID = studentID;
@@ -43,6 +55,10 @@ public class StudentChangeTitleRequest implements StudentRequest {
         this.newTitle = newTitle;
     }
 
+    /**
+     * Constructor
+     * @param map The map of the request
+     */
     public StudentChangeTitleRequest(Map<String, String> map) {
         fromMap(map);
     }
@@ -79,6 +95,22 @@ public class StudentChangeTitleRequest implements StudentRequest {
         this.newTitle = newTitle;
     }
 
+    public String getCoordinatorID() {
+        return coordinatorID;
+    }
+
+    /**
+     * Set the ID of the coordinator who deals with the request
+     * @param coordinatorID The ID of the coordinator
+     */
+    public void setCoordinatorID(String coordinatorID) {
+        this.coordinatorID = coordinatorID;
+    }
+
+    /**
+     * Get the type of the request.
+     * @return the type of the request.
+     */
     @Override
     public RequestType getRequestType() {
         return requestType;
@@ -112,6 +144,9 @@ public class StudentChangeTitleRequest implements StudentRequest {
         this.requestStatus = status;
     }
 
+    /**
+     * display the information of the request.
+     */
     @Override
     public void display(){
         System.out.println("Request ID: " + requestID);
