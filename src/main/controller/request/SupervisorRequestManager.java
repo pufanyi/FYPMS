@@ -41,7 +41,8 @@ public class SupervisorRequestManager {
     }
 
     public static void viewRequest(String supervisorID) {
-
+        for(Request request : RequestRepository.getInstance().findByRules(request -> request.getID().equals(supervisorID)))
+            request.display();
     }
 
     public static void createProject(String supervisorID, String title) throws ModelAlreadyExistsException {
