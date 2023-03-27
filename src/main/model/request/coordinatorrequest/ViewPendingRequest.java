@@ -7,36 +7,12 @@ import main.repository.request.RequestRepository;
 import java.util.List;
 import java.util.Map;
 
-public class ViewPendingRequest extends CoordinatorRequest implements ViewRequest {
-    /**
-     * The type of the request
-     */
-    private static final String requestType = "View pending request";
-
-    public ViewPendingRequest(String requestID) {
-        super(requestID);
-    }
-
-    @Override
-    public Map<String, String> toMap() {
-        //TODO: fill in the map
-        return null;
-    }
-
-    @Override
-    public void fromMap(Map<String, String> map) {
-        //TODO: fill in the map
-    }
-
-    /**
-     * View all the pending requests -- by displaying the ID of the request
-     */
-    @Override
-    public void view() {
-        List<Request> requestList = RequestRepository.getInstance().findByRules(request1 -> request1.getStatus() == RequestStatus.PENDING);
-        for (Request request : requestList) {
-            request.displayRequest();
-            System.out.println("Request type: " + requestType);
-        }
-    }
+public class ViewPendingRequest{
+//    public void view() {
+//        List<Request> requestList = RequestRepository.getInstance().findByRules(request1 -> request1.getStatus() == RequestStatus.PENDING);
+//        for (Request request : requestList) {
+//            request.displayRequest();
+//            System.out.println("Request type: " + requestType);
+//        }
+//    }
 }

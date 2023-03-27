@@ -5,7 +5,7 @@ import main.repository.project.ProjectRepository;
 
 import java.util.Map;
 
-public class ViewAllProject extends CoordinatorRequest implements ViewRequest {
+public class ViewAllProject{
     /**
      * The project to be viewed
      */
@@ -15,24 +15,9 @@ public class ViewAllProject extends CoordinatorRequest implements ViewRequest {
      */
     private static final String requestType = "View all projects";
 
-    public ViewAllProject(String requestID) {
-        super(requestID);
-    }
-    @Override
-    public Map<String, String> toMap() {
-        //TODO: fill in the map
-        return null;
-    }
-
-    @Override
-    public void fromMap(Map<String, String> map) {
-        //TODO: fill in the map
-    }
-
     /**
      * View all the projects
      */
-    @Override
     public void view() {
         ProjectRepository projectRepository = ProjectRepository.getInstance();
         for(Project project : projectRepository)
