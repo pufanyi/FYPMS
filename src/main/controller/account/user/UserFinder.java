@@ -1,7 +1,9 @@
 package main.controller.account.user;
 
+import main.model.user.Coordinator;
 import main.model.user.User;
 import main.model.user.UserType;
+import main.repository.user.CoordinatorRepository;
 import main.repository.user.FacultyRepository;
 import main.repository.user.StudentRepository;
 
@@ -17,7 +19,7 @@ public class UserFinder {
     }
 
     private static User findCoordinator(String userID) throws NoSuchElementException {
-        return FacultyRepository.getInstance().getByID(userID);
+        return CoordinatorRepository.getInstance().getByID(userID);
     }
 
     public static User findUser(String userID, UserType userType) throws NoSuchElementException {

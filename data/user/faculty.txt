@@ -1,3 +1,0 @@
-supervisorNameLucashashedPasswordnullsupervisorIDA1234567AemailLucas@e.ntu.edu.sg
-supervisorNamepufanyihashedPasswordnullsupervisorID12345emailpufanyi@e.ntu.edu.sg
-supervisorNamejinqingyanghashedPasswordnullsupervisorID78687emailjinqingyang@e.ntu.edu.sg
