@@ -35,7 +35,7 @@ public class RequestRepository extends Repository<Request> {
     public void setAll(List<Map<String, String>> listOfMappableObjects) {
         List<Request> requests = getAll();
         for (Map<String, String> map : listOfMappableObjects) {
-            Request request = RequestFactory.createRequest(RequestType.valueOf(map.get("requestType")));
+            Request request = RequestFactory.createRequest(map);
             requests.add(request);
         }
     }
