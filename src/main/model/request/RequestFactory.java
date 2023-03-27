@@ -4,8 +4,6 @@ import main.model.request.studentrequest.StudentChangeTitleRequest;
 import main.model.request.studentrequest.StudentDeregistrationRequest;
 import main.model.request.studentrequest.StudentRegistrationRequest;
 
-import java.util.Map;
-
 public class RequestFactory {
     public static Request createRequest(RequestType requestType) {
         return switch (requestType) {
