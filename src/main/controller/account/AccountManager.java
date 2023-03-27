@@ -33,8 +33,14 @@ public class AccountManager {
     }
 
     public static void register(UserType userType, String userID, String password, String name, String email)
-            throws NoSuchElementException {
+            throws IllegalArgumentException {
         User user = UserFactory.create(userType, userID, password, name, email);
+        UserAdder.addUser(user);
+    }
+
+    public static void register(UserType userType, String userID, String name, String email)
+            throws IllegalArgumentException {
+        User user = UserFactory.create(userType, userID, "password", name, email);
         UserAdder.addUser(user);
     }
 }

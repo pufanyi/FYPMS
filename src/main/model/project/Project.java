@@ -46,11 +46,7 @@ public class Project implements Model {
     }
 
     public Project(Map<String, String> map) {
-        this.projectID = map.get("projectID");
-        this.projectTitle = map.get("projectTitle");
-        this.supervisorID = map.get("supervisorID");
-        this.studentID = map.get("studentID");
-        this.status = ProjectStatus.valueOf(map.get("status"));
+        fromMap(map);
     }
 
     /**
