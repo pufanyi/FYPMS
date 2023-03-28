@@ -1,15 +1,18 @@
 package main.boundary.account.getter;
 
 import main.model.user.UserType;
+import main.utils.ui.BoundaryStrings;
 
 import java.util.Scanner;
 
 public class DomainGetter {
     public static UserType getDomain() {
-        System.out.println("Please select your domain (1-3):");
+        System.out.println(BoundaryStrings.separator);
         System.out.println("\t1. Student");
         System.out.println("\t2. Supervisor");
         System.out.println("\t3. FYP Coordinator");
+        System.out.println(BoundaryStrings.separator);
+        System.out.print("Please select your domain (1-3): ");
         UserType userType = null;
         while (userType == null) {
             Scanner scanner = new Scanner(System.in);
