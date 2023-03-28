@@ -41,15 +41,22 @@ public class CoordinatorRequestManager {
      * @throws IllegalStateException if the project is not in progress
      * @throws StudentStatusException if the student is not registered
      */
-    public static void deregisterStudent(Request request) throws ModelNotFoundException, IllegalStateException, StudentStatusException {
-        if(request.getStatus() == RequestStatus.APPROVED){
-            String projectID = request.getProjectID();
-            String studentID = request.getStudentID();
-            Student student = StudentRepository.getInstance().getByID(studentID);
-            ProjectManager.deallocateProject(projectID);
-            student.setStatus(StudentStatus.DEREGISTERED);
-            StudentRepository.getInstance().update(student);
+    public static void approveDeregisterStudent(String studentID, String projectID, String supervisorID) throws ModelNotFoundException, IllegalStateException, StudentStatusException {
+        Student student = StudentRepository.getInstance().getByID(studentID);
+        Project project = ProjectRepository.getInstance().getByID(projectID);
+        Supervisor supervisor = FacultyRepository.getInstance().getByID(supervisorID);
+        if(student.getStatus() != StudentStatus.REGISTERED){
+            throw new StudentStatusException(student.getStatus());
         }
+        if(project.getStatus() != ProjectStatus.ALLOCATED){
+            throw new IllegalStateException("Project has not been allocated to a student yet");
+        }
+        student.setStatus(StudentStatus.DEREGISTERED);
+        project.setStudentID(null);
+        project.setSupervisorID(null);
+        project.setStatus(ProjectStatus.AVAILABLE);
+        ProjectRepository.getInstance().update(project);
+        StudentRepository.getInstance().update(student);
     }
 
     /**

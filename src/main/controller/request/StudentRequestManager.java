@@ -31,7 +31,6 @@ public class StudentRequestManager {
         Request request = new StudentDeregistrationRequest(requestID, projectID, studentID, supervisorID);
         Project project = ProjectRepository.getInstance().getByID(projectID);
         Student student = StudentRepository.getInstance().getByID(studentID);
-        RequestRepository.getInstance().add(request);
         if (project.getStatus() != ProjectStatus.ALLOCATED) {
             throw new IllegalStateException("Project is not allocated");
         }
@@ -41,6 +40,7 @@ public class StudentRequestManager {
         if (student.getStatus() == StudentStatus.UNREGISTERED) {
             throw new StudentStatusException(student.getStatus());
         }
+        RequestRepository.getInstance().add(request);
         return requestID;
     }
 

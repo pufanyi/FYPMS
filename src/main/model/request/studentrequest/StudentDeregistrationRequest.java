@@ -44,6 +44,7 @@ public class StudentDeregistrationRequest implements StudentRequest {
      * @param projectID    The ID of the project
      */
     public StudentDeregistrationRequest(String requestID, String studentID, String supervisorID, String projectID) {
+        this.requestID = requestID;
         this.studentID = studentID;
         this.supervisorID = supervisorID;
         this.projectID = projectID;

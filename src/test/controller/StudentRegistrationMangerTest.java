@@ -21,6 +21,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class StudentRegistrationMangerTest {
     /**
@@ -111,6 +112,43 @@ public class StudentRegistrationMangerTest {
         student = StudentRepository.getInstance().getByID(studentID);
         assertEquals(student.getStatus(), StudentStatus.UNREGISTERED);
         project = ProjectRepository.getInstance().getByID(projectID);
+        assertEquals(project.getStatus(), ProjectStatus.AVAILABLE);
+    }
+
+    @Test
+    @DisplayName("Deregister Student")
+    public void deregisterStudentTest() throws ModelAlreadyExistsException, ModelNotFoundException {
+        String studentID = "JQY001";
+        String projectID = "1";
+        Student student = StudentRepository.getInstance().getByID(studentID);
+        Project project = ProjectRepository.getInstance().getByID(projectID);
+        assertEquals(student.getStatus(), StudentStatus.UNREGISTERED);
+        assertEquals(project.getStatus(), ProjectStatus.AVAILABLE);
+        String supervisorID = project.getSupervisorID();
+        String requestID = StudentRequestManager.registerStudent(projectID, studentID, supervisorID);
+        Request request = RequestRepository.getInstance().getByID(requestID);
+        student = StudentRepository.getInstance().getByID(studentID);
+        assertEquals(student.getStatus(), StudentStatus.PENDING);
+        project = ProjectRepository.getInstance().getByID(projectID);
+        assertEquals(project.getStatus(), ProjectStatus.RESERVED);
+        CoordinatorRequestManager.approveRequest(requestID);
+        request = RequestRepository.getInstance().getByID(requestID);
+        assertEquals(request.getStatus(), RequestStatus.APPROVED);
+        CoordinatorRequestManager.approveRegisterStudent(studentID, projectID, supervisorID);
+        student = StudentRepository.getInstance().getByID(studentID);
+        assertEquals(student.getStatus(), StudentStatus.REGISTERED);
+        project = ProjectRepository.getInstance().getByID(projectID);
+        assertEquals(project.getStatus(), ProjectStatus.ALLOCATED);
+        String request2ID = StudentRequestManager.deregisterStudent(projectID, studentID, supervisorID);
+        Request request2 = RequestRepository.getInstance().getByID(request2ID);
+        assertEquals(request2.getStatus(), RequestStatus.PENDING);
+        CoordinatorRequestManager.approveRequest(request2ID);
+        request2 = RequestRepository.getInstance().getByID(request2ID);
+        assertEquals(request2.getStatus(), RequestStatus.APPROVED);
+        CoordinatorRequestManager.approveDeregisterStudent(studentID, projectID, supervisorID);
+        student = StudentRepository.getInstance().getByID(studentID);
+        project = ProjectRepository.getInstance().getByID(projectID);
+        assertEquals(student.getStatus(), StudentStatus.DEREGISTERED);
         assertEquals(project.getStatus(), ProjectStatus.AVAILABLE);
     }
 }
