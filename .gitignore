@@ -54,3 +54,6 @@ src/main/utils/config/Location.java
 *.blg
 *.dvi
 *.idx
+
+### Test Data ###
+data/
