@@ -18,7 +18,7 @@ public class Welcome {
         System.out.println(BoundaryStrings.separator);
         System.out.println("Please enter your choice to continue.");
         System.out.println("\t1. Login");
-        System.out.println("\t2. Forget username");
+        System.out.println("\t2. Forget UserID");
         System.out.println("\t3. Exit");
         System.out.print("Your choice (1-3): ");
         try {

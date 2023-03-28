@@ -9,16 +9,27 @@ import main.utils.ui.ChangePage;
 import java.io.IOException;
 import java.util.List;
 
+import static main.boundary.account.getter.DomainGetter.getDomain;
+import static main.controller.account.user.UserDomainGetter.getUserDomain;
+
 public class ForgotUserID {
     public static void forgotUserID() throws PageBackException {
         ChangePage.changePage();
         String name = UserNameGetter.getUserName();
-        System.out.println("The list of user IDs associated with " + name + " is: ");
+        System.out.println("The list of UserID associated with "+ name + " is:");
+        System.out.println("┌--------------------------------------┐");
         List<User> users = AccountManager.getUsersByUserName(name);
-        List<String> userIDs = users.stream().map(User::getID).toList();
-        String userIDList = String.join(" | ", userIDs);
-        System.out.println("| " + userIDList + " |");
-        System.out.println("Press any key to go back.");
+        if (users.isEmpty()) {
+            System.out.println("| No user IDs found for " + name + " |");
+        } else {
+            System.out.println("| User ID          | User Domain       |");
+            System.out.println("|--------------------------------------|");
+            for (User user : users) {
+                System.out.printf("| %-17s| %-18s|\n", user.getUserName(), getUserDomain(user));
+            }
+        }
+        System.out.println("└--------------------------------------┘");
+        System.out.println("Press Enter key to go back.");
         try {
             System.in.read();
         } catch (IOException e) {
