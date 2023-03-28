@@ -1,5 +1,8 @@
 package main.boundary.account;
 
+import main.boundary.student.StudentMainPage;
+import main.model.user.Coordinator;
+import main.model.user.Student;
 import main.utils.ui.BoundaryStrings;
 import main.boundary.account.getter.DomainGetter;
 import main.boundary.account.getter.PasswordGetter;
@@ -22,8 +25,13 @@ public class LoginUI {
         String password = PasswordGetter.getPassword();
         try {
             User user = AccountManager.login(domain, userID, password);
-            // TODO: redirect to the correct page
-            System.err.println("TODO: redirect to the correct page");
+            switch (domain) {
+                case STUDENT:
+                    StudentMainPage.studentMainPage(user);
+                    break;
+                default:
+                    throw new RuntimeException("Not implemented yet.");
+            }
             return;
         } catch (PasswordIncorrectException e) {
             System.out.println("Password incorrect.");

@@ -17,16 +17,19 @@ public class StudentMainPage {
             System.out.println("Welcome to Student Main Page");
             System.out.println("Hello, " + student.getUserName());
             System.out.println();
-            System.out.println("1. View my profile");
-            System.out.println("2. Change my password");
-            System.out.println("3. View project list");
-            System.out.println("3. View my project");
-            System.out.println("4. View my supervisor");
-            System.out.println("5. Register for a project");
-            System.out.println("6. Deregister for a project");
-            System.out.println("7. Change title for a project");
-            System.out.println("8. View history and status of my project");
-            System.out.println("9. Logout");
+            System.out.println("\t1. View my profile");
+            System.out.println("\t2. Change my password");
+            System.out.println("\t3. View project list");
+            System.out.println("\t4. View my project");
+            System.out.println("\t5. View my supervisor");
+            System.out.println("\t6. Register for a project");
+            System.out.println("\t7. Deregister for a project");
+            System.out.println("\t8. Change title for a project");
+            System.out.println("\t9. View history and status of my project");
+            System.out.println("\t10. Logout");
+
+            System.out.println();
+            System.out.println("Please enter your choice: ");
 
             Scanner scanner = new Scanner(System.in);
 
