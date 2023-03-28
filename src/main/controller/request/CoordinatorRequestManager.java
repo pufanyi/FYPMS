@@ -35,10 +35,12 @@ public class CoordinatorRequestManager {
     }
 
     /**
-     * deregister a student from a project
-     * @param request the request to be processed
-     * @throws ModelNotFoundException if the request is not found
-     * @throws IllegalStateException if the project is not in progress
+     * approve a student deregistration request
+     * @param studentID the student ID of the student that is going to deregister from the project
+     * @param projectID the project ID of the project that the student is going to deregister from
+     * @param supervisorID the supervisor ID of the supervisor that the student is going to deregister from
+     * @throws ModelNotFoundException if the student, project or supervisor is not found
+     * @throws IllegalStateException if the project is not allocated to a student
      * @throws StudentStatusException if the student is not registered
      */
     public static void approveDeregisterStudent(String studentID, String projectID, String supervisorID) throws ModelNotFoundException, IllegalStateException, StudentStatusException {
