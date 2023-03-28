@@ -26,7 +26,7 @@ public class ChangeStudentPassword {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Welcome to Change Student Password");
-        System.out.println("Please enter your old password: ");
+        System.out.print("Please enter your old password: ");
         String oldPassword = PasswordReader.getPassword();
 
         try {
@@ -43,10 +43,10 @@ public class ChangeStudentPassword {
 
         do {
             // read the new password
-            System.out.println("Please enter your new password: ");
+            System.out.print("Please enter your new password: ");
             newPassword = PasswordReader.getPassword();
             // read the new password again
-            System.out.println("Please enter your new password again: ");
+            System.out.print("Please enter your new password again: ");
             newPasswordAgain = PasswordReader.getPassword();
             // if the new password is not the same as the new password again, ask the user to enter again
 
