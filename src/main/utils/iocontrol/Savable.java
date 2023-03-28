@@ -27,17 +27,14 @@ public abstract class Savable<MappableObject extends Mappable> {
      * @param FILE_PATH the path of the file to save to
      */
     protected void save(final String FILE_PATH) {
-        PrintWriter printWriter;
-        try {
-            printWriter = new PrintWriter(new FileWriter(FILE_PATH));
+        try (PrintWriter printWriter = new PrintWriter(new FileWriter(FILE_PATH))) {
+            final List<MappableObject> listOfMappableObjects = getAll();
+            for (MappableObject mappableObject : listOfMappableObjects) {
+                printWriter.println(StringAndMapConvertor.mapToString(mappableObject.toMap()));
+            }
         } catch (IOException e) {
             throw new RuntimeException("Data could not be saved to file: " + FILE_PATH);
         }
-        final List<MappableObject> listOfMappableObjects = getAll();
-        for (MappableObject mappableObject : listOfMappableObjects) {
-            printWriter.println(StringAndMapConvertor.mapToString(mappableObject.toMap()));
-        }
-        printWriter.close();
     }
 
     /**
@@ -51,7 +48,17 @@ public abstract class Savable<MappableObject extends Mappable> {
         try {
             bufferedReader = new BufferedReader(new FileReader(FILE_PATH));
         } catch (FileNotFoundException e) {
-            throw new RuntimeException("Data could not be loaded from file: " + FILE_PATH);
+            File file = new File(FILE_PATH);
+            File parent = file.getParentFile();
+            if (parent != null && !parent.exists()) {
+                parent.mkdirs();
+            }
+            try {
+                file.createNewFile();
+                bufferedReader = new BufferedReader(new FileReader(file));
+            } catch (IOException ex) {
+                throw new RuntimeException("Data could not be loaded from file: " + FILE_PATH);
+            }
         }
         String line;
         try {
