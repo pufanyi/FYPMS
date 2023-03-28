@@ -50,6 +50,11 @@ public class CoordinatorRequestManager {
         }
     }
 
+    /**
+     * register a student to a project
+     * @param request the request to be processed
+     * @throws ModelNotFoundException if the request is not found
+     */
     public static void registerStudent(Request request) throws ModelNotFoundException {
         if(request.getStatus() == RequestStatus.APPROVED){
             String projectID = request.getProjectID();
@@ -61,6 +66,13 @@ public class CoordinatorRequestManager {
         }
     }
 
+    /**
+     * change the project title
+     * @param requestID the request ID
+     * @param newtitle the new title
+     * @throws ModelNotFoundException if the request is not found
+     * @throws ModelAlreadyExistsException if the project title already exists
+     */
     public static void changeProjectTitle(String requestID, String newtitle) throws ModelNotFoundException, ModelAlreadyExistsException {
         Request request = RequestRepository.getInstance().getByID(requestID);
         if(request.getStatus() == RequestStatus.APPROVED){
@@ -69,18 +81,30 @@ public class CoordinatorRequestManager {
         }
     }
 
+    /**
+     * display all the requests
+     */
     public void viewAllRequest() {
         for (Request request : RequestRepository.getInstance()) {
             request.display();
         }
     }
 
+    /**
+     * display all the pending requests
+     */
     public void viewPendingRequest() {
         for (Request request : RequestRepository.getInstance().findByRules(request -> request.getStatus() == RequestStatus.PENDING)) {
             request.display();
         }
     }
 
+    /**
+     * approve a request
+     * @param requestID the request ID
+     * @throws ModelNotFoundException if the request is not found
+     * @throws IllegalStateException if the request is not pending
+     */
     public void approveRequest(String requestID) throws ModelNotFoundException, IllegalStateException {
         Request request = RequestRepository.getInstance().getByID(requestID);
         if(request.getStatus() != RequestStatus.PENDING){
@@ -90,6 +114,12 @@ public class CoordinatorRequestManager {
         RequestRepository.getInstance().update(request);
     }
 
+    /**
+     * reject a request
+     * @param requestID the request ID
+     * @throws ModelNotFoundException if the request is not found
+     * @throws IllegalStateException if the request is not pending
+     */
     public void rejectRequest(String requestID) throws ModelNotFoundException, IllegalStateException {
         Request request = RequestRepository.getInstance().getByID(requestID);
         if(request.getStatus() != RequestStatus.PENDING){
