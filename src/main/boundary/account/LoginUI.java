@@ -1,6 +1,6 @@
 package main.boundary.account;
 
-import main.boundary.BoundaryStrings;
+import main.utils.ui.BoundaryStrings;
 import main.boundary.account.getter.DomainGetter;
 import main.boundary.account.getter.PasswordGetter;
 import main.boundary.account.getter.UserIDGetter;
@@ -10,12 +10,13 @@ import main.model.user.UserType;
 import main.utils.exception.model.PasswordIncorrectException;
 import main.utils.exception.repository.ModelNotFoundException;
 import main.utils.exception.ui.PageBackException;
+import main.utils.ui.ChangePage;
 
 import java.util.Scanner;
 
 public class LoginUI {
     public static void login() throws PageBackException {
-        System.out.println(BoundaryStrings.separator);
+        ChangePage.changePage();
         UserType domain = DomainGetter.getDomain();
         String userID = UserIDGetter.getUserID();
         String password = PasswordGetter.getPassword();

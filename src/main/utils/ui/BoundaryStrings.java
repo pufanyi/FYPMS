@@ -1,4 +1,4 @@
-package main.boundary;
+package main.utils.ui;
 
 public class BoundaryStrings {
     public static final String logo = " ________  _ ____  _      ____ \n" +
