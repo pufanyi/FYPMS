@@ -11,14 +11,16 @@ import java.util.Scanner;
 public class Welcome {
     public static void welcome() {
         ChangePage.changePage();
+        System.out.println(BoundaryStrings.separator);
         System.out.println("Welcome to the Final Year Project Management System!");
         System.out.println(BoundaryStrings.logo);
         Scanner scanner = new Scanner(System.in);
         System.out.println(BoundaryStrings.separator);
-        System.out.println("Please login to continue.");
+        System.out.println("Please enter your choice to continue.");
         System.out.println("1. Login");
         System.out.println("2. Forgot username");
         System.out.println("3. Exit");
+        System.out.println("Your choice (1-3): ");
         try {
             while (true) {
                 int choice = scanner.nextInt();

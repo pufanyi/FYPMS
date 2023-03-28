@@ -66,6 +66,9 @@ public class ChangeStudentPassword {
 
         try {
             AccountManager.changePassword(UserType.STUDENT, userID, oldPassword, newPassword);
+
+            System.out.println("Password changed successfully.");
+            throw new PageBackException();
         } catch (PasswordIncorrectException | ModelNotFoundException e) {
             throw new RuntimeException(e);
         }
