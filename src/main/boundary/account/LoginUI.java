@@ -5,6 +5,7 @@ import main.boundary.account.getter.DomainGetter;
 import main.boundary.account.getter.PasswordGetter;
 import main.boundary.account.getter.UserIDGetter;
 import main.controller.account.AccountManager;
+import main.model.user.User;
 import main.model.user.UserType;
 import main.utils.exception.model.PasswordIncorrectException;
 import main.utils.exception.repository.ModelNotFoundException;
@@ -19,7 +20,9 @@ public class LoginUI {
         String userID = UserIDGetter.getUserID();
         String password = PasswordGetter.getPassword();
         try {
-            AccountManager.login(domain, userID, password);
+            User user = AccountManager.login(domain, userID, password);
+            // TODO: redirect to the correct page
+            System.err.println("TODO: redirect to the correct page");
             return;
         } catch (PasswordIncorrectException e) {
             System.out.println("Password incorrect.");
