@@ -53,7 +53,7 @@ public class StudentRequestManager {
      * @throws StudentStatusException if the student is not unregistered
      * @throws IllegalStateException if the project is not available
      */
-    public static void registerStudent(String projectID, String studentID, String supervisorID) throws ModelNotFoundException, StudentStatusException, IllegalStateException {
+    public static void registerStudent(String projectID, String studentID, String supervisorID) throws ModelNotFoundException, StudentStatusException, IllegalStateException, ModelAlreadyExistsException {
         String requestID = RequestRepository.getInstance().size() + "";
         Request request = new StudentRegistrationRequest(requestID, projectID, studentID, supervisorID);
         Project project = ProjectRepository.getInstance().getByID(projectID);
@@ -68,10 +68,10 @@ public class StudentRequestManager {
             throw new StudentStatusException(student.getStatus());
         }
         project.setStatus(ProjectStatus.RESERVED);
-        project.setStudentID(studentID);
         student.setStatus(StudentStatus.PENDING);
         ProjectRepository.getInstance().update(project);
         StudentRepository.getInstance().update(student);
+        RequestRepository.getInstance().add(request);
     }
 
     /**
