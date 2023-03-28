@@ -54,6 +54,7 @@ public class StudentRequestMangerTest {
         assertEquals(student.getStatus(), StudentStatus.UNREGISTERED);
         String supervisorID = project.getSupervisorID();
         StudentRequestManager.registerStudent(projectID, studentID, supervisorID);
+        student = StudentRepository.getInstance().getByID(studentID);
         assertEquals(student.getStatus(), StudentStatus.PENDING);
     }
 }
