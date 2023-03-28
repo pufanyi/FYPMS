@@ -81,10 +81,36 @@ public class StudentRegistrationMangerTest {
         CoordinatorRequestManager.approveRequest(requestID);
         request = RequestRepository.getInstance().getByID(requestID);
         assertEquals(request.getStatus(), RequestStatus.APPROVED);
-        CoordinatorRequestManager.registerStudent(studentID, projectID, supervisorID);
+        CoordinatorRequestManager.approveRegisterStudent(studentID, projectID, supervisorID);
         student = StudentRepository.getInstance().getByID(studentID);
         assertEquals(student.getStatus(), StudentStatus.REGISTERED);
         project = ProjectRepository.getInstance().getByID(projectID);
         assertEquals(project.getStatus(), ProjectStatus.ALLOCATED);
+    }
+
+    @Test
+    @DisplayName("Reject Student Registration Request")
+    public void RejectStudentRegistration() throws ModelAlreadyExistsException, ModelNotFoundException {
+        String studentID = "JQY001";
+        String projectID = "1";
+        Student student = StudentRepository.getInstance().getByID(studentID);
+        Project project = ProjectRepository.getInstance().getByID(projectID);
+        assertEquals(student.getStatus(), StudentStatus.UNREGISTERED);
+        assertEquals(project.getStatus(), ProjectStatus.AVAILABLE);
+        String supervisorID = project.getSupervisorID();
+        String requestID = StudentRequestManager.registerStudent(projectID, studentID, supervisorID);
+        Request request = RequestRepository.getInstance().getByID(requestID);
+        student = StudentRepository.getInstance().getByID(studentID);
+        assertEquals(student.getStatus(), StudentStatus.PENDING);
+        project = ProjectRepository.getInstance().getByID(projectID);
+        assertEquals(project.getStatus(), ProjectStatus.RESERVED);
+        CoordinatorRequestManager.rejectRequest(requestID);
+        request = RequestRepository.getInstance().getByID(requestID);
+        assertEquals(request.getStatus(), RequestStatus.DENIED);
+        CoordinatorRequestManager.rejectRegisterStudent(studentID, projectID, supervisorID);
+        student = StudentRepository.getInstance().getByID(studentID);
+        assertEquals(student.getStatus(), StudentStatus.UNREGISTERED);
+        project = ProjectRepository.getInstance().getByID(projectID);
+        assertEquals(project.getStatus(), ProjectStatus.AVAILABLE);
     }
 }

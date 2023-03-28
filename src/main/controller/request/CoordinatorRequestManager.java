@@ -54,10 +54,12 @@ public class CoordinatorRequestManager {
 
     /**
      * register a student to a project
-     * @param requestID the request to be processed
-     * @throws ModelNotFoundException if the request is not found
+     * @param studentID the student ID
+     * @param projectID the project ID
+     * @param supervisorID the supervisor ID
+     * @throws ModelNotFoundException if the student, project or supervisor is not found
      */
-    public static void registerStudent(String studentID, String projectID, String supervisorID) throws ModelNotFoundException {
+    public static void approveRegisterStudent(String studentID, String projectID, String supervisorID) throws ModelNotFoundException {
         Student student = StudentRepository.getInstance().getByID(studentID);
         Project project = ProjectRepository.getInstance().getByID(projectID);
         Supervisor supervisor = FacultyRepository.getInstance().getByID(supervisorID);
@@ -65,6 +67,18 @@ public class CoordinatorRequestManager {
         project.setStudentID(studentID);
         project.setSupervisorID(supervisorID);
         project.setStatus(ProjectStatus.ALLOCATED);
+        ProjectRepository.getInstance().update(project);
+        StudentRepository.getInstance().update(student);
+    }
+
+    public static void rejectRegisterStudent(String studentID, String projectID, String supervisorID) throws ModelNotFoundException {
+        Student student = StudentRepository.getInstance().getByID(studentID);
+        Project project = ProjectRepository.getInstance().getByID(projectID);
+        Supervisor supervisor = FacultyRepository.getInstance().getByID(supervisorID);
+        student.setStatus(StudentStatus.UNREGISTERED);
+        project.setStudentID(null);
+        project.setSupervisorID(null);
+        project.setStatus(ProjectStatus.AVAILABLE);
         ProjectRepository.getInstance().update(project);
         StudentRepository.getInstance().update(student);
     }
