@@ -5,6 +5,7 @@ import main.controller.request.StudentRequestManager;
 import main.model.project.Project;
 import main.model.project.ProjectStatus;
 import main.model.request.Request;
+import main.model.request.RequestStatus;
 import main.model.user.Student;
 import main.model.user.StudentStatus;
 import main.model.user.Supervisor;
@@ -28,8 +29,8 @@ public class StudentRegistrationMangerTest {
      * Before all test, clear all data in the database
      * Create a student and a few projects
      */
-    @BeforeAll
-    public static void setUp() throws ModelAlreadyExistsException {
+    @BeforeEach
+    public void setUp() throws ModelAlreadyExistsException {
         StudentRepository.getInstance().clear();
         CoordinatorRepository.getInstance().clear();
         FacultyRepository.getInstance().clear();
@@ -55,7 +56,8 @@ public class StudentRegistrationMangerTest {
         assertEquals(student.getStatus(), StudentStatus.UNREGISTERED);
         assertEquals(project.getStatus(), ProjectStatus.AVAILABLE);
         String supervisorID = project.getSupervisorID();
-        StudentRequestManager.registerStudent(projectID, studentID, supervisorID);
+        String requestID = StudentRequestManager.registerStudent(projectID, studentID, supervisorID);
+        Request request = RequestRepository.getInstance().getByID(requestID);
         student = StudentRepository.getInstance().getByID(studentID);
         assertEquals(student.getStatus(), StudentStatus.PENDING);
         project = ProjectRepository.getInstance().getByID(projectID);
@@ -81,9 +83,11 @@ public class StudentRegistrationMangerTest {
         CoordinatorRequestManager.approveRequest(requestID);
         request = RequestRepository.getInstance().getByID(requestID);
         CoordinatorRequestManager.registerStudent(request.getID());
+        request = RequestRepository.getInstance().getByID(requestID);
+        assertEquals(request.getStatus(), RequestStatus.APPROVED);
         student = StudentRepository.getInstance().getByID(studentID);
         assertEquals(student.getStatus(), StudentStatus.REGISTERED);
         project = ProjectRepository.getInstance().getByID(projectID);
-        assertEquals(project.getStatus(), ProjectStatus.UNAVAILABLE);
+        assertEquals(project.getStatus(), ProjectStatus.ALLOCATED);
     }
 }
