@@ -7,8 +7,10 @@ import main.model.request.Request;
 import main.model.request.RequestStatus;
 import main.model.user.Student;
 import main.model.user.StudentStatus;
+import main.model.user.Supervisor;
 import main.repository.project.ProjectRepository;
 import main.repository.request.RequestRepository;
+import main.repository.user.FacultyRepository;
 import main.repository.user.StudentRepository;
 import main.utils.exception.model.StudentStatusException;
 import main.utils.exception.repository.ModelAlreadyExistsException;
@@ -52,19 +54,19 @@ public class CoordinatorRequestManager {
 
     /**
      * register a student to a project
-     * @param request the request to be processed
+     * @param requestID the request to be processed
      * @throws ModelNotFoundException if the request is not found
      */
-    public static void registerStudent(String requestID) throws ModelNotFoundException {
-        Request request = RequestRepository.getInstance().getByID(requestID);
-        if(request.getStatus() == RequestStatus.APPROVED){
-            String projectID = request.getProjectID();
-            String studentID = request.getStudentID();
-            Student student = StudentRepository.getInstance().getByID(studentID);
-            ProjectManager.allocateProject(projectID, studentID);
-            student.setStatus(StudentStatus.REGISTERED);
-            StudentRepository.getInstance().update(student);
-        }
+    public static void registerStudent(String studentID, String projectID, String supervisorID) throws ModelNotFoundException {
+        Student student = StudentRepository.getInstance().getByID(studentID);
+        Project project = ProjectRepository.getInstance().getByID(projectID);
+        Supervisor supervisor = FacultyRepository.getInstance().getByID(supervisorID);
+        student.setStatus(StudentStatus.REGISTERED);
+        project.setStudentID(studentID);
+        project.setSupervisorID(supervisorID);
+        project.setStatus(ProjectStatus.ALLOCATED);
+        ProjectRepository.getInstance().update(project);
+        StudentRepository.getInstance().update(student);
     }
 
     /**

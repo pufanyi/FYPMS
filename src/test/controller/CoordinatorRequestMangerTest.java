@@ -60,7 +60,7 @@ public class CoordinatorRequestMangerTest {
         assertEquals(project.getStatus(), ProjectStatus.RESERVED);
         CoordinatorRequestManager.approveRequest(requestID);
         request = RequestRepository.getInstance().getByID(requestID);
-        CoordinatorRequestManager.registerStudent(request.getID());
+        CoordinatorRequestManager.registerStudent(studentID, projectID, supervisorID);
         student = StudentRepository.getInstance().getByID(studentID);
         assertEquals(student.getStatus(), StudentStatus.REGISTERED);
         project = ProjectRepository.getInstance().getByID(projectID);

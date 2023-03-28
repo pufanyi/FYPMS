@@ -83,7 +83,7 @@ public class StudentRegistrationMangerTest {
         CoordinatorRequestManager.approveRequest(requestID);
         request = RequestRepository.getInstance().getByID(requestID);
         assertEquals(request.getStatus(), RequestStatus.APPROVED);
-        //CoordinatorRequestManager.registerStudent(requestID);
+        CoordinatorRequestManager.registerStudent(studentID, projectID, supervisorID);
         student = StudentRepository.getInstance().getByID(studentID);
         assertEquals(student.getStatus(), StudentStatus.REGISTERED);
         project = ProjectRepository.getInstance().getByID(projectID);
