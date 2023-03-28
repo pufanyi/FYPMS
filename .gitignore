@@ -56,4 +56,4 @@ src/main/utils/config/Location.java
 *.idx
 
 ### Test Data ###
-#data/
+data/
