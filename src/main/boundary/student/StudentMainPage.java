@@ -6,6 +6,7 @@ import main.boundary.student.details.ViewStudentProfile;
 import main.model.user.Student;
 import main.model.user.User;
 import main.utils.exception.ui.PageBackException;
+import main.utils.ui.BoundaryStrings;
 import main.utils.ui.ChangePage;
 
 import java.util.Scanner;
@@ -14,8 +15,9 @@ public class StudentMainPage {
     public static void studentMainPage(User user) {
         if (user instanceof Student student) {
             ChangePage.changePage();
+            System.out.println(BoundaryStrings.separator);
             System.out.println("Welcome to Student Main Page");
-            System.out.println("Hello, " + student.getUserName());
+            System.out.println("Hello, " + student.getUserName()+"!");
             System.out.println();
             System.out.println("\t1. View my profile");
             System.out.println("\t2. Change my password");
@@ -27,9 +29,10 @@ public class StudentMainPage {
             System.out.println("\t8. Change title for a project");
             System.out.println("\t9. View history and status of my project");
             System.out.println("\t10. Logout");
+            System.out.println(BoundaryStrings.separator);
 
             System.out.println();
-            System.out.println("Please enter your choice: ");
+            System.out.print("Please enter your choice: ");
 
             Scanner scanner = new Scanner(System.in);
 

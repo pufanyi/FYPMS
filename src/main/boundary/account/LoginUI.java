@@ -22,6 +22,19 @@ public class LoginUI {
         ChangePage.changePage();
         UserType domain = DomainGetter.getDomain();
         String userID = UserIDGetter.getUserID();
+        if (userID.equals("")) {
+            try {
+                switch (domain) {
+                    case STUDENT:
+                        ForgotUserID.forgotUserID();
+                        break;
+                    default:
+                        throw new RuntimeException("Not implemented yet.");
+                }
+            } catch (PageBackException e) {
+                login();
+            }
+        }
         String password = PasswordGetter.getPassword();
         try {
             User user = AccountManager.login(domain, userID, password);

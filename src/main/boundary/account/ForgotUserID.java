@@ -18,7 +18,7 @@ public class ForgotUserID {
         List<String> userIDs = users.stream().map(User::getID).toList();
         String userIDList = String.join(" | ", userIDs);
         System.out.println("| " + userIDList + " |");
-        System.out.println("Press any key to go back to the login page.");
+        System.out.println("Press any key to go back.");
         try {
             System.in.read();
         } catch (IOException e) {

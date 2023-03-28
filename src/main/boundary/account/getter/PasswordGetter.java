@@ -10,7 +10,7 @@ public class PasswordGetter {
      * @return The password entered by the user.
      */
     public static String getPassword() {
-        System.out.print("Enter your password: ");
+        System.out.print("Please enter your password (Contact administrator if you forget): ");
         return PasswordReader.getPassword();
     }
 }

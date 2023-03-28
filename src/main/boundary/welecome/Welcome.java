@@ -17,10 +17,10 @@ public class Welcome {
         Scanner scanner = new Scanner(System.in);
         System.out.println(BoundaryStrings.separator);
         System.out.println("Please enter your choice to continue.");
-        System.out.println("1. Login");
-        System.out.println("2. Forgot username");
-        System.out.println("3. Exit");
-        System.out.println("Your choice (1-3): ");
+        System.out.println("\t1. Login");
+        System.out.println("\t2. Forget username");
+        System.out.println("\t3. Exit");
+        System.out.print("Your choice (1-3): ");
         try {
             while (true) {
                 int choice = scanner.nextInt();
