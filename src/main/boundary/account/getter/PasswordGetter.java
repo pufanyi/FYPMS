@@ -1,6 +1,6 @@
 package main.boundary.account.getter;
 
-import java.util.Scanner;
+import main.utils.ui.PasswordReader;
 
 public class PasswordGetter {
     /**
@@ -11,14 +11,6 @@ public class PasswordGetter {
      */
     public static String getPassword() {
         System.out.print("Enter your password: ");
-        String password = null;
-        if (System.console() == null) {
-            Scanner scanner = new Scanner(System.in);
-            password = scanner.nextLine();
-        } else {
-            char[] passwordChars = System.console().readPassword();
-            password = new String(passwordChars);
-        }
-        return password;
+        return PasswordReader.getPassword();
     }
 }

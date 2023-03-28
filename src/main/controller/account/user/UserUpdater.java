@@ -11,19 +11,19 @@ import main.utils.exception.repository.ModelAlreadyExistsException;
 import main.utils.exception.repository.ModelNotFoundException;
 
 public class UserUpdater {
-    private static void updateStudent(Student student) throws ModelAlreadyExistsException, ModelNotFoundException {
+    private static void updateStudent(Student student) throws ModelNotFoundException {
         StudentRepository.getInstance().update(student);
     }
 
-    private static void updateSupervisor(Supervisor supervisor) throws ModelAlreadyExistsException, ModelNotFoundException {
+    private static void updateSupervisor(Supervisor supervisor) throws ModelNotFoundException {
         FacultyRepository.getInstance().update(supervisor);
     }
 
-    private static void updateCoordinator(Coordinator coordinator) throws ModelAlreadyExistsException, ModelNotFoundException {
+    private static void updateCoordinator(Coordinator coordinator) throws ModelNotFoundException {
         CoordinatorRepository.getInstance().update(coordinator);
     }
 
-    public static void updateUser(User user) throws ModelAlreadyExistsException, ModelNotFoundException {
+    public static void updateUser(User user) throws ModelNotFoundException {
         if (user instanceof Student student) {
             updateStudent(student);
         } else if (user instanceof Supervisor supervisor) {

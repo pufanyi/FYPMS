@@ -27,7 +27,7 @@ public class AccountManager {
     }
 
     public static void changePassword(UserType userType, String userID, String oldPassword, String newPassword)
-            throws PasswordIncorrectException, ModelAlreadyExistsException, ModelNotFoundException {
+            throws PasswordIncorrectException, ModelNotFoundException {
         User user = UserFinder.findUser(userID, userType);
         PasswordManager.changePassword(user, oldPassword, newPassword);
         UserUpdater.updateUser(user);
