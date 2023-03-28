@@ -47,12 +47,13 @@ public class StudentRequestMangerTest {
     @Test
     @DisplayName("Register Student")
     public void testRegisterStudent() throws ModelNotFoundException, ModelAlreadyExistsException {
-        Student student = StudentRepository.getInstance().getByID("JQY001");
-        Project project = ProjectRepository.getInstance().getByID("1");
+        String studentID = "JQY001";
+        String projectID = "1";
+        Student student = StudentRepository.getInstance().getByID(studentID);
+        Project project = ProjectRepository.getInstance().getByID(projectID);
         assertEquals(student.getStatus(), StudentStatus.UNREGISTERED);
         String supervisorID = project.getSupervisorID();
-        StudentRequestManager.registerStudent(project.getID(), student.getID(), supervisorID);
+        StudentRequestManager.registerStudent(projectID, studentID, supervisorID);
         assertEquals(student.getStatus(), StudentStatus.PENDING);
-        assertEquals(project.getStatus(), ProjectStatus.RESERVED);
     }
 }

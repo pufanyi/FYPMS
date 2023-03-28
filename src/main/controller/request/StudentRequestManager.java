@@ -68,8 +68,8 @@ public class StudentRequestManager {
             throw new StudentStatusException(student.getStatus());
         }
         project.setStatus(ProjectStatus.RESERVED);
-        student.setStatus(StudentStatus.PENDING);
         ProjectRepository.getInstance().update(project);
+        student.setStatus(StudentStatus.PENDING);
         StudentRepository.getInstance().update(student);
         RequestRepository.getInstance().add(request);
     }
