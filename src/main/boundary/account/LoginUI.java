@@ -1,12 +1,9 @@
 package main.boundary.account;
 
-import main.boundary.student.StudentMainPage;
-import main.model.user.Coordinator;
-import main.model.user.Student;
-import main.utils.ui.BoundaryStrings;
 import main.boundary.account.getter.DomainGetter;
 import main.boundary.account.getter.PasswordGetter;
 import main.boundary.account.getter.UserIDGetter;
+import main.boundary.student.StudentMainPage;
 import main.controller.account.AccountManager;
 import main.model.user.User;
 import main.model.user.UserType;

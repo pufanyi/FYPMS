@@ -1,9 +1,6 @@
 package main.boundary.student.details;
 
 import main.controller.project.ProjectManager;
-import main.controller.request.StudentRequestManager;
-import main.model.user.Student;
-import main.repository.project.ProjectRepository;
 import main.utils.exception.repository.ModelNotFoundException;
 import main.utils.ui.ChangePage;
 

@@ -1,7 +1,5 @@
 package main.model.user;
 
-import main.model.Model;
-import main.repository.Repository;
 import main.utils.parameters.NotNull;
 
 import java.util.Map;

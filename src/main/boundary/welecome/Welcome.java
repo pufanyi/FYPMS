@@ -1,9 +1,9 @@
 package main.boundary.welecome;
 
-import main.utils.ui.BoundaryStrings;
 import main.boundary.account.ForgotUserID;
 import main.boundary.account.LoginUI;
 import main.utils.exception.ui.PageBackException;
+import main.utils.ui.BoundaryStrings;
 import main.utils.ui.ChangePage;
 
 import java.util.Scanner;

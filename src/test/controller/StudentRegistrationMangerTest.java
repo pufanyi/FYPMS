@@ -16,13 +16,11 @@ import main.repository.user.FacultyRepository;
 import main.repository.user.StudentRepository;
 import main.utils.exception.repository.ModelAlreadyExistsException;
 import main.utils.exception.repository.ModelNotFoundException;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class StudentRegistrationMangerTest {
     /**

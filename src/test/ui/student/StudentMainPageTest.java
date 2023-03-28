@@ -2,7 +2,6 @@ package test.ui.student;
 
 import main.boundary.student.StudentMainPage;
 import main.controller.account.AccountManager;
-import main.model.user.Student;
 import main.model.user.User;
 import main.model.user.UserType;
 import main.repository.user.StudentRepository;

@@ -6,8 +6,6 @@ import main.repository.project.ProjectRepository;
 import main.utils.exception.repository.ModelAlreadyExistsException;
 import main.utils.exception.repository.ModelNotFoundException;
 
-import java.util.List;
-
 public class ProjectManager {
     /**
      * Change the title of a project

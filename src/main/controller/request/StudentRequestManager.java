@@ -6,7 +6,6 @@ import main.model.request.Request;
 import main.model.request.studentrequest.StudentChangeTitleRequest;
 import main.model.request.studentrequest.StudentDeregistrationRequest;
 import main.model.request.studentrequest.StudentRegistrationRequest;
-import main.model.request.supervirsorrequest.TransferStudentRequest;
 import main.model.user.Student;
 import main.model.user.StudentStatus;
 import main.repository.project.ProjectRepository;

@@ -1,16 +1,11 @@
 package main.boundary.student.details;
 
-import main.boundary.account.getter.PasswordGetter;
 import main.controller.account.AccountManager;
-import main.model.user.Student;
 import main.model.user.UserType;
-import main.repository.user.StudentRepository;
 import main.utils.exception.model.PasswordIncorrectException;
-import main.utils.exception.repository.ModelAlreadyExistsException;
 import main.utils.exception.repository.ModelNotFoundException;
 import main.utils.exception.ui.PageBackException;
 import main.utils.ui.PasswordReader;
-import test.controller.AccountManagerTest;
 
 import java.util.Scanner;
 

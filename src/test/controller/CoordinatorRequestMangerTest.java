@@ -5,8 +5,6 @@ import main.controller.request.StudentRequestManager;
 import main.model.project.Project;
 import main.model.project.ProjectStatus;
 import main.model.request.Request;
-import main.model.request.studentrequest.StudentDeregistrationRequest;
-import main.model.request.studentrequest.StudentRegistrationRequest;
 import main.model.user.Student;
 import main.model.user.StudentStatus;
 import main.model.user.Supervisor;
@@ -22,7 +20,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CoordinatorRequestMangerTest {
     @BeforeEach

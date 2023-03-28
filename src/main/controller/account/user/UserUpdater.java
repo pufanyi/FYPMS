@@ -7,7 +7,6 @@ import main.model.user.User;
 import main.repository.user.CoordinatorRepository;
 import main.repository.user.FacultyRepository;
 import main.repository.user.StudentRepository;
-import main.utils.exception.repository.ModelAlreadyExistsException;
 import main.utils.exception.repository.ModelNotFoundException;
 
 public class UserUpdater {
