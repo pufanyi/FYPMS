@@ -1,2 +1,0 @@
-studentIDFPU001hashedPasswordnullstudentNamePu FanyisupervisorIDNULLprojectIDNULLemailpufanyi@gmail.comstatusUNREGISTERED
-studentIDJQY001hashedPasswordnullstudentNameJin QingyangsupervisorIDNULLprojectIDNULLemailjinqingyang@gmail.comstatusPENDING
