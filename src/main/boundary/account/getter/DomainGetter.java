@@ -11,7 +11,7 @@ public class DomainGetter {
         System.out.println("\t2. Supervisor");
         System.out.println("\t3. FYP Coordinator");
         UserType userType = null;
-        while (userType != null) {
+        while (userType == null) {
             Scanner scanner = new Scanner(System.in);
             int domain = scanner.nextInt();
             userType = switch (domain) {
