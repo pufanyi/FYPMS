@@ -17,6 +17,7 @@ out/
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
+/.metadata/
 
 ### NetBeans ###
 /nbproject/private/
@@ -53,3 +54,6 @@ src/main/utils/config/Location.java
 *.blg
 *.dvi
 *.idx
+
+### Test Data ###
+data/

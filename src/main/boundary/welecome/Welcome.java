@@ -1,15 +1,16 @@
 package main.boundary.welecome;
 
-import main.boundary.BoundaryStrings;
+import main.utils.ui.BoundaryStrings;
 import main.boundary.account.ForgotUserID;
 import main.boundary.account.LoginUI;
 import main.utils.exception.ui.PageBackException;
+import main.utils.ui.ChangePage;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Welcome {
     public static void welcome() {
+        ChangePage.changePage();
         System.out.println("Welcome to the Final Year Project Management System!");
         System.out.println(BoundaryStrings.logo);
         Scanner scanner = new Scanner(System.in);
