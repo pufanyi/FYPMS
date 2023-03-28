@@ -27,7 +27,7 @@ public class StudentRequestManager {
      * @throws ModelAlreadyExistsException if the request already exists
      * @throws ModelNotFoundException if the project or student is not found
      */
-    public static void deregisterStudent(String projectID, String studentID, String supervisorID) throws IllegalStateException, StudentStatusException, ModelAlreadyExistsException, ModelNotFoundException {
+    public static String deregisterStudent(String projectID, String studentID, String supervisorID) throws IllegalStateException, StudentStatusException, ModelAlreadyExistsException, ModelNotFoundException {
         String requestID = RequestRepository.getInstance().size() + "";
         Request request = new StudentDeregistrationRequest(requestID, projectID, studentID, supervisorID);
         Project project = ProjectRepository.getInstance().getByID(projectID);
@@ -42,6 +42,7 @@ public class StudentRequestManager {
         if (student.getStatus() == StudentStatus.UNREGISTERED) {
             throw new StudentStatusException(student.getStatus());
         }
+        return requestID;
     }
 
     /**
@@ -53,7 +54,7 @@ public class StudentRequestManager {
      * @throws StudentStatusException if the student is not unregistered
      * @throws IllegalStateException if the project is not available
      */
-    public static void registerStudent(String projectID, String studentID, String supervisorID) throws ModelNotFoundException, StudentStatusException, IllegalStateException, ModelAlreadyExistsException {
+    public static String registerStudent(String projectID, String studentID, String supervisorID) throws ModelNotFoundException, StudentStatusException, IllegalStateException, ModelAlreadyExistsException {
         String requestID = RequestRepository.getInstance().size() + "";
         Request request = new StudentRegistrationRequest(requestID, projectID, studentID, supervisorID);
         Project project = ProjectRepository.getInstance().getByID(projectID);
@@ -72,6 +73,7 @@ public class StudentRequestManager {
         student.setStatus(StudentStatus.PENDING);
         StudentRepository.getInstance().update(student);
         RequestRepository.getInstance().add(request);
+        return requestID;
     }
 
     /**
@@ -93,10 +95,11 @@ public class StudentRequestManager {
      * @throws ModelNotFoundException if the project or student is not found
      * @throws ModelAlreadyExistsException if the request already exists
      */
-    public static void changeProjectTitle(String projectID, String newTitle, String studentID, String supervisorID) throws ModelNotFoundException, ModelAlreadyExistsException {
+    public static String changeProjectTitle(String projectID, String newTitle, String studentID, String supervisorID) throws ModelNotFoundException, ModelAlreadyExistsException {
         String requestID = RequestRepository.getInstance().size() + "";
         Request request = new StudentChangeTitleRequest(requestID, projectID, newTitle, studentID, supervisorID);
         RequestRepository.getInstance().add(request);
+        return requestID;
     }
 }
 

@@ -55,7 +55,8 @@ public class CoordinatorRequestManager {
      * @param request the request to be processed
      * @throws ModelNotFoundException if the request is not found
      */
-    public static void registerStudent(Request request) throws ModelNotFoundException {
+    public static void registerStudent(String requestID) throws ModelNotFoundException {
+        Request request = RequestRepository.getInstance().getByID(requestID);
         if(request.getStatus() == RequestStatus.APPROVED){
             String projectID = request.getProjectID();
             String studentID = request.getStudentID();
@@ -84,7 +85,7 @@ public class CoordinatorRequestManager {
     /**
      * display all the requests
      */
-    public void viewAllRequest() {
+    public static void viewAllRequest() {
         for (Request request : RequestRepository.getInstance()) {
             request.display();
         }
@@ -93,7 +94,7 @@ public class CoordinatorRequestManager {
     /**
      * display all the pending requests
      */
-    public void viewPendingRequest() {
+    public static void viewPendingRequest() {
         for (Request request : RequestRepository.getInstance().findByRules(request -> request.getStatus() == RequestStatus.PENDING)) {
             request.display();
         }
@@ -105,7 +106,7 @@ public class CoordinatorRequestManager {
      * @throws ModelNotFoundException if the request is not found
      * @throws IllegalStateException if the request is not pending
      */
-    public void approveRequest(String requestID) throws ModelNotFoundException, IllegalStateException {
+    public static void approveRequest(String requestID) throws ModelNotFoundException, IllegalStateException {
         Request request = RequestRepository.getInstance().getByID(requestID);
         if(request.getStatus() != RequestStatus.PENDING){
             throw new IllegalStateException("Request is not pending");
@@ -120,7 +121,7 @@ public class CoordinatorRequestManager {
      * @throws ModelNotFoundException if the request is not found
      * @throws IllegalStateException if the request is not pending
      */
-    public void rejectRequest(String requestID) throws ModelNotFoundException, IllegalStateException {
+    public static void rejectRequest(String requestID) throws ModelNotFoundException, IllegalStateException {
         Request request = RequestRepository.getInstance().getByID(requestID);
         if(request.getStatus() != RequestStatus.PENDING){
             throw new IllegalStateException("Request is not pending");
