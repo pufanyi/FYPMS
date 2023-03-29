@@ -69,7 +69,7 @@ public class AccountManager {
     }
 
     private static void loadStudents() {
-        List<List<String>> studentList = CSVReader.read(Location.LOCATION + "\\resources\\StudentList.csv", true);
+        List<List<String>> studentList = CSVReader.read(Location.LOCATION + "/resources/StudentList.csv", true);
         for (List<String> row : studentList) {
             String name = row.get(0);
             String email = row.get(1);
@@ -83,7 +83,7 @@ public class AccountManager {
     }
 
     private static void loadCoordinators() {
-        List<List<String>> coordinatorList = CSVReader.read(Location.LOCATION + "\\resources\\CoordinatorList.csv", true);
+        List<List<String>> coordinatorList = CSVReader.read(Location.LOCATION + "/resources/CoordinatorList.csv", true);
         for (List<String> row : coordinatorList) {
             String name = row.get(0);
             String email = row.get(1);
@@ -97,7 +97,7 @@ public class AccountManager {
     }
 
     private static void loadFaculties() {
-        List<List<String>> facultyList = CSVReader.read(Location.LOCATION + "\\resources\\FacultyList.csv", true);
+        List<List<String>> facultyList = CSVReader.read(Location.LOCATION + "/resources/FacultyList.csv", true);
         for (List<String> row : facultyList) {
             String name = row.get(0);
             String email = row.get(1);
