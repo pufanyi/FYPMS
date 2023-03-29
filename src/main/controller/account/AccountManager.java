@@ -8,9 +8,11 @@ import main.model.user.*;
 import main.repository.user.CoordinatorRepository;
 import main.repository.user.FacultyRepository;
 import main.repository.user.StudentRepository;
+import main.utils.config.Location;
 import main.utils.exception.model.PasswordIncorrectException;
 import main.utils.exception.repository.ModelAlreadyExistsException;
 import main.utils.exception.repository.ModelNotFoundException;
+import main.utils.iocontrol.CSVReader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,5 +62,63 @@ public class AccountManager {
     public static User register(UserType userType, String userID, String name, String email)
             throws ModelAlreadyExistsException {
         return register(userType, userID, "password", name, email);
+    }
+
+    private static String getID(String email) {
+        return email.split("@")[0];
+    }
+
+    private static void loadStudents() {
+        List<List<String>> studentList = CSVReader.read(Location.LOCATION + "\\resources\\StudentList.csv", true);
+        for (List<String> row : studentList) {
+            String name = row.get(0);
+            String email = row.get(1);
+            String userID = getID(email);
+            try {
+                register(UserType.STUDENT, userID, name, email);
+            } catch (ModelAlreadyExistsException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private static void loadCoordinators() {
+        List<List<String>> coordinatorList = CSVReader.read(Location.LOCATION + "\\resources\\CoordinatorList.csv", true);
+        for (List<String> row : coordinatorList) {
+            String name = row.get(0);
+            String email = row.get(1);
+            String userID = getID(email);
+            try {
+                register(UserType.COORDINATOR, userID, name, email);
+            } catch (ModelAlreadyExistsException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private static void loadFaculties() {
+        List<List<String>> facultyList = CSVReader.read(Location.LOCATION + "\\resources\\FacultyList.csv", true);
+        for (List<String> row : facultyList) {
+            String name = row.get(0);
+            String email = row.get(1);
+            String userID = getID(email);
+            try {
+                register(UserType.FACULTY, userID, name, email);
+            } catch (ModelAlreadyExistsException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void loadUsers() {
+        loadStudents();
+        loadCoordinators();
+        loadFaculties();
+    }
+
+    public static boolean repositoryIsEmpty() {
+        return StudentRepository.getInstance().isEmpty() &&
+                CoordinatorRepository.getInstance().isEmpty() &&
+                FacultyRepository.getInstance().isEmpty();
     }
 }
