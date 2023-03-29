@@ -88,6 +88,10 @@ public class ProjectManager {
         ProjectRepository.getInstance().update(p1);
     }
 
+    /**
+     * generate details of project
+     * @throws ModelNotFoundException
+     */
     public static void generateProjectDetails() throws ModelNotFoundException {
         System.out.println("1. By ProjectID");
         System.out.println("1. By SupervisorID");
@@ -120,18 +124,32 @@ public class ProjectManager {
         }
     }
 
+    /**
+     * generate details of project by ProjectID
+     * @throws ModelNotFoundException
+     */
     public static void generateDetailsByProjectID() throws ModelNotFoundException{
         System.out.println("Enter the ProjectID to search");
         String s1 = new Scanner(System.in).next();
         Project p1=ProjectRepository.getInstance().getByID(s1);
         p1.displayProject();
     }
+
+    /**
+     * generate details of project by SupervisorID
+     * @throws ModelNotFoundException
+     */
     public static void generateDetailsBySupervisorID() throws ModelNotFoundException{
         System.out.println("Enter the SupervisorID to search");
         String s1 = new Scanner(System.in).next();
         for(Project p:ProjectRepository.getInstance().findByRules(p->p.getSupervisorID()==s1))
             p.displayProject();
     }
+
+    /**
+     * generate details of project by StudentID
+     * @throws ModelNotFoundException
+     */
     public static void generateDetailsByStudentID() throws ModelNotFoundException{
         System.out.println("Enter the StudentID to search");
         String s1 =  new Scanner(System.in).next();
@@ -139,6 +157,10 @@ public class ProjectManager {
             p.displayProject();
     }
 
+    /**
+     * generate details of project by Status
+     * @throws ModelNotFoundException
+     */
     public static void generateDetailsByStatus() throws ModelNotFoundException{
         System.out.println("Enter the Status to search");
         String s1 = new Scanner(System.in).next();
