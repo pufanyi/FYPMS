@@ -8,7 +8,7 @@ import main.repository.user.FacultyRepository;
 import main.utils.config.Location;
 import main.utils.exception.repository.ModelAlreadyExistsException;
 import main.utils.exception.repository.ModelNotFoundException;
-import main.utils.iocontrol.TSVReader;
+import main.utils.iocontrol.CSVReader;
 
 import java.util.List;
 
@@ -117,7 +117,7 @@ public class ProjectManager {
     }
 
     public static void loadProjects() {
-        List<List<String>> projects = TSVReader.read(Location.LOCATION + "\\resources\\ProjectList.txt", true);
+        List<List<String>> projects = CSVReader.read(Location.LOCATION + "\\resources\\ProjectList.csv", true);
         for (List<String> project : projects) {
             try {
                 String supervisorName = project.get(0);

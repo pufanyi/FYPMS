@@ -1,4 +1,4 @@
-package test.ui;
+package test;
 
 import main.Main;
 import main.boundary.UIEntry;

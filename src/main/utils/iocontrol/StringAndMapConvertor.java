@@ -14,6 +14,9 @@ public class StringAndMapConvertor {
         String[] pairs = string.split(SEPARATOR_STRING);
         for (String pair : pairs) {
             String[] keyValue = pair.split(DELIMITER_STRING);
+            if (keyValue.length != 2) {
+                throw new IllegalArgumentException("Invalid key-value pair: " + pair);
+            }
             map.put(keyValue[0], keyValue[1]);
         }
         return map;
