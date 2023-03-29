@@ -15,6 +15,7 @@ import main.repository.user.StudentRepository;
 import main.utils.exception.model.StudentStatusException;
 import main.utils.exception.repository.ModelAlreadyExistsException;
 import main.utils.exception.repository.ModelNotFoundException;
+import main.utils.exception.ui.PageBackException;
 
 public class CoordinatorRequestManager {
     /**
@@ -110,10 +111,17 @@ public class CoordinatorRequestManager {
     /**
      * display all the requests
      */
-    public static void viewAllRequest() {
+    public static void viewAllRequest() throws PageBackException {
         for (Request request : RequestRepository.getInstance()) {
             request.display();
         }
+        System.out.println("Press enter to go back");
+        try {
+            System.in.read();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        throw new PageBackException();
     }
 
     /**

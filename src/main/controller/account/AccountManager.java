@@ -12,7 +12,7 @@ import main.utils.config.Location;
 import main.utils.exception.model.PasswordIncorrectException;
 import main.utils.exception.repository.ModelAlreadyExistsException;
 import main.utils.exception.repository.ModelNotFoundException;
-import main.utils.iocontrol.CSVReader;
+import main.utils.iocontrol.TSVReader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +69,7 @@ public class AccountManager {
     }
 
     private static void loadStudents() {
-        List<List<String>> studentList = CSVReader.read(Location.LOCATION + "\\resources\\StudentList.csv", true);
+        List<List<String>> studentList = TSVReader.read(Location.LOCATION + "\\resources\\StudentList.txt", true);
         for (List<String> row : studentList) {
             String name = row.get(0);
             String email = row.get(1);
@@ -83,7 +83,7 @@ public class AccountManager {
     }
 
     private static void loadCoordinators() {
-        List<List<String>> coordinatorList = CSVReader.read(Location.LOCATION + "\\resources\\CoordinatorList.csv", true);
+        List<List<String>> coordinatorList = TSVReader.read(Location.LOCATION + "\\resources\\CoordinatorList.txt", true);
         for (List<String> row : coordinatorList) {
             String name = row.get(0);
             String email = row.get(1);
@@ -97,7 +97,7 @@ public class AccountManager {
     }
 
     private static void loadFaculties() {
-        List<List<String>> facultyList = CSVReader.read(Location.LOCATION + "\\resources\\FacultyList.csv", true);
+        List<List<String>> facultyList = TSVReader.read(Location.LOCATION + "\\resources\\FacultyList.txt", true);
         for (List<String> row : facultyList) {
             String name = row.get(0);
             String email = row.get(1);

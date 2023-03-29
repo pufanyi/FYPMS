@@ -5,12 +5,12 @@ import main.model.project.ProjectStatus;
 import main.model.user.Supervisor;
 import main.repository.project.ProjectRepository;
 import main.repository.user.FacultyRepository;
+import main.utils.config.Location;
 import main.utils.exception.repository.ModelAlreadyExistsException;
 import main.utils.exception.repository.ModelNotFoundException;
-import main.utils.iocontrol.CSVReader;
+import main.utils.iocontrol.TSVReader;
 
 import java.util.List;
-import main.utils.parameters.NotNull;
 
 import java.util.Scanner;
 
@@ -117,7 +117,7 @@ public class ProjectManager {
     }
 
     public static void loadProjects() {
-        List<List<String>> projects = CSVReader.read("src\\main\\resources\\ProjectList.csv", true);
+        List<List<String>> projects = TSVReader.read(Location.LOCATION + "\\resources\\ProjectList.txt", true);
         for (List<String> project : projects) {
             try {
                 String supervisorName = project.get(0);

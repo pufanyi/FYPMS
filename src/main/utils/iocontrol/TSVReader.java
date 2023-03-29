@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class CSVReader {
+public class TSVReader {
     public static List<List<String>> read(String filePath, boolean hasHeader) {
         List<List<String>> list = new ArrayList<>();
 
@@ -17,9 +17,14 @@ public class CSVReader {
                 br.readLine();
             }
             while ((line = br.readLine()) != null) {
-                String[] values = line.split(",");
+                String[] values = line.split("\t");
+                if (values.length == 0) {
+                    continue;
+                }
                 List<String> row = new ArrayList<>();
-                Collections.addAll(row, values);
+                for (String value : values) {
+                    row.add(value.trim());
+                }
                 list.add(row);
             }
         } catch (IOException e) {
