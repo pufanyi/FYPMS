@@ -46,4 +46,10 @@ public class SupervisorManagerTest {
         FacultyRepository.getInstance().add(supervisor1);
         FacultyRepository.getInstance().add(supervisor2);
     }
+
+    @Test
+    @DisplayName("Transfer supervisor request")
+    public void transferSupervisorTest() {
+        
+    }
 }
