@@ -1,5 +1,6 @@
 package main.boundary.coordinator;
 
+import main.boundary.coordinator.details.ProjectDetailsGenerator;
 import main.boundary.student.StudentMainPage;
 import main.boundary.student.details.ChangeStudentPassword;
 import main.boundary.student.details.ViewStudentProfile;
@@ -45,7 +46,7 @@ public class CoordinatorMainPage {
                     case 3 -> ProjectManager.viewAllProject();
                     case 4 -> CoordinatorRequestManager.viewPendingRequest();
                     case 5 -> CoordinatorRequestManager.viewAllRequest();
-                    case 6 -> ProjectManager.generateProjectDetails();
+                    case 6 -> ProjectDetailsGenerator.generateProjectDetails();
                     //case 10 -> Logout.logout();
                     default -> System.out.println("Invalid choice. Please try again.");
                 }
