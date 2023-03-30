@@ -1,9 +1,6 @@
 package main.boundary.coordinator;
 
 import main.boundary.coordinator.details.ProjectDetailsGenerator;
-import main.boundary.student.StudentMainPage;
-import main.boundary.student.details.ChangeStudentPassword;
-import main.boundary.student.details.ViewStudentProfile;
 import main.controller.project.ProjectManager;
 import main.controller.request.CoordinatorRequestManager;
 import main.model.user.Coordinator;
@@ -16,12 +13,12 @@ import main.utils.ui.ChangePage;
 import java.util.Scanner;
 
 public class CoordinatorMainPage {
-    public static void coordinatorMainPage(User user){
-        if (user instanceof Coordinator){
+    public static void coordinatorMainPage(User user) {
+        if (user instanceof Coordinator) {
             ChangePage.changePage();
             System.out.println(BoundaryStrings.separator);
             System.out.println("Welcome to Coordinator Main Page");
-            System.out.println("Hello, " + user.getUserName()+"!");
+            System.out.println("Hello, " + user.getUserName() + "!");
             System.out.println();
             System.out.println("\t1. View my profile");
             System.out.println("\t2. Change my password");
@@ -50,12 +47,13 @@ public class CoordinatorMainPage {
                     //case 10 -> Logout.logout();
                     default -> System.out.println("Invalid choice. Please try again.");
                 }
-          }catch( ModelNotFoundException e) {
-               CoordinatorMainPage.coordinatorMainPage(user);
+            } catch (PageBackException e) {
+                CoordinatorMainPage.coordinatorMainPage(user);
+            } catch (ModelNotFoundException e) {
+                throw new RuntimeException(e);
             }
 
-        }
-        else {
+        } else {
             throw new IllegalArgumentException("User is not a student.");
         }
     }
