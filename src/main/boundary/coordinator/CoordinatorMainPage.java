@@ -50,8 +50,8 @@ public class CoordinatorMainPage {
                     //case 10 -> Logout.logout();
                     default -> System.out.println("Invalid choice. Please try again.");
                 }
-          } catch(PageBackException  | ModelNotFoundException e) {
-                CoordinatorMainPage.coordinatorMainPage(user);
+          }catch( ModelNotFoundException e) {
+               CoordinatorMainPage.coordinatorMainPage(user);
             }
 
         }
