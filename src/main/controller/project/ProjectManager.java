@@ -91,6 +91,9 @@ public class ProjectManager {
             p.displayProject();
     }
 
+    public void viewProjectSubmittedBySupervisor(String SupervisorID){
+        Project p1=Pr
+    }
     /**
      * deallocate a project
      *
