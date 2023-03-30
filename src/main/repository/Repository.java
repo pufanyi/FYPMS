@@ -9,19 +9,34 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * The Repository abstract class provides the basic functionality for storing, retrieving, and managing a list of model objects.
+ * It implements the Savable interface and provides methods for adding, removing, updating, and finding model objects.
+ * @param <ModelObject> the type of model object stored in the repository
+ */
 public abstract class Repository<ModelObject extends Model> extends Savable<ModelObject> implements Iterable<ModelObject> {
+
+    /**
+     * The list of model objects stored in the repository.
+     */
     List<ModelObject> listOfModelObjects;
 
+    /**
+     * Creates a new instance of the Repository class.
+     */
     public Repository() {
         super();
         listOfModelObjects = new ArrayList<>();
     }
 
+    /**
+     * Gets the path of the repository file.
+     * @return the path of the repository file
+     */
     public abstract String getFilePath();
 
     /**
      * Gets the list of mappable objects.
-     *
      * @return the list of mappable objects
      */
     @Override
@@ -30,10 +45,10 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
     }
 
     /**
-     * method to get the by ID
-     *
-     * @param modelObjectID
-     * @return
+     * Gets a model object by ID
+     * @param modelObjectID the ID of the model object to get
+     * @return the model object with the given ID
+     * @throws ModelNotFoundException if the model object with the given ID does not exist
      */
     public ModelObject getByID(String modelObjectID) throws ModelNotFoundException {
         for (ModelObject modelObject : listOfModelObjects) {
@@ -44,6 +59,11 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
         throw new ModelNotFoundException("No model object with ID " + modelObjectID + " exists.");
     }
 
+    /**
+     * Checks whether the repository contains a model object with the given ID.
+     * @param modelObjectID the ID of the model object to check
+     * @return true if the repository contains a model object with the given ID, false otherwise
+     */
     public boolean contains(String modelObjectID) {
         try {
             getByID(modelObjectID);
@@ -53,6 +73,11 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
         }
     }
 
+    /**
+     * Adds a model object to the repository.
+     * @param modelObject the model object to add
+     * @throws ModelAlreadyExistsException if a model object with the same ID already exists in the repository
+     */
     public void add(ModelObject modelObject) throws ModelAlreadyExistsException {
         if (contains(modelObject.getID())) {
             throw new ModelAlreadyExistsException("A model object with ID " + modelObject.getID() + " already exists.");
@@ -62,54 +87,89 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
         }
     }
 
-    public void remove(String modelObjectID) throws ModelAlreadyExistsException, ModelNotFoundException {
+    /**
+     * Removes a model object from the repository by ID.
+     * @param modelObjectID the ID of the model object to remove
+     * @throws ModelNotFoundException if the model object with the given ID does not exist
+     */
+    public void remove(String modelObjectID) throws ModelNotFoundException {
         listOfModelObjects.remove(getByID(modelObjectID));
         save(getFilePath());
     }
 
+    /**
+     * Checks whether the repository is empty.
+     * @return true if the repository is empty, false otherwise
+     */
     public boolean isEmpty() {
         return listOfModelObjects.isEmpty();
     }
 
+    /**
+     * Gets the size of the repository.
+     * @return the size of the repository
+     */
     public int size() {
         return listOfModelObjects.size();
     }
 
+    /**
+     * Removes all model objects from this repository.
+     */
     public void clear() {
         listOfModelObjects.clear();
         save(getFilePath());
     }
 
+    /**
+     * Updates the specified model object in the repository.
+     * @param modelObject the model object to update
+     * @throws ModelNotFoundException if the specified model object is not found in the repository
+     */
     public void update(ModelObject modelObject) throws ModelNotFoundException {
         ModelObject oldModelObject = getByID(modelObject.getID());
         listOfModelObjects.set(listOfModelObjects.indexOf(oldModelObject), modelObject);
         save(getFilePath());
     }
 
+    /**
+     * Updates all model objects in the repository with the specified list of model objects.
+     * @param modelObjects the list of model objects to update
+     */
     public void updateAll(List<ModelObject> modelObjects) {
         listOfModelObjects = modelObjects;
         save(getFilePath());
     }
 
+    /**
+     * Loads the list of model objects from the repository file.
+     */
     public void load() {
         this.listOfModelObjects = new ArrayList<>();
         load(getFilePath());
     }
 
+    /**
+     * Saves the list of model objects to the repository file.
+     */
     public void save() {
         save(getFilePath());
     }
 
     /**
-     * Returns an iterator over elements of type {@code T}.
-     *
-     * @return an Iterator.
+     * Returns an iterator over the list of model objects of type {@code T}.
+     * @return an iterator over the list of model objects
      */
     @Override
     public Iterator<ModelObject> iterator() {
         return listOfModelObjects.iterator();
     }
 
+    /**
+     * Finds all model objects in the repository that match the specified rules.
+     * @param rules the rules to match
+     * @return a list of all model objects in the repository that match the specified rules
+     */
     @SafeVarargs
     public final List<ModelObject> findByRules(RepositoryRule<ModelObject>... rules) {
         List<ModelObject> modelObjects = new ArrayList<>();
@@ -128,10 +188,18 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
         return modelObjects;
     }
 
+    /**
+     * Gets a list of all model objects in the repository.
+     * @return a list of all model objects in the repository
+     */
     public List<ModelObject> getList() {
         return findByRules();
     }
 
+    /**
+     * Provides a rule for filtering model objects in the repository.
+     * @param <ModelObject> the type of model object stored in the repository
+     */
     public interface RepositoryRule<ModelObject> {
         boolean isMatch(ModelObject modelObject);
     }

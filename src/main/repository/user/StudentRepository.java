@@ -8,21 +8,36 @@ import java.util.Map;
 
 import static main.utils.config.Location.LOCATION;
 
+/**
+ * The StudentRepository class is a repository for managing the persistence of student objects
+ * through file I/O operations.
+ * It extends the Repository class, which provides basic CRUD operations for the repository.
+ */
 public class StudentRepository extends Repository<Student> {
+
+    /**
+     * The path of the repository file.
+     */
     private static final String FILE_PATH = "/data/user/student.txt";
 
+    /**
+     * Constructor for the StudentRepository class.
+     */
     StudentRepository() {
         super();
         load();
     }
 
+    /**
+     * Gets a new instance of the StudentRepository class.
+     * @return a new instance of the StudentRepository class
+     */
     public static StudentRepository getInstance() {
         return new StudentRepository();
     }
 
     /**
      * Gets the path of the repository file.
-     *
      * @return the path of the repository file
      */
     @Override
@@ -32,7 +47,6 @@ public class StudentRepository extends Repository<Student> {
 
     /**
      * Sets the list of mappable objects.
-     *
      * @param listOfMappableObjects the list of mappable objects
      */
     @Override

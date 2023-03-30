@@ -16,7 +16,7 @@ public class PasswordReader {
      * @return The password read from the console as a String.
      */
     public static String getPassword() {
-        String password = null;
+        String password;
         if (System.console() == null) {
             password = new Scanner(System.in).nextLine();
         } else {
