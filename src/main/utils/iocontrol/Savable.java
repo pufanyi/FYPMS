@@ -6,7 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * An abstract class for managing objects that can be mapped to and from key-value pairs.
+ *
+ * @param <MappableObject> a class that can be mapped to and from key-value pairs
+ */
 public abstract class Savable<MappableObject extends Mappable> {
+
     /**
      * Gets the list of mappable objects.
      *
@@ -17,7 +23,11 @@ public abstract class Savable<MappableObject extends Mappable> {
     /**
      * Sets the list of mappable objects.
      *
-     * @param listOfMappableObjects the list of mappable objects
+     * @param listOfMappableObjects the list of mappable objects to set
+     * @throws NoSuchMethodException     if a requested method is not found
+     * @throws InvocationTargetException if an invoked method throws an exception
+     * @throws InstantiationException    if a class cannot be instantiated
+     * @throws IllegalAccessException    if an attempt is made to access a private field or method
      */
     protected abstract void setAll(List<Map<String, String>> listOfMappableObjects) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException;
 
@@ -25,6 +35,7 @@ public abstract class Savable<MappableObject extends Mappable> {
      * Saves the list of mappable objects to a file.
      *
      * @param FILE_PATH the path of the file to save to
+     * @throws RuntimeException if the data could not be saved to the file
      */
     protected void save(final String FILE_PATH) {
         try (PrintWriter printWriter = new PrintWriter(new FileWriter(FILE_PATH))) {
@@ -41,6 +52,7 @@ public abstract class Savable<MappableObject extends Mappable> {
      * Loads the list of mappable objects from a file.
      *
      * @param FILE_PATH the path of the file to load from
+     * @throws RuntimeException if the data could not be loaded from the file
      */
     protected void load(final String FILE_PATH) {
         List<Map<String, String>> listOfMappableObjects = new ArrayList<>();

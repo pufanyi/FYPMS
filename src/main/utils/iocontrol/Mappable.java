@@ -4,7 +4,11 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Interface for objects that can be mapped to/from a Map.
+ */
 public interface Mappable {
+
     /**
      * Converts the object to a map
      *
