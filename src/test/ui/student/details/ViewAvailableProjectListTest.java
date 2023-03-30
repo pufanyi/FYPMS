@@ -1,6 +1,6 @@
 package test.ui.student.details;
 
-import main.boundary.student.details.ViewAvailableProjectList;
+import main.boundary.project.ViewAvailableProjectList;
 import main.controller.project.ProjectManager;
 import main.repository.project.ProjectRepository;
 import main.utils.exception.repository.ModelAlreadyExistsException;

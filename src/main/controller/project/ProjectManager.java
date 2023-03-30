@@ -12,8 +12,6 @@ import main.utils.iocontrol.CSVReader;
 
 import java.util.List;
 
-import java.util.Scanner;
-
 public class ProjectManager {
     /**
      * Change the title of a project
@@ -32,11 +30,11 @@ public class ProjectManager {
     /**
      * View all the projects that are available
      *
+     * @return
      * @throws ModelNotFoundException if the project is not found
      */
-    public static void viewAvailableProjects() throws ModelNotFoundException {
-        for (Project p : ProjectRepository.getInstance().findByRules(p -> p.getStatus() == ProjectStatus.AVAILABLE))
-            p.displayProject();
+    public static List<Project> viewAvailableProjects() throws ModelNotFoundException {
+        return ProjectRepository.getInstance().findByRules(p -> p.getStatus() == ProjectStatus.AVAILABLE);
     }
 
     /**
@@ -81,18 +79,8 @@ public class ProjectManager {
         ProjectRepository.getInstance().update(p1);
     }
 
-    /**
-     * View all the projects
-     *
-     * @throws ModelNotFoundException if the project is not found
-     */
-    public static void viewAllProject() throws ModelNotFoundException {
-        for (Project p : ProjectRepository.getInstance())
-            p.displayProject();
-    }
-
     public void viewProjectSubmittedBySupervisor(String SupervisorID){
-        Project p1=Pr
+//        Project p1=Pr
     }
     /**
      * deallocate a project
