@@ -6,7 +6,7 @@ import main.repository.Repository;
 import java.util.List;
 import java.util.Map;
 
-import static main.utils.config.Location.LOCATION;
+import static main.utils.config.Location.RESOURCE_LOCATION;
 
 /**
  * The ProjectRepository class is a repository that manages the persistence and retrieval of Project objects
@@ -44,7 +44,7 @@ public class ProjectRepository extends Repository<Project> {
      */
     @Override
     public String getFilePath() {
-        return LOCATION + FILE_PATH;
+        return RESOURCE_LOCATION + FILE_PATH;
     }
 
     /**

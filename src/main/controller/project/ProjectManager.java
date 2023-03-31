@@ -108,7 +108,7 @@ public class ProjectManager {
     }
 
     public static void loadProjects() {
-        List<List<String>> projects = CSVReader.read(Location.LOCATION + "\\resources\\ProjectList.csv", true);
+        List<List<String>> projects = CSVReader.read(Location.RESOURCE_LOCATION + "\\resources\\ProjectList.csv", true);
         for (List<String> project : projects) {
             try {
                 String supervisorName = project.get(0);

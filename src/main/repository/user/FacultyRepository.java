@@ -43,7 +43,7 @@ public class FacultyRepository extends Repository<Supervisor> {
      */
     @Override
     public String getFilePath() {
-        return Location.LOCATION + FILE_PATH;
+        return Location.RESOURCE_LOCATION + FILE_PATH;
     }
 
     /**

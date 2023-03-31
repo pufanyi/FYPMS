@@ -44,7 +44,7 @@ public class RequestRepository extends Repository<Request> {
      */
     @Override
     public String getFilePath() {
-        return Location.LOCATION + FILE_PATH;
+        return Location.RESOURCE_LOCATION + FILE_PATH;
     }
 
     /**

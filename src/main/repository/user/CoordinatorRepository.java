@@ -6,7 +6,7 @@ import main.repository.Repository;
 import java.util.List;
 import java.util.Map;
 
-import static main.utils.config.Location.LOCATION;
+import static main.utils.config.Location.RESOURCE_LOCATION;
 
 /**
  * The CoordinatorRepository class is a repository that stores Coordinator objects
@@ -44,7 +44,7 @@ public class CoordinatorRepository extends Repository<Coordinator> {
      */
     @Override
     public String getFilePath() {
-        return LOCATION + FILE_PATH;
+        return RESOURCE_LOCATION + FILE_PATH;
     }
 
     /**

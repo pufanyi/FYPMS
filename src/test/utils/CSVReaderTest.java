@@ -15,7 +15,7 @@ public class CSVReaderTest {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        List<List<String>> list = CSVReader.read(Location.LOCATION + "/resources/FacultyList.csv", true);
+        List<List<String>> list = CSVReader.read(Location.RESOURCE_LOCATION + "/resources/FacultyList.csv", true);
         for (List<String> row : list) {
             System.out.println("Row size: " + row.size());
             for (String value : row) {

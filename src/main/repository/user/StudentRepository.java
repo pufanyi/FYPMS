@@ -6,7 +6,7 @@ import main.repository.Repository;
 import java.util.List;
 import java.util.Map;
 
-import static main.utils.config.Location.LOCATION;
+import static main.utils.config.Location.RESOURCE_LOCATION;
 
 /**
  * The StudentRepository class is a repository for managing the persistence of student objects
@@ -44,7 +44,7 @@ public class StudentRepository extends Repository<Student> {
      */
     @Override
     public String getFilePath() {
-        return LOCATION + FILE_PATH;
+        return RESOURCE_LOCATION + FILE_PATH;
     }
 
     /**

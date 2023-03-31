@@ -35,9 +35,6 @@ bin/
 ### JAR Files ###
 *.jar
 
-### Path Files ###
-src/main/utils/config/Location.java
-
 ### LaTeX Build Files ###
 *.aux
 *.fdb_latexmk

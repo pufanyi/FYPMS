@@ -40,7 +40,7 @@ public class CoordinatorMainPage {
                 switch (choice) {
                     //case 1 -> ViewStudentProfile.viewStudentProfile(student);
                     //case 2 -> ChangeStudentPassword.changeStudentPassword(student.getID());
-                    case 3 -> ProjectManager.viewAllProject();
+//                    case 3 -> ProjectManager.viewAllProject();
                     case 4 -> CoordinatorRequestManager.viewPendingRequest();
                     case 5 -> CoordinatorRequestManager.viewAllRequest();
                     case 6 -> ProjectDetailsGenerator.generateProjectDetails();
