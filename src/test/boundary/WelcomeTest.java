@@ -1,4 +1,4 @@
-package test.ui;
+package test.boundary;
 
 import main.boundary.welecome.Welcome;
 

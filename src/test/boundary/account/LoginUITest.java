@@ -1,4 +1,4 @@
-package test.ui.account;
+package test.boundary.account;
 
 import main.boundary.account.LoginUI;
 import main.controller.account.AccountManager;

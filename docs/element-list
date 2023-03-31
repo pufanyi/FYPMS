@@ -32,13 +32,13 @@ main.utils.iocontrol
 main.utils.parameters
 main.utils.ui
 test
+test.boundary
+test.boundary.account
+test.boundary.student
+test.boundary.student.details
 test.controller
 test.model.project
 test.model.user
 test.repository.project
 test.repository.user
-test.ui
-test.ui.account
-test.ui.student
-test.ui.student.details
 test.utils

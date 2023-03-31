@@ -1,4 +1,4 @@
-package test.ui.account;
+package test.boundary.account;
 
 import main.boundary.account.getter.DomainGetter;
 import main.model.user.UserType;

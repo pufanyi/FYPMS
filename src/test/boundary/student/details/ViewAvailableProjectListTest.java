@@ -1,4 +1,4 @@
-package test.ui.student.details;
+package test.boundary.student.details;
 
 import main.boundary.project.ViewAvailableProjectList;
 import main.controller.project.ProjectManager;
