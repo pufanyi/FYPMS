@@ -47,7 +47,7 @@ public class ProjectDetailsGenerator {
     /**
      * generate details of project by Status
      *
-     * @throws ModelNotFoundException
+     * @throws ModelNotFoundException if the model object with the given ID does not exist
      */
     public static void generateDetailsByStatus() throws ModelNotFoundException {
         System.out.println("Enter the Status to search");
