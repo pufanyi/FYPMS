@@ -180,6 +180,10 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
     /**
      * Finds all model objects in the repository that match the specified rules.
      * <p>
+     * Multiple rules can be specified, and all rules must be satisfied for a model object to be considered a match.
+     * <p>
+     * The rules are specified as lambda expressions that take a model object as a parameter and return a boolean.
+     * <p>
      * Here is an example of how to use this method:
      *
      * <pre>
