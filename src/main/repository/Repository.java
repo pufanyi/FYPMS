@@ -179,6 +179,17 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
 
     /**
      * Finds all model objects in the repository that match the specified rules.
+     * <p>
+     * Here is an example of how to use this method:
+     *
+     * <pre>
+     *     List&lt;Student&gt; modelObjects = repository.findByRules(
+     *         student -&gt; student.getFirstName().equals("John"),
+     *         student -&gt; student.getLastName().equals("Smith")
+     *     );
+     * </pre>
+     * <p>
+     * This will return a list of all students whose first name is "John" and whose last name is "Smith".
      *
      * @param rules the rules to match
      * @return a list of all model objects in the repository that match the specified rules
@@ -215,7 +226,7 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
      *
      * @param <ModelObject> the type of model object stored in the repository
      */
-    private interface RepositoryRule<ModelObject> {
+    public interface RepositoryRule<ModelObject> {
         boolean isMatch(ModelObject modelObject);
     }
 }
