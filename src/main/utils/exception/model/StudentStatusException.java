@@ -1,26 +1,23 @@
-/**
- * The `main.utils.exception.model` package contains classes related to exception handling.
- */
 package main.utils.exception.model;
 
 import main.model.user.StudentStatus;
 
 /**
- * The {@code StudentStatusException} class is a custom exception that is thrown when a student's status prevents them from
+ * The {@link StudentStatusException} class is a custom exception that is thrown when a student's status prevents them from
  * performing an action related to selecting a project for their FYP.
- * It extends the `IllegalStateException` class.
+ * It extends the {@link IllegalStateException} class.
  */
 public class StudentStatusException extends IllegalStateException {
 
     /**
-     * The `status` instance variable holds the `StudentStatus` of the student that caused the exception.
+     * The {@link status} instance variable holds the {@link StudentStatus} of the student that caused the exception.
      */
     StudentStatus status;
 
     /**
-     * Creates a new instance of the {@code StudentStatusException} class with a custom error message based on the student's status.
+     * Creates a new instance of the {@link StudentStatusException} class with a custom error message based on the student's status.
      *
-     * @param status The `StudentStatus` of the student that caused the exception.
+     * @param status The {@link StudentStatus} of the student that caused the exception.
      */
     public StudentStatusException(StudentStatus status) {
         this.status = status;

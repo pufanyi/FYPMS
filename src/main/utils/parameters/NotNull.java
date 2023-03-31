@@ -17,7 +17,7 @@
  * <p>
  * Class<? extends Exception> exception() default Exception.class: Defines another optional
  * attribute for the annotation that can be used to specify an exception that should be thrown
- * if the annotated element is null. In this case, the default value is the `Exception` class.
+ * if the annotated element is null. In this case, the default value is the {@link Exception} class.
  */
 package main.utils.parameters;
 

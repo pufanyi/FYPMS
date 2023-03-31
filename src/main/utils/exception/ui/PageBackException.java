@@ -1,17 +1,14 @@
-/**
- * The `main.utils.exception.ui` package contains classes related to exception handling.
- */
 package main.utils.exception.ui;
 
 /**
- * The `PageBackException` class is a custom exception that is thrown when a user attempts to navigate back from a UI page
+ * The {@link PageBackException} class is a custom exception that is thrown when a user attempts to navigate back from a UI page
  * where it is not allowed.
- * It extends the `Exception` class.
+ * It extends the {@link Exception} class.
  */
 public class PageBackException extends Exception {
 
     /**
-     * Creates a new instance of the `PageBackException` class with a default error message.
+     * Creates a new instance of the {@link PageBackException} class with a default error message.
      * The default message is "Page back".
      */
     public PageBackException() {
