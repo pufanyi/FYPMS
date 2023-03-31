@@ -1,4 +1,4 @@
 /**
- * This is the package that contains all the exceptions used in the repository.
+ * This package contains all the exceptions that can be thrown by the repository layer.
  */
 package main.utils.exception.repository;
