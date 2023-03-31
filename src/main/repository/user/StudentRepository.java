@@ -30,6 +30,7 @@ public class StudentRepository extends Repository<Student> {
 
     /**
      * Gets a new instance of the StudentRepository class.
+     *
      * @return a new instance of the StudentRepository class
      */
     public static StudentRepository getInstance() {
@@ -38,6 +39,7 @@ public class StudentRepository extends Repository<Student> {
 
     /**
      * Gets the path of the repository file.
+     *
      * @return the path of the repository file
      */
     @Override
@@ -47,6 +49,7 @@ public class StudentRepository extends Repository<Student> {
 
     /**
      * Sets the list of mappable objects.
+     *
      * @param listOfMappableObjects the list of mappable objects
      */
     @Override

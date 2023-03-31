@@ -12,6 +12,7 @@ import java.util.List;
 /**
  * The Repository abstract class provides the basic functionality for storing, retrieving, and managing a list of model objects.
  * It implements the Savable interface and provides methods for adding, removing, updating, and finding model objects.
+ *
  * @param <ModelObject> the type of model object stored in the repository
  */
 public abstract class Repository<ModelObject extends Model> extends Savable<ModelObject> implements Iterable<ModelObject> {
@@ -31,12 +32,14 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
 
     /**
      * Gets the path of the repository file.
+     *
      * @return the path of the repository file
      */
     public abstract String getFilePath();
 
     /**
      * Gets the list of mappable objects.
+     *
      * @return the list of mappable objects
      */
     @Override
@@ -46,6 +49,7 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
 
     /**
      * Gets a model object by ID
+     *
      * @param modelObjectID the ID of the model object to get
      * @return the model object with the given ID
      * @throws ModelNotFoundException if the model object with the given ID does not exist
@@ -61,6 +65,7 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
 
     /**
      * Checks whether the repository contains a model object with the given ID.
+     *
      * @param modelObjectID the ID of the model object to check
      * @return true if the repository contains a model object with the given ID, false otherwise
      */
@@ -75,6 +80,7 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
 
     /**
      * Adds a model object to the repository.
+     *
      * @param modelObject the model object to add
      * @throws ModelAlreadyExistsException if a model object with the same ID already exists in the repository
      */
@@ -89,6 +95,7 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
 
     /**
      * Removes a model object from the repository by ID.
+     *
      * @param modelObjectID the ID of the model object to remove
      * @throws ModelNotFoundException if the model object with the given ID does not exist
      */
@@ -99,6 +106,7 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
 
     /**
      * Checks whether the repository is empty.
+     *
      * @return true if the repository is empty, false otherwise
      */
     public boolean isEmpty() {
@@ -107,6 +115,7 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
 
     /**
      * Gets the size of the repository.
+     *
      * @return the size of the repository
      */
     public int size() {
@@ -123,6 +132,7 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
 
     /**
      * Updates the specified model object in the repository.
+     *
      * @param modelObject the model object to update
      * @throws ModelNotFoundException if the specified model object is not found in the repository
      */
@@ -134,6 +144,7 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
 
     /**
      * Updates all model objects in the repository with the specified list of model objects.
+     *
      * @param modelObjects the list of model objects to update
      */
     public void updateAll(List<ModelObject> modelObjects) {
@@ -158,6 +169,7 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
 
     /**
      * Returns an iterator over the list of model objects of type {@code T}.
+     *
      * @return an iterator over the list of model objects
      */
     @Override
@@ -167,6 +179,7 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
 
     /**
      * Finds all model objects in the repository that match the specified rules.
+     *
      * @param rules the rules to match
      * @return a list of all model objects in the repository that match the specified rules
      */
@@ -190,6 +203,7 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
 
     /**
      * Gets a list of all model objects in the repository.
+     *
      * @return a list of all model objects in the repository
      */
     public List<ModelObject> getList() {
@@ -198,6 +212,7 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
 
     /**
      * Provides a rule for filtering model objects in the repository.
+     *
      * @param <ModelObject> the type of model object stored in the repository
      */
     public interface RepositoryRule<ModelObject> {

@@ -29,6 +29,7 @@ public class FacultyRepository extends Repository<Supervisor> {
 
     /**
      * Gets a new instance of the FacultyRepository class.
+     *
      * @return a new instance of the FacultyRepository class
      */
     public static FacultyRepository getInstance() {
@@ -37,6 +38,7 @@ public class FacultyRepository extends Repository<Supervisor> {
 
     /**
      * Gets the path of the repository file.
+     *
      * @return the path of the repository file
      */
     @Override
@@ -46,6 +48,7 @@ public class FacultyRepository extends Repository<Supervisor> {
 
     /**
      * Sets the list of mappable objects to a list of Supervisor objects.
+     *
      * @param listOfMappableObjects the list of mappable objects
      */
     @Override

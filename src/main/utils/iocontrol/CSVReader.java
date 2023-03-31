@@ -17,7 +17,7 @@ public class CSVReader {
     /**
      * Reads the data from the specified CSV file and returns it as a list of rows.
      *
-     * @param filePath The path of the CSV file to read.
+     * @param filePath  The path of the CSV file to read.
      * @param hasHeader A flag indicating whether the CSV file has a header row.
      * @return A list of rows, where each row is a list of strings representing the columns.
      */

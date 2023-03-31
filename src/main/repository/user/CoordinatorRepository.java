@@ -30,6 +30,7 @@ public class CoordinatorRepository extends Repository<Coordinator> {
 
     /**
      * Gets a new instance of CoordinatorRepository.
+     *
      * @return a new instance of CoordinatorRepository
      */
     public static CoordinatorRepository getInstance() {
@@ -38,6 +39,7 @@ public class CoordinatorRepository extends Repository<Coordinator> {
 
     /**
      * Gets the file path of the repository.
+     *
      * @return the file path of the repository
      */
     @Override
@@ -47,6 +49,7 @@ public class CoordinatorRepository extends Repository<Coordinator> {
 
     /**
      * Sets the list of mappable objects in the repository.
+     *
      * @param listOfMappableObjects the list of mappable objects to set
      */
     @Override

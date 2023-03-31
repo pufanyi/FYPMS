@@ -20,6 +20,7 @@ public class ModelAlreadyExistsException extends Exception {
 
     /**
      * Creates a new instance of the `ModelAlreadyExistsException` class with a custom error message.
+     *
      * @param message The custom error message to be used.
      */
     public ModelAlreadyExistsException(String message) {

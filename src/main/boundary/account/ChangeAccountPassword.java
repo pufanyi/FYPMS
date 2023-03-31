@@ -1,7 +1,6 @@
 package main.boundary.account;
 
 import main.controller.account.AccountManager;
-import main.model.user.User;
 import main.model.user.UserType;
 import main.utils.exception.model.PasswordIncorrectException;
 import main.utils.exception.repository.ModelNotFoundException;

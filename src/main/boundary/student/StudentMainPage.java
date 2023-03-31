@@ -18,7 +18,7 @@ public class StudentMainPage {
             ChangePage.changePage();
             System.out.println(BoundaryStrings.separator);
             System.out.println("Welcome to Student Main Page");
-            System.out.println("Hello, " + student.getUserName()+"!");
+            System.out.println("Hello, " + student.getUserName() + "!");
             System.out.println();
             System.out.println("\t1. View my profile");
             System.out.println("\t2. Change my password");

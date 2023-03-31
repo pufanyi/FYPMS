@@ -1,7 +1,7 @@
 package test.ui.student.details;
 
-import main.boundary.account.LoginUI;
 import main.boundary.account.ChangeAccountPassword;
+import main.boundary.account.LoginUI;
 import main.controller.account.AccountManager;
 import main.model.user.UserType;
 import main.repository.user.StudentRepository;

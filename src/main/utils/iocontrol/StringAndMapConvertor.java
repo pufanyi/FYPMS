@@ -9,17 +9,17 @@ import static main.utils.iocontrol.ObjectOutputControlCharacters.DELIMITER_STRIN
 import static main.utils.iocontrol.ObjectOutputControlCharacters.SEPARATOR_STRING;
 
 /**
-
  * The StringAndMapConvertor class provides methods to convert a String representation of a map to a Map object,
  * and vice versa.
  */
 public class StringAndMapConvertor {
 
     /**
-     Converts a String representation of a map to a Map object.
-     @param string The String representation of the map.
-     @return A Map object containing the key-value pairs from the String representation.
-     @throws IllegalArgumentException if the input string contains invalid key-value pairs.
+     * Converts a String representation of a map to a Map object.
+     *
+     * @param string The String representation of the map.
+     * @return A Map object containing the key-value pairs from the String representation.
+     * @throws IllegalArgumentException if the input string contains invalid key-value pairs.
      */
     public static Map<String, String> stringToMap(String string) {
         Map<String, String> map = new HashMap<>();
@@ -35,9 +35,10 @@ public class StringAndMapConvertor {
     }
 
     /**
-     Converts a Map object to a String representation of the map.
-     @param map The Map object to convert.
-     @return A String representation of the map.
+     * Converts a Map object to a String representation of the map.
+     *
+     * @param map The Map object to convert.
+     * @return A String representation of the map.
      */
     public static String mapToString(Map<String, String> map) {
         List<String> pairs = new ArrayList<>();

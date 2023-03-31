@@ -30,6 +30,7 @@ public class ProjectRepository extends Repository<Project> {
 
     /**
      * Gets a new ProjectRepository object.
+     *
      * @return a new ProjectRepository object
      */
     public static ProjectRepository getInstance() {
@@ -38,6 +39,7 @@ public class ProjectRepository extends Repository<Project> {
 
     /**
      * Gets the file path of the project data file.
+     *
      * @return the file path of the project data file
      */
     @Override
@@ -47,6 +49,7 @@ public class ProjectRepository extends Repository<Project> {
 
     /**
      * Sets the list of mappable objects by converting a list of maps to a list of Project objects.
+     *
      * @param listOfMappableObjects the list of mappable objects
      */
     @Override

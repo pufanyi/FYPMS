@@ -21,7 +21,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class StudentRegistrationMangerTest {
     /**
@@ -37,7 +36,7 @@ public class StudentRegistrationMangerTest {
         ProjectRepository.getInstance().clear();
         Student student1 = new Student("FPU001", "Pu Fanyi", "pufanyi@gmail.com");
         Student student2 = new Student("JQY001", "Jin Qingyang", "jinqingyang@gmail.com");
-        Supervisor supervisor1 = new Supervisor("BOAN001","BO AN", "boan@ntu.edu.sg");
+        Supervisor supervisor1 = new Supervisor("BOAN001", "BO AN", "boan@ntu.edu.sg");
         Project project1 = new Project("1", "Blockchain technology", "BOAN001");
         StudentRepository.getInstance().add(student1);
         StudentRepository.getInstance().add(student2);

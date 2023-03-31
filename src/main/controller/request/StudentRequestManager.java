@@ -18,13 +18,14 @@ import main.utils.exception.repository.ModelNotFoundException;
 public class StudentRequestManager {
     /**
      * student request to deregister from a project
-     * @param projectID the project ID of the project that the student is going to deregister from
-     * @param studentID the student ID of the student that is going to deregister from the project
+     *
+     * @param projectID    the project ID of the project that the student is going to deregister from
+     * @param studentID    the student ID of the student that is going to deregister from the project
      * @param supervisorID the supervisor ID of the supervisor that the student is going to deregister from
-     * @throws IllegalStateException if the project is not allocated
-     * @throws StudentStatusException if the student is not registered
+     * @throws IllegalStateException       if the project is not allocated
+     * @throws StudentStatusException      if the student is not registered
      * @throws ModelAlreadyExistsException if the request already exists
-     * @throws ModelNotFoundException if the project or student is not found
+     * @throws ModelNotFoundException      if the project or student is not found
      */
     public static String deregisterStudent(String projectID, String studentID, String supervisorID) throws IllegalStateException, StudentStatusException, ModelAlreadyExistsException, ModelNotFoundException {
         String requestID = RequestRepository.getInstance().size() + "";
@@ -46,12 +47,13 @@ public class StudentRequestManager {
 
     /**
      * student request to register to a project
-     * @param projectID the project ID of the project that the student is going to register to
-     * @param studentID the student ID of the student that is going to register to the project
+     *
+     * @param projectID    the project ID of the project that the student is going to register to
+     * @param studentID    the student ID of the student that is going to register to the project
      * @param supervisorID the supervisor ID of the supervisor that the student is going to register to
      * @throws ModelNotFoundException if the project or student is not found
      * @throws StudentStatusException if the student is not unregistered
-     * @throws IllegalStateException if the project is not available
+     * @throws IllegalStateException  if the project is not available
      */
     public static String registerStudent(String projectID, String studentID, String supervisorID) throws ModelNotFoundException, StudentStatusException, IllegalStateException, ModelAlreadyExistsException {
         String requestID = RequestRepository.getInstance().size() + "";
@@ -77,6 +79,7 @@ public class StudentRequestManager {
 
     /**
      * display all requests made by a student
+     *
      * @param studentID the student ID of the student that made the requests
      */
     public static void viewAllRequestByStudent(String studentID) {
@@ -87,11 +90,12 @@ public class StudentRequestManager {
 
     /**
      * student request to change the title of a project
-     * @param projectID the project ID of the project that the student is going to change the title of
-     * @param newTitle the new title of the project
-     * @param studentID the student ID of the student that is going to change the title of the project
+     *
+     * @param projectID    the project ID of the project that the student is going to change the title of
+     * @param newTitle     the new title of the project
+     * @param studentID    the student ID of the student that is going to change the title of the project
      * @param supervisorID the supervisor ID of the supervisor that the student is going to change the title of
-     * @throws ModelNotFoundException if the project or student is not found
+     * @throws ModelNotFoundException      if the project or student is not found
      * @throws ModelAlreadyExistsException if the request already exists
      */
     public static String changeProjectTitle(String projectID, String newTitle, String studentID, String supervisorID) throws ModelNotFoundException, ModelAlreadyExistsException {

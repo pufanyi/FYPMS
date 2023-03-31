@@ -10,7 +10,7 @@ import main.model.user.StudentStatus;
  * performing an action related to selecting a project for their FYP.
  * It extends the `IllegalStateException` class.
  */
-public class StudentStatusException extends IllegalStateException{
+public class StudentStatusException extends IllegalStateException {
 
     /**
      * The `status` instance variable holds the `StudentStatus` of the student that caused the exception.
@@ -19,17 +19,16 @@ public class StudentStatusException extends IllegalStateException{
 
     /**
      * Creates a new instance of the `StudentStatusException` class with a custom error message based on the student's status.
+     *
      * @param status The `StudentStatus` of the student that caused the exception.
      */
     public StudentStatusException(StudentStatus status) {
         this.status = status;
         if (status == StudentStatus.REGISTERED) {
             System.out.println("You are currently allocated to a FYP and do not have access to available projects");
-        }
-        else if (status == StudentStatus.DEREGISTERED) {
+        } else if (status == StudentStatus.DEREGISTERED) {
             System.out.println("You are not allowed to make selection again as you deregistered from your FYP");
-        }
-        else if(status == StudentStatus.UNREGISTERED) {
+        } else if (status == StudentStatus.UNREGISTERED) {
             System.out.println("You have not registered a project");
         }
     }

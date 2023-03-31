@@ -30,6 +30,7 @@ public class RequestRepository extends Repository<Request> {
 
     /**
      * Gets a new instance of RequestRepository.
+     *
      * @return the instance of RequestRepository
      */
     public static RequestRepository getInstance() {
@@ -38,6 +39,7 @@ public class RequestRepository extends Repository<Request> {
 
     /**
      * Gets the file path of the RequestRepository.
+     *
      * @return the file path of the RequestRepository
      */
     @Override
@@ -47,6 +49,7 @@ public class RequestRepository extends Repository<Request> {
 
     /**
      * Sets the list of mappable objects.
+     *
      * @param listOfMappableObjects the list of mappable objects
      */
     @Override

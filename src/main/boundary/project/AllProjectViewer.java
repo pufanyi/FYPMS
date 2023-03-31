@@ -5,7 +5,7 @@ import main.repository.project.ProjectRepository;
 import main.utils.exception.repository.ModelNotFoundException;
 
 public class AllProjectViewer {
-    public void viewAllProject()  {
+    public void viewAllProject() {
         try {
             for (Project p : ProjectRepository.getInstance()) {
                 p.displayProject();
