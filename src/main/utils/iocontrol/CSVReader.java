@@ -1,7 +1,3 @@
-/**
- * This is a CSV reader class that reads data from a CSV file and returns it as a list of rows,
- * where each row is a list of strings representing the columns.
- */
 package main.utils.iocontrol;
 
 import java.io.BufferedReader;
@@ -12,14 +8,21 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * A utility class for reading CSV files and returning their
+ * contents as a list of rows, each represented as a list of
+ * strings.
+ */
 public class CSVReader {
 
     /**
-     * Reads the data from the specified CSV file and returns it as a list of rows.
+     * Reads a CSV file and returns its contents as a list of rows,
+     * each represented as a list of strings.
      *
-     * @param filePath  The path of the CSV file to read.
-     * @param hasHeader A flag indicating whether the CSV file has a header row.
-     * @return A list of rows, where each row is a list of strings representing the columns.
+     * @param filePath  the path of the CSV file to be read
+     * @param hasHeader a boolean indicating whether the CSV file has
+     *                  a header row
+     * @return a list of rows, each represented as a list of strings
      */
     public static List<List<String>> read(String filePath, boolean hasHeader) {
         List<List<String>> list = new ArrayList<>();
