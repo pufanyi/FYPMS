@@ -6,7 +6,7 @@ package main.utils.exception.model;
 import main.model.user.StudentStatus;
 
 /**
- * The `StudentStatusException` class is a custom exception that is thrown when a student's status prevents them from
+ * The {@code StudentStatusException} class is a custom exception that is thrown when a student's status prevents them from
  * performing an action related to selecting a project for their FYP.
  * It extends the `IllegalStateException` class.
  */
@@ -18,7 +18,7 @@ public class StudentStatusException extends IllegalStateException {
     StudentStatus status;
 
     /**
-     * Creates a new instance of the `StudentStatusException` class with a custom error message based on the student's status.
+     * Creates a new instance of the {@code StudentStatusException} class with a custom error message based on the student's status.
      *
      * @param status The `StudentStatus` of the student that caused the exception.
      */
