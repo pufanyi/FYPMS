@@ -7,6 +7,10 @@ import main.repository.user.CoordinatorRepository;
 import main.repository.user.FacultyRepository;
 import main.repository.user.StudentRepository;
 
+/**
+ * This class is used to clear the database and reload the main class.
+ * This is used to test the whole application.
+ */
 public class HardReload {
     public static void main(String[] args) {
         StudentRepository.getInstance().clear();
