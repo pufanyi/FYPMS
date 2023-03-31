@@ -23,7 +23,7 @@ public class SupervisorMainPage {
         if (user instanceof Supervisor supervisor) {
             ChangePage.changePage();
             System.out.println(BoundaryStrings.separator);
-            System.out.println("Welcome to Coordinator Main Page");
+            System.out.println("Welcome to Supervisor Main Page");
             System.out.println("Hello, " + user.getUserName() + "!");
             System.out.println();
             System.out.println("\t1. View my profile");
