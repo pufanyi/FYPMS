@@ -215,7 +215,7 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
      *
      * @param <ModelObject> the type of model object stored in the repository
      */
-    public interface RepositoryRule<ModelObject> {
+    private interface RepositoryRule<ModelObject> {
         boolean isMatch(ModelObject modelObject);
     }
 }
