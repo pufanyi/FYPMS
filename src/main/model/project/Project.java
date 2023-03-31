@@ -9,7 +9,13 @@ import main.utils.exception.repository.ModelNotFoundException;
 
 import java.util.Map;
 
+/**
+ * The class of the project
+ */
 public class Project implements Model {
+    /**
+     * the status of the project
+     */
     ProjectStatus status;
 
     /**
@@ -125,6 +131,8 @@ public class Project implements Model {
 
     /**
      * Set the student ID of the project
+     *
+     * @param studentID the student ID of the project
      */
     public void setStudentID(String studentID) {
         this.studentID = studentID;
@@ -141,6 +149,8 @@ public class Project implements Model {
 
     /**
      * Set the supervisor ID of the project
+     *
+     * @param supervisorID the supervisor ID of the project
      */
     public void setSupervisorID(String supervisorID) {
         this.supervisorID = supervisorID;
@@ -155,6 +165,8 @@ public class Project implements Model {
 
     /**
      * Set the title of the project
+     *
+     * @param projectTitle the title of the project
      */
     public void setProjectTitle(String projectTitle) {
         this.projectTitle = projectTitle;
@@ -171,6 +183,8 @@ public class Project implements Model {
 
     /**
      * Set the status of the project
+     *
+     * @param status the status of the project
      */
     public void setStatus(ProjectStatus status) {
         this.status = status;
