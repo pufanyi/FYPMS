@@ -183,10 +183,10 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
      * Here is an example of how to use this method:
      *
      * <pre>
-     *     List&lt;Student&gt; modelObjects = repository.findByRules(
-     *         student -&gt; student.getFirstName().equals("John"),
-     *         student -&gt; student.getLastName().equals("Smith")
-     *     );
+     * List&lt;Student&gt; modelObjects = repository.findByRules(
+     *     student -&gt; student.getFirstName().equals("John"),
+     *     student -&gt; student.getLastName().equals("Smith")
+     * );
      * </pre>
      * <p>
      * This will return a list of all students whose first name is "John" and whose last name is "Smith".
