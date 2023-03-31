@@ -1,4 +1,4 @@
-package main.boundary.welecome;
+package main.boundary.welcome;
 
 import main.boundary.account.ForgotUserID;
 import main.boundary.account.LoginUI;

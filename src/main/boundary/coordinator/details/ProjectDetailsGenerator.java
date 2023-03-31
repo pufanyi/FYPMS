@@ -11,7 +11,7 @@ public class ProjectDetailsGenerator {
     /**
      * generate details of project by ProjectID
      *
-     * @throws ModelNotFoundException
+     * @throws ModelNotFoundException if the model object with the given ID does not exist
      */
     public static void generateDetailsByProjectID() throws ModelNotFoundException {
         System.out.println("Enter the ProjectID to search");

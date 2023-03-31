@@ -2,7 +2,7 @@ package main.boundary.student;
 
 import main.boundary.account.ChangeAccountPassword;
 import main.boundary.project.ViewAvailableProjectList;
-import main.boundary.student.details.ViewStudentProfile;
+import main.boundary.account.ViewUserProfile;
 import main.model.user.Student;
 import main.model.user.User;
 import main.model.user.UserType;
@@ -41,7 +41,7 @@ public class StudentMainPage {
 
             try {
                 switch (choice) {
-                    case 1 -> ViewStudentProfile.viewStudentProfile(student);
+                    case 1 -> ViewUserProfile.viewUserProfile(student);
                     case 2 -> ChangeAccountPassword.changePassword(UserType.STUDENT, student.getID());
                     case 3 -> ViewAvailableProjectList.viewAvailableProjectList();
 //                case 4 -> ViewMyProject.viewMyProject(student);

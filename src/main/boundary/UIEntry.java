@@ -1,6 +1,6 @@
 package main.boundary;
 
-import main.boundary.welecome.Welcome;
+import main.boundary.welcome.Welcome;
 import main.controller.account.AccountManager;
 import main.controller.project.ProjectManager;
 

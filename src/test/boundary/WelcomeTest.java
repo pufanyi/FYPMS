@@ -1,6 +1,6 @@
 package test.boundary;
 
-import main.boundary.welecome.Welcome;
+import main.boundary.welcome.Welcome;
 
 public class WelcomeTest {
     public static void main(String[] args) {

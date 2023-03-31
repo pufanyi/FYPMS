@@ -1,14 +1,13 @@
 main
 main.boundary
 main.boundary.account
-main.boundary.account.getter
 main.boundary.coordinator
 main.boundary.coordinator.details
 main.boundary.project
 main.boundary.student
-main.boundary.student.details
 main.boundary.supervisor
-main.boundary.welecome
+main.boundary.supervisor.details
+main.boundary.welcome
 main.controller.account
 main.controller.account.password
 main.controller.account.user

@@ -1,12 +1,9 @@
 package main.boundary.supervisor;
 
 import main.boundary.account.ChangeAccountPassword;
+import main.boundary.account.ViewUserProfile;
 import main.boundary.coordinator.CoordinatorMainPage;
-import main.boundary.coordinator.details.ProjectDetailsGenerator;
-import main.boundary.supervisor.details.ViewSupervisorProfile;
 import main.controller.project.ProjectManager;
-import main.controller.request.CoordinatorRequestManager;
-import main.model.user.Coordinator;
 import main.model.user.Supervisor;
 import main.model.user.User;
 import main.model.user.UserType;
@@ -45,7 +42,7 @@ public class SupervisorMainPage {
 
             try {
                 switch (choice) {
-                    case 1 -> ViewSupervisorProfile.viewSupervisorProfile(supervisor);
+                    case 1 -> ViewUserProfile.viewUserProfile(supervisor);
                     case 2 -> ChangeAccountPassword.changePassword(UserType.FACULTY,supervisor.getID());
                     case 3 -> supervisorCreateProject(supervisor);
                     case 4 -> supervisorChangeProjectTitle(supervisor);

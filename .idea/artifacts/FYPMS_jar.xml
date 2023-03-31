@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="FYPMS:jar">
+  <artifact type="jar" build-on-make="true" name="FYPMS:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/FYPMS_jar</output-path>
     <root id="archive" name="FYPMS.jar">
       <element id="module-output" name="FYPMS" />

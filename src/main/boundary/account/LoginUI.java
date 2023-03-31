@@ -1,9 +1,8 @@
 package main.boundary.account;
 
-import main.boundary.account.getter.DomainGetter;
-import main.boundary.account.getter.PasswordGetter;
-import main.boundary.account.getter.UserIDGetter;
+import main.boundary.coordinator.CoordinatorMainPage;
 import main.boundary.student.StudentMainPage;
+import main.boundary.supervisor.SupervisorMainPage;
 import main.controller.account.AccountManager;
 import main.model.user.User;
 import main.model.user.UserType;
@@ -17,30 +16,23 @@ import java.util.Scanner;
 public class LoginUI {
     public static void login() throws PageBackException {
         ChangePage.changePage();
-        UserType domain = DomainGetter.getDomain();
-        String userID = UserIDGetter.getUserID();
+        UserType domain = AttributeGetter.getDomain();
+        String userID = AttributeGetter.getUserID();
         if (userID.equals("")) {
             try {
-                switch (domain) {
-                    case STUDENT:
-                        ForgotUserID.forgotUserID();
-                        break;
-                    default:
-                        throw new RuntimeException("Not implemented yet.");
-                }
+                ForgotUserID.forgotUserID();
             } catch (PageBackException e) {
                 login();
             }
         }
-        String password = PasswordGetter.getPassword();
+        String password = AttributeGetter.getPassword();
         try {
             User user = AccountManager.login(domain, userID, password);
             switch (domain) {
-                case STUDENT:
-                    StudentMainPage.studentMainPage(user);
-                    break;
-                default:
-                    throw new RuntimeException("Not implemented yet.");
+                case STUDENT -> StudentMainPage.studentMainPage(user);
+                case FACULTY -> SupervisorMainPage.supervisorMainPage(user);
+                case COORDINATOR -> CoordinatorMainPage.coordinatorMainPage(user);
+                default -> throw new IllegalStateException("Unexpected value: " + domain);
             }
             return;
         } catch (PasswordIncorrectException e) {

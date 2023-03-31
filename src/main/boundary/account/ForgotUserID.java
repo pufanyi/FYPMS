@@ -1,6 +1,5 @@
 package main.boundary.account;
 
-import main.boundary.account.getter.UserNameGetter;
 import main.controller.account.AccountManager;
 import main.model.user.User;
 import main.utils.exception.ui.PageBackException;
@@ -14,7 +13,7 @@ import static main.controller.account.user.UserDomainGetter.getUserDomain;
 public class ForgotUserID {
     public static void forgotUserID() throws PageBackException {
         ChangePage.changePage();
-        String name = UserNameGetter.getUserName();
+        String name = AttributeGetter.getUserName();
         System.out.println("The list of UserID associated with " + name + " is:");
         System.out.println("┌--------------------------------------┐");
         List<User> users = AccountManager.getUsersByUserName(name);

@@ -1,4 +1,4 @@
-package main.boundary.welecome;
+package main.boundary.welcome;
 
 public class ExitPage {
     public static void exitPage() {

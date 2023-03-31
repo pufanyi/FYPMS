@@ -1,11 +1,12 @@
-package main.boundary.account.getter;
+package main.boundary.account;
 
 import main.model.user.UserType;
 import main.utils.ui.BoundaryStrings;
+import main.utils.ui.PasswordReader;
 
 import java.util.Scanner;
 
-public class DomainGetter {
+public class AttributeGetter {
     public static UserType getDomain() {
         System.out.println(BoundaryStrings.separator);
         System.out.println("\t1. Student");
@@ -28,5 +29,28 @@ public class DomainGetter {
             }
         }
         return userType;
+    }
+
+    /**
+     * Prompts the user to enter their password.
+     * When the user enters their password, it does not show up on the screen.
+     *
+     * @return The password entered by the user.
+     */
+    public static String getPassword() {
+        System.out.print("Please enter your password: ");
+        return PasswordReader.getPassword();
+    }
+
+    public static String getUserID() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Please enter your UserID (Press enter if you forget): ");
+        return scanner.nextLine();
+    }
+
+    public static String getUserName() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Please enter your username: ");
+        return scanner.nextLine();
     }
 }
