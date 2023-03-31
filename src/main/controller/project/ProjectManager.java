@@ -79,9 +79,7 @@ public class ProjectManager {
         ProjectRepository.getInstance().update(p1);
     }
 
-    public void viewProjectSubmittedBySupervisor(String SupervisorID){
-//        Project p1=Pr
-    }
+
     /**
      * deallocate a project
      *
