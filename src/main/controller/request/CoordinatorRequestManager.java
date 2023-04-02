@@ -17,7 +17,7 @@ import main.utils.exception.repository.ModelAlreadyExistsException;
 import main.utils.exception.repository.ModelNotFoundException;
 import main.utils.exception.ui.PageBackException;
 
-public class CoordinatorRequestManager {
+public class CoordinatorRequestManager{
     /**
      * Transfer a student to a new supervisor
      *

@@ -9,7 +9,7 @@ import main.repository.request.RequestRepository;
 import main.utils.exception.repository.ModelAlreadyExistsException;
 import main.utils.exception.repository.ModelNotFoundException;
 
-public class SupervisorRequestManager {
+public class SupervisorRequestManager{
     /**
      * Transfer a student to a new supervisor
      *

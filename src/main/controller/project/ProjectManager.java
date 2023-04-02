@@ -89,6 +89,7 @@ public class ProjectManager {
     public static void deallocateProject(String projectID) throws ModelNotFoundException {
         Project p1 = ProjectRepository.getInstance().getByID(projectID);
         p1.setStudentID("");
+        p1.setStatus(ProjectStatus.AVAILABLE);
         ProjectRepository.getInstance().update(p1);
     }
 
@@ -101,6 +102,7 @@ public class ProjectManager {
      */
     public static void allocateProject(String projectID, String studentID) throws ModelNotFoundException {
         Project p1 = ProjectRepository.getInstance().getByID(projectID);
+        p1.setStatus(ProjectStatus.ALLOCATED);
         p1.setStudentID(studentID);
         ProjectRepository.getInstance().update(p1);
     }

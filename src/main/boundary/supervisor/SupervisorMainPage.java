@@ -4,9 +4,17 @@ import main.boundary.account.ChangeAccountPassword;
 import main.boundary.account.ViewUserProfile;
 import main.boundary.coordinator.CoordinatorMainPage;
 import main.controller.project.ProjectManager;
+import main.controller.request.StudentRequestManager;
+import main.model.request.Request;
+import main.model.request.RequestStatus;
+import main.model.request.RequestType;
+import main.model.request.studentrequest.StudentChangeTitleRequest;
+import main.model.request.studentrequest.StudentDeregistrationRequest;
+import main.model.request.studentrequest.StudentRegistrationRequest;
 import main.model.user.Supervisor;
 import main.model.user.User;
 import main.model.user.UserType;
+import main.repository.request.RequestRepository;
 import main.utils.exception.repository.ModelAlreadyExistsException;
 import main.utils.exception.repository.ModelNotFoundException;
 import main.utils.exception.ui.PageBackException;
@@ -46,9 +54,10 @@ public class SupervisorMainPage {
                     case 2 -> ChangeAccountPassword.changePassword(UserType.FACULTY,supervisor.getID());
                     case 3 -> supervisorCreateProject(supervisor);
                     case 4 -> supervisorChangeProjectTitle(supervisor);
-                    //case 5 -> CoordinatorRequestManager.viewAllRequest();
+                    case 5 -> supervisorViewAllPendingRequest();
                     case 6 -> supervisorRequestForTransfer(supervisor);
-                    //case 10 -> Logout.logout();
+                    //case 7 ->
+                    //case 8 -> Logout.logout();
 
                     default -> System.out.println("Invalid choice. Please try again.");
                 }
@@ -73,7 +82,7 @@ public class SupervisorMainPage {
 
     private static void supervisorChangeProjectTitle(Supervisor supervisor) throws ModelAlreadyExistsException, ModelNotFoundException {
             System.out.println("Changing the title of project....");
-            System.out.println("Enter the ID of project to change");
+            System.out.println("Enter the project ID to change");
             String projectID = new Scanner(System.in).next();
             System.out.println("Enter the new title");
             String newTitle = new Scanner(System.in).next();
@@ -83,8 +92,55 @@ public class SupervisorMainPage {
 
     private static void supervisorRequestForTransfer(Supervisor supervisor) throws ModelNotFoundException {
         System.out.println("Processing to transfer....");
-        System.out.println("Enter the ID of project to transfer");
+        System.out.println("Enter the project ID to transfer");
         String projectID = new Scanner(System.in).next();
-        ProjectManager.transferToNewSupervisor(projectID, supervisor.getID());
+        System.out.println("Enter the new supervisor transfer to");
+        String newSupervisor = new Scanner(System.in).next();
+        ProjectManager.transferToNewSupervisor(projectID, newSupervisor);
     }
+
+    private static void supervisorViewAllPendingRequest(Supervisor supervisor) throws ModelNotFoundException, ModelAlreadyExistsException {
+        System.out.println("Displaying all pending requests by students...");
+        for (Request r : RequestRepository.getInstance().findByRules(r -> r.getStatus().equals(RequestStatus.PENDING))) {
+            if (r instanceof StudentChangeTitleRequest req)
+                if (req.getSupervisorID().equals(supervisor.getID()))
+                    req.display();
+        }
+        System.out.println("Enter Y to process the requests OR Enter any other key to exit");
+        char c = new Scanner(System.in).next().charAt(0);
+        if (c == 'Y' || c == 'y') {
+            System.out.println("Enter the request ID to process");
+            String requestID = new Scanner(System.in).next();
+            Request r1 = RequestRepository.getInstance().getByID(requestID);
+            System.out.println("Press Y to confirm to process the following request");
+            r1.display();
+            char choice = new Scanner(System.in).next().charAt(0);
+            if (choice == 'y' || choice == 'Y') {
+                System.out.println("Enter A to approve / R too reject");
+                char process = new Scanner(System.in).next().charAt(0);
+
+                if (r1 instanceof StudentChangeTitleRequest req){
+                    if (req.getSupervisorID().equals(supervisor.getID())){
+                        if (process=='A' || process=='a'){
+                            ProjectManager.changeProjectTitle(r1.getProjectID(),req.getNewTitle());
+                            StudentRequestManager.approveRequest(requestID);
+                            System.out.println("Request approved.");
+                        }
+                        else if (process=='R' || process=='r'){
+                            StudentRequestManager.rejectStudentRequest(requestID);
+                            System.out.println("Request rejected.");
+                        }
+                    }
+                    else System.out.println("No access to this request. Process unsuccessful.");
+                }
+                else {
+                    System.out.println("Invalid requestID.Process unsuccessful. ");
+                }
+            }
+            System.out.println("Ending request processing");
+        }
+    }
+
+
+
 }

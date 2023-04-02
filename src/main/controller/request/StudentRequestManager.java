@@ -1,8 +1,11 @@
 package main.controller.request;
 
+import main.controller.project.ProjectManager;
 import main.model.project.Project;
 import main.model.project.ProjectStatus;
 import main.model.request.Request;
+import main.model.request.RequestStatus;
+import main.model.request.RequestType;
 import main.model.request.studentrequest.StudentChangeTitleRequest;
 import main.model.request.studentrequest.StudentDeregistrationRequest;
 import main.model.request.studentrequest.StudentRegistrationRequest;
@@ -15,7 +18,7 @@ import main.utils.exception.model.StudentStatusException;
 import main.utils.exception.repository.ModelAlreadyExistsException;
 import main.utils.exception.repository.ModelNotFoundException;
 
-public class StudentRequestManager {
+public class StudentRequestManager{
     /**
      * student request to deregister from a project
      *
@@ -103,6 +106,18 @@ public class StudentRequestManager {
         Request request = new StudentChangeTitleRequest(requestID, projectID, newTitle, studentID, supervisorID);
         RequestRepository.getInstance().add(request);
         return requestID;
+    }
+
+    public static void approveRequest(String requestID) throws ModelNotFoundException, ModelAlreadyExistsException {
+        Request r1=RequestRepository.getInstance().getByID(requestID);
+        r1.setStatus(RequestStatus.APPROVED);
+        RequestRepository.getInstance().update(r1);
+    }
+
+    public static void rejectStudentRequest(String requestID) throws ModelNotFoundException{
+        Request r1=RequestRepository.getInstance().getByID(requestID);
+        r1.setStatus(RequestStatus.DENIED);
+        RequestRepository.getInstance().update(r1);
     }
 }
 
