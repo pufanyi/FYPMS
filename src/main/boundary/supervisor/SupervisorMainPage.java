@@ -54,7 +54,7 @@ public class SupervisorMainPage {
                     case 2 -> ChangeAccountPassword.changePassword(UserType.FACULTY,supervisor.getID());
                     case 3 -> supervisorCreateProject(supervisor);
                     case 4 -> supervisorChangeProjectTitle(supervisor);
-                    case 5 -> supervisorViewAllPendingRequest();
+                    case 5 -> supervisorViewAllPendingRequest(supervisor);
                     case 6 -> supervisorRequestForTransfer(supervisor);
                     //case 7 ->
                     //case 8 -> Logout.logout();
