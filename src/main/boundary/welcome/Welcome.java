@@ -1,6 +1,6 @@
 package main.boundary.welcome;
 
-import main.boundary.account.ForgotUserID;
+import main.boundary.account.ForgetUserID;
 import main.boundary.account.LoginUI;
 import main.utils.exception.ui.PageBackException;
 import main.utils.ui.BoundaryStrings;
@@ -26,7 +26,7 @@ public class Welcome {
                 int choice = scanner.nextInt();
                 switch (choice) {
                     case 1 -> LoginUI.login();
-                    case 2 -> ForgotUserID.forgotUserID();
+                    case 2 -> ForgetUserID.forgotUserID();
                     case 3 -> ExitPage.exitPage();
                     default -> System.out.println("Invalid choice. Please try again.");
                 }

@@ -20,7 +20,7 @@ public class LoginUI {
         String userID = AttributeGetter.getUserID();
         if (userID.equals("")) {
             try {
-                ForgotUserID.forgotUserID();
+                ForgetUserID.forgotUserID();
             } catch (PageBackException e) {
                 login();
             }
