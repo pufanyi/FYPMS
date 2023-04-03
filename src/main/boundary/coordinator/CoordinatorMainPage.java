@@ -3,6 +3,7 @@ package main.boundary.coordinator;
 import main.boundary.account.ChangeAccountPassword;
 import main.boundary.account.ViewUserProfile;
 import main.boundary.coordinator.details.ProjectDetailsGenerator;
+import main.boundary.project.AllProjectViewer;
 import main.controller.project.ProjectManager;
 import main.controller.request.CoordinatorRequestManager;
 import main.model.user.Coordinator;
@@ -43,7 +44,7 @@ public class CoordinatorMainPage {
                 switch (choice) {
                     case 1 -> ViewUserProfile.viewUserProfile(user);
                     case 2 -> ChangeAccountPassword.changePassword(UserType.COORDINATOR, user.getID());
-//                    case 3 -> ProjectManager.viewAllProject();
+                    case 3 -> AllProjectViewer.viewAllProject();
                     case 4 -> CoordinatorRequestManager.viewPendingRequest();
                     case 5 -> CoordinatorRequestManager.viewAllRequest();
                     case 6 -> ProjectDetailsGenerator.generateProjectDetails();
@@ -59,5 +60,9 @@ public class CoordinatorMainPage {
         } else {
             throw new IllegalArgumentException("User is not a student.");
         }
+    }
+
+    private static void coordinatorViewAllRequest(){
+
     }
 }

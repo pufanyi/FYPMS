@@ -120,10 +120,10 @@ public class SupervisorMainPage {
                 char process = new Scanner(System.in).next().charAt(0);
 
                 if (r1 instanceof StudentChangeTitleRequest req){
-                    if (req.getSupervisorID().equals(supervisor.getID())){
+                    if (req.getSupervisorID().equals(supervisor.getID()) && req.getStatus()==RequestStatus.PENDING){
                         if (process=='A' || process=='a'){
                             ProjectManager.changeProjectTitle(r1.getProjectID(),req.getNewTitle());
-                            StudentRequestManager.approveRequest(requestID);
+                            StudentRequestManager.approveStudentRequest(requestID);
                             System.out.println("Request approved.");
                         }
                         else if (process=='R' || process=='r'){
@@ -131,7 +131,7 @@ public class SupervisorMainPage {
                             System.out.println("Request rejected.");
                         }
                     }
-                    else System.out.println("No access to this request. Process unsuccessful.");
+                    else System.out.println("No access to this request or request is not pending. Process unsuccessful.");
                 }
                 else {
                     System.out.println("Invalid requestID.Process unsuccessful. ");

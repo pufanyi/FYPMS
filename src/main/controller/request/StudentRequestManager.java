@@ -108,7 +108,7 @@ public class StudentRequestManager{
         return requestID;
     }
 
-    public static void approveRequest(String requestID) throws ModelNotFoundException, ModelAlreadyExistsException {
+    public static void approveStudentRequest(String requestID) throws ModelNotFoundException, ModelAlreadyExistsException {
         Request r1=RequestRepository.getInstance().getByID(requestID);
         r1.setStatus(RequestStatus.APPROVED);
         RequestRepository.getInstance().update(r1);
