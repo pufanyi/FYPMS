@@ -30,4 +30,13 @@ public interface User extends Model {
      * @return the email of the user
      */
     String getEmail();
+
+    /**
+     * The function to check if username is equal to the user's username regardless of case
+     *
+     * @param username the username to be checked
+     */
+    default boolean checkUsername(String username) {
+        return this.getUserName().equalsIgnoreCase(username);
+    }
 }

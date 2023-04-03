@@ -37,13 +37,13 @@ public class AccountManager {
 
     public static List<User> getUsersByUserName(String userName) {
         List<Student> studentList = StudentRepository.getInstance().findByRules(
-                student -> student.getUserName().equals(userName)
+                student -> student.checkUsername(userName)
         );
         List<Coordinator> coordinatorList = CoordinatorRepository.getInstance().findByRules(
-                coordinator -> coordinator.getUserName().equals(userName)
+                coordinator -> coordinator.checkUsername(userName)
         );
         List<Supervisor> supervisorList = FacultyRepository.getInstance().findByRules(
-                supervisor -> supervisor.getUserName().equals(userName)
+                supervisor -> supervisor.checkUsername(userName)
         );
         List<User> userList = new ArrayList<>();
         userList.addAll(studentList);

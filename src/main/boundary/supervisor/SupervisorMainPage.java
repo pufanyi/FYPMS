@@ -48,6 +48,7 @@ public class SupervisorMainPage {
 
             int choice = scanner.nextInt();
 
+
             try {
                 switch (choice) {
                     case 1 -> ViewUserProfile.viewUserProfile(supervisor);
@@ -62,7 +63,7 @@ public class SupervisorMainPage {
                     default -> System.out.println("Invalid choice. Please try again.");
                 }
             } catch (PageBackException e) {
-                CoordinatorMainPage.coordinatorMainPage(user);
+                supervisorMainPage(supervisor);
             } catch (ModelAlreadyExistsException | ModelNotFoundException e) {
                 throw new RuntimeException(e);
             }

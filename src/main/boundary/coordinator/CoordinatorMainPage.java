@@ -58,7 +58,7 @@ public class CoordinatorMainPage {
             }
 
         } else {
-            throw new IllegalArgumentException("User is not a student.");
+            throw new IllegalArgumentException("User is not a coordinator.");
         }
     }
 

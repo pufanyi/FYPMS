@@ -113,7 +113,7 @@ public class ProjectManager {
             try {
                 String supervisorName = project.get(0);
                 String projectName = project.get(1);
-                List<Supervisor> supervisors = FacultyRepository.getInstance().findByRules(s -> s.getUserName().equals(supervisorName));
+                List<Supervisor> supervisors = FacultyRepository.getInstance().findByRules(s -> s.checkUsername(supervisorName));
                 if (supervisors.size() == 0) {
                     System.out.println("Load project " + projectName + " failed: supervisor " + supervisorName + " not found");
                 } else if (supervisors.size() == 1) {
