@@ -49,8 +49,7 @@ public class CSVReader {
                 }
             }
         } catch (IOException e) {
-            // Print the stack trace if an exception occurs
-            e.printStackTrace();
+            System.err.println("Error reading file: " + e.getMessage());
         }
 
         return list;
