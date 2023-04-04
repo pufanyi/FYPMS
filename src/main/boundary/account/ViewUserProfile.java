@@ -7,7 +7,16 @@ import main.utils.ui.UserTypeGetter;
 
 import java.util.Scanner;
 
+/**
+ * This class provides a UI for the user to view his/her profile.
+ */
 public class ViewUserProfile {
+    /**
+     * Displays the user's profile.
+     *
+     * @param user the user whose profile is to be displayed.
+     * @throws PageBackException if the user chooses to go back to the previous page.
+     */
     public static void viewUserProfile(User user) throws PageBackException {
         ChangePage.changePage();
         System.out.println("Welcome to View " + UserTypeGetter.getUserTypeInCamelCase(user) + " Profile");

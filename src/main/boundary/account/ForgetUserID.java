@@ -10,7 +10,16 @@ import java.util.List;
 
 import static main.controller.account.user.UserDomainGetter.getUserDomain;
 
+/**
+ * This class provides a UI for the user to retrieve their UserID in case they forgot it.
+ */
 public class ForgetUserID {
+    /**
+     * Displays a list of UserID associated with a given username.
+     *
+     * @throws PageBackException if the user chooses to go back to the previous page.
+     */
+
     public static void forgotUserID() throws PageBackException {
         ChangePage.changePage();
         String name = AttributeGetter.getUserName();

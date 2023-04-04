@@ -6,7 +6,15 @@ import main.utils.ui.PasswordReader;
 
 import java.util.Scanner;
 
+/**
+ * This class is used to get the attributes of a user.
+ */
 public class AttributeGetter {
+    /**
+     * Prompts the user to select their domain and returns their chosen UserType.
+     *
+     * @return The UserType chosen by the user.
+     */
     public static UserType getDomain() {
         System.out.println(BoundaryStrings.separator);
         System.out.println("\t1. Student");
@@ -42,11 +50,21 @@ public class AttributeGetter {
         return PasswordReader.getPassword();
     }
 
+    /**
+     * Prompts the user to enter their UserID.
+     *
+     * @return The UserID entered by the user.
+     */
     public static String getUserID() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Please enter your UserID (Press enter if you forget): ");
         return scanner.nextLine();
     }
+    /**
+     * Prompts the user to enter their username.
+     *
+     * @return The username entered by the user.
+     */
 
     public static String getUserName() {
         Scanner scanner = new Scanner(System.in);

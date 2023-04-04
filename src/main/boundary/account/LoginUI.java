@@ -13,7 +13,15 @@ import main.utils.ui.ChangePage;
 
 import java.util.Scanner;
 
+/**
+ * This class provides a UI for the user to login.
+ */
 public class LoginUI {
+    /**
+     * Displays a login page.
+     *
+     * @throws PageBackException if the user chooses to go back to the previous page.
+     */
     public static void login() throws PageBackException {
         ChangePage.changePage();
         UserType domain = AttributeGetter.getDomain();
