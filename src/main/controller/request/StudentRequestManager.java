@@ -31,7 +31,7 @@ public class StudentRequestManager{
      * @throws ModelNotFoundException      if the project or student is not found
      */
     public static String deregisterStudent(String projectID, String studentID, String supervisorID) throws IllegalStateException, StudentStatusException, ModelAlreadyExistsException, ModelNotFoundException {
-        String requestID = RequestRepository.getInstance().size() + "";
+        String requestID = String.valueOf(RequestRepository.getInstance().size());
         Request request = new StudentDeregistrationRequest(requestID, projectID, studentID, supervisorID);
         Project project = ProjectRepository.getInstance().getByID(projectID);
         Student student = StudentRepository.getInstance().getByID(studentID);
@@ -59,7 +59,7 @@ public class StudentRequestManager{
      * @throws IllegalStateException  if the project is not available
      */
     public static String registerStudent(String projectID, String studentID, String supervisorID) throws ModelNotFoundException, StudentStatusException, IllegalStateException, ModelAlreadyExistsException {
-        String requestID = RequestRepository.getInstance().size() + "";
+        String requestID = String.valueOf(RequestRepository.getInstance().size());
         Request request = new StudentRegistrationRequest(requestID, projectID, studentID, supervisorID);
         Project project = ProjectRepository.getInstance().getByID(projectID);
         Student student = StudentRepository.getInstance().getByID(studentID);
@@ -102,7 +102,7 @@ public class StudentRequestManager{
      * @throws ModelAlreadyExistsException if the request already exists
      */
     public static String changeProjectTitle(String projectID, String newTitle, String studentID, String supervisorID) throws ModelNotFoundException, ModelAlreadyExistsException {
-        String requestID = RequestRepository.getInstance().size() + "";
+        String requestID = String.valueOf(RequestRepository.getInstance().size());
         Request request = new StudentChangeTitleRequest(requestID, projectID, newTitle, studentID, supervisorID);
         RequestRepository.getInstance().add(request);
         return requestID;

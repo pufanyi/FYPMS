@@ -19,7 +19,7 @@ public class SupervisorRequestManager{
      * @param studentID       the student ID of the student that is going to be transferred
      */
     public static void transferToNewSupervisor(String projectID, String supervisorID, String newSupervisorID, String studentID) {
-        String requestID = RequestRepository.getInstance().size() + "";
+        String requestID = String.valueOf(RequestRepository.getInstance().size());
         Request request = new TransferStudentRequest(requestID, projectID, supervisorID, newSupervisorID, studentID);
         try {
             RequestRepository.getInstance().add(request);
@@ -86,7 +86,7 @@ public class SupervisorRequestManager{
      * @throws ModelAlreadyExistsException if the project title already exists
      */
     public static void createProject(String supervisorID, String title) throws ModelAlreadyExistsException {
-        String projectID = ProjectRepository.getInstance().size() + "";
+        String projectID = String.valueOf(ProjectRepository.getInstance().size());
         ProjectManager.createProject(projectID, supervisorID, title);
     }
 }
