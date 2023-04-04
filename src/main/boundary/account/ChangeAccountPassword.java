@@ -5,11 +5,26 @@ import main.model.user.UserType;
 import main.utils.exception.model.PasswordIncorrectException;
 import main.utils.exception.repository.ModelNotFoundException;
 import main.utils.exception.ui.PageBackException;
+import main.utils.ui.ChangePage;
 import main.utils.ui.PasswordReader;
+import main.utils.ui.UserTypeGetter;
 
 import java.util.Scanner;
 
+/**
+ * This class is responsible for handling the change password feature for a given user account. It contains
+ * two methods, {@code changePassword} and {@code askToRetry}, that are used for this purpose.
+ */
 public class ChangeAccountPassword {
+    /**
+     * This method is called when the user enters an incorrect password and wants to retry the password change. It
+     * prompts the user to either go back or try again, and throws a {@code PageBackException} if the user chooses to
+     * go back.
+     *
+     * @param userType the type of user who wants to change their password
+     * @param userID the ID of the user who wants to change their password
+     * @throws PageBackException if the user chooses to go back
+     */
     public static void askToRetry(UserType userType, String userID) throws PageBackException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter [b] to go back, or any other key to try again.");
@@ -22,10 +37,21 @@ public class ChangeAccountPassword {
         }
     }
 
+    /**
+     * This method is called to change the password for a given user account. It prompts the user for their old password
+     * and verifies it, then prompts the user for their new password and verifies that it is entered correctly. If
+     * successful, it updates the user's password and displays a success message before throwing a
+     * {@code PageBackException} to return to the previous page.
+     *
+     * @param userType the type of user who wants to change their password
+     * @param userID the ID of the user who wants to change their password
+     * @throws PageBackException if the user chooses to go back
+     */
     public static void changePassword(UserType userType, String userID) throws PageBackException {
+        ChangePage.changePage();
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Welcome to Change Student Password");
+        System.out.println("Welcome to Change " + UserTypeGetter.getUserTypeInCamelCase(userType) + " Password");
         System.out.print("Please enter your old password: ");
         String oldPassword = PasswordReader.getPassword();
 
@@ -60,9 +86,12 @@ public class ChangeAccountPassword {
         } while (!newPassword.equals(newPasswordAgain));
 
         try {
-            AccountManager.changePassword(UserType.STUDENT, userID, oldPassword, newPassword);
+            AccountManager.changePassword(userType, userID, oldPassword, newPassword);
 
             System.out.println("Password changed successfully.");
+
+            System.out.println("Press [Enter] to go back to the main page.");
+            scanner.nextLine();
             throw new PageBackException();
         } catch (PasswordIncorrectException | ModelNotFoundException e) {
             throw new RuntimeException(e);
