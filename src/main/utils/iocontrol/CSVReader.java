@@ -41,15 +41,15 @@ public class CSVReader {
                 // Extract the CSV values from the line
                 while (matcher.find()) {
                     String value = matcher.group().replace("\"", "");
+                    // Ignore spaces at the beginning of the value
+                    while (value.startsWith(" ")) {
+                        value = value.substring(1);
+                    }
+                    // Ignore spaces at the end of the value
+                    while (value.endsWith(" ")) {
+                        value = value.substring(0, value.length() - 1);
+                    }
                     row.add(value);
-                }
-                // Ignore spaces at the end of the row
-                while (row.size() > 0 && row.get(row.size() - 1).equals("")) {
-                    row.remove(row.size() - 1);
-                }
-                // Ignore spaces at the beginning of the row
-                while (row.size() > 0 && row.get(0).equals("")) {
-                    row.remove(0);
                 }
                 // Add the row to the list if it's not empty or null
                 if (row.size() > 0 && !row.get(0).equals("")) {
