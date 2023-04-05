@@ -1,6 +1,7 @@
 package main.boundary.coordinator;
 
 import main.boundary.account.ChangeAccountPassword;
+import main.boundary.account.Logout;
 import main.boundary.account.ViewUserProfile;
 import main.boundary.coordinator.details.ProjectDetailsGenerator;
 import main.boundary.project.AllProjectViewer;
@@ -48,7 +49,7 @@ public class CoordinatorMainPage {
                     case 4 -> CoordinatorRequestManager.viewPendingRequest();
                     case 5 -> CoordinatorRequestManager.viewAllRequest();
                     case 6 -> ProjectDetailsGenerator.generateProjectDetails();
-                    //case 10 -> Logout.logout();
+                    case 7 -> Logout.logout();
                     default -> System.out.println("Invalid choice. Please try again.");
                 }
             } catch (PageBackException e) {

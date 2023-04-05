@@ -5,6 +5,7 @@ import main.model.project.ProjectStatus;
 import main.model.user.Supervisor;
 import main.repository.project.ProjectRepository;
 import main.repository.user.FacultyRepository;
+import main.repository.user.StudentRepository;
 import main.utils.config.Location;
 import main.utils.exception.repository.ModelAlreadyExistsException;
 import main.utils.exception.repository.ModelNotFoundException;
@@ -89,7 +90,11 @@ public class ProjectManager {
      */
     public static void deallocateProject(String projectID) throws ModelNotFoundException {
         Project p1 = ProjectRepository.getInstance().getByID(projectID);
+        if (p1.getStatus() != ProjectStatus.ALLOCATED) {
+            throw new IllegalStateException("The project status is not ALLOCATED");
+        }
         p1.setStudentID("");
+        p1.setSupervisorID("");
         p1.setStatus(ProjectStatus.AVAILABLE);
         ProjectRepository.getInstance().update(p1);
     }
@@ -101,10 +106,18 @@ public class ProjectManager {
      * @param studentID the ID of the student
      * @throws ModelNotFoundException if the project is not found
      */
-    public static void allocateProject(String projectID, String studentID) throws ModelNotFoundException {
+    public static void allocateProject(String projectID, String studentID, String supervisorID) throws ModelNotFoundException {
         Project p1 = ProjectRepository.getInstance().getByID(projectID);
+        if (!StudentRepository.getInstance().contains(studentID) ||
+                !FacultyRepository.getInstance().contains(supervisorID)) {
+            throw new IllegalStateException("Student or supervisor not found");
+        }
+        if (p1.getStatus() != ProjectStatus.AVAILABLE) {
+            throw new IllegalStateException("Project Status is not AVAILABLE");
+        }
         p1.setStatus(ProjectStatus.ALLOCATED);
         p1.setStudentID(studentID);
+        p1.setSupervisorID(supervisorID);
         ProjectRepository.getInstance().update(p1);
     }
 
@@ -127,6 +140,7 @@ public class ProjectManager {
             }
         }
     }
+
     public static boolean repositoryIsEmpty() {
         return ProjectRepository.getInstance().isEmpty();
     }
