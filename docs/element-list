@@ -2,11 +2,10 @@ main
 main.boundary
 main.boundary.account
 main.boundary.coordinator
-main.boundary.coordinator.details
 main.boundary.project
+main.boundary.request
 main.boundary.student
 main.boundary.supervisor
-main.boundary.supervisor.details
 main.boundary.welcome
 main.controller.account
 main.controller.account.password
