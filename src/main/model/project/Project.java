@@ -6,6 +6,7 @@ import main.model.user.Supervisor;
 import main.repository.user.FacultyRepository;
 import main.repository.user.StudentRepository;
 import main.utils.exception.repository.ModelNotFoundException;
+import main.utils.parameters.EmptyID;
 
 import java.util.Map;
 
@@ -47,7 +48,7 @@ public class Project implements Model {
         this.projectID = projectID;
         this.projectTitle = projectTitle;
         this.supervisorID = supervisorID;
-        this.studentID = "NULL";
+        this.studentID = EmptyID.EMPTY_ID;
         this.status = ProjectStatus.AVAILABLE;
     }
 

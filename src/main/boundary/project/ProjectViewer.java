@@ -3,6 +3,7 @@ package main.boundary.project;
 import main.controller.project.ProjectManager;
 import main.model.project.Project;
 import main.model.project.ProjectStatus;
+import main.model.user.Student;
 import main.repository.project.ProjectRepository;
 import main.repository.user.FacultyRepository;
 import main.utils.exception.repository.ModelNotFoundException;
@@ -14,6 +15,12 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class ProjectViewer {
+    public static void displaySingleProject(Project p) {
+        System.out.println("==================================");
+        p.displayProject();
+        System.out.println("==================================");
+    }
+
     public static void displayProjectDetails(List<Project> projectList) {
         if (projectList.isEmpty()) {
             System.out.println("No project found.");
@@ -151,6 +158,20 @@ public class ProjectViewer {
         ChangePage.changePage();
         System.out.println("View All Project List");
         displayProjectDetails(ProjectManager.viewAllProject());
+        System.out.println("Press Enter to go back");
+        new Scanner(System.in).nextLine();
+        throw new PageBackException();
+    }
+
+    public static void viewStudentProject(Student student) throws PageBackException {
+        ChangePage.changePage();
+        System.out.println("View Student Project");
+        Project p = ProjectManager.getStudentProject(student);
+        if (p == null) {
+            System.out.println("Student has no project yet.");
+        } else {
+            displaySingleProject(p);
+        }
         System.out.println("Press Enter to go back");
         new Scanner(System.in).nextLine();
         throw new PageBackException();

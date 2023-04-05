@@ -42,7 +42,7 @@ public class CoordinatorMainPage {
 
             try {
                 switch (choice) {
-                    case 1 -> ViewUserProfile.viewUserProfile(user);
+                    case 1 -> ViewUserProfile.viewUserProfilePage(user);
                     case 2 -> ChangeAccountPassword.changePassword(UserType.COORDINATOR, user.getID());
                     case 3 -> ProjectViewer.viewAllProject();
                     case 4 -> CoordinatorRequestManager.viewPendingRequest();

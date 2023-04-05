@@ -1,9 +1,6 @@
 package main.utils.iocontrol;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static main.utils.iocontrol.ObjectOutputControlCharacters.DELIMITER_STRING;
 import static main.utils.iocontrol.ObjectOutputControlCharacters.SEPARATOR_STRING;
@@ -27,7 +24,7 @@ public class StringAndMapConvertor {
         for (String pair : pairs) {
             String[] keyValue = pair.split(DELIMITER_STRING);
             if (keyValue.length != 2) {
-                throw new IllegalArgumentException("Invalid key-value pair: " + pair);
+                throw new IllegalArgumentException("Invalid key-value pair: " + pair + " in string: " + Arrays.toString(keyValue));
             }
             map.put(keyValue[0], keyValue[1]);
         }

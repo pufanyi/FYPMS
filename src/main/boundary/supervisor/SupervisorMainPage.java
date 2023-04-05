@@ -55,7 +55,7 @@ public class SupervisorMainPage {
 
             try {
                 switch (choice) {
-                    case 1 -> ViewUserProfile.viewUserProfile(supervisor);
+                    case 1 -> ViewUserProfile.viewUserProfilePage(supervisor);
                     case 2 -> ChangeAccountPassword.changePassword(UserType.FACULTY, supervisor.getID());
                     case 3 -> supervisorCreateProject(supervisor);
                     case 4 -> supervisorChangeProjectTitle(supervisor);

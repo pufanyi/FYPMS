@@ -2,6 +2,7 @@ package main.controller.project;
 
 import main.model.project.Project;
 import main.model.project.ProjectStatus;
+import main.model.user.Student;
 import main.model.user.Supervisor;
 import main.repository.project.ProjectRepository;
 import main.repository.user.FacultyRepository;
@@ -10,6 +11,7 @@ import main.utils.config.Location;
 import main.utils.exception.repository.ModelAlreadyExistsException;
 import main.utils.exception.repository.ModelNotFoundException;
 import main.utils.iocontrol.CSVReader;
+import main.utils.parameters.EmptyID;
 
 import java.util.List;
 
@@ -160,5 +162,17 @@ public class ProjectManager {
 
     public static boolean containsProjectByID(String projectID) {
         return ProjectRepository.getInstance().contains(projectID);
+    }
+
+    public static Project getStudentProject(Student student) {
+        if (EmptyID.isEmptyID(student.getProjectID())) {
+            return null;
+        } else {
+            try {
+                return ProjectRepository.getInstance().getByID(student.getProjectID());
+            } catch (ModelNotFoundException e) {
+                throw new IllegalStateException("Project " + student.getProjectID() + " not found");
+            }
+        }
     }
 }

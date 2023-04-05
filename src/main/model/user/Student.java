@@ -1,5 +1,6 @@
 package main.model.user;
 
+import main.utils.parameters.EmptyID;
 import main.utils.parameters.NotNull;
 
 import java.util.Map;
@@ -47,8 +48,8 @@ public class Student implements User {
         this.studentName = studentName;
         this.email = email;
         this.status = StudentStatus.UNREGISTERED;
-        supervisorID = "NULL";
-        projectID = "NULL";
+        supervisorID = EmptyID.EMPTY_ID;
+        projectID = EmptyID.EMPTY_ID;
     }
 
     /**
@@ -64,8 +65,8 @@ public class Student implements User {
         this.studentName = studentName;
         this.email = email;
         this.status = StudentStatus.UNREGISTERED;
-        supervisorID = "NULL";
-        projectID = "NULL";
+        supervisorID = EmptyID.EMPTY_ID;
+        projectID = EmptyID.EMPTY_ID;
         this.hashedPassword = hashedPassword;
     }
 

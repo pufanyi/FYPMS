@@ -121,4 +121,13 @@ public class AccountManager {
                 CoordinatorRepository.getInstance().isEmpty() &&
                 FacultyRepository.getInstance().isEmpty();
     }
+
+    public static User getByDomainAndID(UserType userType, String ID) throws ModelNotFoundException {
+        return switch (userType) {
+            case STUDENT -> StudentRepository.getInstance().getByID(ID);
+            case COORDINATOR -> CoordinatorRepository.getInstance().getByID(ID);
+            case FACULTY -> FacultyRepository.getInstance().getByID(ID);
+            default -> null;
+        };
+    }
 }
