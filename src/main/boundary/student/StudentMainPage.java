@@ -1,6 +1,7 @@
 package main.boundary.student;
 
 import main.boundary.account.ChangeAccountPassword;
+import main.boundary.account.Logout;
 import main.boundary.project.ViewAvailableProjectList;
 import main.boundary.account.ViewUserProfile;
 import main.model.user.Student;
@@ -50,7 +51,7 @@ public class StudentMainPage {
 //                case 7 -> DeregisterForProject.deregisterForProject(student);
 //                case 8 -> ChangeTitleForProject.changeTitleForProject(student);
 //                case 9 -> ViewHistoryAndStatusOfMyProject.viewHistoryAndStatusOfMyProject(student);
-//                case 10 -> Logout.logout();
+                    case 10 -> Logout.logout();
                     default -> System.out.println("Invalid choice. Please try again.");
                 }
             } catch (PageBackException e) {
