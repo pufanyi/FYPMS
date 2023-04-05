@@ -2,15 +2,11 @@ package main.boundary.supervisor;
 
 import main.boundary.account.ChangeAccountPassword;
 import main.boundary.account.ViewUserProfile;
-import main.boundary.coordinator.CoordinatorMainPage;
 import main.controller.project.ProjectManager;
 import main.controller.request.StudentRequestManager;
 import main.model.request.Request;
 import main.model.request.RequestStatus;
-import main.model.request.RequestType;
 import main.model.request.studentrequest.StudentChangeTitleRequest;
-import main.model.request.studentrequest.StudentDeregistrationRequest;
-import main.model.request.studentrequest.StudentRegistrationRequest;
 import main.model.user.Supervisor;
 import main.model.user.User;
 import main.model.user.UserType;
@@ -52,7 +48,7 @@ public class SupervisorMainPage {
             try {
                 switch (choice) {
                     case 1 -> ViewUserProfile.viewUserProfile(supervisor);
-                    case 2 -> ChangeAccountPassword.changePassword(UserType.FACULTY,supervisor.getID());
+                    case 2 -> ChangeAccountPassword.changePassword(UserType.FACULTY, supervisor.getID());
                     case 3 -> supervisorCreateProject(supervisor);
                     case 4 -> supervisorChangeProjectTitle(supervisor);
                     case 5 -> supervisorViewAllPendingRequest(supervisor);
@@ -74,30 +70,41 @@ public class SupervisorMainPage {
     }
 
     private static void supervisorCreateProject(Supervisor supervisor) throws ModelAlreadyExistsException {
-            System.out.println("Creating a project....");
-            System.out.println("Please enter the Project Title");
-            String projectTitle = new Scanner(System.in).next();
-            ProjectManager.createProject(projectTitle, supervisor.getID());
+        System.out.println("Creating a project....");
+        System.out.println("Please enter the Project Title");
+        String projectTitle = new Scanner(System.in).next();
+        ProjectManager.createProject(projectTitle, supervisor.getID());
 
     }
 
     private static void supervisorChangeProjectTitle(Supervisor supervisor) throws ModelAlreadyExistsException, ModelNotFoundException {
-            System.out.println("Changing the title of project....");
-            System.out.println("Enter the project ID to change");
-            String projectID = new Scanner(System.in).next();
-            System.out.println("Enter the new title");
-            String newTitle = new Scanner(System.in).next();
-            ProjectManager.changeProjectTitle(projectID,newTitle);
+        System.out.println("Changing the title of project....");
+        System.out.println("Enter the project ID to change");
+        String projectID = new Scanner(System.in).next();
+        System.out.println("Enter the new title");
+        String newTitle = new Scanner(System.in).next();
+        ProjectManager.changeProjectTitle(projectID, newTitle);
 
     }
 
-    private static void supervisorRequestForTransfer(Supervisor supervisor) throws ModelNotFoundException {
+    private static void supervisorRequestForTransfer(Supervisor supervisor) throws ModelNotFoundException, PageBackException {
+        ChangePage.changePage();
         System.out.println("Processing to transfer....");
         System.out.println("Enter the project ID to transfer");
-        String projectID = new Scanner(System.in).next();
+        Scanner scanner = new Scanner(System.in);
+        String projectID = scanner.next();
+        while (!ProjectManager.containsProjectByID(projectID)) {
+            System.out.println("Project Not Found!");
+            projectID = scanner.next();
+        }
         System.out.println("Enter the new supervisor transfer to");
         String newSupervisor = new Scanner(System.in).next();
-        ProjectManager.transferToNewSupervisor(projectID, newSupervisor);
+        try {
+            ProjectManager.transferToNewSupervisor(projectID, newSupervisor);
+        } catch (ModelNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        throw new PageBackException();
     }
 
     private static void supervisorViewAllPendingRequest(Supervisor supervisor) throws ModelNotFoundException, ModelAlreadyExistsException {
@@ -120,28 +127,25 @@ public class SupervisorMainPage {
                 System.out.println("Enter A to approve / R too reject");
                 char process = new Scanner(System.in).next().charAt(0);
 
-                if (r1 instanceof StudentChangeTitleRequest req){
-                    if (req.getSupervisorID().equals(supervisor.getID()) && req.getStatus()==RequestStatus.PENDING){
-                        if (process=='A' || process=='a'){
-                            ProjectManager.changeProjectTitle(r1.getProjectID(),req.getNewTitle());
+                if (r1 instanceof StudentChangeTitleRequest req) {
+                    if (req.getSupervisorID().equals(supervisor.getID()) && req.getStatus() == RequestStatus.PENDING) {
+                        if (process == 'A' || process == 'a') {
+                            ProjectManager.changeProjectTitle(r1.getProjectID(), req.getNewTitle());
                             StudentRequestManager.approveStudentRequest(requestID);
                             System.out.println("Request approved.");
-                        }
-                        else if (process=='R' || process=='r'){
+                        } else if (process == 'R' || process == 'r') {
                             StudentRequestManager.rejectStudentRequest(requestID);
                             System.out.println("Request rejected.");
                         }
-                    }
-                    else System.out.println("No access to this request or request is not pending. Process unsuccessful.");
-                }
-                else {
+                    } else
+                        System.out.println("No access to this request or request is not pending. Process unsuccessful.");
+                } else {
                     System.out.println("Invalid requestID.Process unsuccessful. ");
                 }
             }
             System.out.println("Ending request processing");
         }
     }
-
 
 
 }

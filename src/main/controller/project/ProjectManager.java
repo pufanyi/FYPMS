@@ -13,6 +13,7 @@ import main.utils.iocontrol.CSVReader;
 import java.util.List;
 
 public class ProjectManager {
+
     /**
      * Change the title of a project
      *
@@ -128,5 +129,9 @@ public class ProjectManager {
     }
     public static boolean repositoryIsEmpty() {
         return ProjectRepository.getInstance().isEmpty();
+    }
+
+    public static boolean containsProjectByID(String projectID) {
+        return ProjectRepository.getInstance().contains(projectID);
     }
 }
