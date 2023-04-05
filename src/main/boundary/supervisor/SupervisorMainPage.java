@@ -7,12 +7,14 @@ import main.boundary.request.RequestViewer;
 import main.controller.project.ProjectManager;
 import main.controller.request.RequestManager;
 import main.controller.request.SupervisorRequestManager;
+import main.model.project.Project;
 import main.model.request.Request;
 import main.model.request.RequestStatus;
 import main.model.request.studentrequest.StudentChangeTitleRequest;
 import main.model.user.Supervisor;
 import main.model.user.User;
 import main.model.user.UserType;
+import main.repository.project.ProjectRepository;
 import main.repository.request.RequestRepository;
 import main.repository.user.FacultyRepository;
 import main.utils.exception.repository.ModelAlreadyExistsException;
@@ -22,6 +24,7 @@ import main.utils.ui.BoundaryStrings;
 import main.utils.ui.ChangePage;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class SupervisorMainPage {
@@ -90,9 +93,16 @@ public class SupervisorMainPage {
         System.out.println("Changing the title of project....");
         System.out.println("Enter the project ID to change");
         String projectID = new Scanner(System.in).next();
+        Project p= ProjectRepository.getInstance().getByID(projectID);
         Scanner scanner = new Scanner(System.in);
-        while (!ProjectManager.containsProjectByID(projectID)) {
-            System.out.println("Project Not Found! Enter again or Enter b to exit");
+        while (true) {
+            if (!ProjectManager.containsProjectByID(projectID)){
+                System.out.println("Project Not Found! Enter again or Enter b to exit");
+            }
+            else if (!Objects.equals(p.getSupervisorID(), supervisor.getID())){
+                System.out.println("Project created by other supervisor! No access! Enter again or Enter b to exit");
+            }
+            else break;
             projectID = scanner.next();
             if (projectID.equals("b")) {
                 throw new PageBackException();
