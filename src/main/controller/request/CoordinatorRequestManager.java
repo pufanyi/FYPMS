@@ -18,25 +18,9 @@ import main.utils.exception.repository.ModelAlreadyExistsException;
 import main.utils.exception.repository.ModelNotFoundException;
 import main.utils.exception.ui.PageBackException;
 
-public class CoordinatorRequestManager{
-    /**
-     * Transfer a student to a new supervisor
-     *
-     * @param request       the request to be processed
-     * @param newSupervisor the supervisor ID of the supervisor that the student is going to be transferred to
-     * @throws ModelNotFoundException if the request is not found
-     */
-    public static void transferToNewSupervisor(Request request, String newSupervisor) throws ModelNotFoundException {
-        if (request.getStatus() == RequestStatus.APPROVED) {
-            String projectID = request.getProjectID();
-            Project project = ProjectRepository.getInstance().getByID(projectID);
-            String studentID = request.getStudentID();
-            Student student = StudentRepository.getInstance().getByID(studentID);
-            project.setSupervisorID(newSupervisor);
-            ProjectRepository.getInstance().update(project);
-        }
-    }
+import java.util.List;
 
+public class CoordinatorRequestManager{
     /**
      * approve a student deregistration request
      *
@@ -116,28 +100,18 @@ public class CoordinatorRequestManager{
     /**
      * display all the requests
      */
-    public static void viewAllRequest() throws PageBackException {
-        for (Request request : RequestRepository.getInstance()) {
-            //if (! (request instanceof StudentChangeTitleRequest))
-                request.display();
-        }
-        System.out.println("Press enter to go back");
-        try {
-            System.in.read();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        throw new PageBackException();
+    public static List<Request> viewAllRequest() throws PageBackException {
+        return RequestRepository.getInstance().getList();
     }
+
 
     /**
      * display all the pending requests
      */
-    public static void viewPendingRequest() {
-        for (Request request : RequestRepository.getInstance().findByRules(request -> request.getStatus() == RequestStatus.PENDING)) {
-            request.display();
-        }
+    public static List<Request> viewPendingRequest() {
+        return RequestRepository.getInstance().findByRules(request -> request.getStatus() == RequestStatus.PENDING);
     }
+
 
     /**
      * approve a request

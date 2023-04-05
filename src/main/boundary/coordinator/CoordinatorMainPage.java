@@ -54,8 +54,6 @@ public class CoordinatorMainPage {
                 }
             } catch (PageBackException e) {
                 CoordinatorMainPage.coordinatorMainPage(user);
-            } catch (ModelNotFoundException e) {
-                throw new RuntimeException(e);
             }
 
         } else {

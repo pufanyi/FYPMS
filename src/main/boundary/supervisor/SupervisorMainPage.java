@@ -1,8 +1,10 @@
 package main.boundary.supervisor;
 
 import main.boundary.account.ChangeAccountPassword;
+import main.boundary.account.Logout;
 import main.boundary.account.ViewUserProfile;
 import main.controller.project.ProjectManager;
+import main.controller.request.RequestManager;
 import main.controller.request.StudentRequestManager;
 import main.model.request.Request;
 import main.model.request.RequestStatus;
@@ -55,7 +57,7 @@ public class SupervisorMainPage {
                     case 5 -> supervisorViewAllPendingRequest(supervisor);
                     case 6 -> supervisorRequestForTransfer(supervisor);
                     //case 7 ->
-                    //case 8 -> Logout.logout();
+                    case 8 -> Logout.logout();
 
                     default -> System.out.println("Invalid choice. Please try again.");
                 }
@@ -78,10 +80,19 @@ public class SupervisorMainPage {
 
     }
 
-    private static void supervisorChangeProjectTitle(Supervisor supervisor) throws ModelAlreadyExistsException, ModelNotFoundException {
+    private static void supervisorChangeProjectTitle(Supervisor supervisor) throws ModelAlreadyExistsException, ModelNotFoundException, PageBackException {
+        ChangePage.changePage();
         System.out.println("Changing the title of project....");
         System.out.println("Enter the project ID to change");
         String projectID = new Scanner(System.in).next();
+        Scanner scanner=new Scanner(System.in);
+        while (!ProjectManager.containsProjectByID(projectID)){
+            System.out.println("Project Not Found! Enter again or Enter b to exit");
+            projectID = scanner.next();
+            if (projectID.equals("b")){
+                throw new PageBackException();
+            }
+        }
         System.out.println("Enter the new title");
         String newTitle = new Scanner(System.in).next();
         ProjectManager.changeProjectTitle(projectID, newTitle);
@@ -95,8 +106,11 @@ public class SupervisorMainPage {
         Scanner scanner = new Scanner(System.in);
         String projectID = scanner.next();
         while (!ProjectManager.containsProjectByID(projectID)) {
-            System.out.println("Project Not Found!");
+            System.out.println("Project Not Found! Enter again or Enter b to exit");
             projectID = scanner.next();
+            if (projectID.equals("b")){
+                throw new PageBackException();
+            }
         }
         System.out.println("Enter the new supervisor transfer to");
         String newSupervisor = scanner.next();
@@ -113,6 +127,7 @@ public class SupervisorMainPage {
     }
 
     private static void supervisorViewAllPendingRequest(Supervisor supervisor) throws ModelNotFoundException, ModelAlreadyExistsException {
+        ChangePage.changePage();
         System.out.println("Displaying all pending requests by students...");
         for (Request r : RequestRepository.getInstance().findByRules(r -> r.getStatus().equals(RequestStatus.PENDING))) {
             if (r instanceof StudentChangeTitleRequest req)
@@ -129,17 +144,17 @@ public class SupervisorMainPage {
             r1.display();
             char choice = new Scanner(System.in).next().charAt(0);
             if (choice == 'y' || choice == 'Y') {
-                System.out.println("Enter A to approve / R too reject");
+                System.out.println("Enter A to approve / R to reject");
                 char process = new Scanner(System.in).next().charAt(0);
 
                 if (r1 instanceof StudentChangeTitleRequest req) {
                     if (req.getSupervisorID().equals(supervisor.getID()) && req.getStatus() == RequestStatus.PENDING) {
                         if (process == 'A' || process == 'a') {
                             ProjectManager.changeProjectTitle(r1.getProjectID(), req.getNewTitle());
-                            StudentRequestManager.approveStudentRequest(requestID);
+                            RequestManager.approveRequest(requestID);
                             System.out.println("Request approved.");
                         } else if (process == 'R' || process == 'r') {
-                            StudentRequestManager.rejectStudentRequest(requestID);
+                            RequestManager.rejectRequest(requestID);
                             System.out.println("Request rejected.");
                         }
                     } else

@@ -57,6 +57,14 @@ public class ProjectManager {
         ProjectRepository.getInstance().add(p1);
     }
 
+    public static List<Project> getAllProject() {
+        return ProjectRepository.getInstance().getList();
+    }
+
+    public static List<Project> getAllProjectByStatus(ProjectStatus projectStatus){
+        return ProjectRepository.getInstance().findByRules(project -> project.getStatus().equals(projectStatus));
+    }
+
     public static String getNewProjectID() {
         int max = 0;
         for (Project p : ProjectRepository.getInstance()) {
@@ -77,6 +85,9 @@ public class ProjectManager {
      */
     public static void transferToNewSupervisor(String projectID, String supervisorID) throws ModelNotFoundException {
         Project p1 = ProjectRepository.getInstance().getByID(projectID);
+        if (!FacultyRepository.getInstance().contains(supervisorID)) {
+            throw new IllegalStateException("Supervisor Not Found!");
+        }
         p1.setSupervisorID(supervisorID);
         ProjectRepository.getInstance().update(p1);
     }

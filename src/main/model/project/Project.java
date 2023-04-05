@@ -58,19 +58,27 @@ public class Project implements Model {
     /**
      * Display the information of the supervisor
      */
-    private void displaySupervisorInformation() throws ModelNotFoundException {
-        Supervisor supervisor = FacultyRepository.getInstance().getByID(supervisorID);
-        System.out.println("Supervisor Name: " + supervisor.getUserName());
-        System.out.println("Supervisor Email Address: " + supervisor.getEmail());
+    private void displaySupervisorInformation(String supervisorID) {
+        try {
+            Supervisor supervisor = FacultyRepository.getInstance().getByID(supervisorID);
+            System.out.println("Supervisor Name: " + supervisor.getUserName());
+            System.out.println("Supervisor Email Address: " + supervisor.getEmail());
+        } catch (ModelNotFoundException e) {
+            System.out.println("No Supervisor Yet");
+        }
     }
 
     /**
      * Display the information of the student
      */
-    private void displayStudentInformation() throws ModelNotFoundException {
-        Student student = StudentRepository.getInstance().getByID(studentID);
-        System.out.println("Student Name: " + student.getUserName());
-        System.out.println("Student Email Address: " + student.getEmail());
+    private void displayStudentInformation() {
+        try {
+            Student student = StudentRepository.getInstance().getByID(studentID);
+            System.out.println("Student Name: " + student.getUserName());
+            System.out.println("Student Email Address: " + student.getEmail());
+        } catch (ModelNotFoundException e) {
+            System.out.println("No Student Yet");
+        }
     }
 
     /**
@@ -91,14 +99,14 @@ public class Project implements Model {
     /**
      * Display the whole information of the project
      */
-    public void displayProject() throws ModelNotFoundException {
+    public void displayProject() {
         if (status == ProjectStatus.AVAILABLE) {
             displayProjectID();
-            displaySupervisorInformation();
+            displaySupervisorInformation(this.supervisorID);
             displayProjectInformation();
         } else if (status == ProjectStatus.ALLOCATED) {
             displayProjectID();
-            displaySupervisorInformation();
+            displaySupervisorInformation(this.supervisorID);
             displayStudentInformation();
             displayProjectInformation();
         } else {

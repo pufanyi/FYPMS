@@ -9,6 +9,8 @@ import main.repository.request.RequestRepository;
 import main.utils.exception.repository.ModelAlreadyExistsException;
 import main.utils.exception.repository.ModelNotFoundException;
 
+import java.util.List;
+
 public class SupervisorRequestManager{
     /**
      * Transfer a student to a new supervisor
@@ -19,7 +21,7 @@ public class SupervisorRequestManager{
      * @param studentID       the student ID of the student that is going to be transferred
      */
     public static void transferToNewSupervisor(String projectID, String supervisorID, String newSupervisorID, String studentID) {
-        String requestID = String.valueOf(RequestRepository.getInstance().size());
+        String requestID = RequestManager.getNewRequestID();
         Request request = new TransferStudentRequest(requestID, projectID, supervisorID, newSupervisorID, studentID);
         try {
             RequestRepository.getInstance().add(request);
@@ -29,64 +31,11 @@ public class SupervisorRequestManager{
     }
 
     /**
-     * Change the title of a project
-     *
-     * @param newtitle  the new title of the project
-     * @param projectID the project ID of the project that is going to be changed
-     * @throws ModelNotFoundException      if the project is not found
-     * @throws ModelAlreadyExistsException if the project title already exists
-     */
-    public static void changeProjectTitle(String newtitle, String projectID) throws ModelNotFoundException, ModelAlreadyExistsException {
-        ProjectManager.changeProjectTitle(projectID, newtitle);
-    }
-
-    /**
-     * Approve a request
-     *
-     * @param requestID the request ID of the request that is going to be approved
-     * @throws ModelNotFoundException if the request is not found
-     */
-    public static void approveRequest(String requestID) throws ModelNotFoundException {
-        Request request = RequestRepository.getInstance().getByID(requestID);
-        if (request.getStatus() == RequestStatus.PENDING) {
-            request.setStatus(RequestStatus.APPROVED);
-            RequestRepository.getInstance().update(request);
-        }
-    }
-
-    /**
-     * Reject a request
-     *
-     * @param requestID the request ID of the request that is going to be rejected
-     * @throws ModelNotFoundException if the request is not found
-     */
-    public static void rejectRequest(String requestID) throws ModelNotFoundException {
-        Request request = RequestRepository.getInstance().getByID(requestID);
-        if (request.getStatus() == RequestStatus.PENDING) {
-            request.setStatus(RequestStatus.DENIED);
-            RequestRepository.getInstance().update(request);
-        }
-    }
-
-    /**
      * View all requests
      *
      * @param supervisorID the supervisor ID of the supervisor that is going to view all requests
      */
-    public static void viewRequest(String supervisorID) {
-        for (Request request : RequestRepository.getInstance().findByRules(request -> request.getID().equals(supervisorID)))
-            request.display();
-    }
-
-    /**
-     * Create a project
-     *
-     * @param supervisorID the supervisor ID of the supervisor that is going to create the project
-     * @param title        the title of the project
-     * @throws ModelAlreadyExistsException if the project title already exists
-     */
-    public static void createProject(String supervisorID, String title) throws ModelAlreadyExistsException {
-        String projectID = String.valueOf(ProjectRepository.getInstance().size());
-        ProjectManager.createProject(projectID, supervisorID, title);
+    public static List<Request> viewRequest(String supervisorID) {
+        return RequestRepository.getInstance().findByRules(request -> request.getID().equals(supervisorID));
     }
 }
