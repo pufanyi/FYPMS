@@ -2,7 +2,7 @@ package main.boundary.student;
 
 import main.boundary.account.ChangeAccountPassword;
 import main.boundary.account.Logout;
-import main.boundary.project.ViewAvailableProjectList;
+import main.boundary.project.ProjectViewer;
 import main.boundary.account.ViewUserProfile;
 import main.model.user.Student;
 import main.model.user.User;
@@ -44,7 +44,7 @@ public class StudentMainPage {
                 switch (choice) {
                     case 1 -> ViewUserProfile.viewUserProfile(student);
                     case 2 -> ChangeAccountPassword.changePassword(UserType.STUDENT, student.getID());
-                    case 3 -> ViewAvailableProjectList.viewAvailableProjectList();
+                    case 3 -> ProjectViewer.viewAvailableProjectList();
 //                case 4 -> ViewMyProject.viewMyProject(student);
 //                case 5 -> ViewMySupervisor.viewMySupervisor(student);
 //                case 6 -> RegisterForProject.registerForProject(student);
@@ -52,7 +52,11 @@ public class StudentMainPage {
 //                case 8 -> ChangeTitleForProject.changeTitleForProject(student);
 //                case 9 -> ViewHistoryAndStatusOfMyProject.viewHistoryAndStatusOfMyProject(student);
                     case 10 -> Logout.logout();
-                    default -> System.out.println("Invalid choice. Please try again.");
+                    default -> {
+                        System.out.println("Invalid choice. Please press enter to try again.");
+                        new Scanner(System.in).nextLine();
+                        throw new PageBackException();
+                    }
                 }
             } catch (PageBackException e) {
                 StudentMainPage.studentMainPage(student);

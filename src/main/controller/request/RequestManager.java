@@ -18,14 +18,22 @@ public class RequestManager {
     }
 
     public static void approveRequest(String requestID) throws ModelNotFoundException {
-        Request r1=RequestRepository.getInstance().getByID(requestID);
-        r1.setStatus(RequestStatus.APPROVED);
-        RequestRepository.getInstance().update(r1);
+        Request r1 = RequestRepository.getInstance().getByID(requestID);
+        try {
+            r1.setStatus(RequestStatus.APPROVED);
+            RequestRepository.getInstance().update(r1);
+        } catch (ModelNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void rejectRequest(String requestID) throws ModelNotFoundException {
-        Request r1=RequestRepository.getInstance().getByID(requestID);
-        r1.setStatus(RequestStatus.DENIED);
-        RequestRepository.getInstance().update(r1);
+        Request r1 = RequestRepository.getInstance().getByID(requestID);
+        try {
+            r1.setStatus(RequestStatus.DENIED);
+            RequestRepository.getInstance().update(r1);
+        } catch (ModelNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

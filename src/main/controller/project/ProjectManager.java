@@ -29,13 +29,15 @@ public class ProjectManager {
         ProjectRepository.getInstance().update(p1);
     }
 
+    public static List<Project> viewAllProject() {
+        return ProjectRepository.getInstance().getList();
+    }
+
     /**
      * View all the projects that are available
      *
-     * @return
-     * @throws ModelNotFoundException if the project is not found
      */
-    public static List<Project> viewAvailableProjects() throws ModelNotFoundException {
+    public static List<Project> viewAvailableProjects() {
         return ProjectRepository.getInstance().findByRules(p -> p.getStatus() == ProjectStatus.AVAILABLE);
     }
 

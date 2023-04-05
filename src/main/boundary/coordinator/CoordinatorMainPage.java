@@ -3,19 +3,18 @@ package main.boundary.coordinator;
 import main.boundary.account.ChangeAccountPassword;
 import main.boundary.account.Logout;
 import main.boundary.account.ViewUserProfile;
-import main.boundary.coordinator.details.ProjectDetailsGenerator;
-import main.boundary.project.AllProjectViewer;
-import main.controller.project.ProjectManager;
+import main.boundary.project.ProjectViewer;
 import main.controller.request.CoordinatorRequestManager;
 import main.model.user.Coordinator;
 import main.model.user.User;
 import main.model.user.UserType;
-import main.utils.exception.repository.ModelNotFoundException;
 import main.utils.exception.ui.PageBackException;
 import main.utils.ui.BoundaryStrings;
 import main.utils.ui.ChangePage;
 
 import java.util.Scanner;
+
+import static main.boundary.project.ProjectViewer.generateProjectDetails;
 
 public class CoordinatorMainPage {
     public static void coordinatorMainPage(User user) {
@@ -45,10 +44,10 @@ public class CoordinatorMainPage {
                 switch (choice) {
                     case 1 -> ViewUserProfile.viewUserProfile(user);
                     case 2 -> ChangeAccountPassword.changePassword(UserType.COORDINATOR, user.getID());
-                    case 3 -> AllProjectViewer.viewAllProject();
+                    case 3 -> ProjectViewer.viewAllProject();
                     case 4 -> CoordinatorRequestManager.viewPendingRequest();
                     case 5 -> CoordinatorRequestManager.viewAllRequest();
-                    case 6 -> ProjectDetailsGenerator.generateProjectDetails();
+                    case 6 -> generateProjectDetails();
                     case 7 -> Logout.logout();
                     default -> System.out.println("Invalid choice. Please try again.");
                 }
@@ -60,6 +59,5 @@ public class CoordinatorMainPage {
             throw new IllegalArgumentException("User is not a coordinator.");
         }
     }
-
 
 }

@@ -6,6 +6,7 @@ import main.model.request.RequestStatus;
 import main.model.request.supervirsorrequest.TransferStudentRequest;
 import main.repository.project.ProjectRepository;
 import main.repository.request.RequestRepository;
+import main.repository.user.FacultyRepository;
 import main.utils.exception.repository.ModelAlreadyExistsException;
 import main.utils.exception.repository.ModelNotFoundException;
 
@@ -37,5 +38,15 @@ public class SupervisorRequestManager{
      */
     public static List<Request> viewRequest(String supervisorID) {
         return RequestRepository.getInstance().findByRules(request -> request.getID().equals(supervisorID));
+    }
+
+    public static List<Request> getPendingRequestsBySupervisor(String id) {
+        if (!FacultyRepository.getInstance().contains(id)) {
+            throw new IllegalArgumentException("Supervisor does not exist");
+        }
+        return RequestRepository.getInstance().findByRules(
+                request -> request.getID().equals(id),
+                request -> request.getStatus() == RequestStatus.PENDING
+        );
     }
 }

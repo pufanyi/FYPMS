@@ -3,9 +3,10 @@ package main.boundary.supervisor;
 import main.boundary.account.ChangeAccountPassword;
 import main.boundary.account.Logout;
 import main.boundary.account.ViewUserProfile;
+import main.boundary.request.RequestViewer;
 import main.controller.project.ProjectManager;
 import main.controller.request.RequestManager;
-import main.controller.request.StudentRequestManager;
+import main.controller.request.SupervisorRequestManager;
 import main.model.request.Request;
 import main.model.request.RequestStatus;
 import main.model.request.studentrequest.StudentChangeTitleRequest;
@@ -20,6 +21,7 @@ import main.utils.exception.ui.PageBackException;
 import main.utils.ui.BoundaryStrings;
 import main.utils.ui.ChangePage;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class SupervisorMainPage {
@@ -72,12 +74,15 @@ public class SupervisorMainPage {
         }
     }
 
-    private static void supervisorCreateProject(Supervisor supervisor) throws ModelAlreadyExistsException {
+    private static void supervisorCreateProject(Supervisor supervisor) throws ModelAlreadyExistsException, PageBackException {
         System.out.println("Creating a project....");
         System.out.println("Please enter the Project Title");
-        String projectTitle = new Scanner(System.in).next();
+        String projectTitle = new Scanner(System.in).nextLine();
         ProjectManager.createProject(projectTitle, supervisor.getID());
-
+        System.out.println("Project created successfully!");
+        System.out.println("Enter enter to continue");
+        new Scanner(System.in).nextLine();
+        throw new PageBackException();
     }
 
     private static void supervisorChangeProjectTitle(Supervisor supervisor) throws ModelAlreadyExistsException, ModelNotFoundException, PageBackException {
@@ -85,17 +90,21 @@ public class SupervisorMainPage {
         System.out.println("Changing the title of project....");
         System.out.println("Enter the project ID to change");
         String projectID = new Scanner(System.in).next();
-        Scanner scanner=new Scanner(System.in);
-        while (!ProjectManager.containsProjectByID(projectID)){
+        Scanner scanner = new Scanner(System.in);
+        while (!ProjectManager.containsProjectByID(projectID)) {
             System.out.println("Project Not Found! Enter again or Enter b to exit");
             projectID = scanner.next();
-            if (projectID.equals("b")){
+            if (projectID.equals("b")) {
                 throw new PageBackException();
             }
         }
         System.out.println("Enter the new title");
         String newTitle = new Scanner(System.in).next();
         ProjectManager.changeProjectTitle(projectID, newTitle);
+        System.out.println("Project title changed successfully!");
+        System.out.println("Enter enter to continue");
+        new Scanner(System.in).nextLine();
+        throw new PageBackException();
 
     }
 
@@ -108,64 +117,107 @@ public class SupervisorMainPage {
         while (!ProjectManager.containsProjectByID(projectID)) {
             System.out.println("Project Not Found! Enter again or Enter b to exit");
             projectID = scanner.next();
-            if (projectID.equals("b")){
+            if (projectID.equals("b")) {
                 throw new PageBackException();
             }
         }
         System.out.println("Enter the new supervisor transfer to");
         String newSupervisor = scanner.next();
         while (!FacultyRepository.getInstance().contains(newSupervisor)) {
-            System.out.println("User Not Found!");
+            System.out.println("User Not Found! Enter again or Enter b to exit");
             newSupervisor = scanner.next();
+            if (newSupervisor.equals("b")) {
+                throw new PageBackException();
+            }
         }
         try {
             ProjectManager.transferToNewSupervisor(projectID, newSupervisor);
+            System.out.println("Transfer done!");
         } catch (ModelNotFoundException e) {
             throw new RuntimeException(e);
         }
         throw new PageBackException();
     }
 
-    private static void supervisorViewAllPendingRequest(Supervisor supervisor) throws ModelNotFoundException, ModelAlreadyExistsException {
-        ChangePage.changePage();
-        System.out.println("Displaying all pending requests by students...");
-        for (Request r : RequestRepository.getInstance().findByRules(r -> r.getStatus().equals(RequestStatus.PENDING))) {
-            if (r instanceof StudentChangeTitleRequest req)
-                if (req.getSupervisorID().equals(supervisor.getID()))
-                    req.display();
-        }
-        System.out.println("Enter Y to process the requests OR Enter any other key to exit");
-        char c = new Scanner(System.in).next().charAt(0);
-        if (c == 'Y' || c == 'y') {
-            System.out.println("Enter the request ID to process");
-            String requestID = new Scanner(System.in).next();
-            Request r1 = RequestRepository.getInstance().getByID(requestID);
-            System.out.println("Press Y to confirm to process the following request");
-            r1.display();
-            char choice = new Scanner(System.in).next().charAt(0);
-            if (choice == 'y' || choice == 'Y') {
-                System.out.println("Enter A to approve / R to reject");
-                char process = new Scanner(System.in).next().charAt(0);
-
-                if (r1 instanceof StudentChangeTitleRequest req) {
-                    if (req.getSupervisorID().equals(supervisor.getID()) && req.getStatus() == RequestStatus.PENDING) {
-                        if (process == 'A' || process == 'a') {
-                            ProjectManager.changeProjectTitle(r1.getProjectID(), req.getNewTitle());
-                            RequestManager.approveRequest(requestID);
-                            System.out.println("Request approved.");
-                        } else if (process == 'R' || process == 'r') {
-                            RequestManager.rejectRequest(requestID);
-                            System.out.println("Request rejected.");
-                        }
-                    } else
-                        System.out.println("No access to this request or request is not pending. Process unsuccessful.");
-                } else {
-                    System.out.println("Invalid requestID.Process unsuccessful. ");
-                }
+    private static String getRequestToProcess(List<Request> requests) throws PageBackException {
+        System.out.println("==================================");
+        System.out.println("Enter the request ID to process");
+        Scanner scanner = new Scanner(System.in);
+        String requestID = scanner.next();
+        boolean found = false;
+        for (Request r : requests) {
+            if (r.getID().equals(requestID)) {
+                found = true;
+                return requestID;
             }
-            System.out.println("Ending request processing");
+        }
+        System.out.println("Request Not Found! Enter again or Enter b to exit");
+        requestID = scanner.nextLine();
+        if (requestID.equals("b")) {
+            throw new PageBackException();
+        } else {
+            return getRequestToProcess(requests);
         }
     }
 
+    private static void supervisorViewAllPendingRequest(Supervisor supervisor) throws PageBackException {
+        ChangePage.changePage();
+        System.out.println("Displaying all pending requests by students...");
+        List<Request> requests = SupervisorRequestManager.getPendingRequestsBySupervisor(supervisor.getID());
+        RequestViewer.viewRequests(requests);
+        if (requests.isEmpty()) {
+            System.out.println("Enter any key to continue");
+            new Scanner(System.in).next();
+            throw new PageBackException();
+        }
+        System.out.println("Enter Y to process the requests OR Enter any other key to exit");
+        String c = new Scanner(System.in).next();
+        if (!c.equalsIgnoreCase("Y")) {
+            throw new PageBackException();
+        }
+        String requestID = getRequestToProcess(requests);
+        Request r1;
+        try {
+            r1 = RequestRepository.getInstance().getByID(requestID);
+        } catch (ModelNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("Press Y to confirm to process the following request");
+        r1.display();
+        String choice = new Scanner(System.in).next();
+        if (!choice.equalsIgnoreCase("Y")) {
+            System.out.println("Ending request processing, press any key to continue");
+            new Scanner(System.in).next();
+            throw new PageBackException();
+        }
+        System.out.println("Enter A to approve / R to reject");
+        char process = new Scanner(System.in).next().charAt(0);
 
+        if (r1 instanceof StudentChangeTitleRequest req) {
+            if (req.getSupervisorID().equals(supervisor.getID()) && req.getStatus() == RequestStatus.PENDING) {
+                if (process == 'A' || process == 'a') {
+                    try {
+                        ProjectManager.changeProjectTitle(r1.getProjectID(), req.getNewTitle());
+                        RequestManager.approveRequest(requestID);
+                    } catch (ModelNotFoundException | ModelAlreadyExistsException e) {
+                        throw new RuntimeException(e);
+                    }
+                    System.out.println("Request approved.");
+                } else if (process == 'R' || process == 'r') {
+                    try {
+                        RequestManager.rejectRequest(requestID);
+                    } catch (ModelNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+                    System.out.println("Request rejected.");
+                }
+            } else
+                System.out.println("No access to this request or request is not pending. Process unsuccessful.");
+        } else {
+            System.out.println("Invalid requestID.Process unsuccessful. ");
+        }
+        System.out.println("Enter any enter to continue");
+        new Scanner(System.in).nextLine();
+        throw new PageBackException();
+    }
 }
