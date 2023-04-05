@@ -62,7 +62,5 @@ public class CoordinatorMainPage {
         }
     }
 
-    private static void coordinatorViewAllRequest(){
 
-    }
 }

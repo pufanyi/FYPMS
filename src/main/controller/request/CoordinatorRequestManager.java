@@ -5,6 +5,7 @@ import main.model.project.Project;
 import main.model.project.ProjectStatus;
 import main.model.request.Request;
 import main.model.request.RequestStatus;
+import main.model.request.studentrequest.StudentChangeTitleRequest;
 import main.model.user.Student;
 import main.model.user.StudentStatus;
 import main.model.user.Supervisor;
@@ -117,7 +118,8 @@ public class CoordinatorRequestManager{
      */
     public static void viewAllRequest() throws PageBackException {
         for (Request request : RequestRepository.getInstance()) {
-            request.display();
+            //if (! (request instanceof StudentChangeTitleRequest))
+                request.display();
         }
         System.out.println("Press enter to go back");
         try {
