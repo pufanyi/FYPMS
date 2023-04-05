@@ -43,6 +43,14 @@ public class CSVReader {
                     String value = matcher.group().replace("\"", "");
                     row.add(value);
                 }
+                // Ignore spaces at the end of the row
+                while (row.size() > 0 && row.get(row.size() - 1).equals("")) {
+                    row.remove(row.size() - 1);
+                }
+                // Ignore spaces at the beginning of the row
+                while (row.size() > 0 && row.get(0).equals("")) {
+                    row.remove(0);
+                }
                 // Add the row to the list if it's not empty or null
                 if (row.size() > 0 && !row.get(0).equals("")) {
                     list.add(row);
