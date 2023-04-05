@@ -6,13 +6,8 @@ import main.utils.exception.repository.ModelNotFoundException;
 
 public class AllProjectViewer {
     public static void viewAllProject() {
-        try {
-            for (Project p : ProjectRepository.getInstance()) {
-                p.displayProject();
-            }
-        } catch (ModelNotFoundException e) {
-            System.out.println("No available projects.");
-            throw new RuntimeException(e);
+        for (Project p : ProjectRepository.getInstance()) {
+            p.displayProject();
         }
     }
 }
