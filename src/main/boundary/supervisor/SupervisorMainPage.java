@@ -11,6 +11,7 @@ import main.model.user.Supervisor;
 import main.model.user.User;
 import main.model.user.UserType;
 import main.repository.request.RequestRepository;
+import main.repository.user.FacultyRepository;
 import main.utils.exception.repository.ModelAlreadyExistsException;
 import main.utils.exception.repository.ModelNotFoundException;
 import main.utils.exception.ui.PageBackException;
@@ -98,7 +99,11 @@ public class SupervisorMainPage {
             projectID = scanner.next();
         }
         System.out.println("Enter the new supervisor transfer to");
-        String newSupervisor = new Scanner(System.in).next();
+        String newSupervisor = scanner.next();
+        while (!FacultyRepository.getInstance().contains(newSupervisor)) {
+            System.out.println("User Not Found!");
+            newSupervisor = scanner.next();
+        }
         try {
             ProjectManager.transferToNewSupervisor(projectID, newSupervisor);
         } catch (ModelNotFoundException e) {
