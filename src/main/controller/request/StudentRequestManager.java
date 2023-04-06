@@ -16,6 +16,8 @@ import main.utils.exception.model.StudentStatusException;
 import main.utils.exception.repository.ModelAlreadyExistsException;
 import main.utils.exception.repository.ModelNotFoundException;
 
+import java.util.List;
+
 public class StudentRequestManager{
     /**
      * student request to deregister from a project
@@ -106,6 +108,11 @@ public class StudentRequestManager{
         Request request = new StudentChangeTitleRequest(requestID, projectID, newTitle, studentID, supervisorID);
         RequestRepository.getInstance().add(request);
         return requestID;
+    }
+
+    public static List<Request> getStudentRequestHistory(String studentID) {
+        System.err.println("StudentRequestManager.getStudentRequestHistory studentID = " + studentID);
+        return RequestRepository.getInstance().findByRules(request -> request.getStudentID().equals(studentID));
     }
 }
 

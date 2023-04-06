@@ -25,7 +25,13 @@ public class AttributeGetter {
         UserType userType = null;
         while (userType == null) {
             Scanner scanner = new Scanner(System.in);
-            int domain = scanner.nextInt();
+            int domain;
+            try {
+                domain = scanner.nextInt();
+            } catch (Exception e) {
+                System.out.println("Please enter a number.");
+                continue;
+            }
             userType = switch (domain) {
                 case 1 -> UserType.STUDENT;
                 case 2 -> UserType.FACULTY;

@@ -4,6 +4,7 @@ import main.boundary.account.ChangeAccountPassword;
 import main.boundary.account.Logout;
 import main.boundary.account.ViewUserProfile;
 import main.boundary.modelviewer.ProjectViewer;
+import main.boundary.modelviewer.RequestViewer;
 import main.controller.account.AccountManager;
 import main.controller.request.StudentRequestManager;
 import main.model.user.Student;
@@ -56,7 +57,7 @@ public class StudentMainPage {
                     case 6 -> registerProject(student);
 //                case 7 -> DeregisterForProject.deregisterForProject(student);
 //                case 8 -> ChangeTitleForProject.changeTitleForProject(student);
-//                case 9 -> ViewHistoryAndStatusOfMyProject.viewHistoryAndStatusOfMyProject(student);
+                    case 9 -> viewHistoryAndStatusOfMyProject(student);
                     case 10 -> Logout.logout();
                     default -> {
                         System.out.println("Invalid choice. Please press enter to try again.");
@@ -72,6 +73,15 @@ public class StudentMainPage {
         } else {
             throw new IllegalArgumentException("User is not a student.");
         }
+    }
+
+    private static void viewHistoryAndStatusOfMyProject(Student student) throws PageBackException {
+        ChangePage.changePage();
+        System.out.println("Here is the history and status of your project: ");
+        RequestViewer.viewRequests(StudentRequestManager.getStudentRequestHistory(student.getID()));
+        System.out.println("Press Enter to go back.");
+        new Scanner(System.in).nextLine();
+        throw new PageBackException();
     }
 
     private static void registerProject(Student student) throws PageBackException {
