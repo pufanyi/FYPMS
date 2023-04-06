@@ -4,6 +4,7 @@ import main.boundary.account.ChangeAccountPassword;
 import main.boundary.account.Logout;
 import main.boundary.account.ViewUserProfile;
 import main.boundary.modelviewer.ProjectViewer;
+import main.boundary.modelviewer.RequestViewer;
 import main.controller.request.CoordinatorRequestManager;
 import main.model.user.Coordinator;
 import main.model.user.User;
@@ -17,8 +18,22 @@ import java.util.Scanner;
 import static main.boundary.modelviewer.ProjectViewer.generateProjectDetails;
 
 public class CoordinatorMainPage {
+    public static void viewPendingRequests(Coordinator coordinator) throws PageBackException {
+        ChangePage.changePage();
+        System.out.println(BoundaryStrings.separator);
+        System.out.println("View Pending Requests");
+        System.out.println();
+        System.out.println("Here are the pending requests:");
+        System.out.println();
+        RequestViewer.viewRequests(CoordinatorRequestManager.getPendingRequests());
+        System.out.println();
+        System.out.println("Press enter to go back.");
+        new Scanner(System.in).nextLine();
+        throw new PageBackException();
+    }
+
     public static void coordinatorMainPage(User user) {
-        if (user instanceof Coordinator) {
+        if (user instanceof Coordinator coordinator) {
             ChangePage.changePage();
             System.out.println(BoundaryStrings.separator);
             System.out.println("Welcome to Coordinator Main Page");
@@ -42,17 +57,17 @@ public class CoordinatorMainPage {
 
             try {
                 switch (choice) {
-                    case 1 -> ViewUserProfile.viewUserProfilePage(user);
+                    case 1 -> ViewUserProfile.viewUserProfilePage(coordinator);
                     case 2 -> ChangeAccountPassword.changePassword(UserType.COORDINATOR, user.getID());
                     case 3 -> ProjectViewer.viewAllProject();
-                    case 4 -> CoordinatorRequestManager.viewPendingRequest();
+                    case 4 -> viewPendingRequests(coordinator);
                     case 5 -> CoordinatorRequestManager.viewAllRequest();
                     case 6 -> generateProjectDetails();
                     case 7 -> Logout.logout();
                     default -> System.out.println("Invalid choice. Please try again.");
                 }
             } catch (PageBackException e) {
-                CoordinatorMainPage.coordinatorMainPage(user);
+                CoordinatorMainPage.coordinatorMainPage(coordinator);
             }
 
         } else {

@@ -6,6 +6,7 @@ import main.model.project.ProjectStatus;
 import main.model.request.Request;
 import main.model.request.RequestStatus;
 import main.model.request.studentrequest.StudentChangeTitleRequest;
+import main.model.user.Coordinator;
 import main.model.user.Student;
 import main.model.user.StudentStatus;
 import main.model.user.Supervisor;
@@ -143,5 +144,9 @@ public class CoordinatorRequestManager{
         }
         request.setStatus(RequestStatus.DENIED);
         RequestRepository.getInstance().update(request);
+    }
+
+    public static List<Request> getPendingRequests() {
+        return RequestRepository.getInstance().findByRules(request -> request.getStatus() == RequestStatus.PENDING);
     }
 }
