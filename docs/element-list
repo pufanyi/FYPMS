@@ -1,11 +1,8 @@
 main
 main.boundary
 main.boundary.account
-main.boundary.coordinator
-main.boundary.project
-main.boundary.request
-main.boundary.student
-main.boundary.supervisor
+main.boundary.mainpage
+main.boundary.modelviewer
 main.boundary.welcome
 main.controller.account
 main.controller.account.password
