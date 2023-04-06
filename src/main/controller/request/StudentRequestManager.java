@@ -52,14 +52,12 @@ public class StudentRequestManager{
      *
      * @param projectID    the project ID of the project that the student is going to register to
      * @param studentID    the student ID of the student that is going to register to the project
-     * @param supervisorID the supervisor ID of the supervisor that the student is going to register to
      * @throws ModelNotFoundException if the project or student is not found
      * @throws StudentStatusException if the student is not unregistered
      * @throws IllegalStateException  if the project is not available
      * @return the ID of the new Request
      */
-    public static String registerStudent(String projectID, String studentID, String supervisorID) throws ModelNotFoundException, StudentStatusException, IllegalStateException, ModelAlreadyExistsException {
-        String requestID = RequestManager.getNewRequestID();
+    public static String registerStudent(String projectID, String studentID) throws ModelNotFoundException, StudentStatusException, IllegalStateException, ModelAlreadyExistsException {
         Project project = ProjectRepository.getInstance().getByID(projectID);
         Student student = StudentRepository.getInstance().getByID(studentID);
         if (project.getStatus() != ProjectStatus.AVAILABLE) {
@@ -71,6 +69,8 @@ public class StudentRequestManager{
         if (student.getStatus() == StudentStatus.DEREGISTERED) {
             throw new StudentStatusException(student.getStatus());
         }
+        String requestID = RequestManager.getNewRequestID();
+        String supervisorID = project.getSupervisorID();
         Request request = new StudentRegistrationRequest(requestID, projectID, studentID, supervisorID);
         project.setStatus(ProjectStatus.RESERVED);
         ProjectRepository.getInstance().update(project);

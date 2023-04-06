@@ -54,7 +54,7 @@ public class StudentRegistrationMangerTest {
         assertEquals(student.getStatus(), StudentStatus.UNREGISTERED);
         assertEquals(project.getStatus(), ProjectStatus.AVAILABLE);
         String supervisorID = project.getSupervisorID();
-        String requestID = StudentRequestManager.registerStudent(projectID, studentID, supervisorID);
+        String requestID = StudentRequestManager.registerStudent(projectID, studentID);
         Request request = RequestRepository.getInstance().getByID(requestID);
         student = StudentRepository.getInstance().getByID(studentID);
         assertEquals(student.getStatus(), StudentStatus.PENDING);
@@ -72,7 +72,7 @@ public class StudentRegistrationMangerTest {
         assertEquals(student.getStatus(), StudentStatus.UNREGISTERED);
         assertEquals(project.getStatus(), ProjectStatus.AVAILABLE);
         String supervisorID = project.getSupervisorID();
-        String requestID = StudentRequestManager.registerStudent(projectID, studentID, supervisorID);
+        String requestID = StudentRequestManager.registerStudent(projectID, studentID);
         Request request = RequestRepository.getInstance().getByID(requestID);
         student = StudentRepository.getInstance().getByID(studentID);
         assertEquals(student.getStatus(), StudentStatus.PENDING);
@@ -98,7 +98,7 @@ public class StudentRegistrationMangerTest {
         assertEquals(student.getStatus(), StudentStatus.UNREGISTERED);
         assertEquals(project.getStatus(), ProjectStatus.AVAILABLE);
         String supervisorID = project.getSupervisorID();
-        String requestID = StudentRequestManager.registerStudent(projectID, studentID, supervisorID);
+        String requestID = StudentRequestManager.registerStudent(projectID, studentID);
         Request request = RequestRepository.getInstance().getByID(requestID);
         student = StudentRepository.getInstance().getByID(studentID);
         assertEquals(student.getStatus(), StudentStatus.PENDING);
@@ -124,7 +124,7 @@ public class StudentRegistrationMangerTest {
         assertEquals(student.getStatus(), StudentStatus.UNREGISTERED);
         assertEquals(project.getStatus(), ProjectStatus.AVAILABLE);
         String supervisorID = project.getSupervisorID();
-        String requestID = StudentRequestManager.registerStudent(projectID, studentID, supervisorID);
+        String requestID = StudentRequestManager.registerStudent(projectID, studentID);
         Request request = RequestRepository.getInstance().getByID(requestID);
         student = StudentRepository.getInstance().getByID(studentID);
         assertEquals(student.getStatus(), StudentStatus.PENDING);

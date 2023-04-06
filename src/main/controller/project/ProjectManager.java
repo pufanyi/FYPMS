@@ -37,7 +37,6 @@ public class ProjectManager {
 
     /**
      * View all the projects that are available
-     *
      */
     public static List<Project> viewAvailableProjects() {
         return ProjectRepository.getInstance().findByRules(p -> p.getStatus() == ProjectStatus.AVAILABLE);
@@ -65,7 +64,7 @@ public class ProjectManager {
         return ProjectRepository.getInstance().getList();
     }
 
-    public static List<Project> getAllProjectByStatus(ProjectStatus projectStatus){
+    public static List<Project> getAllProjectByStatus(ProjectStatus projectStatus) {
         return ProjectRepository.getInstance().findByRules(project -> project.getStatus().equals(projectStatus));
     }
 

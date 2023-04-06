@@ -1,9 +1,9 @@
-package main.boundary.supervisor;
+package main.boundary.mainpage;
 
 import main.boundary.account.ChangeAccountPassword;
 import main.boundary.account.Logout;
 import main.boundary.account.ViewUserProfile;
-import main.boundary.request.RequestViewer;
+import main.boundary.modelviewer.RequestViewer;
 import main.controller.project.ProjectManager;
 import main.controller.request.RequestManager;
 import main.controller.request.SupervisorRequestManager;

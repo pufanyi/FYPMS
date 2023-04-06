@@ -1,4 +1,4 @@
-package main.boundary.project;
+package main.boundary.modelviewer;
 
 import main.controller.project.ProjectManager;
 import main.model.project.Project;
@@ -15,6 +15,14 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class ProjectViewer {
+    public static void viewProject(String projectID) {
+        try {
+            Project p = ProjectRepository.getInstance().getByID(projectID);
+            displaySingleProject(p);
+        } catch (ModelNotFoundException e) {
+            System.out.println("Project not found.");
+        }
+    }
     public static void displaySingleProject(Project p) {
         System.out.println("==================================");
         p.displayProject();

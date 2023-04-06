@@ -1,4 +1,4 @@
-package main.boundary.request;
+package main.boundary.modelviewer;
 
 import main.model.request.Request;
 

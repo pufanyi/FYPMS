@@ -1,14 +1,16 @@
-package main.boundary.student;
+package main.boundary.mainpage;
 
 import main.boundary.account.ChangeAccountPassword;
 import main.boundary.account.Logout;
 import main.boundary.account.ViewUserProfile;
-import main.boundary.project.ProjectViewer;
+import main.boundary.modelviewer.ProjectViewer;
 import main.controller.account.AccountManager;
+import main.controller.request.StudentRequestManager;
 import main.model.user.Student;
 import main.model.user.Supervisor;
 import main.model.user.User;
 import main.model.user.UserType;
+import main.repository.project.ProjectRepository;
 import main.utils.exception.repository.ModelNotFoundException;
 import main.utils.exception.ui.PageBackException;
 import main.utils.parameters.EmptyID;
@@ -51,7 +53,7 @@ public class StudentMainPage {
                     case 3 -> ProjectViewer.viewAvailableProjectList();
                     case 4 -> ProjectViewer.viewStudentProject(student);
                     case 5 -> viewMySupervisor(student);
-//                case 6 -> RegisterForProject.registerForProject(student);
+                    case 6 -> registerProject(student);
 //                case 7 -> DeregisterForProject.deregisterForProject(student);
 //                case 8 -> ChangeTitleForProject.changeTitleForProject(student);
 //                case 9 -> ViewHistoryAndStatusOfMyProject.viewHistoryAndStatusOfMyProject(student);
@@ -70,6 +72,36 @@ public class StudentMainPage {
         } else {
             throw new IllegalArgumentException("User is not a student.");
         }
+    }
+
+    private static void registerProject(Student student) throws PageBackException {
+        ChangePage.changePage();
+        System.out.println("Please enter the project ID: ");
+        String projectID = new Scanner(System.in).nextLine();
+        if (ProjectRepository.getInstance().contains(projectID)) {
+            System.out.println("Project found.");
+            System.out.println("Here is the project information: ");
+            ProjectViewer.viewProject(projectID);
+        } else {
+            System.out.println("Project not found.");
+            System.out.println("Press Enter to go back.");
+            new Scanner(System.in).nextLine();
+            throw new PageBackException();
+        }
+        try {
+            StudentRequestManager.registerStudent(projectID, student.getID());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+            System.out.println("Enter [b] to go back, or press enter to retry.");
+            String choice = new Scanner(System.in).nextLine();
+            if (choice.equals("b")) {
+                throw new PageBackException();
+            } else {
+                registerProject(student);
+            }
+        }
+        new Scanner(System.in).nextLine();
+        throw new PageBackException();
     }
 
     private static void viewMySupervisor(Student student) throws PageBackException {

@@ -1,6 +1,6 @@
 package test.boundary.student.details;
 
-import main.boundary.project.ProjectViewer;
+import main.boundary.modelviewer.ProjectViewer;
 import main.controller.project.ProjectManager;
 import main.repository.project.ProjectRepository;
 import main.utils.exception.repository.ModelAlreadyExistsException;

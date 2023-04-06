@@ -1,9 +1,9 @@
-package main.boundary.coordinator;
+package main.boundary.mainpage;
 
 import main.boundary.account.ChangeAccountPassword;
 import main.boundary.account.Logout;
 import main.boundary.account.ViewUserProfile;
-import main.boundary.project.ProjectViewer;
+import main.boundary.modelviewer.ProjectViewer;
 import main.controller.request.CoordinatorRequestManager;
 import main.model.user.Coordinator;
 import main.model.user.User;
@@ -14,7 +14,7 @@ import main.utils.ui.ChangePage;
 
 import java.util.Scanner;
 
-import static main.boundary.project.ProjectViewer.generateProjectDetails;
+import static main.boundary.modelviewer.ProjectViewer.generateProjectDetails;
 
 public class CoordinatorMainPage {
     public static void coordinatorMainPage(User user) {

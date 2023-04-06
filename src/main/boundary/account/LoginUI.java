@@ -1,8 +1,8 @@
 package main.boundary.account;
 
-import main.boundary.coordinator.CoordinatorMainPage;
-import main.boundary.student.StudentMainPage;
-import main.boundary.supervisor.SupervisorMainPage;
+import main.boundary.mainpage.CoordinatorMainPage;
+import main.boundary.mainpage.StudentMainPage;
+import main.boundary.mainpage.SupervisorMainPage;
 import main.controller.account.AccountManager;
 import main.model.user.User;
 import main.model.user.UserType;
