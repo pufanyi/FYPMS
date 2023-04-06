@@ -34,6 +34,11 @@ public class LoginUI {
             }
         }
         String password = AttributeGetter.getPassword();
+//        System.err.println("Logging in...");
+//        System.err.println("Domain: " + domain);
+//        System.err.println("User ID: " + userID);
+//        System.err.println("Password: " + password);
+//        new Scanner(System.in).nextLine();
         try {
             User user = AccountManager.login(domain, userID, password);
             switch (domain) {

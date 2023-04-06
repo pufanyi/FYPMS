@@ -8,6 +8,9 @@ import main.utils.exception.model.PasswordIncorrectException;
  */
 public class PasswordManager {
     public static boolean checkPassword(User user, String password) {
+//        System.err.println("Checking password...");
+//        System.err.println("User password: " + user.getHashedPassword());
+//        System.err.println("Input password: " + PasswordHashManager.hashPassword(password));
         return user.getHashedPassword().equals(PasswordHashManager.hashPassword(password));
     }
 

@@ -45,6 +45,7 @@ public class Coordinator implements User {
         this.coordinatorID = coordinatorID;
         this.coordinatorName = coordinatorName;
         this.email = email;
+        this.hashedPassword = password;
     }
 
     /**

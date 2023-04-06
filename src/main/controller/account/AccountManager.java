@@ -17,10 +17,14 @@ import main.utils.iocontrol.CSVReader;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ */
 public class AccountManager {
     public static User login(UserType userType, String userID, String password)
             throws PasswordIncorrectException, ModelNotFoundException {
         User user = UserFinder.findUser(userID, userType);
+//        System.err.println("User found: " + user.getUserName() + " " + user.getID());
         if (PasswordManager.checkPassword(user, password)) {
             return user;
         } else {
@@ -61,6 +65,12 @@ public class AccountManager {
 
     public static User register(UserType userType, String userID, String name, String email)
             throws ModelAlreadyExistsException {
+//        if (userType == UserType.COORDINATOR) {
+//            System.err.println("Registering coordinator...");
+//            System.err.println("Coordinator ID: " + userID);
+//            System.err.println("Coordinator name: " + name);
+//            System.err.println("Coordinator email: " + email);
+//        }
         return register(userType, userID, "password", name, email);
     }
 
