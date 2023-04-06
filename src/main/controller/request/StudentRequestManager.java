@@ -73,7 +73,7 @@ public class StudentRequestManager{
         }
         String requestID = RequestManager.getNewRequestID();
         String supervisorID = project.getSupervisorID();
-        Request request = new StudentRegistrationRequest(requestID, projectID, studentID, supervisorID);
+        Request request = new StudentRegistrationRequest(requestID, studentID, supervisorID, projectID);
         project.setStatus(ProjectStatus.RESERVED);
         ProjectRepository.getInstance().update(project);
         student.setStatus(StudentStatus.PENDING);

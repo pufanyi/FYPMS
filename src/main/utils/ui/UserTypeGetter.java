@@ -1,5 +1,6 @@
 package main.utils.ui;
 
+import main.model.user.Student;
 import main.model.user.User;
 import main.model.user.UserType;
 
@@ -15,7 +16,7 @@ public class UserTypeGetter {
      * @return A {@code String} object representing the user type in camel case format.
      */
     public static String getUserTypeInCamelCase(User user) {
-        return user.getClass().getName();
+        return user.getClass().getSimpleName();
     }
 
     /**

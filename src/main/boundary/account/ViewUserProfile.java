@@ -12,12 +12,13 @@ import java.util.Scanner;
  */
 public class ViewUserProfile {
     public static void viewUserProfile(User user) {
-        System.out.println("Welcome to View " + UserTypeGetter.getUserTypeInCamelCase(user) + " Profile");
-        System.out.println("┌---------------------------------------------------------------┐");
-        System.out.printf("| %-15s | %-30s | %-10s |\n", "Name", "Email", "Student ID");
-        System.out.println("|-----------------|--------------------------------|------------|");
-        System.out.printf("| %-15s | %-30s | %-10s |\n", user.getUserName(), user.getEmail(), user.getID());
-        System.out.println("└---------------------------------------------------------------┘");
+        String userType = UserTypeGetter.getUserTypeInCamelCase(user);
+        System.out.println("Welcome to View " + userType + " Profile");
+        System.out.println("┌--------------------------------------------------------------------┐");
+        System.out.printf("| %-15s | %-30s | %-15s |\n", "Name", "Email", userType + " ID");
+        System.out.println("|-----------------|--------------------------------|-----------------|");
+        System.out.printf("| %-15s | %-30s | %-15s |\n", user.getUserName(), user.getEmail(), user.getID());
+        System.out.println("└--------------------------------------------------------------------┘");
     }
 
     /**
