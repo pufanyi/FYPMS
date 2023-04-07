@@ -67,6 +67,14 @@ public class CoordinatorManager {
         StudentRepository.getInstance().update(student);
     }
 
+    /**
+     * reject a student deregistration request
+     *
+     * @param studentID    the student ID
+     * @param projectID    the project ID
+     * @param supervisorID the supervisor ID
+     * @throws ModelNotFoundException if the student, project or supervisor is not found
+     */
     public static void rejectRegisterStudent(String studentID, String projectID, String supervisorID) throws ModelNotFoundException {
         Student student = StudentRepository.getInstance().getByID(studentID);
         Project project = ProjectRepository.getInstance().getByID(projectID);
@@ -102,6 +110,11 @@ public class CoordinatorManager {
         return RequestRepository.getInstance().getList();
     }
 
+    /**
+     * get all the pending requests
+     *
+     * @return a list of pending requests
+     */
     public static List<Request> getPendingRequests() {
         return RequestRepository.getInstance().findByRules(request -> request.getStatus() == RequestStatus.PENDING);
     }

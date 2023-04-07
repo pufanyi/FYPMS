@@ -16,6 +16,9 @@ import main.utils.parameters.EmptyID;
 
 import java.util.List;
 
+/**
+ * A class manages the project
+ */
 public class ProjectManager {
 
     /**
@@ -31,12 +34,19 @@ public class ProjectManager {
         ProjectRepository.getInstance().update(p1);
     }
 
+    /**
+     * Change the supervisor of a project
+     *
+     * @return the new supervisor
+     */
     public static List<Project> viewAllProject() {
         return ProjectRepository.getInstance().getList();
     }
 
     /**
      * View all the projects that are available
+     *
+     * @return the list of available projects
      */
     public static List<Project> viewAvailableProjects() {
         return ProjectRepository.getInstance().findByRules(p -> p.getStatus() == ProjectStatus.AVAILABLE);
@@ -55,19 +65,42 @@ public class ProjectManager {
         ProjectRepository.getInstance().add(p1);
     }
 
+    /**
+     * create a new project
+     *
+     * @param projectTitle the title of the project
+     * @param supervisorID the ID of the supervisor
+     * @throws ModelAlreadyExistsException if the project already exists
+     */
     public static void createProject(String projectTitle, String supervisorID) throws ModelAlreadyExistsException {
         Project p1 = new Project(getNewProjectID(), projectTitle, supervisorID);
         ProjectRepository.getInstance().add(p1);
     }
 
+    /**
+     * get the list of all projects
+     *
+     * @return the list of all projects
+     */
     public static List<Project> getAllProject() {
         return ProjectRepository.getInstance().getList();
     }
 
+    /**
+     * get the list of all projects by status
+     *
+     * @param projectStatus the status of the project
+     * @return the list of all projects
+     */
     public static List<Project> getAllProjectByStatus(ProjectStatus projectStatus) {
         return ProjectRepository.getInstance().findByRules(project -> project.getStatus().equals(projectStatus));
     }
 
+    /**
+     * get the list of all projects by supervisor
+     *
+     * @return the list of all projects
+     */
     public static String getNewProjectID() {
         int max = 0;
         for (Project p : ProjectRepository.getInstance()) {
@@ -153,6 +186,9 @@ public class ProjectManager {
         StudentRepository.getInstance().update(student);
     }
 
+    /**
+     * load projects from csv resource file
+     */
     public static void loadProjects() {
         List<List<String>> projects = CSVReader.read(Location.RESOURCE_LOCATION + "\\resources\\ProjectList.csv", true);
         for (List<String> project : projects) {
@@ -173,18 +209,41 @@ public class ProjectManager {
         }
     }
 
+    /**
+     * check if the repository is empty
+     *
+     * @return true if the repository is empty
+     */
     public static boolean repositoryIsEmpty() {
         return ProjectRepository.getInstance().isEmpty();
     }
 
+    /**
+     * Check if the project is not in the repository
+     *
+     * @param projectID the ID of the project
+     * @return true if the project is not in the repository
+     */
     public static boolean notContainsProjectByID(String projectID) {
         return !ProjectRepository.getInstance().contains(projectID);
     }
 
+    /**
+     * Check if the project is in the repository
+     *
+     * @param projectID the ID of the project
+     * @return true if the project is in the repository
+     */
     public static boolean containsProjectByID(String projectID) {
         return ProjectRepository.getInstance().contains(projectID);
     }
 
+    /**
+     * get the project of a student
+     *
+     * @param student the student
+     * @return the project of the student
+     */
     public static Project getStudentProject(Student student) {
         if (EmptyID.isEmptyID(student.getProjectID())) {
             return null;
@@ -197,6 +256,13 @@ public class ProjectManager {
         }
     }
 
+    /**
+     * get the project of a supervisor
+     *
+     * @param projectID the ID of the project
+     * @return the project of the supervisor
+     * @throws ModelNotFoundException if the project is not found
+     */
     public static Project getByID(String projectID) throws ModelNotFoundException {
         return ProjectRepository.getInstance().getByID(projectID);
     }

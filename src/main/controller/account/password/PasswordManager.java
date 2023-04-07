@@ -7,6 +7,13 @@ import main.utils.exception.model.PasswordIncorrectException;
  * A class manages the password of a user
  */
 public class PasswordManager {
+    /**
+     * Checks if the password is correct
+     *
+     * @param user     the user whose password is to be checked
+     * @param password the password to be checked
+     * @return true if the password is correct, false otherwise
+     */
     public static boolean checkPassword(User user, String password) {
 //        System.err.println("Checking password...");
 //        System.err.println("User password: " + user.getHashedPassword());
@@ -14,6 +21,14 @@ public class PasswordManager {
         return user.getHashedPassword().equals(PasswordHashManager.hashPassword(password));
     }
 
+    /**
+     * Changes the password of the user
+     *
+     * @param user        the user whose password is to be changed
+     * @param oldPassword the old password
+     * @param newPassword the new password
+     * @throws PasswordIncorrectException if the old password is incorrect
+     */
     public static void changePassword(User user, String oldPassword, String newPassword) throws PasswordIncorrectException {
         if (checkPassword(user, oldPassword)) {
             user.setHashedPassword(PasswordHashManager.hashPassword(newPassword));

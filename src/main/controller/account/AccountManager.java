@@ -18,9 +18,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * A class manages the account of a user
  */
 public class AccountManager {
+    /**
+     * Adds a new user to the database
+     *
+     * @param userType the type of the user to be added
+     * @param userID   the ID of the user to be added
+     * @param password the password of the user to be added
+     * @return the user that is added
+     * @throws PasswordIncorrectException if the password is incorrect
+     * @throws ModelNotFoundException     if the user is not found
+     */
     public static User login(UserType userType, String userID, String password)
             throws PasswordIncorrectException, ModelNotFoundException {
         User user = UserFinder.findUser(userID, userType);
@@ -32,6 +42,16 @@ public class AccountManager {
         }
     }
 
+    /**
+     * Changes the password of the user
+     *
+     * @param userType    the type of the user to be changed
+     * @param userID      the ID of the user to be changed
+     * @param oldPassword the old password of the user to be changed
+     * @param newPassword the new password of the user to be changed
+     * @throws PasswordIncorrectException if the old password is incorrect
+     * @throws ModelNotFoundException     if the user is not found
+     */
     public static void changePassword(UserType userType, String userID, String oldPassword, String newPassword)
             throws PasswordIncorrectException, ModelNotFoundException {
         User user = UserFinder.findUser(userID, userType);
@@ -39,6 +59,12 @@ public class AccountManager {
         UserUpdater.updateUser(user);
     }
 
+    /**
+     * Gets the user by the user name
+     *
+     * @param userName the user name of the user
+     * @return the user with the user name
+     */
     public static List<User> getUsersByUserName(String userName) {
         List<Student> studentList = StudentRepository.getInstance().findByRules(
                 student -> student.checkUsername(userName)
@@ -56,6 +82,17 @@ public class AccountManager {
         return userList;
     }
 
+    /**
+     * Registers a new user
+     *
+     * @param userType the type of the user to be registered
+     * @param userID   the ID of the user to be registered
+     * @param password the password of the user to be registered
+     * @param name     the name of the user to be registered
+     * @param email    the email of the user to be registered
+     * @return the user that is registered
+     * @throws ModelAlreadyExistsException if the user already exists
+     */
     public static User register(UserType userType, String userID, String password, String name, String email)
             throws ModelAlreadyExistsException {
         User user = UserFactory.create(userType, userID, password, name, email);
@@ -63,6 +100,16 @@ public class AccountManager {
         return user;
     }
 
+    /**
+     * Registers a new user
+     *
+     * @param userType the type of the user to be registered
+     * @param userID   the ID of the user to be registered
+     * @param name     the name of the user to be registered
+     * @param email    the email of the user to be registered
+     * @return the user that is registered
+     * @throws ModelAlreadyExistsException if the user already exists
+     */
     public static User register(UserType userType, String userID, String name, String email)
             throws ModelAlreadyExistsException {
 //        if (userType == UserType.COORDINATOR) {
@@ -74,10 +121,19 @@ public class AccountManager {
         return register(userType, userID, "password", name, email);
     }
 
+    /**
+     * Loads the students and coordinators from the CSV file
+     *
+     * @param email the email of the user
+     * @return the ID of the user
+     */
     private static String getID(String email) {
         return email.split("@")[0];
     }
 
+    /**
+     * Loads the students from the CSV resource file
+     */
     private static void loadStudents() {
         List<List<String>> studentList = CSVReader.read(Location.RESOURCE_LOCATION + "/resources/StudentList.csv", true);
         for (List<String> row : studentList) {
@@ -92,6 +148,9 @@ public class AccountManager {
         }
     }
 
+    /**
+     * Loads the coordinators from the CSV resource file
+     */
     private static void loadCoordinators() {
         List<List<String>> coordinatorList = CSVReader.read(Location.RESOURCE_LOCATION + "/resources/CoordinatorList.csv", true);
         for (List<String> row : coordinatorList) {
@@ -106,6 +165,9 @@ public class AccountManager {
         }
     }
 
+    /**
+     * Loads the faculties from the CSV resource file
+     */
     private static void loadFaculties() {
         List<List<String>> facultyList = CSVReader.read(Location.RESOURCE_LOCATION + "/resources/FacultyList.csv", true);
         for (List<String> row : facultyList) {
@@ -120,18 +182,34 @@ public class AccountManager {
         }
     }
 
+    /**
+     * Loads all users from the CSV resource file
+     */
     public static void loadUsers() {
         loadStudents();
         loadCoordinators();
         loadFaculties();
     }
 
+    /**
+     * Checks if the repository is empty
+     *
+     * @return true if the repository is empty, false otherwise
+     */
     public static boolean repositoryIsEmpty() {
         return StudentRepository.getInstance().isEmpty() &&
                 CoordinatorRepository.getInstance().isEmpty() &&
                 FacultyRepository.getInstance().isEmpty();
     }
 
+    /**
+     * Gets the user by the domain and ID
+     *
+     * @param userType the type of the user
+     * @param ID       the ID of the user
+     * @return the user with the domain and ID
+     * @throws ModelNotFoundException if the user is not found
+     */
     public static User getByDomainAndID(UserType userType, String ID) throws ModelNotFoundException {
         return switch (userType) {
             case STUDENT -> StudentRepository.getInstance().getByID(ID);

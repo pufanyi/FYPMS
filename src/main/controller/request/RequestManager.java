@@ -14,6 +14,11 @@ import main.utils.exception.repository.ModelNotFoundException;
 import java.util.Objects;
 
 public class RequestManager {
+    /**
+     * get a new request ID
+     *
+     * @return the new request ID
+     */
     public static String getNewRequestID() {
         int max = 0;
         for (Request p : RequestRepository.getInstance()) {
