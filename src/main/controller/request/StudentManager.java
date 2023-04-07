@@ -112,5 +112,9 @@ public class StudentManager {
         System.err.println("StudentRequestManager.getStudentRequestHistory studentID = " + studentID);
         return RequestRepository.getInstance().findByRules(request -> request.getStudentID().equals(studentID));
     }
+
+    public static Student getByID(String studentID) throws ModelNotFoundException {
+        return StudentRepository.getInstance().getByID(studentID);
+    }
 }
 

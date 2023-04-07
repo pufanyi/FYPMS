@@ -119,10 +119,9 @@ public class ProjectManager {
      * @param studentID the ID of the student
      * @throws ModelNotFoundException if the project is not found
      */
-    public static void allocateProject(String projectID, String studentID, String supervisorID) throws ModelNotFoundException {
+    public static void allocateProject(String projectID, String studentID) throws ModelNotFoundException {
         Project p1 = ProjectRepository.getInstance().getByID(projectID);
-        if (!StudentRepository.getInstance().contains(studentID) ||
-                !FacultyRepository.getInstance().contains(supervisorID)) {
+        if (!StudentRepository.getInstance().contains(studentID)) {
             throw new IllegalStateException("Student or supervisor not found");
         }
         if (p1.getStatus() != ProjectStatus.AVAILABLE) {
@@ -130,7 +129,6 @@ public class ProjectManager {
         }
         p1.setStatus(ProjectStatus.ALLOCATED);
         p1.setStudentID(studentID);
-        p1.setSupervisorID(supervisorID);
         ProjectRepository.getInstance().update(p1);
     }
 
@@ -162,6 +160,10 @@ public class ProjectManager {
         return !ProjectRepository.getInstance().contains(projectID);
     }
 
+    public static boolean containsProjectByID(String projectID) {
+        return ProjectRepository.getInstance().contains(projectID);
+    }
+
     public static Project getStudentProject(Student student) {
         if (EmptyID.isEmptyID(student.getProjectID())) {
             return null;
@@ -172,5 +174,9 @@ public class ProjectManager {
                 throw new IllegalStateException("Project " + student.getProjectID() + " not found");
             }
         }
+    }
+
+    public static Project getByID(String projectID) throws ModelNotFoundException {
+        return ProjectRepository.getInstance().getByID(projectID);
     }
 }

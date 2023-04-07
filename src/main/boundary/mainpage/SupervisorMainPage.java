@@ -10,6 +10,7 @@ import main.controller.request.SupervisorManager;
 import main.model.project.Project;
 import main.model.request.Request;
 import main.model.request.RequestStatus;
+import main.model.request.RequestType;
 import main.model.request.StudentChangeTitleRequest;
 import main.model.user.Supervisor;
 import main.model.user.User;
@@ -63,7 +64,7 @@ public class SupervisorMainPage {
                     case 5 -> supervisorViewAllPendingRequest(supervisor);
                     case 6 -> supervisorApproveOrRejectRequest(supervisor);
                     case 7 -> supervisorRequestForTransfer(supervisor);
-                    //case 7 ->
+                    case 8 -> supervisorViewAllRequestHistory(supervisor);
                     case 9 -> Logout.logout();
 
                     default -> System.out.println("Invalid choice. Please try again.");
@@ -77,6 +78,12 @@ public class SupervisorMainPage {
         } else {
             throw new IllegalArgumentException("User is not a supervisor.");
         }
+    }
+
+    private static void supervisorViewAllRequestHistory(Supervisor supervisor) {
+        ChangePage.changePage();
+        System.out.println("Viewing all request history....");
+        List<Request> requests = SupervisorManager.getAllRequestHistory(supervisor);
     }
 
     private static void supervisorApproveOrRejectRequest(Supervisor supervisor) throws PageBackException {
@@ -96,7 +103,10 @@ public class SupervisorMainPage {
             }
             throw new PageBackException();
         }
-        if (!Objects.equals(request.getSupervisorID(), supervisor.getID())) {
+        if (!Objects.equals(request.getSupervisorID(), supervisor.getID())
+                || !Objects.equals(request.getRequestType(), RequestType.STUDENT_REGISTRATION)
+                || !Objects.equals(request.getRequestType(), RequestType.STUDENT_DEREGISTRATION)
+                || !Objects.equals(request.getRequestType(), RequestType.STUDENT_CHANGE_TITLE)) {
             System.out.println("Request is not assigned to you!");
             System.out.println("Enter enter to go back, or enter 0 to retry");
             String input = new Scanner(System.in).nextLine();
@@ -115,11 +125,11 @@ public class SupervisorMainPage {
         String status = new Scanner(System.in).next();
         if (status.equalsIgnoreCase("A") ||
                 status.equalsIgnoreCase("APPROVED")) {
-            SupervisorManager.approveRequest(requestID);
+            RequestManager.approveRequest(requestID);
             System.out.println("Request approved successfully!");
         } else if (status.equalsIgnoreCase("REJECTED") ||
                 status.equalsIgnoreCase("R")) {
-            SupervisorManager.rejectRequest(requestID);
+            RequestManager.rejectRequest(requestID);
             System.out.println("Request rejected successfully!");
         } else {
             System.out.println("Invalid status!");

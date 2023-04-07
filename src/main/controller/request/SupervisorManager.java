@@ -3,12 +3,13 @@ package main.controller.request;
 import main.model.request.Request;
 import main.model.request.RequestStatus;
 import main.model.request.TransferStudentRequest;
+import main.model.user.Supervisor;
 import main.repository.request.RequestRepository;
 import main.repository.user.FacultyRepository;
 import main.utils.exception.repository.ModelAlreadyExistsException;
-import main.utils.exception.repository.ModelNotFoundException;
 
 import java.util.List;
+import java.util.Objects;
 
 public class SupervisorManager {
     /**
@@ -42,6 +43,15 @@ public class SupervisorManager {
         if (!FacultyRepository.getInstance().contains(supervisorID)) {
             throw new IllegalArgumentException("Supervisor does not exist");
         }
-        return RequestRepository.getInstance().findByRules(request -> request.getSupervisorID().equals(supervisorID) && request.getStatus() == RequestStatus.PENDING);
+        return RequestRepository.getInstance().findByRules(
+                request -> request.getSupervisorID().equals(supervisorID),
+                request -> request.getStatus() == RequestStatus.PENDING
+        );
+    }
+
+    public static List<Request> getAllRequestHistory(Supervisor supervisor) {
+        return RequestRepository.getInstance().findByRules(
+                request -> Objects.equals(request.getSupervisorID(), supervisor.getID())
+        );
     }
 }
