@@ -101,7 +101,7 @@ public class CoordinatorRequestManager{
     /**
      * display all the requests
      */
-    public static List<Request> viewAllRequest() throws PageBackException {
+    public static List<Request> getAllRequests() throws PageBackException {
         return RequestRepository.getInstance().getList();
     }
 
