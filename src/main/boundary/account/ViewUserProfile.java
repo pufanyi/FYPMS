@@ -11,6 +11,10 @@ import java.util.Scanner;
  * This class provides a UI for the user to view his/her profile.
  */
 public class ViewUserProfile {
+    /**
+     * Displays the user's profile.
+     * @param user the user whose profile is to be displayed.
+     */
     public static void viewUserProfile(User user) {
         String userType = UserTypeGetter.getUserTypeInCamelCase(user);
         System.out.println("Welcome to View " + userType + " Profile");

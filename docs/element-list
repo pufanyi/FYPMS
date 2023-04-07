@@ -12,8 +12,6 @@ main.controller.request
 main.model
 main.model.project
 main.model.request
-main.model.request.studentrequest
-main.model.request.supervirsorrequest
 main.model.user
 main.repository
 main.repository.project

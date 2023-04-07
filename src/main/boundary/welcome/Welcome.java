@@ -8,7 +8,13 @@ import main.utils.ui.ChangePage;
 
 import java.util.Scanner;
 
+/**
+ * This class provides a UI for the user to enter the system.
+ */
 public class Welcome {
+    /**
+     * Displays a welcome page.
+     */
     public static void welcome() {
         ChangePage.changePage();
         System.out.println(BoundaryStrings.separator);

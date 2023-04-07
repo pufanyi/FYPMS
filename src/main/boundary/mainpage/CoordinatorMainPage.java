@@ -23,6 +23,11 @@ import java.util.Scanner;
 import static main.boundary.modelviewer.ProjectViewer.generateProjectDetails;
 
 public class CoordinatorMainPage {
+    /**
+     * Displays the coordinator main page.
+     *
+     * @throws PageBackException if the user chooses to go back to the previous page.
+     */
     public static void viewPendingRequests() throws PageBackException {
         ChangePage.changePage();
         System.out.println(BoundaryStrings.separator);
@@ -37,6 +42,11 @@ public class CoordinatorMainPage {
         throw new PageBackException();
     }
 
+    /**
+     * Displays the coordinator main page.
+     *
+     * @throws PageBackException if the user chooses to go back to the previous page.
+     */
     private static void viewAllRequests() throws PageBackException {
         ChangePage.changePage();
         System.out.println(BoundaryStrings.separator);
@@ -51,6 +61,11 @@ public class CoordinatorMainPage {
         throw new PageBackException();
     }
 
+    /**
+     * Displays the coordinator main page.
+     *
+     * @param user the user whose profile is to be displayed.
+     */
     public static void coordinatorMainPage(User user) {
         if (user instanceof Coordinator coordinator) {
             ChangePage.changePage();
@@ -96,6 +111,11 @@ public class CoordinatorMainPage {
         }
     }
 
+    /**
+     * Displays the coordinator main page.
+     *
+     * @throws PageBackException if the user chooses to go back to the previous page.
+     */
     private static void acceptOrRejectRequest() throws PageBackException {
         ChangePage.changePage();
         System.out.println(BoundaryStrings.separator);

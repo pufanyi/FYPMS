@@ -22,7 +22,15 @@ import main.utils.ui.ChangePage;
 import java.util.Objects;
 import java.util.Scanner;
 
+/**
+ * Displays the student main page.
+ */
 public class StudentMainPage {
+    /**
+     * Displays the student main page.
+     *
+     * @param user the student user.
+     */
     public static void studentMainPage(User user) {
         if (user instanceof Student student) {
             ChangePage.changePage();
@@ -77,6 +85,12 @@ public class StudentMainPage {
         }
     }
 
+    /**
+     * Displays the student's supervisor.
+     *
+     * @param student the student.
+     * @throws PageBackException if the user wants to go back.
+     */
     private static void changeTitleForProject(Student student) throws PageBackException {
         ChangePage.changePage();
         System.out.println("Here is the history and status of your project: ");
@@ -116,6 +130,12 @@ public class StudentMainPage {
         throw new PageBackException();
     }
 
+    /**
+     * Displays the student's supervisor.
+     *
+     * @param student the student.
+     * @throws PageBackException if the user wants to go back.
+     */
     private static void deregisterForProject(Student student) throws PageBackException {
         ChangePage.changePage();
         String projectID = getProjectID();
@@ -136,6 +156,12 @@ public class StudentMainPage {
         throw new PageBackException();
     }
 
+    /**
+     * Displays the student's supervisor.
+     *
+     * @return the project ID.
+     * @throws PageBackException if the user wants to go back.
+     */
     private static String getProjectID() throws PageBackException {
         System.out.println("Please enter the project ID: ");
         String projectID = new Scanner(System.in).nextLine();
@@ -152,6 +178,12 @@ public class StudentMainPage {
         return projectID;
     }
 
+    /**
+     * Displays the student's supervisor.
+     *
+     * @param student the student.
+     * @throws PageBackException if the user wants to go back.
+     */
     private static void viewHistoryAndStatusOfMyProject(Student student) throws PageBackException {
         ChangePage.changePage();
         System.out.println("Here is the history and status of your project: ");
@@ -161,6 +193,12 @@ public class StudentMainPage {
         throw new PageBackException();
     }
 
+    /**
+     * Displays the student's supervisor.
+     *
+     * @param student the student.
+     * @throws PageBackException if the user wants to go back.
+     */
     private static void registerProject(Student student) throws PageBackException {
         ChangePage.changePage();
         String projectID = getProjectID();
@@ -180,6 +218,12 @@ public class StudentMainPage {
         throw new PageBackException();
     }
 
+    /**
+     * Displays the student's supervisor.
+     *
+     * @param student the student.
+     * @throws PageBackException if the user wants to go back.
+     */
     private static void viewMySupervisor(Student student) throws PageBackException {
         ChangePage.changePage();
         if (EmptyID.isEmptyID(student.getSupervisorID())) {

@@ -28,7 +28,15 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
+/**
+ * The boundary class for the supervisor main page.
+ */
 public class SupervisorMainPage {
+    /**
+     * Displays the supervisor main page.
+     *
+     * @param user the supervisor.
+     */
     public static void supervisorMainPage(User user) {
         if (user instanceof Supervisor supervisor) {
             ChangePage.changePage();

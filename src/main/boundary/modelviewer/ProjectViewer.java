@@ -14,7 +14,15 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
+/**
+ * Displays the project details.
+ */
 public class ProjectViewer {
+    /**
+     * Displays the project details.
+     *
+     * @param projectID the project ID.
+     */
     public static void viewProject(String projectID) {
         try {
             Project p = ProjectRepository.getInstance().getByID(projectID);
@@ -23,12 +31,23 @@ public class ProjectViewer {
             System.out.println("Project not found.");
         }
     }
+
+    /**
+     * Displays the project details.
+     *
+     * @param p the project.
+     */
     public static void displaySingleProject(Project p) {
         System.out.println("==================================");
         p.displayProject();
         System.out.println("==================================");
     }
 
+    /**
+     * Displays the project details.
+     *
+     * @param projectList the list of projects.
+     */
     public static void displayProjectDetails(List<Project> projectList) {
         if (projectList.isEmpty()) {
             System.out.println("No project found.");
@@ -42,6 +61,9 @@ public class ProjectViewer {
     }
 
 
+    /**
+     * Displays the project details.
+     */
     public static ProjectStatus getProjectStatus() throws PageBackException {
         System.out.println("\t1. Available");
         System.out.println("\t2. Unavailable");
@@ -114,15 +136,19 @@ public class ProjectViewer {
 
     /**
      * generate details of project by Status
+     *
+     * @throws PageBackException if the user wants to go back
      */
     public static void generateDetailsByStatus() throws PageBackException {
-        ProjectStatus status= getProjectStatus();
+        ProjectStatus status = getProjectStatus();
         for (Project p1 : ProjectRepository.getInstance().findByRules(p -> Objects.equals(p.getStatus(), status)))
             p1.displayProject();
     }
 
     /**
      * generate details of project
+     *
+     * @throws PageBackException if the user wants to go back
      */
     public static void generateProjectDetails() throws PageBackException {
         System.out.println("1. By ProjectID");
@@ -151,6 +177,12 @@ public class ProjectViewer {
             generateProjectDetails();
         }
     }
+
+    /**
+     * Displays the project details.
+     *
+     * @throws PageBackException if the user wants to go back
+     */
     public static void viewAvailableProjectList() throws PageBackException {
         ChangePage.changePage();
         System.out.println("View Available Project List");
@@ -160,6 +192,11 @@ public class ProjectViewer {
         throw new PageBackException();
     }
 
+    /**
+     * Displays the project details.
+     *
+     * @throws PageBackException if the user wants to go back
+     */
     public static void viewAllProject() throws PageBackException {
         ChangePage.changePage();
         System.out.println("View All Project List");
@@ -169,6 +206,12 @@ public class ProjectViewer {
         throw new PageBackException();
     }
 
+    /**
+     * Displays the project details.
+     *
+     * @param student the student
+     * @throws PageBackException if the user wants to go back
+     */
     public static void viewStudentProject(Student student) throws PageBackException {
         ChangePage.changePage();
         System.out.println("View Student Project");
