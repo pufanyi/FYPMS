@@ -15,11 +15,10 @@ import main.repository.user.StudentRepository;
 import main.utils.exception.model.StudentStatusException;
 import main.utils.exception.repository.ModelAlreadyExistsException;
 import main.utils.exception.repository.ModelNotFoundException;
-import main.utils.exception.ui.PageBackException;
 
 import java.util.List;
 
-public class CoordinatorRequestManager{
+public class CoordinatorManager {
     /**
      * approve a student deregistration request
      *
@@ -101,47 +100,6 @@ public class CoordinatorRequestManager{
      */
     public static List<Request> getAllRequests() {
         return RequestRepository.getInstance().getList();
-    }
-
-
-    /**
-     * display all the pending requests
-     */
-    public static List<Request> viewPendingRequest() {
-        return RequestRepository.getInstance().findByRules(request -> request.getStatus() == RequestStatus.PENDING);
-    }
-
-
-    /**
-     * approve a request
-     *
-     * @param requestID the request ID
-     * @throws ModelNotFoundException if the request is not found
-     * @throws IllegalStateException  if the request is not pending
-     */
-    public static void approveRequest(String requestID) throws ModelNotFoundException, IllegalStateException {
-        Request request = RequestRepository.getInstance().getByID(requestID);
-        if (request.getStatus() != RequestStatus.PENDING) {
-            throw new IllegalStateException("Request is not pending");
-        }
-        request.setStatus(RequestStatus.APPROVED);
-        RequestRepository.getInstance().update(request);
-    }
-
-    /**
-     * reject a request
-     *
-     * @param requestID the request ID
-     * @throws ModelNotFoundException if the request is not found
-     * @throws IllegalStateException  if the request is not pending
-     */
-    public static void rejectRequest(String requestID) throws ModelNotFoundException, IllegalStateException {
-        Request request = RequestRepository.getInstance().getByID(requestID);
-        if (request.getStatus() != RequestStatus.PENDING) {
-            throw new IllegalStateException("Request is not pending");
-        }
-        request.setStatus(RequestStatus.DENIED);
-        RequestRepository.getInstance().update(request);
     }
 
     public static List<Request> getPendingRequests() {

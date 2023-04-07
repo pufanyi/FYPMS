@@ -17,7 +17,7 @@ public class RequestManager {
         return "R" + (max + 1);
     }
 
-    public static void approveRequest(String requestID) throws ModelNotFoundException {
+    public static void approveRequestForStatus(String requestID) throws ModelNotFoundException {
         Request r1 = RequestRepository.getInstance().getByID(requestID);
         try {
             r1.setStatus(RequestStatus.APPROVED);
@@ -27,11 +27,22 @@ public class RequestManager {
         }
     }
 
-    public static void rejectRequest(String requestID) throws ModelNotFoundException {
+    public static void rejectRequestForStatus(String requestID) throws ModelNotFoundException {
         Request r1 = RequestRepository.getInstance().getByID(requestID);
         try {
             r1.setStatus(RequestStatus.DENIED);
             RequestRepository.getInstance().update(r1);
+        } catch (ModelNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void approveStudentChangeTitleRequest(String requestID) {
+    }
+
+    public static void approveRequest(Request request) {
+        try {
+            approveRequestForStatus(request.getID());
         } catch (ModelNotFoundException e) {
             e.printStackTrace();
         }

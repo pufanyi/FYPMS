@@ -17,7 +17,7 @@ import main.utils.exception.repository.ModelNotFoundException;
 
 import java.util.List;
 
-public class StudentRequestManager{
+public class StudentManager {
     /**
      * student request to deregister from a project
      *

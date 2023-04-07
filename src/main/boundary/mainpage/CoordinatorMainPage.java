@@ -5,7 +5,7 @@ import main.boundary.account.Logout;
 import main.boundary.account.ViewUserProfile;
 import main.boundary.modelviewer.ProjectViewer;
 import main.boundary.modelviewer.RequestViewer;
-import main.controller.request.CoordinatorRequestManager;
+import main.controller.request.CoordinatorManager;
 import main.model.user.Coordinator;
 import main.model.user.User;
 import main.model.user.UserType;
@@ -25,7 +25,7 @@ public class CoordinatorMainPage {
         System.out.println();
         System.out.println("Here are the pending requests:");
         System.out.println();
-        RequestViewer.viewRequests(CoordinatorRequestManager.getPendingRequests());
+        RequestViewer.viewRequests(CoordinatorManager.getPendingRequests());
         System.out.println();
         System.out.println("Press enter to go back.");
         new Scanner(System.in).nextLine();
@@ -39,7 +39,7 @@ public class CoordinatorMainPage {
         System.out.println();
         System.out.println("Here are all the requests:");
         System.out.println();
-        RequestViewer.viewRequests(CoordinatorRequestManager.getAllRequests());
+        RequestViewer.viewRequests(CoordinatorManager.getAllRequests());
         System.out.println();
         System.out.println("Press enter to go back.");
         new Scanner(System.in).nextLine();

@@ -6,7 +6,7 @@ import main.boundary.account.ViewUserProfile;
 import main.boundary.modelviewer.RequestViewer;
 import main.controller.project.ProjectManager;
 import main.controller.request.RequestManager;
-import main.controller.request.SupervisorRequestManager;
+import main.controller.request.SupervisorManager;
 import main.model.project.Project;
 import main.model.request.Request;
 import main.model.request.RequestStatus;
@@ -115,11 +115,11 @@ public class SupervisorMainPage {
         String status = new Scanner(System.in).next();
         if (status.equalsIgnoreCase("A") ||
                 status.equalsIgnoreCase("APPROVED")) {
-            SupervisorRequestManager.approveRequest(requestID);
+            SupervisorManager.approveRequest(requestID);
             System.out.println("Request approved successfully!");
         } else if (status.equalsIgnoreCase("REJECTED") ||
                 status.equalsIgnoreCase("R")) {
-            SupervisorRequestManager.rejectRequest(requestID);
+            SupervisorManager.rejectRequest(requestID);
             System.out.println("Request rejected successfully!");
         } else {
             System.out.println("Invalid status!");
@@ -228,7 +228,7 @@ public class SupervisorMainPage {
     private static void supervisorViewAllPendingRequest(Supervisor supervisor) throws PageBackException {
         ChangePage.changePage();
         System.out.println("Displaying all pending requests by students...");
-        List<Request> requests = SupervisorRequestManager.getPendingRequestsBySupervisor(supervisor.getID());
+        List<Request> requests = SupervisorManager.getPendingRequestsBySupervisor(supervisor.getID());
         RequestViewer.viewRequests(requests);
         if (requests.isEmpty()) {
             System.out.println("Enter any key to continue");
@@ -263,14 +263,14 @@ public class SupervisorMainPage {
                 if (process == 'A' || process == 'a') {
                     try {
                         ProjectManager.changeProjectTitle(r1.getProjectID(), req.getNewTitle());
-                        RequestManager.approveRequest(requestID);
+                        RequestManager.approveRequestForStatus(requestID);
                     } catch (ModelNotFoundException e) {
                         throw new RuntimeException(e);
                     }
                     System.out.println("Request approved.");
                 } else if (process == 'R' || process == 'r') {
                     try {
-                        RequestManager.rejectRequest(requestID);
+                        RequestManager.rejectRequestForStatus(requestID);
                     } catch (ModelNotFoundException e) {
                         throw new RuntimeException(e);
                     }

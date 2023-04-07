@@ -10,7 +10,7 @@ import main.utils.exception.repository.ModelNotFoundException;
 
 import java.util.List;
 
-public class SupervisorRequestManager {
+public class SupervisorManager {
     /**
      * Transfer a student to a new supervisor
      *
@@ -50,7 +50,7 @@ public class SupervisorRequestManager {
 
     public static void approveRequest(String requestID) {
         try {
-            RequestManager.approveRequest(requestID);
+            RequestManager.approveRequestForStatus(requestID);
             Request request = RequestRepository.getInstance().getByID(requestID);
 
         } catch (ModelNotFoundException e) {
@@ -60,7 +60,7 @@ public class SupervisorRequestManager {
 
     public static void rejectRequest(String requestID) {
         try {
-            RequestManager.rejectRequest(requestID);
+            RequestManager.rejectRequestForStatus(requestID);
         } catch (ModelNotFoundException e) {
             e.printStackTrace();
         }
