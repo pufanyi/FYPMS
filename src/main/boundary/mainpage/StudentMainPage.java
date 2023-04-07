@@ -7,6 +7,7 @@ import main.boundary.modelviewer.ProjectViewer;
 import main.boundary.modelviewer.RequestViewer;
 import main.controller.account.AccountManager;
 import main.controller.request.StudentManager;
+import main.model.project.Project;
 import main.model.user.Student;
 import main.model.user.Supervisor;
 import main.model.user.User;
@@ -18,6 +19,7 @@ import main.utils.parameters.EmptyID;
 import main.utils.ui.BoundaryStrings;
 import main.utils.ui.ChangePage;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class StudentMainPage {
@@ -55,8 +57,8 @@ public class StudentMainPage {
                     case 4 -> ProjectViewer.viewStudentProject(student);
                     case 5 -> viewMySupervisor(student);
                     case 6 -> registerProject(student);
-//                case 7 -> DeregisterForProject.deregisterForProject(student);
-//                case 8 -> ChangeTitleForProject.changeTitleForProject(student);
+                    case 7 -> deregisterForProject(student);
+                    case 8 -> changeTitleForProject(student);
                     case 9 -> viewHistoryAndStatusOfMyProject(student);
                     case 10 -> Logout.logout();
                     default -> {
@@ -75,17 +77,66 @@ public class StudentMainPage {
         }
     }
 
-    private static void viewHistoryAndStatusOfMyProject(Student student) throws PageBackException {
+    private static void changeTitleForProject(Student student) throws PageBackException {
         ChangePage.changePage();
         System.out.println("Here is the history and status of your project: ");
         RequestViewer.viewRequests(StudentManager.getStudentRequestHistory(student.getID()));
+        String projectID = getProjectID();
+        Project project;
+        try {
+            project = ProjectRepository.getInstance().getByID(projectID);
+        } catch (ModelNotFoundException e) {
+            throw new IllegalArgumentException("Project not found.");
+        }
+        if (!Objects.equals(student.getProjectID(), projectID)) {
+            System.out.println("You are not registered for this project.");
+            System.out.println("Press Enter to go back, or enter [r] to retry.");
+            String choice = new Scanner(System.in).nextLine();
+            if (choice.equals("r")) {
+                changeTitleForProject(student);
+            }
+            throw new PageBackException();
+        }
+        System.out.println("Please enter the new title: ");
+        String newTitle = new Scanner(System.in).nextLine();
+        try {
+            StudentManager.changeProjectTitle(projectID, newTitle, student.getID());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+            System.out.println("Enter [b] to go back, or press enter to retry.");
+            String choice = new Scanner(System.in).nextLine();
+            if (!choice.equals("b")) {
+                changeTitleForProject(student);
+            }
+            throw new PageBackException();
+        }
+        System.out.println("Successfully sent a request to change title");
         System.out.println("Press Enter to go back.");
         new Scanner(System.in).nextLine();
         throw new PageBackException();
     }
 
-    private static void registerProject(Student student) throws PageBackException {
+    private static void deregisterForProject(Student student) throws PageBackException {
         ChangePage.changePage();
+        String projectID = getProjectID();
+        try {
+            StudentManager.deregisterStudent(projectID, student.getID());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+            System.out.println("Enter [b] to go back, or press enter to retry.");
+            String choice = new Scanner(System.in).nextLine();
+            if (!choice.equals("b")) {
+                deregisterForProject(student);
+            }
+            throw new PageBackException();
+        }
+        System.out.println("Successfully sent a request to deregister");
+        System.out.println("Press Enter to go back.");
+        new Scanner(System.in).nextLine();
+        throw new PageBackException();
+    }
+
+    private static String getProjectID() throws PageBackException {
         System.out.println("Please enter the project ID: ");
         String projectID = new Scanner(System.in).nextLine();
         if (ProjectRepository.getInstance().contains(projectID)) {
@@ -98,6 +149,21 @@ public class StudentMainPage {
             new Scanner(System.in).nextLine();
             throw new PageBackException();
         }
+        return projectID;
+    }
+
+    private static void viewHistoryAndStatusOfMyProject(Student student) throws PageBackException {
+        ChangePage.changePage();
+        System.out.println("Here is the history and status of your project: ");
+        RequestViewer.viewRequests(StudentManager.getStudentRequestHistory(student.getID()));
+        System.out.println("Press Enter to go back.");
+        new Scanner(System.in).nextLine();
+        throw new PageBackException();
+    }
+
+    private static void registerProject(Student student) throws PageBackException {
+        ChangePage.changePage();
+        String projectID = getProjectID();
         try {
             StudentManager.registerStudent(projectID, student.getID());
         } catch (Exception e) {

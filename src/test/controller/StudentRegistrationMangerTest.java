@@ -139,7 +139,7 @@ public class StudentRegistrationMangerTest {
         assertEquals(student.getStatus(), StudentStatus.REGISTERED);
         project = ProjectRepository.getInstance().getByID(projectID);
         assertEquals(project.getStatus(), ProjectStatus.ALLOCATED);
-        String request2ID = StudentManager.deregisterStudent(projectID, studentID, supervisorID);
+        String request2ID = StudentManager.deregisterStudent(projectID, studentID);
         Request request2 = RequestRepository.getInstance().getByID(request2ID);
         assertEquals(request2.getStatus(), RequestStatus.PENDING);
         RequestManager.approveRequestForStatus(request2ID);

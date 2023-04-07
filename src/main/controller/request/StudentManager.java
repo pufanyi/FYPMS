@@ -23,14 +23,13 @@ public class StudentManager {
      *
      * @param projectID    the project ID of the project that the student is going to deregister from
      * @param studentID    the student ID of the student that is going to deregister from the project
-     * @param supervisorID the supervisor ID of the supervisor that the student is going to deregister from
      * @throws IllegalStateException       if the project is not allocated
      * @throws StudentStatusException      if the student is not registered
      * @throws ModelAlreadyExistsException if the request already exists
      * @throws ModelNotFoundException      if the project or student is not found
      * @return The ID of the new reuquest
      */
-    public static String deregisterStudent(String projectID, String studentID, String supervisorID) throws IllegalStateException, StudentStatusException, ModelAlreadyExistsException, ModelNotFoundException {
+    public static String deregisterStudent(String projectID, String studentID) throws IllegalStateException, StudentStatusException, ModelAlreadyExistsException, ModelNotFoundException {
         String requestID = RequestManager.getNewRequestID();
         Project project = ProjectRepository.getInstance().getByID(projectID);
         Student student = StudentRepository.getInstance().getByID(studentID);
@@ -43,6 +42,7 @@ public class StudentManager {
         if (student.getStatus() == StudentStatus.UNREGISTERED) {
             throw new StudentStatusException(student.getStatus());
         }
+        String supervisorID = project.getSupervisorID();
         Request request = new StudentDeregistrationRequest(requestID, projectID, studentID, supervisorID);
         RequestRepository.getInstance().add(request);
         return requestID;
@@ -98,11 +98,11 @@ public class StudentManager {
      * @param projectID    the project ID of the project that the student is going to change the title of
      * @param newTitle     the new title of the project
      * @param studentID    the student ID of the student that is going to change the title of the project
-     * @param supervisorID the supervisor ID of the supervisor that the student is going to change the title of
      * @throws ModelAlreadyExistsException if the request already exists
      */
-    public static String changeProjectTitle(String projectID, String newTitle, String studentID, String supervisorID) throws ModelAlreadyExistsException {
+    public static String changeProjectTitle(String projectID, String newTitle, String studentID) throws ModelAlreadyExistsException, ModelNotFoundException {
         String requestID = RequestManager.getNewRequestID();
+        String supervisorID = ProjectRepository.getInstance().getByID(projectID).getSupervisorID();
         Request request = new StudentChangeTitleRequest(requestID, projectID, newTitle, studentID, supervisorID);
         RequestRepository.getInstance().add(request);
         return requestID;
