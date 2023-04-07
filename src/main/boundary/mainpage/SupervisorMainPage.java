@@ -54,7 +54,6 @@ public class SupervisorMainPage {
 
             int choice = scanner.nextInt();
 
-
             try {
                 switch (choice) {
                     case 1 -> ViewUserProfile.viewUserProfilePage(supervisor);
@@ -103,9 +102,8 @@ public class SupervisorMainPage {
             }
             throw new PageBackException();
         }
+//        System.err.println(request.getStatus());
         if (!Objects.equals(request.getSupervisorID(), supervisor.getID())
-                || !Objects.equals(request.getRequestType(), RequestType.STUDENT_REGISTRATION)
-                || !Objects.equals(request.getRequestType(), RequestType.STUDENT_DEREGISTRATION)
                 || !Objects.equals(request.getRequestType(), RequestType.STUDENT_CHANGE_TITLE)) {
             System.out.println("Request is not assigned to you!");
             System.out.println("Enter enter to go back, or enter 0 to retry");
@@ -240,57 +238,57 @@ public class SupervisorMainPage {
         System.out.println("Displaying all pending requests by students...");
         List<Request> requests = SupervisorManager.getPendingRequestsBySupervisor(supervisor.getID());
         RequestViewer.viewRequests(requests);
-        if (requests.isEmpty()) {
-            System.out.println("Enter any key to continue");
-            new Scanner(System.in).next();
-            throw new PageBackException();
-        }
-        System.out.println("Enter Y to process the requests OR Enter any other key to exit");
-        String c = new Scanner(System.in).next();
-        if (!c.equalsIgnoreCase("Y")) {
-            throw new PageBackException();
-        }
-        String requestID = getRequestToProcess(requests);
-        Request r1;
-        try {
-            r1 = RequestRepository.getInstance().getByID(requestID);
-        } catch (ModelNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        System.out.println("Press Y to confirm to process the following request");
-        r1.display();
-        String choice = new Scanner(System.in).next();
-        if (!choice.equalsIgnoreCase("Y")) {
-            System.out.println("Ending request processing, press any key to continue");
-            new Scanner(System.in).next();
-            throw new PageBackException();
-        }
-        System.out.println("Enter A to approve / R to reject");
-        char process = new Scanner(System.in).next().charAt(0);
-
-        if (r1 instanceof StudentChangeTitleRequest req) {
-            if (req.getSupervisorID().equals(supervisor.getID()) && req.getStatus() == RequestStatus.PENDING) {
-                if (process == 'A' || process == 'a') {
-                    try {
-                        ProjectManager.changeProjectTitle(r1.getProjectID(), req.getNewTitle());
-                        RequestManager.approveRequestForStatus(requestID);
-                    } catch (ModelNotFoundException e) {
-                        throw new RuntimeException(e);
-                    }
-                    System.out.println("Request approved.");
-                } else if (process == 'R' || process == 'r') {
-                    try {
-                        RequestManager.rejectRequestForStatus(requestID);
-                    } catch (ModelNotFoundException e) {
-                        throw new RuntimeException(e);
-                    }
-                    System.out.println("Request rejected.");
-                }
-            } else
-                System.out.println("No access to this request or request is not pending. Process unsuccessful.");
-        } else {
-            System.out.println("Invalid requestID. Process unsuccessful. ");
-        }
+//        if (requests.isEmpty()) {
+//            System.out.println("Enter any key to continue");
+//            new Scanner(System.in).next();
+//            throw new PageBackException();
+//        }
+//        System.out.println("Enter Y to process the requests OR Enter any other key to exit");
+//        String c = new Scanner(System.in).next();
+//        if (!c.equalsIgnoreCase("Y")) {
+//            throw new PageBackException();
+//        }
+//        String requestID = getRequestToProcess(requests);
+//        Request r1;
+//        try {
+//            r1 = RequestRepository.getInstance().getByID(requestID);
+//        } catch (ModelNotFoundException e) {
+//            throw new RuntimeException(e);
+//        }
+//        System.out.println("Press Y to confirm to process the following request");
+//        r1.display();
+//        String choice = new Scanner(System.in).next();
+//        if (!choice.equalsIgnoreCase("Y")) {
+//            System.out.println("Ending request processing, press any key to continue");
+//            new Scanner(System.in).next();
+//            throw new PageBackException();
+//        }
+//        System.out.println("Enter A to approve / R to reject");
+//        char process = new Scanner(System.in).next().charAt(0);
+//
+//        if (r1 instanceof StudentChangeTitleRequest req) {
+//            if (req.getSupervisorID().equals(supervisor.getID()) && req.getStatus() == RequestStatus.PENDING) {
+//                if (process == 'A' || process == 'a') {
+//                    try {
+//                        ProjectManager.changeProjectTitle(r1.getProjectID(), req.getNewTitle());
+//                        RequestManager.approveRequestForStatus(requestID);
+//                    } catch (ModelNotFoundException e) {
+//                        throw new RuntimeException(e);
+//                    }
+//                    System.out.println("Request approved.");
+//                } else if (process == 'R' || process == 'r') {
+//                    try {
+//                        RequestManager.rejectRequestForStatus(requestID);
+//                    } catch (ModelNotFoundException e) {
+//                        throw new RuntimeException(e);
+//                    }
+//                    System.out.println("Request rejected.");
+//                }
+//            } else
+//                System.out.println("No access to this request or request is not pending. Process unsuccessful.");
+//        } else {
+//            System.out.println("Invalid requestID. Process unsuccessful. ");
+//        }
         System.out.println("Enter any enter to continue");
         new Scanner(System.in).nextLine();
         throw new PageBackException();

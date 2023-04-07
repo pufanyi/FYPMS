@@ -150,4 +150,7 @@ public class RequestManager {
         }
     }
 
+    public static Request getRequest(String requestID) throws ModelNotFoundException {
+        return RequestRepository.getInstance().getByID(requestID);
+    }
 }

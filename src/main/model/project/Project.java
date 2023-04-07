@@ -101,18 +101,12 @@ public class Project implements Model {
      * Display the whole information of the project
      */
     public void displayProject() {
-        if (status == ProjectStatus.AVAILABLE) {
-            displayProjectID();
-            displaySupervisorInformation(this.supervisorID);
-            displayProjectInformation();
-        } else if (status == ProjectStatus.ALLOCATED) {
-            displayProjectID();
-            displaySupervisorInformation(this.supervisorID);
+        displayProjectID();
+        displaySupervisorInformation(this.supervisorID);
+        if (status == ProjectStatus.ALLOCATED) {
             displayStudentInformation();
-            displayProjectInformation();
-        } else {
-            throw new IllegalStateException("Project status is not AVAILABLE or ALLOCATED.");
         }
+        displayProjectInformation();
     }
 
     /**

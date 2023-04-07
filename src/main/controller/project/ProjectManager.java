@@ -3,6 +3,7 @@ package main.controller.project;
 import main.model.project.Project;
 import main.model.project.ProjectStatus;
 import main.model.user.Student;
+import main.model.user.StudentStatus;
 import main.model.user.Supervisor;
 import main.repository.project.ProjectRepository;
 import main.repository.user.FacultyRepository;
@@ -22,7 +23,7 @@ public class ProjectManager {
      *
      * @param projectID the ID of the project
      * @param newTitle  the new title of the project
-     * @throws ModelNotFoundException      if the project is not found
+     * @throws ModelNotFoundException if the project is not found
      */
     public static void changeProjectTitle(String projectID, String newTitle) throws ModelNotFoundException {
         Project p1 = ProjectRepository.getInstance().getByID(projectID);
@@ -106,10 +107,20 @@ public class ProjectManager {
         if (p1.getStatus() != ProjectStatus.ALLOCATED) {
             throw new IllegalStateException("The project status is not ALLOCATED");
         }
-        p1.setStudentID("");
-        p1.setSupervisorID("");
+        Student student;
+        try {
+            student = StudentRepository.getInstance().getByID(p1.getStudentID());
+        } catch (ModelNotFoundException e) {
+            throw new IllegalStateException("Student not found");
+        }
+        student.setProjectID(EmptyID.EMPTY_ID);
+        student.setSupervisorID(EmptyID.EMPTY_ID);
+        student.setStatus(StudentStatus.DEREGISTERED);
+        p1.setStudentID(EmptyID.EMPTY_ID);
+        p1.setSupervisorID(EmptyID.EMPTY_ID);
         p1.setStatus(ProjectStatus.AVAILABLE);
         ProjectRepository.getInstance().update(p1);
+        StudentRepository.getInstance().update(student);
     }
 
     /**
@@ -121,15 +132,25 @@ public class ProjectManager {
      */
     public static void allocateProject(String projectID, String studentID) throws ModelNotFoundException {
         Project p1 = ProjectRepository.getInstance().getByID(projectID);
-        if (!StudentRepository.getInstance().contains(studentID)) {
-            throw new IllegalStateException("Student or supervisor not found");
+        Student student;
+        try {
+            student = StudentRepository.getInstance().getByID(studentID);
+        } catch (ModelNotFoundException e) {
+            throw new IllegalStateException("Student not found");
         }
-        if (p1.getStatus() != ProjectStatus.AVAILABLE) {
-            throw new IllegalStateException("Project Status is not AVAILABLE");
+        if (p1.getStatus() == ProjectStatus.ALLOCATED) {
+            throw new IllegalStateException("Project is already allocated");
+        }
+        if (student.getStatus() == StudentStatus.REGISTERED) {
+            throw new IllegalStateException("Student is already registered");
         }
         p1.setStatus(ProjectStatus.ALLOCATED);
         p1.setStudentID(studentID);
+        student.setProjectID(projectID);
+        student.setSupervisorID(p1.getSupervisorID());
+        student.setStatus(StudentStatus.REGISTERED);
         ProjectRepository.getInstance().update(p1);
+        StudentRepository.getInstance().update(student);
     }
 
     public static void loadProjects() {
