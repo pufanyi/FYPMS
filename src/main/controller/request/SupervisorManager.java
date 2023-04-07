@@ -44,25 +44,4 @@ public class SupervisorManager {
         }
         return RequestRepository.getInstance().findByRules(request -> request.getSupervisorID().equals(supervisorID) && request.getStatus() == RequestStatus.PENDING);
     }
-
-    public static void approveRequest(Request request) {
-    }
-
-    public static void approveRequest(String requestID) {
-        try {
-            RequestManager.approveRequestForStatus(requestID);
-            Request request = RequestRepository.getInstance().getByID(requestID);
-
-        } catch (ModelNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void rejectRequest(String requestID) {
-        try {
-            RequestManager.rejectRequestForStatus(requestID);
-        } catch (ModelNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
 }
