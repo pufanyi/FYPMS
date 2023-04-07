@@ -1,11 +1,12 @@
-package main.model.request.studentrequest;
+package main.model.request;
 
+import main.model.request.Request;
 import main.model.request.RequestStatus;
 import main.model.request.RequestType;
 
 import java.util.Map;
 
-public class StudentRegistrationRequest implements StudentRequest {
+public class StudentRegistrationRequest implements Request {
     /**
      * The type of the request
      */

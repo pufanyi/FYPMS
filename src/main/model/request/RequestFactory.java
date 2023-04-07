@@ -1,10 +1,5 @@
 package main.model.request;
 
-import main.model.request.studentrequest.StudentChangeTitleRequest;
-import main.model.request.studentrequest.StudentDeregistrationRequest;
-import main.model.request.studentrequest.StudentRegistrationRequest;
-import main.model.request.supervirsorrequest.TransferStudentRequest;
-
 import java.util.Map;
 
 public class RequestFactory {

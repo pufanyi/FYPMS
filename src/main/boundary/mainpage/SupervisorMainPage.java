@@ -10,7 +10,7 @@ import main.controller.request.SupervisorRequestManager;
 import main.model.project.Project;
 import main.model.request.Request;
 import main.model.request.RequestStatus;
-import main.model.request.studentrequest.StudentChangeTitleRequest;
+import main.model.request.StudentChangeTitleRequest;
 import main.model.user.Supervisor;
 import main.model.user.User;
 import main.model.user.UserType;
@@ -113,10 +113,12 @@ public class SupervisorMainPage {
         }
         System.out.println("Enter the status to change to APPROVED (A) / REJECTED (R)");
         String status = new Scanner(System.in).next();
-        if (status.equals("APPROVED")) {
+        if (status.equalsIgnoreCase("A") ||
+                status.equalsIgnoreCase("APPROVED")) {
             SupervisorRequestManager.approveRequest(requestID);
             System.out.println("Request approved successfully!");
-        } else if (status.equals("REJECTED")) {
+        } else if (status.equalsIgnoreCase("REJECTED") ||
+                status.equalsIgnoreCase("R")) {
             SupervisorRequestManager.rejectRequest(requestID);
             System.out.println("Request rejected successfully!");
         } else {
@@ -148,16 +150,14 @@ public class SupervisorMainPage {
         System.out.println("Changing the title of project....");
         System.out.println("Enter the project ID to change");
         String projectID = new Scanner(System.in).next();
-        Project p= ProjectRepository.getInstance().getByID(projectID);
+        Project p = ProjectRepository.getInstance().getByID(projectID);
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            if (ProjectManager.notContainsProjectByID(projectID)){
+            if (ProjectManager.notContainsProjectByID(projectID)) {
                 System.out.println("Project Not Found! Enter again or Enter b to exit");
-            }
-            else if (!Objects.equals(p.getSupervisorID(), supervisor.getID())){
+            } else if (!Objects.equals(p.getSupervisorID(), supervisor.getID())) {
                 System.out.println("Project created by other supervisor! No access! Enter again or Enter b to exit");
-            }
-            else break;
+            } else break;
             projectID = scanner.next();
             if (projectID.equals("b")) {
                 throw new PageBackException();

@@ -2,7 +2,7 @@ package main.controller.request;
 
 import main.model.request.Request;
 import main.model.request.RequestStatus;
-import main.model.request.supervirsorrequest.TransferStudentRequest;
+import main.model.request.TransferStudentRequest;
 import main.repository.request.RequestRepository;
 import main.repository.user.FacultyRepository;
 import main.utils.exception.repository.ModelAlreadyExistsException;
@@ -45,11 +45,22 @@ public class SupervisorRequestManager {
         return RequestRepository.getInstance().findByRules(request -> request.getSupervisorID().equals(supervisorID) && request.getStatus() == RequestStatus.PENDING);
     }
 
+    public static void approveRequest(Request request) {
+    }
+
     public static void approveRequest(String requestID) {
         try {
+            RequestManager.approveRequest(requestID);
             Request request = RequestRepository.getInstance().getByID(requestID);
-            request.setStatus(RequestStatus.APPROVED);
-            RequestRepository.getInstance().update(request);
+
+        } catch (ModelNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void rejectRequest(String requestID) {
+        try {
+            RequestManager.rejectRequest(requestID);
         } catch (ModelNotFoundException e) {
             e.printStackTrace();
         }

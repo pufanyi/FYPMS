@@ -1,11 +1,12 @@
-package main.model.request.supervirsorrequest;
+package main.model.request;
 
+import main.model.request.Request;
 import main.model.request.RequestStatus;
 import main.model.request.RequestType;
 
 import java.util.Map;
 
-public class TransferStudentRequest implements SupervisorRequest {
+public class TransferStudentRequest implements Request {
     /**
      * The type of the request
      */

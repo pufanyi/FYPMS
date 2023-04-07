@@ -1,19 +1,20 @@
-package main.model.request.studentrequest;
+package main.model.request;
 
+import main.model.request.Request;
 import main.model.request.RequestStatus;
 import main.model.request.RequestType;
 
 import java.util.Map;
 
-public class StudentChangeTitleRequest implements StudentRequest {
+public class StudentDeregistrationRequest implements Request {
     /**
      * The type of the request
      */
-    private final RequestType requestType = RequestType.STUDENT_CHANGE_TITLE;
+    private final RequestType requestType = RequestType.STUDENT_DEREGISTRATION;
     /**
      * The ID of the request
      */
-    private String requestID;
+    public String requestID;
     /**
      * The status of the request
      */
@@ -23,7 +24,7 @@ public class StudentChangeTitleRequest implements StudentRequest {
      */
     private String studentID;
     /**
-     * The ID of the supervisor who deals with the request
+     * The ID of the supervisor
      */
     private String supervisorID;
     /**
@@ -31,9 +32,9 @@ public class StudentChangeTitleRequest implements StudentRequest {
      */
     private String projectID;
     /**
-     * The new title of the project
+     * The ID of the coordinator who deals with the request
      */
-    private String newTitle;
+    private String coordinatorID = null;
 
     /**
      * Constructor
@@ -42,14 +43,12 @@ public class StudentChangeTitleRequest implements StudentRequest {
      * @param studentID    The ID of the student
      * @param supervisorID The ID of the supervisor
      * @param projectID    The ID of the project
-     * @param newTitle     The new title of the project
      */
-    public StudentChangeTitleRequest(String requestID, String studentID, String supervisorID, String projectID, String newTitle) {
+    public StudentDeregistrationRequest(String requestID, String studentID, String supervisorID, String projectID) {
         this.requestID = requestID;
         this.studentID = studentID;
         this.supervisorID = supervisorID;
         this.projectID = projectID;
-        this.newTitle = newTitle;
     }
 
     /**
@@ -57,47 +56,42 @@ public class StudentChangeTitleRequest implements StudentRequest {
      *
      * @param map The map of the request
      */
-    public StudentChangeTitleRequest(Map<String, String> map) {
+    public StudentDeregistrationRequest(Map<String, String> map) {
         fromMap(map);
     }
 
+    /**
+     * Get the ID of the student.
+     *
+     * @return the ID of the student.
+     */
+    @Override
     public String getStudentID() {
         return studentID;
     }
 
-    public void setStudentID(String studentID) {
-        this.studentID = studentID;
-    }
-
-    @Override
+    /**
+     * Get the ID of the supervisor.
+     *
+     * @return the ID of the supervisor.
+     */
     public String getSupervisorID() {
         return supervisorID;
     }
 
-    public void setSupervisorID(String supervisorID) {
-        this.supervisorID = supervisorID;
-    }
-
+    /**
+     * Get the project ID of the request.
+     *
+     * @return the project ID of the request.
+     */
     public String getProjectID() {
         return projectID;
     }
 
-    public void setProjectID(String projectID) {
-        this.projectID = projectID;
-    }
-
-    public String getNewTitle() {
-        return newTitle;
-    }
-
-    public void setNewTitle(String newTitle) {
-        this.newTitle = newTitle;
-    }
-
     /**
-     * Get the type of the request.
+     * Get the request type.
      *
-     * @return the type of the request.
+     * @return the request type.
      */
     @Override
     public RequestType getRequestType() {
@@ -105,11 +99,29 @@ public class StudentChangeTitleRequest implements StudentRequest {
     }
 
     /**
+     * Get the ID of the coordinator who deals with the request.
+     *
+     * @return the ID of the coordinator who deals with the request.
+     */
+    public String getCoordinatorID() {
+        return coordinatorID;
+    }
+
+    /**
+     * Set the ID of the coordinator who deals with the request.
+     *
+     * @param coordinatorID the ID of the coordinator who deals with the request.
+     */
+    public void setCoordinatorID(String coordinatorID) {
+        this.coordinatorID = coordinatorID;
+    }
+
+    /**
      * Get the ID of the request.
      */
     @Override
     public String getID() {
-        return this.requestID;
+        return requestID;
     }
 
     /**
@@ -119,7 +131,7 @@ public class StudentChangeTitleRequest implements StudentRequest {
      */
     @Override
     public RequestStatus getStatus() {
-        return this.requestStatus;
+        return requestStatus;
     }
 
     /**
@@ -133,7 +145,7 @@ public class StudentChangeTitleRequest implements StudentRequest {
     }
 
     /**
-     * display the information of the request.
+     * Display the information of the request.
      */
     @Override
     public void display() {
