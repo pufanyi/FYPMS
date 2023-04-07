@@ -10,7 +10,7 @@ import main.model.user.StudentStatus;
 public class StudentStatusException extends IllegalStateException {
 
     /**
-     * The {@link status} instance variable holds the {@link StudentStatus} of the student that caused the exception.
+     * The {@code status} instance variable holds the {@link StudentStatus} of the student that caused the exception.
      */
     StudentStatus status;
 

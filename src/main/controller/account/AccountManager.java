@@ -137,7 +137,6 @@ public class AccountManager {
             case STUDENT -> StudentRepository.getInstance().getByID(ID);
             case COORDINATOR -> CoordinatorRepository.getInstance().getByID(ID);
             case FACULTY -> FacultyRepository.getInstance().getByID(ID);
-            default -> null;
         };
     }
 }

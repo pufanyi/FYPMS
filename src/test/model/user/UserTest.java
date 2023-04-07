@@ -17,10 +17,6 @@ public class UserTest {
     }
 
     public void testUserPassword(User user, String password) {
-//        assertTrue(user.checkPassword(password));
-//        user.setPassword("123456");
-//        assertTrue(user.checkPassword("123456"));
-//        assertFalse(user.checkPassword("697298730"));
     }
 
     public void testUserName(User user, String name) {

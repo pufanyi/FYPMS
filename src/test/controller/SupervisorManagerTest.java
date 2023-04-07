@@ -10,8 +10,6 @@ import main.repository.user.FacultyRepository;
 import main.repository.user.StudentRepository;
 import main.utils.exception.repository.ModelAlreadyExistsException;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 
 public class SupervisorManagerTest {
     /**
@@ -37,9 +35,4 @@ public class SupervisorManagerTest {
         FacultyRepository.getInstance().add(supervisor2);
     }
 
-    @Test
-    @DisplayName("Transfer supervisor request")
-    public void transferSupervisorTest() {
-
-    }
 }

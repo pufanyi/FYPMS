@@ -23,9 +23,8 @@ public class ProjectManager {
      * @param projectID the ID of the project
      * @param newTitle  the new title of the project
      * @throws ModelNotFoundException      if the project is not found
-     * @throws ModelAlreadyExistsException if the new title is already used by another project
      */
-    public static void changeProjectTitle(String projectID, String newTitle) throws ModelNotFoundException, ModelAlreadyExistsException {
+    public static void changeProjectTitle(String projectID, String newTitle) throws ModelNotFoundException {
         Project p1 = ProjectRepository.getInstance().getByID(projectID);
         p1.setProjectTitle(newTitle);
         ProjectRepository.getInstance().update(p1);
@@ -159,8 +158,8 @@ public class ProjectManager {
         return ProjectRepository.getInstance().isEmpty();
     }
 
-    public static boolean containsProjectByID(String projectID) {
-        return ProjectRepository.getInstance().contains(projectID);
+    public static boolean notContainsProjectByID(String projectID) {
+        return !ProjectRepository.getInstance().contains(projectID);
     }
 
     public static Project getStudentProject(Student student) {

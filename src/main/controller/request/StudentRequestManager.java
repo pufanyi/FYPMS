@@ -1,6 +1,5 @@
 package main.controller.request;
 
-import main.controller.project.ProjectManager;
 import main.model.project.Project;
 import main.model.project.ProjectStatus;
 import main.model.request.Request;
@@ -100,10 +99,9 @@ public class StudentRequestManager{
      * @param newTitle     the new title of the project
      * @param studentID    the student ID of the student that is going to change the title of the project
      * @param supervisorID the supervisor ID of the supervisor that the student is going to change the title of
-     * @throws ModelNotFoundException      if the project or student is not found
      * @throws ModelAlreadyExistsException if the request already exists
      */
-    public static String changeProjectTitle(String projectID, String newTitle, String studentID, String supervisorID) throws ModelNotFoundException, ModelAlreadyExistsException {
+    public static String changeProjectTitle(String projectID, String newTitle, String studentID, String supervisorID) throws ModelAlreadyExistsException {
         String requestID = RequestManager.getNewRequestID();
         Request request = new StudentChangeTitleRequest(requestID, projectID, newTitle, studentID, supervisorID);
         RequestRepository.getInstance().add(request);

@@ -40,9 +40,10 @@ public class SupervisorMainPage {
             System.out.println("\t3. Create a project ");
             System.out.println("\t4. Modify title of projects");
             System.out.println("\t5. View all pending student requests");
-            System.out.println("\t6. Submit request for transferring");
-            System.out.println("\t7. View all incoming/outgoing requests' history and status");
-            System.out.println("\t8. Logout");
+            System.out.println("\t6. Approve/Reject student requests");
+            System.out.println("\t7. Submit request for transferring");
+            System.out.println("\t8. View all incoming/outgoing requests' history and status");
+            System.out.println("\t9. Logout");
             System.out.println(BoundaryStrings.separator);
 
             System.out.println();
@@ -60,9 +61,10 @@ public class SupervisorMainPage {
                     case 3 -> supervisorCreateProject(supervisor);
                     case 4 -> supervisorChangeProjectTitle(supervisor);
                     case 5 -> supervisorViewAllPendingRequest(supervisor);
-                    case 6 -> supervisorRequestForTransfer(supervisor);
+                    case 6 -> supervisorApproveOrRejectRequest(supervisor);
+                    case 7 -> supervisorRequestForTransfer(supervisor);
                     //case 7 ->
-                    case 8 -> Logout.logout();
+                    case 9 -> Logout.logout();
 
                     default -> System.out.println("Invalid choice. Please try again.");
                 }
@@ -75,6 +77,59 @@ public class SupervisorMainPage {
         } else {
             throw new IllegalArgumentException("User is not a supervisor.");
         }
+    }
+
+    private static void supervisorApproveOrRejectRequest(Supervisor supervisor) throws PageBackException {
+        ChangePage.changePage();
+        System.out.println("Approving or rejecting a request....");
+        System.out.println("Enter the request ID to approve or reject");
+        String requestID = new Scanner(System.in).next();
+        Request request;
+        try {
+            request = RequestRepository.getInstance().getByID(requestID);
+        } catch (ModelNotFoundException e) {
+            System.out.println("Request not found!");
+            System.out.println("Enter enter to go back, or enter 0 to retry");
+            String input = new Scanner(System.in).nextLine();
+            if (input.equals("0")) {
+                supervisorApproveOrRejectRequest(supervisor);
+            }
+            throw new PageBackException();
+        }
+        if (!Objects.equals(request.getSupervisorID(), supervisor.getID())) {
+            System.out.println("Request is not assigned to you!");
+            System.out.println("Enter enter to go back, or enter 0 to retry");
+            String input = new Scanner(System.in).nextLine();
+            if (input.equals("0")) {
+                supervisorApproveOrRejectRequest(supervisor);
+            }
+            throw new PageBackException();
+        }
+        if (request.getStatus() != RequestStatus.PENDING) {
+            System.out.println("Request is not pending!");
+            System.out.println("Enter enter to continue");
+            new Scanner(System.in).nextLine();
+            throw new PageBackException();
+        }
+        System.out.println("Enter the status to change to APPROVED (A) / REJECTED (R)");
+        String status = new Scanner(System.in).next();
+        if (status.equals("APPROVED")) {
+            SupervisorRequestManager.approveRequest(requestID);
+            System.out.println("Request approved successfully!");
+        } else if (status.equals("REJECTED")) {
+            SupervisorRequestManager.rejectRequest(requestID);
+            System.out.println("Request rejected successfully!");
+        } else {
+            System.out.println("Invalid status!");
+            System.out.println("Enter enter to go back, or enter 0 to retry");
+            String input = new Scanner(System.in).nextLine();
+            if (input.equals("0")) {
+                supervisorApproveOrRejectRequest(supervisor);
+            }
+        }
+        System.out.println("Enter enter to continue");
+        new Scanner(System.in).nextLine();
+        throw new PageBackException();
     }
 
     private static void supervisorCreateProject(Supervisor supervisor) throws ModelAlreadyExistsException, PageBackException {
@@ -96,7 +151,7 @@ public class SupervisorMainPage {
         Project p= ProjectRepository.getInstance().getByID(projectID);
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            if (!ProjectManager.containsProjectByID(projectID)){
+            if (ProjectManager.notContainsProjectByID(projectID)){
                 System.out.println("Project Not Found! Enter again or Enter b to exit");
             }
             else if (!Objects.equals(p.getSupervisorID(), supervisor.getID())){
@@ -118,13 +173,13 @@ public class SupervisorMainPage {
 
     }
 
-    private static void supervisorRequestForTransfer(Supervisor supervisor) throws ModelNotFoundException, PageBackException {
+    private static void supervisorRequestForTransfer(Supervisor supervisor) throws PageBackException {
         ChangePage.changePage();
         System.out.println("Processing to transfer....");
         System.out.println("Enter the project ID to transfer");
         Scanner scanner = new Scanner(System.in);
         String projectID = scanner.next();
-        while (!ProjectManager.containsProjectByID(projectID)) {
+        while (ProjectManager.notContainsProjectByID(projectID)) {
             System.out.println("Project Not Found! Enter again or Enter b to exit");
             projectID = scanner.next();
             if (projectID.equals("b")) {
@@ -209,7 +264,7 @@ public class SupervisorMainPage {
                     try {
                         ProjectManager.changeProjectTitle(r1.getProjectID(), req.getNewTitle());
                         RequestManager.approveRequest(requestID);
-                    } catch (ModelNotFoundException | ModelAlreadyExistsException e) {
+                    } catch (ModelNotFoundException e) {
                         throw new RuntimeException(e);
                     }
                     System.out.println("Request approved.");
@@ -224,7 +279,7 @@ public class SupervisorMainPage {
             } else
                 System.out.println("No access to this request or request is not pending. Process unsuccessful.");
         } else {
-            System.out.println("Invalid requestID.Process unsuccessful. ");
+            System.out.println("Invalid requestID. Process unsuccessful. ");
         }
         System.out.println("Enter any enter to continue");
         new Scanner(System.in).nextLine();

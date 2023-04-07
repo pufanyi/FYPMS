@@ -5,8 +5,6 @@ import main.model.project.Project;
 import main.model.project.ProjectStatus;
 import main.model.request.Request;
 import main.model.request.RequestStatus;
-import main.model.request.studentrequest.StudentChangeTitleRequest;
-import main.model.user.Coordinator;
 import main.model.user.Student;
 import main.model.user.StudentStatus;
 import main.model.user.Supervisor;
@@ -101,7 +99,7 @@ public class CoordinatorRequestManager{
     /**
      * display all the requests
      */
-    public static List<Request> getAllRequests() throws PageBackException {
+    public static List<Request> getAllRequests() {
         return RequestRepository.getInstance().getList();
     }
 

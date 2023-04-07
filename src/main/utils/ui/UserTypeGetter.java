@@ -1,6 +1,5 @@
 package main.utils.ui;
 
-import main.model.user.Student;
 import main.model.user.User;
 import main.model.user.UserType;
 

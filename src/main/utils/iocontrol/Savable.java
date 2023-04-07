@@ -24,12 +24,8 @@ public abstract class Savable<MappableObject extends Mappable> {
      * Sets the list of mappable objects.
      *
      * @param listOfMappableObjects the list of mappable objects to set
-     * @throws NoSuchMethodException     if a requested method is not found
-     * @throws InvocationTargetException if an invoked method throws an exception
-     * @throws InstantiationException    if a class cannot be instantiated
-     * @throws IllegalAccessException    if an attempt is made to access a private field or method
      */
-    protected abstract void setAll(List<Map<String, String>> listOfMappableObjects) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException;
+    protected abstract void setAll(List<Map<String, String>> listOfMappableObjects);
 
     /**
      * Saves the list of mappable objects to a file.
@@ -80,11 +76,6 @@ public abstract class Savable<MappableObject extends Mappable> {
         } catch (IOException e) {
             throw new RuntimeException("Data could not be loaded from file: " + FILE_PATH);
         }
-        try {
-            setAll(listOfMappableObjects);
-        } catch (NoSuchMethodException | InvocationTargetException | InstantiationException |
-                 IllegalAccessException e) {
-            throw new RuntimeException("Data could not be loaded from file: " + FILE_PATH);
-        }
+        setAll(listOfMappableObjects);
     }
 }

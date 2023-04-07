@@ -47,6 +47,7 @@ public interface Mappable {
             try {
                 field.setAccessible(true);
                 if (field.getType().isEnum()) {
+                    @SuppressWarnings("unchecked")
                     Enum<?> enumValue = Enum.valueOf((Class<Enum>) field.getType(), map.get(field.getName()));
                     field.set(this, enumValue);
                 } else {

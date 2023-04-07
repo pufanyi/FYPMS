@@ -1,10 +1,8 @@
 package main.controller.request;
 
-import main.controller.project.ProjectManager;
 import main.model.request.Request;
 import main.model.request.RequestStatus;
 import main.model.request.supervirsorrequest.TransferStudentRequest;
-import main.repository.project.ProjectRepository;
 import main.repository.request.RequestRepository;
 import main.repository.user.FacultyRepository;
 import main.utils.exception.repository.ModelAlreadyExistsException;
@@ -12,7 +10,7 @@ import main.utils.exception.repository.ModelNotFoundException;
 
 import java.util.List;
 
-public class SupervisorRequestManager{
+public class SupervisorRequestManager {
     /**
      * Transfer a student to a new supervisor
      *
@@ -40,13 +38,20 @@ public class SupervisorRequestManager{
         return RequestRepository.getInstance().findByRules(request -> request.getID().equals(supervisorID));
     }
 
-    public static List<Request> getPendingRequestsBySupervisor(String id) {
-        if (!FacultyRepository.getInstance().contains(id)) {
+    public static List<Request> getPendingRequestsBySupervisor(String supervisorID) {
+        if (!FacultyRepository.getInstance().contains(supervisorID)) {
             throw new IllegalArgumentException("Supervisor does not exist");
         }
-        return RequestRepository.getInstance().findByRules(
-                request -> request.getID().equals(id),
-                request -> request.getStatus() == RequestStatus.PENDING
-        );
+        return RequestRepository.getInstance().findByRules(request -> request.getSupervisorID().equals(supervisorID) && request.getStatus() == RequestStatus.PENDING);
+    }
+
+    public static void approveRequest(String requestID) {
+        try {
+            Request request = RequestRepository.getInstance().getByID(requestID);
+            request.setStatus(RequestStatus.APPROVED);
+            RequestRepository.getInstance().update(request);
+        } catch (ModelNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -44,4 +44,6 @@ public interface Request extends Model {
     RequestType getRequestType();
 
     void display();
+
+    String getSupervisorID();
 }

@@ -104,8 +104,6 @@ public class ProjectViewer {
 
     /**
      * generate details of project by StudentID
-     *
-     * @throws ModelNotFoundException
      */
     public static void generateDetailsByStudentID() {
         System.out.println("Enter the StudentID to search");

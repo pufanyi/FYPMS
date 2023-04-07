@@ -69,6 +69,7 @@ public class StudentChangeTitleRequest implements StudentRequest {
         this.studentID = studentID;
     }
 
+    @Override
     public String getSupervisorID() {
         return supervisorID;
     }
