@@ -1,5 +1,7 @@
 package main.utils.iocontrol;
 
+import main.utils.parameters.EmptyID;
+
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,7 +27,7 @@ public interface Mappable {
                 try {
                     map.put(field.getName(), field.get(this).toString());
                 } catch (NullPointerException e) {
-                    map.put(field.getName(), null);
+                    map.put(field.getName(), EmptyID.EMPTY_ID);
                 }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
@@ -51,9 +53,8 @@ public interface Mappable {
                     Enum<?> enumValue = Enum.valueOf((Class<Enum>) field.getType(), map.get(field.getName()));
                     field.set(this, enumValue);
                 } else if (field.getType().equals(Integer.TYPE) || field.getType().equals(Integer.class)) {
-                    if (map.get(field.getName()) == null) {
+                    if (EmptyID.isEmptyID(map.get(field.getName()))) {
                         field.set(this, 0);
-                        continue;
                     } else {
                         int intValue = Integer.parseInt(map.get(field.getName()));
                         field.set(this, intValue);
