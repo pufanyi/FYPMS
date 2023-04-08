@@ -126,14 +126,14 @@ public class ProjectManager {
         }
         Supervisor oldsupervisor=FacultyRepository.getInstance().getByID(p1.getSupervisorID());
         Supervisor newsupervisor=FacultyRepository.getInstance().getByID(supervisorID);
-        oldsupervisor.decNumofSupervisingProject();
-        newsupervisor.incNumofSupervisingProject();
+        oldsupervisor.decNumOfSupervisingProject();
+        newsupervisor.incNumOfSupervisingProject();
         p1.setSupervisorID(supervisorID);
         ProjectRepository.getInstance().update(p1);
         FacultyRepository.getInstance().update(oldsupervisor);
         FacultyRepository.getInstance().update(newsupervisor);
-        if (oldsupervisor.getNumofSupervisingProject()==1) controlProjectStatus(oldsupervisor);
-        if (newsupervisor.getNumofSupervisingProject()==2) controlProjectStatus(newsupervisor);
+        if (oldsupervisor.getNumOfSupervisingProject()==1) controlProjectStatus(oldsupervisor);
+        if (newsupervisor.getNumOfSupervisingProject()==2) controlProjectStatus(newsupervisor);
 
     }
 
@@ -163,11 +163,11 @@ public class ProjectManager {
         p1.setStatus(ProjectStatus.AVAILABLE);
         String supervisorID=p1.getSupervisorID();
         Supervisor supervisor=FacultyRepository.getInstance().getByID(supervisorID);
-        supervisor.decNumofSupervisingProject();
+        supervisor.decNumOfSupervisingProject();
         ProjectRepository.getInstance().update(p1);
         StudentRepository.getInstance().update(student);
         FacultyRepository.getInstance().update(supervisor);
-        if (supervisor.getNumofSupervisingProject()==1) controlProjectStatus(supervisor);controlProjectStatus(supervisor);
+        if (supervisor.getNumOfSupervisingProject()==1) controlProjectStatus(supervisor);controlProjectStatus(supervisor);
     }
 
     /**
@@ -198,15 +198,15 @@ public class ProjectManager {
         student.setStatus(StudentStatus.REGISTERED);
         String supervisorID=p1.getSupervisorID();
         Supervisor supervisor=FacultyRepository.getInstance().getByID(supervisorID);
-        supervisor.incNumofSupervisingProject();
+        supervisor.incNumOfSupervisingProject();
         ProjectRepository.getInstance().update(p1);
         StudentRepository.getInstance().update(student);
         FacultyRepository.getInstance().update(supervisor);
-        if (supervisor.getNumofSupervisingProject()==2) controlProjectStatus(supervisor);
+        if (supervisor.getNumOfSupervisingProject()==2) controlProjectStatus(supervisor);
     }
 
     public static void controlProjectStatus(Supervisor supervisor) throws ModelNotFoundException {
-        if (supervisor.getNumofSupervisingProject()>=2){
+        if (supervisor.getNumOfSupervisingProject()>=2){
             for (Project p:ProjectRepository.getInstance().findByRules(p1->p1.getSupervisorID().equals(supervisor.getID()) && p1.getStudentID().equals(""))){
                 p.setStatus(ProjectStatus.UNAVAILABLE);
                 ProjectRepository.getInstance().update(p);

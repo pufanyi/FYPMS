@@ -50,10 +50,18 @@ public interface Mappable {
                     @SuppressWarnings("unchecked")
                     Enum<?> enumValue = Enum.valueOf((Class<Enum>) field.getType(), map.get(field.getName()));
                     field.set(this, enumValue);
+                } else if (field.getType().equals(Integer.TYPE) || field.getType().equals(Integer.class)) {
+                    if (map.get(field.getName()) == null) {
+                        field.set(this, 0);
+                        continue;
+                    } else {
+                        int intValue = Integer.parseInt(map.get(field.getName()));
+                        field.set(this, intValue);
+                    }
                 } else {
                     field.set(this, map.get(field.getName()));
                 }
-            } catch (IllegalAccessException e) {
+            } catch (IllegalAccessException | NumberFormatException e) {
                 e.printStackTrace();
             }
         }

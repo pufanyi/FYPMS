@@ -1,5 +1,6 @@
 package main.model.user;
 
+import main.utils.parameters.EmptyID;
 import main.utils.parameters.NotNull;
 
 import java.util.Map;
@@ -23,7 +24,7 @@ public class Supervisor implements User {
     private String email;
     private String hashedPassword;
 
-    private int numofSupeprvisingProject=0;
+    private Integer numOfSupervisingProject;
 
     /**
      * Constructs a new Supervisor object with the specified supervisor ID.
@@ -36,6 +37,7 @@ public class Supervisor implements User {
         this.supervisorID = supervisorID;
         this.supervisorName = supervisorName;
         this.email = email;
+        this.numOfSupervisingProject = 0;
     }
 
     /**
@@ -66,9 +68,10 @@ public class Supervisor implements User {
      * default constructor for Supervisor class
      */
     public Supervisor() {
-        this.supervisorID = "";
-        this.supervisorName = "";
-        this.email = "";
+        this.supervisorID = EmptyID.EMPTY_ID;
+        this.supervisorName = EmptyID.EMPTY_ID;
+        this.email = EmptyID.EMPTY_ID;
+        this.numOfSupervisingProject = 0;
     }
 
     public static User getUser(Map<String, String> map) {
@@ -115,15 +118,15 @@ public class Supervisor implements User {
         return this.email;
     }
 
-    public void incNumofSupervisingProject(){
-        this.numofSupeprvisingProject++;
+    public void incNumOfSupervisingProject(){
+        this.numOfSupervisingProject++;
     }
 
-    public void decNumofSupervisingProject(){
-        this.numofSupeprvisingProject++;
+    public void decNumOfSupervisingProject(){
+        this.numOfSupervisingProject++;
     }
 
-    public int getNumofSupervisingProject(){
-        return this.numofSupeprvisingProject;
+    public int getNumOfSupervisingProject(){
+        return this.numOfSupervisingProject;
     }
 }

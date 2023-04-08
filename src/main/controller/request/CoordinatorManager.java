@@ -39,7 +39,7 @@ public class CoordinatorManager {
         if (project.getStatus() != ProjectStatus.ALLOCATED) {
             throw new IllegalStateException("Project has not been allocated to a student yet");
         }
-        supervisor.decNumofSupervisingProject();
+        supervisor.decNumOfSupervisingProject();
         student.setStatus(StudentStatus.DEREGISTERED);
         project.setStudentID(null);
         project.setSupervisorID(null);
