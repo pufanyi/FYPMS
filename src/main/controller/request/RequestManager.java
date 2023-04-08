@@ -96,9 +96,9 @@ public class RequestManager {
             String studentID = studentRegistrationRequest.getStudentID();
             /*String supervisorID = studentRegistrationRequest.getSupervisorID();
             Supervisor supervisor = FacultyRepository.getInstance().getByID(supervisorID);
-            if (supervisor.getNumofSupeprvisingProject()>=2){
+            if (supervisor.getNumofSupervisingProject()>=2){
                 System.out.println("The supervisor who create this project has reached the maximum number of supervising project");
-                System.out.println("Enter enter to continue");
+                System.out.println("Press <Enter> to continue");
                 new Scanner(System.in).nextLine();
                 throw new PageBackException();
             }*/
