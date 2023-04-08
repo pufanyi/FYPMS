@@ -132,6 +132,9 @@ public class ProjectManager {
         ProjectRepository.getInstance().update(p1);
         FacultyRepository.getInstance().update(oldsupervisor);
         FacultyRepository.getInstance().update(newsupervisor);
+        if (oldsupervisor.getNumofSupervisingProject()==1) controlProjectStatus(oldsupervisor);
+        if (newsupervisor.getNumofSupervisingProject()==2) controlProjectStatus(newsupervisor);
+
     }
 
 
@@ -210,7 +213,7 @@ public class ProjectManager {
             }
         }
         else {
-            for (Project p:ProjectRepository.getInstance().findByRules(p1->p1.getSupervisorID()== supervisor.getID()&& p1.getStudentID().equals(""))){
+            for (Project p:ProjectRepository.getInstance().findByRules(p1->p1.getSupervisorID().equals(supervisor.getID())&& p1.getStudentID().equals(""))){
                 p.setStatus(ProjectStatus.AVAILABLE);
                 ProjectRepository.getInstance().update(p);
             }
