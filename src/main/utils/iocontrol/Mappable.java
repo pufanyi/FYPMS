@@ -53,6 +53,7 @@ public interface Mappable {
                     Enum<?> enumValue = Enum.valueOf((Class<Enum>) field.getType(), map.get(field.getName()));
                     field.set(this, enumValue);
                 } else if (field.getType().equals(Integer.TYPE) || field.getType().equals(Integer.class)) {
+//                    System.err.println("==============================");
                     if (EmptyID.isEmptyID(map.get(field.getName()))) {
                         field.set(this, 0);
                     } else {

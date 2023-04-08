@@ -53,6 +53,7 @@ public class Supervisor implements User {
         this.supervisorID = supervisorID;
         this.supervisorName = supervisorName;
         this.email = email;
+        this.numOfSupervisingProject = 0;
     }
 
     /**
