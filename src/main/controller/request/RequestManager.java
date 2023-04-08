@@ -6,12 +6,16 @@ import main.model.project.ProjectStatus;
 import main.model.request.*;
 import main.model.user.Student;
 import main.model.user.StudentStatus;
+import main.model.user.Supervisor;
 import main.repository.project.ProjectRepository;
 import main.repository.request.RequestRepository;
+import main.repository.user.FacultyRepository;
 import main.repository.user.StudentRepository;
 import main.utils.exception.repository.ModelNotFoundException;
+import main.utils.exception.ui.PageBackException;
 
 import java.util.Objects;
+import java.util.Scanner;
 
 public class RequestManager {
     public static String getNewRequestID() {
@@ -86,10 +90,19 @@ public class RequestManager {
         }
     }
 
-    private static void approveStudentRegistrationRequest(Request request) {
+    private static void approveStudentRegistrationRequest(Request request) throws ModelNotFoundException {
         if (request instanceof StudentRegistrationRequest studentRegistrationRequest) {
             String projectID = studentRegistrationRequest.getProjectID();
             String studentID = studentRegistrationRequest.getStudentID();
+            /*String supervisorID = studentRegistrationRequest.getSupervisorID();
+            Supervisor supervisor = FacultyRepository.getInstance().getByID(supervisorID);
+            if (supervisor.getNumofSupeprvisingProject()>=2){
+                System.out.println("The supervisor who create this project has reached the maximum number of supervising project");
+                System.out.println("Enter enter to continue");
+                new Scanner(System.in).nextLine();
+                throw new PageBackException();
+            }*/
+
             try {
                 ProjectManager.allocateProject(projectID, studentID);
             } catch (ModelNotFoundException e) {
@@ -100,7 +113,7 @@ public class RequestManager {
         }
     }
 
-    public static void approveRequest(Request request) {
+    public static void approveRequest(Request request) throws ModelNotFoundException {
         switch (request.getRequestType()) {
             case STUDENT_CHANGE_TITLE -> approveStudentChangeTitleRequest(request);
             case SUPERVISOR_TRANSFER_STUDENT -> approveTransferStudentRequest(request);

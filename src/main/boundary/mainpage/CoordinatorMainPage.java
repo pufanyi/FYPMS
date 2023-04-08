@@ -162,11 +162,11 @@ public class CoordinatorMainPage {
         switch (choice) {
             case 1 -> {
                 RequestManager.approveRequest(requestID);
-                System.out.println("Request accepted successfully.");
+                System.out.println("Request processed successfully.");
             }
             case 2 -> {
                 RequestManager.rejectRequest(requestID);
-                System.out.println("Request rejected successfully.");
+                System.out.println("Request processed successfully.");
             }
             case 3 -> throw new PageBackException();
             default -> {

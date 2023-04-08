@@ -23,6 +23,8 @@ public class Supervisor implements User {
     private String email;
     private String hashedPassword;
 
+    private int numofSupeprvisingProject=0;
+
     /**
      * Constructs a new Supervisor object with the specified supervisor ID.
      *
@@ -111,5 +113,17 @@ public class Supervisor implements User {
     @Override
     public String getEmail() {
         return this.email;
+    }
+
+    public void incNumofSupervisingProject(){
+        this.numofSupeprvisingProject++;
+    }
+
+    public void decNumofSupervisingProject(){
+        this.numofSupeprvisingProject++;
+    }
+
+    public int getNumofSupervisingProject(){
+        return this.numofSupeprvisingProject;
     }
 }

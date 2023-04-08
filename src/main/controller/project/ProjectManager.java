@@ -152,8 +152,12 @@ public class ProjectManager {
         p1.setStudentID(EmptyID.EMPTY_ID);
         p1.setSupervisorID(EmptyID.EMPTY_ID);
         p1.setStatus(ProjectStatus.AVAILABLE);
+        String supervisorID=p1.getSupervisorID();
+        Supervisor supervisor=FacultyRepository.getInstance().getByID(supervisorID);
+        supervisor.decNumofSupervisingProject();
         ProjectRepository.getInstance().update(p1);
         StudentRepository.getInstance().update(student);
+        FacultyRepository.getInstance().update(supervisor);
     }
 
     /**
@@ -182,8 +186,12 @@ public class ProjectManager {
         student.setProjectID(projectID);
         student.setSupervisorID(p1.getSupervisorID());
         student.setStatus(StudentStatus.REGISTERED);
+        String supervisorID=p1.getSupervisorID();
+        Supervisor supervisor=FacultyRepository.getInstance().getByID(supervisorID);
+        supervisor.incNumofSupervisingProject();
         ProjectRepository.getInstance().update(p1);
         StudentRepository.getInstance().update(student);
+        FacultyRepository.getInstance().update(supervisor);
     }
 
     /**
