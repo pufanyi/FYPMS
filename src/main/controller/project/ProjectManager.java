@@ -124,8 +124,14 @@ public class ProjectManager {
         if (!FacultyRepository.getInstance().contains(supervisorID)) {
             throw new IllegalStateException("Supervisor Not Found!");
         }
+        Supervisor oldsupervisor=FacultyRepository.getInstance().getByID(p1.getSupervisorID());
+        Supervisor newsupervisor=FacultyRepository.getInstance().getByID(supervisorID);
+        oldsupervisor.decNumofSupervisingProject();
+        newsupervisor.incNumofSupervisingProject();
         p1.setSupervisorID(supervisorID);
         ProjectRepository.getInstance().update(p1);
+        FacultyRepository.getInstance().update(oldsupervisor);
+        FacultyRepository.getInstance().update(newsupervisor);
     }
 
 
@@ -158,6 +164,7 @@ public class ProjectManager {
         ProjectRepository.getInstance().update(p1);
         StudentRepository.getInstance().update(student);
         FacultyRepository.getInstance().update(supervisor);
+        if (supervisor.getNumofSupervisingProject()==1) controlProjectStatus(supervisor);controlProjectStatus(supervisor);
     }
 
     /**
@@ -192,6 +199,22 @@ public class ProjectManager {
         ProjectRepository.getInstance().update(p1);
         StudentRepository.getInstance().update(student);
         FacultyRepository.getInstance().update(supervisor);
+        if (supervisor.getNumofSupervisingProject()==2) controlProjectStatus(supervisor);
+    }
+
+    public static void controlProjectStatus(Supervisor supervisor) throws ModelNotFoundException {
+        if (supervisor.getNumofSupervisingProject()>=2){
+            for (Project p:ProjectRepository.getInstance().findByRules(p1->p1.getSupervisorID().equals(supervisor.getID()) && p1.getStudentID().equals(""))){
+                p.setStatus(ProjectStatus.UNAVAILABLE);
+                ProjectRepository.getInstance().update(p);
+            }
+        }
+        else {
+            for (Project p:ProjectRepository.getInstance().findByRules(p1->p1.getSupervisorID()== supervisor.getID()&& p1.getStudentID().equals(""))){
+                p.setStatus(ProjectStatus.AVAILABLE);
+                ProjectRepository.getInstance().update(p);
+            }
+        }
     }
 
     /**
