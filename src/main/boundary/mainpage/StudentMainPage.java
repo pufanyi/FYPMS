@@ -214,6 +214,7 @@ public class StudentMainPage {
                 registerProject(student);
             }
         }
+        System.out.println("Press Enter to go back.");
         new Scanner(System.in).nextLine();
         throw new PageBackException();
     }
