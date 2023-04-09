@@ -8,6 +8,7 @@ import main.repository.project.ProjectRepository;
 import main.repository.user.FacultyRepository;
 import main.utils.exception.repository.ModelNotFoundException;
 import main.utils.exception.ui.PageBackException;
+import main.utils.ui.BoundaryStrings;
 import main.utils.ui.ChangePage;
 
 import java.util.List;
@@ -92,7 +93,7 @@ public class ProjectViewer {
      * generate details of project by ProjectID
      */
     public static void generateDetailsByProjectID() {
-        System.out.println("Enter the ProjectID to search");
+        System.out.println("Please Enter the ProjectID to search: ");
         String s1 = new Scanner(System.in).next();
         try {
             Project p1 = ProjectRepository.getInstance().getByID(s1);
@@ -106,7 +107,7 @@ public class ProjectViewer {
      * generate details of project by SupervisorID
      */
     public static void generateDetailsBySupervisorID() throws PageBackException {
-        System.out.println("Enter the SupervisorID to search");
+        System.out.println("Please enter the SupervisorID to search: ");
         String s1 = new Scanner(System.in).next();
         if (FacultyRepository.getInstance().contains(s1)) {
             System.out.println("Supervisor Not Found.");
@@ -128,7 +129,7 @@ public class ProjectViewer {
      * generate details of project by StudentID
      */
     public static void generateDetailsByStudentID() {
-        System.out.println("Enter the StudentID to search");
+        System.out.println("Please enter the StudentID to search: ");
         String s1 = new Scanner(System.in).next();
         for (Project p : ProjectRepository.getInstance().findByRules(p -> Objects.equals(p.getStudentID(), s1)))
             p.displayProject();
@@ -151,11 +152,16 @@ public class ProjectViewer {
      * @throws PageBackException if the user wants to go back
      */
     public static void generateProjectDetails() throws PageBackException {
-        System.out.println("1. By ProjectID");
-        System.out.println("2. By SupervisorID");
-        System.out.println("3. By Student");
-        System.out.println("4. By Status");
-        System.out.println("0. Go Back");
+        ChangePage.changePage();
+        System.out.println(BoundaryStrings.separator);
+        System.out.println("Please select the way to search:");
+        System.out.println("\t 1. By ProjectID");
+        System.out.println("\t 2. By SupervisorID");
+        System.out.println("\t 3. By Student");
+        System.out.println("\t 4. By Status");
+        System.out.println("\t 0. Go Back");
+        System.out.println(BoundaryStrings.separator);
+        System.out.print("Please enter your choice: ");
         Scanner sc = new Scanner(System.in);
         int c = sc.nextInt();
         if (c == 0) {
@@ -168,7 +174,7 @@ public class ProjectViewer {
                 case 3 -> generateDetailsByStudentID();
                 case 4 -> generateDetailsByStatus();
                 default -> {
-                    System.out.println("Invalid choice. Enter again");
+                    System.out.println("Invalid choice. Please enter again. ");
                     new Scanner(System.in).nextLine();
                     throw new PageBackException();
                 }
@@ -187,7 +193,7 @@ public class ProjectViewer {
         ChangePage.changePage();
         System.out.println("View Available Project List");
         displayProjectDetails(ProjectManager.viewAvailableProjects());
-        System.out.println("Press Enter to go back");
+        System.out.println("Press Enter to go back.");
         new Scanner(System.in).nextLine();
         throw new PageBackException();
     }
@@ -201,7 +207,7 @@ public class ProjectViewer {
         ChangePage.changePage();
         System.out.println("View All Project List");
         displayProjectDetails(ProjectManager.viewAllProject());
-        System.out.println("Press Enter to go back");
+        System.out.println("Press Enter to go back.");
         new Scanner(System.in).nextLine();
         throw new PageBackException();
     }
@@ -221,7 +227,7 @@ public class ProjectViewer {
         } else {
             displaySingleProject(p);
         }
-        System.out.println("Press Enter to go back");
+        System.out.println("Press Enter to go back.");
         new Scanner(System.in).nextLine();
         throw new PageBackException();
     }

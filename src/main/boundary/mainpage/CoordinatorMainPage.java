@@ -120,10 +120,9 @@ public class CoordinatorMainPage {
         ChangePage.changePage();
         System.out.println(BoundaryStrings.separator);
         System.out.println("Accept or Reject Requests");
-        System.out.println();
-        System.out.println("Please enter the ID of the request you want to accept or reject.");
-        System.out.println("Enter 0 to go back.");
-        System.out.println();
+        System.out.println("Please enter the ID of the request you want to accept or reject. (Enter 0 to go back.)");
+        System.out.println(BoundaryStrings.separator);
+        System.out.print("Please enter your choice: ");
 
         String requestID = new Scanner(System.in).nextLine();
         if (requestID.equals("0")) {
