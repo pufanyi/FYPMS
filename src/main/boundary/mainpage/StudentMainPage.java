@@ -116,7 +116,7 @@ public class StudentMainPage {
         try {
             StudentManager.changeProjectTitle(projectID, newTitle, student.getID());
         } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+//            System.out.println("Error: " + e.getMessage());
             System.out.println("Enter [b] to go back, or press enter to retry.");
             String choice = new Scanner(System.in).nextLine();
             if (!choice.equals("b")) {
@@ -142,7 +142,7 @@ public class StudentMainPage {
         try {
             StudentManager.deregisterStudent(projectID, student.getID());
         } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+//            System.out.println("Error: " + e.getMessage());
             System.out.println("Enter [b] to go back, or press enter to retry.");
             String choice = new Scanner(System.in).nextLine();
             if (!choice.equals("b")) {
@@ -206,7 +206,7 @@ public class StudentMainPage {
             StudentManager.registerStudent(projectID, student.getID());
             System.out.println("Request submitted!");
         } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+//            System.out.println("Error: " + e.getMessage());
             System.out.println("Enter [b] to go back, or press enter to retry.");
             String choice = new Scanner(System.in).nextLine();
             if (choice.equals("b")) {
@@ -215,6 +215,7 @@ public class StudentMainPage {
                 registerProject(student);
             }
         }
+        System.out.println("Press Enter to go back.");
         new Scanner(System.in).nextLine();
         throw new PageBackException();
     }
