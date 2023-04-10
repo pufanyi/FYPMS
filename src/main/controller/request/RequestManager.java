@@ -39,15 +39,13 @@ public class RequestManager {
         }
     }
 
-    public static void ctrlNumOfRequest(Supervisor s) {
+    public static void ctrlNumOfRequest(String sid) throws ModelNotFoundException {
+        Supervisor s=FacultyRepository.getInstance().getByID(sid);
         if (s.getNumOfSupervisingProject() >= 2)
-            for (Request r : RequestRepository.getInstance().findByRules(p -> p.getSupervisorID().equals(s.getID()) && p.getStatus().equals(RequestStatus.PENDING) && p instanceof StudentRegistrationRequest)) {
-                    try {
-                        rejectRequestForStatus(r.getID());
-                    } catch (ModelNotFoundException e) {
-                        e.printStackTrace();
-                    }
+            for (Request r : RequestRepository.getInstance().findByRules(p ->p.getStatus().equals(RequestStatus.PENDING) && (p instanceof StudentRegistrationRequest) && p.getSupervisorID().equals(sid))) {
+                rejectRequestForStatus(r.getID());
             }
+        //p.getSupervisorID().equals(sid)
     }
     public static void rejectRequestForStatus(String requestID) throws ModelNotFoundException {
         Request r1 = RequestRepository.getInstance().getByID(requestID);
@@ -122,10 +120,11 @@ public class RequestManager {
 
             try {
                 ProjectManager.allocateProject(projectID, studentID);
-                ctrlNumOfRequest(supervisor);
             } catch (ModelNotFoundException e) {
                 e.printStackTrace();
             }
+            ctrlNumOfRequest(supervisorID);
+
         } else {
             throw new IllegalArgumentException("Request is not a StudentRegistrationRequest");
         }
