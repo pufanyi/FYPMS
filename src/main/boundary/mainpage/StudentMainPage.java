@@ -65,7 +65,9 @@ public class StudentMainPage {
                     case 3 -> ProjectViewer.viewAvailableProjectList();
                     case 4 -> ProjectViewer.viewStudentProject(student);
                     case 5 -> viewMySupervisor(student);
-                    case 6 -> registerProject(student);
+                    case 6 -> {
+                        ProjectViewer.viewAvailableProjectList();
+                        registerProject(student);}
                     case 7 -> deregisterForProject(student);
                     case 8 -> changeTitleForProject(student);
                     case 9 -> viewHistoryAndStatusOfMyProject(student);
