@@ -46,7 +46,7 @@ public class StudentMainPage {
             System.out.println("\t6. Register for a project");
             System.out.println("\t7. Deregister for a project");
             System.out.println("\t8. Change title for a project");
-            System.out.println("\t9. View history and status of my project");
+            System.out.println("\t9. View history and status of my request");
             System.out.println("\t10. Logout");
             System.out.println(BoundaryStrings.separator);
 
@@ -61,13 +61,13 @@ public class StudentMainPage {
                 switch (choice) {
                     case 1 -> ViewUserProfile.viewUserProfilePage(student);
                     case 2 -> ChangeAccountPassword.changePassword(UserType.STUDENT, student.getID());
-                    case 3 -> ProjectViewer.viewAvailableProjectList();
+                    case 3 -> ProjectViewer.viewAvailableProjectList(student);
                     case 4 -> ProjectViewer.viewStudentProject(student);
                     case 5 -> viewMySupervisor(student);
                     case 6 -> registerProject(student);
                     case 7 -> deregisterForProject(student);
                     case 8 -> changeTitleForProject(student);
-                    case 9 -> viewHistoryAndStatusOfMyProject(student);
+                    case 9 -> viewHistoryAndStatusOfMyRequest(student);
                     case 10 -> Logout.logout();
                     default -> {
                         System.out.println("Invalid choice. Please press enter to try again.");
@@ -83,6 +83,15 @@ public class StudentMainPage {
         } else {
             throw new IllegalArgumentException("User is not a student.");
         }
+    }
+
+    private static void viewHistoryAndStatusOfMyRequest(Student student) throws PageBackException {
+        ChangePage.changePage();
+        System.out.println("Here is the history and status of your project: ");
+        RequestViewer.viewRequests(StudentManager.getStudentRequestHistory(student.getID()));
+        System.out.println("Press Enter to go back.");
+        new Scanner(System.in).nextLine();
+        throw new PageBackException();
     }
 
     /**

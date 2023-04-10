@@ -107,7 +107,7 @@ public class StudentManager {
     }
 
     public static List<Request> getStudentRequestHistory(String studentID) {
-        System.err.println("StudentRequestManager.getStudentRequestHistory studentID = " + studentID);
+//        System.err.println("StudentRequestManager.getStudentRequestHistory studentID = " + studentID);
         return RequestRepository.getInstance().findByRules(request -> request.getStudentID().equals(studentID));
     }
 
