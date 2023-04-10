@@ -1,6 +1,7 @@
 package main.boundary.account;
 
 import main.model.user.UserType;
+import main.utils.iocontrol.IntGetter;
 import main.utils.ui.BoundaryStrings;
 import main.utils.ui.PasswordReader;
 
@@ -27,7 +28,7 @@ public class AttributeGetter {
             Scanner scanner = new Scanner(System.in);
             int domain;
             try {
-                domain = scanner.nextInt();
+                domain = IntGetter.readInt();
             } catch (Exception e) {
                 System.out.println("Please enter a number.");
                 continue;

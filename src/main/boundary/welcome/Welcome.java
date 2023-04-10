@@ -3,6 +3,7 @@ package main.boundary.welcome;
 import main.boundary.account.ForgetUserID;
 import main.boundary.account.LoginUI;
 import main.utils.exception.ui.PageBackException;
+import main.utils.iocontrol.IntGetter;
 import main.utils.ui.BoundaryStrings;
 import main.utils.ui.ChangePage;
 
@@ -29,7 +30,7 @@ public class Welcome {
         System.out.print("Your choice (1-3): ");
         try {
             while (true) {
-                int choice = scanner.nextInt();
+                int choice = IntGetter.readInt();
                 switch (choice) {
                     case 1 -> LoginUI.login();
                     case 2 -> ForgetUserID.forgotUserID();

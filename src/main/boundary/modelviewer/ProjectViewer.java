@@ -8,6 +8,7 @@ import main.repository.project.ProjectRepository;
 import main.repository.user.FacultyRepository;
 import main.utils.exception.repository.ModelNotFoundException;
 import main.utils.exception.ui.PageBackException;
+import main.utils.iocontrol.IntGetter;
 import main.utils.ui.BoundaryStrings;
 import main.utils.ui.ChangePage;
 
@@ -70,7 +71,7 @@ public class ProjectViewer {
         System.out.println("\t2. Unavailable");
         System.out.println("\t3. Reserved");
         System.out.println("\t4. Allocated");
-        int option = new Scanner(System.in).nextInt();
+        int option = IntGetter.readInt();
         return switch (option) {
             case 1 -> ProjectStatus.AVAILABLE;
             case 2 -> ProjectStatus.UNAVAILABLE;
@@ -175,8 +176,7 @@ public class ProjectViewer {
         System.out.println("\t 0. Go Back");
         System.out.println(BoundaryStrings.separator);
         System.out.print("Please enter your choice: ");
-        Scanner sc = new Scanner(System.in);
-        int c = sc.nextInt();
+        int c = IntGetter.readInt();
         if (c == 0) {
             throw new PageBackException();
         }

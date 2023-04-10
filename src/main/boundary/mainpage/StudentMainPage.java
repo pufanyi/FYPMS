@@ -15,6 +15,7 @@ import main.model.user.UserType;
 import main.repository.project.ProjectRepository;
 import main.utils.exception.repository.ModelNotFoundException;
 import main.utils.exception.ui.PageBackException;
+import main.utils.iocontrol.IntGetter;
 import main.utils.parameters.EmptyID;
 import main.utils.ui.BoundaryStrings;
 import main.utils.ui.ChangePage;
@@ -55,7 +56,7 @@ public class StudentMainPage {
 
             Scanner scanner = new Scanner(System.in);
 
-            int choice = scanner.nextInt();
+            int choice = IntGetter.readInt();
 
             try {
                 switch (choice) {

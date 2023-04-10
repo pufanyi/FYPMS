@@ -14,6 +14,7 @@ import main.model.user.User;
 import main.model.user.UserType;
 import main.utils.exception.repository.ModelNotFoundException;
 import main.utils.exception.ui.PageBackException;
+import main.utils.iocontrol.IntGetter;
 import main.utils.ui.BoundaryStrings;
 import main.utils.ui.ChangePage;
 
@@ -88,7 +89,7 @@ public class CoordinatorMainPage {
 
             Scanner scanner = new Scanner(System.in);
 
-            int choice = scanner.nextInt();
+            int choice = IntGetter.readInt();
 
             try {
                 switch (choice) {
@@ -157,7 +158,7 @@ public class CoordinatorMainPage {
         System.out.println("\t2. Reject");
         System.out.println("\t3. Go back");
         System.out.println("Please enter your choice: ");
-        int choice = new Scanner(System.in).nextInt();
+        int choice = IntGetter.readInt();
         switch (choice) {
             case 1 -> {
                 RequestManager.approveRequest(requestID);
