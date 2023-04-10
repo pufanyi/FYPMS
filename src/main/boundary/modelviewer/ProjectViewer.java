@@ -21,7 +21,7 @@ import java.util.Scanner;
  */
 public class ProjectViewer {
     /**
-     * Displays the project details.
+     * Displays the details of a project with the given project ID. It retrieves the project from the ProjectRepository and calls the {@link displaySingleProject(Project p)} method to display the project details.
      *
      * @param projectID the project ID.
      */
@@ -35,7 +35,7 @@ public class ProjectViewer {
     }
 
     /**
-     * Displays the project details.
+     * Displays the details of a single project. It takes a Project object as input and calls its {@code displayProject()} method to display the project details.
      *
      * @param p the project.
      */
@@ -46,7 +46,7 @@ public class ProjectViewer {
     }
 
     /**
-     * Displays the project details.
+     * Displays the details of a list of projects. It takes a list of Project objects as input and iterates through the list to call the displayProject() method on each project, displaying their details.
      *
      * @param projectList the list of projects.
      */
@@ -64,7 +64,10 @@ public class ProjectViewer {
 
 
     /**
-     * Displays the project details.
+     * Displays a menu to the user to select a project status and returns the selected ProjectStatus enum value. If an invalid option is selected, it prompts the user to retry or go back, and throws a PageBackException if the user chooses to go back.
+     *
+     * @return the selected ProjectStatus enum value.
+     * @throws PageBackException if the user chooses to go back to the previous page.
      */
     public static ProjectStatus getProjectStatus() throws PageBackException {
         System.out.println("\t1. Available");
@@ -91,7 +94,7 @@ public class ProjectViewer {
     }
 
     /**
-     * generate details of project by ProjectID
+     * Prompts the user to enter a project ID and displays the details of the project with the matching ID using the ProjectRepository and Project object's displayProject() method.
      */
     public static void generateDetailsByProjectID() {
         System.out.println("Please Enter the ProjectID to search: ");
@@ -105,7 +108,7 @@ public class ProjectViewer {
     }
 
     /**
-     * generate details of project by SupervisorID
+     * Prompts the user to enter a supervisor ID and displays the details of projects supervised by the supervisor with the matching ID. It checks if the supervisor ID is valid using the FacultyRepository and handles cases where the supervisor is not found or the user wants to go back by throwing a PageBackException.
      */
     public static void generateDetailsBySupervisorID() throws PageBackException {
         System.out.println("Please enter the SupervisorID to search: ");
@@ -127,33 +130,35 @@ public class ProjectViewer {
 
 
     /**
-     * generate details of project by StudentID
+     * Prompts the user to enter a student ID and displays the details of projects that require the student with the matching ID. It uses the ProjectRepository to find projects that match the student ID and calls the displayProject() method on each project to display their details. It also handles cases where no projects are found and prompts the user to go back using a PageBackException.
      */
     public static void generateDetailsByStudentID() throws PageBackException {
         System.out.println("Enter the StudentID to search");
         String s1 = new Scanner(System.in).next();
-        int ctrl=0;
+        int ctrl = 0;
         for (Project p : ProjectRepository.getInstance().findByRules(p -> Objects.equals(p.getStudentID(), s1))) {
-            p.displayProject();ctrl=1;
+            p.displayProject();
+            ctrl = 1;
         }
-        if (ctrl==0)    System.out.println("No projects required is found");
+        if (ctrl == 0) System.out.println("No projects required is found");
         System.out.println("Enter <Enter> to continue");
         new Scanner(System.in).nextLine();
         throw new PageBackException();
     }
 
     /**
-     * generate details of project by Status
+     * Prompts the user to select a project status and displays the details of projects with the matching status. It calls the getProjectStatus() method to get the selected status, and uses the ProjectRepository to find projects that match the status. It handles cases where no projects are found and prompts the user to go back using a PageBackException.
      *
      * @throws PageBackException if the user wants to go back
      */
     public static void generateDetailsByStatus() throws PageBackException {
         ProjectStatus status = getProjectStatus();
-        int ctrl=0;
+        int ctrl = 0;
         for (Project p1 : ProjectRepository.getInstance().findByRules(p -> Objects.equals(p.getStatus(), status))) {
-            p1.displayProject();ctrl=1;
+            p1.displayProject();
+            ctrl = 1;
         }
-        if (ctrl==0)    System.out.println("No projects required is found");
+        if (ctrl == 0) System.out.println("No projects required is found");
         System.out.println("Enter <Enter> to continue");
         new Scanner(System.in).nextLine();
         throw new PageBackException();
@@ -161,7 +166,7 @@ public class ProjectViewer {
     }
 
     /**
-     * generate details of project
+     * Provides a menu to the user to select the way to search for project details and calls the corresponding method based on the user's selection. It also handles cases where the user wants to go back by calling the ChangePage.changePage() method and throwing a PageBackException.
      *
      * @throws PageBackException if the user wants to go back
      */

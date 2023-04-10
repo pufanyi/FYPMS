@@ -24,13 +24,13 @@ import java.util.Objects;
 import java.util.Scanner;
 
 /**
- * Displays the student main page.
+ * This is a Java class that represents the main page of a student in a system or application. It contains several methods for displaying different functionalities of the student main page, such as viewing the user profile, changing the password, viewing project lists, registering/deregistering for projects, changing project title, viewing project history and status, and logging out.
  */
 public class StudentMainPage {
     /**
-     * Displays the student main page.
+     * This method displays the main page of a student. It takes a User object as a parameter and displays a menu of options for the student to choose from. The user's choice is then processed using a switch statement, which calls different methods based on the choice.
      *
-     * @param user the student user.
+     * @param user The user object of the student.
      */
     public static void studentMainPage(User user) {
         if (user instanceof Student student) {
@@ -87,7 +87,7 @@ public class StudentMainPage {
     }
 
     /**
-     * Displays the student's supervisor.
+     * This private method is called when the student wants to change the title of their project. It displays the history and status of the student's project, prompts the student to enter a new title, and sends a request to change the title to the system. If an error occurs, the student is given the option to go back or retry.
      *
      * @param student the student.
      * @throws PageBackException if the user wants to go back.
@@ -132,7 +132,7 @@ public class StudentMainPage {
     }
 
     /**
-     * Displays the student's supervisor.
+     * This private method is called when the student wants to deregister from a project. It prompts the student to enter the project ID, sends a request to deregister from the project, and displays a success message. If an error occurs, the student is given the option to go back or retry.
      *
      * @param student the student.
      * @throws PageBackException if the user wants to go back.
@@ -158,7 +158,7 @@ public class StudentMainPage {
     }
 
     /**
-     * Displays the student's supervisor.
+     * This private method is called to get the project ID from the user. It prompts the user to enter the project ID and returns it as a string. If the user wants to go back, a PageBackException is thrown.
      *
      * @return the project ID.
      * @throws PageBackException if the user wants to go back.
@@ -180,7 +180,7 @@ public class StudentMainPage {
     }
 
     /**
-     * Displays the student's supervisor.
+     * This private method is called to view the history and status of the student's project. It displays the project's information.
      *
      * @param student the student.
      * @throws PageBackException if the user wants to go back.
@@ -195,7 +195,7 @@ public class StudentMainPage {
     }
 
     /**
-     * Displays the student's supervisor.
+     * This private method is called when the student wants to register for a project. It prompts the student to enter the project ID, sends a request to register for the project, and displays a success message. If an error occurs, the student is given the option to go back or retry.
      *
      * @param student the student.
      * @throws PageBackException if the user wants to go back.
@@ -222,7 +222,7 @@ public class StudentMainPage {
     }
 
     /**
-     * Displays the student's supervisor.
+     * This private method is called to view the supervisor of the student's project. It displays the supervisor's information.
      *
      * @param student the student.
      * @throws PageBackException if the user wants to go back.

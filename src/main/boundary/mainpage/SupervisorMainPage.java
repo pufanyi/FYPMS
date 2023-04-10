@@ -11,7 +11,6 @@ import main.model.project.Project;
 import main.model.request.Request;
 import main.model.request.RequestStatus;
 import main.model.request.RequestType;
-import main.model.request.StudentChangeTitleRequest;
 import main.model.user.Supervisor;
 import main.model.user.User;
 import main.model.user.UserType;
@@ -30,11 +29,11 @@ import java.util.Objects;
 import java.util.Scanner;
 
 /**
- * The boundary class for the supervisor main page.
+ * The {@code SupervisorMainPage} class is a boundary class that represents the main page for a supervisor in a system. It provides methods to display the main page options and handle user input for different actions, such as viewing the supervisor's profile, changing the supervisor's password, creating a project, modifying project titles, viewing pending student requests, approving or rejecting student requests, submitting requests for transferring, viewing all incoming/outgoing request history and status, and logging out.
  */
 public class SupervisorMainPage {
     /**
-     * Displays the supervisor main page.
+     * This method displays the main page options to the supervisor and handles user input to perform corresponding actions based on the selected option.
      *
      * @param user the supervisor.
      */
@@ -88,12 +87,23 @@ public class SupervisorMainPage {
         }
     }
 
+    /**
+     * This method displays all request history for the supervisor.
+     *
+     * @param supervisor the supervisor.
+     */
     private static void supervisorViewAllRequestHistory(Supervisor supervisor) {
         ChangePage.changePage();
         System.out.println("Viewing all request history....");
         List<Request> requests = SupervisorManager.getAllRequestHistory(supervisor);
     }
 
+    /**
+     * This method allows the supervisor to approve or reject a request by entering the request ID and the desired status.
+     *
+     * @param supervisor the supervisor.
+     * @throws PageBackException if the user wants to go back to the previous page.
+     */
     private static void supervisorApproveOrRejectRequest(Supervisor supervisor) throws PageBackException {
         ChangePage.changePage();
         System.out.println("Approving or rejecting a request....");
@@ -151,6 +161,13 @@ public class SupervisorMainPage {
         throw new PageBackException();
     }
 
+    /**
+     * This method allows the supervisor to create a project by entering the required details such as project title, project description, and project capacity.
+     *
+     * @param supervisor the supervisor.
+     * @throws ModelAlreadyExistsException if the project already exists.
+     * @throws PageBackException           if the user wants to go back to the previous page.
+     */
     private static void supervisorCreateProject(Supervisor supervisor) throws ModelAlreadyExistsException, PageBackException {
         System.out.println("Creating a project....");
         System.out.println("Please enter the Project Title");
@@ -162,6 +179,14 @@ public class SupervisorMainPage {
         throw new PageBackException();
     }
 
+    /**
+     * This method allows the supervisor to modify the title of an existing project by entering the project ID and the new title.
+     *
+     * @param supervisor the supervisor.
+     * @throws ModelAlreadyExistsException if the project already exists.
+     * @throws ModelNotFoundException      if the project is not found.
+     * @throws PageBackException           if the user wants to go back to the previous page.
+     */
     private static void supervisorChangeProjectTitle(Supervisor supervisor) throws ModelAlreadyExistsException, ModelNotFoundException, PageBackException {
         ChangePage.changePage();
         System.out.println("Changing the title of project....");
@@ -190,6 +215,12 @@ public class SupervisorMainPage {
 
     }
 
+    /**
+     * This method allows the supervisor to submit a request for transferring a project by entering the project ID and the student ID.
+     *
+     * @param supervisor the supervisor.
+     * @throws PageBackException if the user wants to go back to the previous page.
+     */
     private static void supervisorRequestForTransfer(Supervisor supervisor) throws PageBackException {
         ChangePage.changePage();
         System.out.println("Processing to transfer....");
@@ -221,6 +252,13 @@ public class SupervisorMainPage {
         throw new PageBackException();
     }
 
+    /**
+     * This method allows the supervisor to view all the requests that are pending for approval.
+     *
+     * @param requests the list of requests.
+     * @return the request ID.
+     * @throws PageBackException if the user wants to go back to the previous page.
+     */
     private static String getRequestToProcess(List<Request> requests) throws PageBackException {
         System.out.println("==================================");
         System.out.println("Enter the request ID to process");
@@ -242,6 +280,12 @@ public class SupervisorMainPage {
         }
     }
 
+    /**
+     * This method displays all pending student requests for the supervisor.
+     *
+     * @param supervisor the supervisor.
+     * @throws PageBackException if the user wants to go back to the previous page.
+     */
     private static void supervisorViewAllPendingRequest(Supervisor supervisor) throws PageBackException {
         ChangePage.changePage();
         System.out.println("Displaying all pending requests by students...");

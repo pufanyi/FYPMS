@@ -23,9 +23,12 @@ import java.util.Scanner;
 
 import static main.boundary.modelviewer.ProjectViewer.generateProjectDetails;
 
+/**
+ * This class provides a user interface for coordinators to view their main page.
+ */
 public class CoordinatorMainPage {
     /**
-     * Displays the coordinator main page.
+     * Displays the pending requests for the coordinator.
      *
      * @throws PageBackException if the user chooses to go back to the previous page.
      */
@@ -44,7 +47,7 @@ public class CoordinatorMainPage {
     }
 
     /**
-     * Displays the coordinator main page.
+     * Displays all requests for the coordinator.
      *
      * @throws PageBackException if the user chooses to go back to the previous page.
      */
@@ -63,7 +66,7 @@ public class CoordinatorMainPage {
     }
 
     /**
-     * Displays the coordinator main page.
+     * Displays the coordinator main page for the given user.
      *
      * @param user the user whose profile is to be displayed.
      */
@@ -111,7 +114,7 @@ public class CoordinatorMainPage {
     }
 
     /**
-     * Displays the coordinator main page.
+     * Allows the coordinator to accept or reject requests.
      *
      * @throws PageBackException if the user chooses to go back to the previous page.
      */
