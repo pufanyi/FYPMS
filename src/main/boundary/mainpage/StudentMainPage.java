@@ -48,7 +48,7 @@ public class StudentMainPage {
             System.out.println("\t6. Register for a project");
             System.out.println("\t7. Deregister for a project");
             System.out.println("\t8. Change title for a project");
-            System.out.println("\t9. View history and status of my project");
+            System.out.println("\t9. View history and status of my request");
             System.out.println("\t10. Logout");
             System.out.println(BoundaryStrings.separator);
 
