@@ -56,7 +56,7 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
      */
     public ModelObject getByID(String modelObjectID) throws ModelNotFoundException {
         for (ModelObject modelObject : listOfModelObjects) {
-            if (modelObject.getID().equals(modelObjectID)) {
+            if (modelObject.getID().equalsIgnoreCase(modelObjectID)) {
                 return modelObject;
             }
         }
