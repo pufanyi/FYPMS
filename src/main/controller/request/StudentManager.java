@@ -40,7 +40,7 @@ public class StudentManager {
             throw new StudentStatusException(student.getStatus());
         }
         String supervisorID = project.getSupervisorID();
-        Request request = new StudentDeregistrationRequest(requestID, projectID, studentID, supervisorID);
+        Request request = new StudentDeregistrationRequest(requestID, studentID, supervisorID,projectID);
         RequestRepository.getInstance().add(request);
         return requestID;
     }
