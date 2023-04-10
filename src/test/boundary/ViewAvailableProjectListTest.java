@@ -1,4 +1,4 @@
-package test.boundary.student.details;
+package test.boundary;
 
 import main.boundary.modelviewer.ProjectViewer;
 import main.controller.project.ProjectManager;

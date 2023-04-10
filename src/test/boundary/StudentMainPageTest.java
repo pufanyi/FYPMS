@@ -1,4 +1,4 @@
-package test.boundary.student;
+package test.boundary;
 
 import main.boundary.mainpage.StudentMainPage;
 import main.controller.account.AccountManager;

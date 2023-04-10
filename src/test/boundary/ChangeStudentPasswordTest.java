@@ -1,4 +1,4 @@
-package test.boundary.student.details;
+package test.boundary;
 
 import main.boundary.account.ChangeAccountPassword;
 import main.boundary.account.LoginUI;

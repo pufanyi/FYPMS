@@ -1,4 +1,4 @@
-package test.boundary.account;
+package test.boundary;
 
 import main.boundary.account.AttributeGetter;
 
