@@ -204,6 +204,7 @@ public class StudentMainPage {
         String projectID = getProjectID();
         try {
             StudentManager.registerStudent(projectID, student.getID());
+            System.out.println("Request submitted!");
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
             System.out.println("Enter [b] to go back, or press enter to retry.");

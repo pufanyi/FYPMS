@@ -108,7 +108,7 @@ public class ProjectViewer {
     public static void generateDetailsBySupervisorID() throws PageBackException {
         System.out.println("Enter the SupervisorID to search");
         String s1 = new Scanner(System.in).next();
-        if (FacultyRepository.getInstance().contains(s1)) {
+        if (!FacultyRepository.getInstance().contains(s1)) {
             System.out.println("Supervisor Not Found.");
             System.out.println("Press enter to retry, or enter [b] to go back");
             String input = new Scanner(System.in).nextLine().trim();
@@ -127,11 +127,17 @@ public class ProjectViewer {
     /**
      * generate details of project by StudentID
      */
-    public static void generateDetailsByStudentID() {
+    public static void generateDetailsByStudentID() throws PageBackException {
         System.out.println("Enter the StudentID to search");
         String s1 = new Scanner(System.in).next();
-        for (Project p : ProjectRepository.getInstance().findByRules(p -> Objects.equals(p.getStudentID(), s1)))
-            p.displayProject();
+        int ctrl=0;
+        for (Project p : ProjectRepository.getInstance().findByRules(p -> Objects.equals(p.getStudentID(), s1))) {
+            p.displayProject();ctrl=1;
+        }
+        if (ctrl==0)    System.out.println("No projects required is found");
+        System.out.println("Enter <Enter> to continue");
+        new Scanner(System.in).nextLine();
+        throw new PageBackException();
     }
 
     /**
@@ -141,8 +147,15 @@ public class ProjectViewer {
      */
     public static void generateDetailsByStatus() throws PageBackException {
         ProjectStatus status = getProjectStatus();
-        for (Project p1 : ProjectRepository.getInstance().findByRules(p -> Objects.equals(p.getStatus(), status)))
-            p1.displayProject();
+        int ctrl=0;
+        for (Project p1 : ProjectRepository.getInstance().findByRules(p -> Objects.equals(p.getStatus(), status))) {
+            p1.displayProject();ctrl=1;
+        }
+        if (ctrl==0)    System.out.println("No projects required is found");
+        System.out.println("Enter <Enter> to continue");
+        new Scanner(System.in).nextLine();
+        throw new PageBackException();
+
     }
 
     /**

@@ -59,6 +59,7 @@ public class StudentManager {
      * @return the ID of the new Request
      */
     public static String registerStudent(String projectID, String studentID) throws ModelNotFoundException, StudentStatusException, IllegalStateException, ModelAlreadyExistsException {
+
         Project project = ProjectRepository.getInstance().getByID(projectID);
         Student student = StudentRepository.getInstance().getByID(studentID);
         if (project.getStatus() != ProjectStatus.AVAILABLE) {

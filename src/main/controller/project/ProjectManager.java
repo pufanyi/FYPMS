@@ -11,10 +11,12 @@ import main.repository.user.StudentRepository;
 import main.utils.config.Location;
 import main.utils.exception.repository.ModelAlreadyExistsException;
 import main.utils.exception.repository.ModelNotFoundException;
+import main.utils.exception.ui.PageBackException;
 import main.utils.iocontrol.CSVReader;
 import main.utils.parameters.EmptyID;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * A class manages the project
@@ -163,11 +165,10 @@ public class ProjectManager {
         p1.setStatus(ProjectStatus.AVAILABLE);
         String supervisorID=p1.getSupervisorID();
         Supervisor supervisor=FacultyRepository.getInstance().getByID(supervisorID);
-        supervisor.decNumOfSupervisingProject();
         ProjectRepository.getInstance().update(p1);
         StudentRepository.getInstance().update(student);
         FacultyRepository.getInstance().update(supervisor);
-        if (supervisor.getNumOfSupervisingProject()==1) controlProjectStatus(supervisor);controlProjectStatus(supervisor);
+        if (supervisor.getNumOfSupervisingProject()==1) controlProjectStatus(supervisor);
     }
 
     /**
@@ -207,13 +208,13 @@ public class ProjectManager {
 
     public static void controlProjectStatus(Supervisor supervisor) throws ModelNotFoundException {
         if (supervisor.getNumOfSupervisingProject()>=2){
-            for (Project p:ProjectRepository.getInstance().findByRules(p1->p1.getSupervisorID().equals(supervisor.getID()) && p1.getStudentID().equals(""))){
+            for (Project p:ProjectRepository.getInstance().findByRules(p1->(p1.getSupervisorID().equals(supervisor.getID()) && EmptyID.isEmptyID(p1.getStudentID())))){
                 p.setStatus(ProjectStatus.UNAVAILABLE);
                 ProjectRepository.getInstance().update(p);
             }
         }
         else {
-            for (Project p:ProjectRepository.getInstance().findByRules(p1->p1.getSupervisorID().equals(supervisor.getID())&& p1.getStudentID().equals(""))){
+            for (Project p:ProjectRepository.getInstance().findByRules(p1->p1.getSupervisorID().equals(supervisor.getID())&& EmptyID.isEmptyID(p1.getStudentID()))){
                 p.setStatus(ProjectStatus.AVAILABLE);
                 ProjectRepository.getInstance().update(p);
             }
