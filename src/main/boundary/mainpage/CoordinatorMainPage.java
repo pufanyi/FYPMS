@@ -87,8 +87,6 @@ public class CoordinatorMainPage {
             System.out.println();
             System.out.print("Please enter your choice: ");
 
-            Scanner scanner = new Scanner(System.in);
-
             int choice = IntGetter.readInt();
 
             try {
