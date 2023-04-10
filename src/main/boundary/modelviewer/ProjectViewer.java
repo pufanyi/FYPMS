@@ -31,8 +31,8 @@ public class ProjectViewer {
     private static void displayProjectSupervisorInformation(String supervisorID) {
         try {
             Supervisor supervisor = FacultyRepository.getInstance().getByID(supervisorID);
-            System.out.printf("| Supervisor Name             | %-20s |\n", supervisor.getUserName());
-            System.out.printf("| Supervisor Email Address   | %-20s |\n", supervisor.getEmail());
+            System.out.printf("| Supervisor Name             | %-30s |\n", supervisor.getUserName());
+            System.out.printf("| Supervisor Email Address    | %-30s |\n", supervisor.getEmail());
         } catch (ModelNotFoundException e) {
             System.out.println("No Supervisor Yet");
         }
@@ -46,8 +46,8 @@ public class ProjectViewer {
     private static void displayProjectStudentInformation(String studentID) {
         try {
             Student student = StudentRepository.getInstance().getByID(studentID);
-            System.out.printf("| Student Name               | %-20s |\n", student.getUserName());
-            System.out.printf("| Student Email Address     | %-20s |\n", student.getEmail());
+            System.out.printf("| Student Name               | %-30s |\n", student.getUserName());
+            System.out.printf("| Student Email Address      | %-30s |\n", student.getEmail());
         } catch (ModelNotFoundException e) {
             System.out.println("No Student Yet");
         }
@@ -73,7 +73,7 @@ public class ProjectViewer {
      * @param project the project object.
      */
     private static void displayProjectInformation(Project project) {
-        System.out.printf("| Project Status            | %-20s |\n", project.getStatus());
+        System.out.printf("| Project Status              | %-30s |\n", project.getStatus());
     }
 
     /**
@@ -82,8 +82,49 @@ public class ProjectViewer {
      * @param project the project object.
      */
     public static void displaySingleProject(Project project) {
-        System.out.printf("| %-70s |\n", project.getProjectTitle());
-        System.out.printf("| Project ID:                | %-20s |\n", project.getID());
+        String projectTitle = project.getProjectTitle();
+        int maxTitleLength = 60;
+        String titleLine1;
+        String titleLine2;
+
+        if (projectTitle.length() <= maxTitleLength) {
+            int leftPadding = (maxTitleLength - projectTitle.length()) / 2;
+            int rightPadding = maxTitleLength - projectTitle.length() - leftPadding;
+            titleLine1 = String.format("| %-" + leftPadding + "s%-"+ projectTitle.length() + "s%-" + rightPadding + "s |\n", "", projectTitle, "");
+            titleLine2 = "";
+        } else {
+            String[] words = projectTitle.split("\\s+");
+            String firstLine = "";
+            String secondLine = "";
+            int remainingLength = maxTitleLength;
+            int i = 0;
+            while (i < words.length) {
+                if (firstLine.length() + words[i].length() + 1 <= maxTitleLength) {
+                    firstLine += words[i] + " ";
+                    remainingLength = maxTitleLength - firstLine.length();
+                    i++;
+                } else {
+                    break;
+                }
+            }
+            for (; i < words.length; i++) {
+                if (secondLine.length() + words[i].length() + 1 <= maxTitleLength) {
+                    secondLine += words[i] + " ";
+                } else {
+                    break;
+                }
+            }
+            int leftPadding1 = (maxTitleLength - firstLine.length()) / 2;
+            int leftPadding2 = (maxTitleLength - secondLine.length()) / 2;
+            int rightPadding1 = maxTitleLength - firstLine.length() - leftPadding1;
+            int rightPadding2 = maxTitleLength - secondLine.length() - leftPadding2;
+            titleLine1 = String.format("| %-" + leftPadding1 + "s%-"+ firstLine.length() + "s%-" + rightPadding1 + "s |\n", "", firstLine.trim(), "");
+            titleLine2 = String.format("| %-" + leftPadding2 + "s%-"+ secondLine.length() + "s%-" + rightPadding2 + "s |\n", "", secondLine.trim(), "");
+        }
+
+        System.out.print(titleLine1);
+        System.out.print(titleLine2);
+        System.out.printf("| Project ID:                 | %-30s |\n", project.getID());
         displayProjectSupervisorInformation(project.getSupervisorID());
         if (project.getStatus() == ProjectStatus.ALLOCATED) {
             displayProjectStudentInformation(project.getStudentID());
@@ -101,10 +142,10 @@ public class ProjectViewer {
             System.out.println("No project found.");
             return;
         }
-        System.out.println("====================================================================");
+        System.out.println("================================================================");
         for (Project p : projectList) {
             displaySingleProject(p);
-            System.out.println("====================================================================");
+            System.out.println("================================================================");
         }
     }
 
