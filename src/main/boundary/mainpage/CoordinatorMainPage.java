@@ -12,6 +12,7 @@ import main.model.request.RequestType;
 import main.model.user.Coordinator;
 import main.model.user.User;
 import main.model.user.UserType;
+import main.repository.user.CoordinatorRepository;
 import main.utils.exception.repository.ModelNotFoundException;
 import main.utils.exception.ui.PageBackException;
 import main.utils.iocontrol.IntGetter;
@@ -91,6 +92,12 @@ public class CoordinatorMainPage {
             System.out.print("Please enter your choice: ");
 
             int choice = IntGetter.readInt();
+
+            try {
+                coordinator = CoordinatorRepository.getInstance().getByID(coordinator.getID());
+            } catch (ModelNotFoundException e) {
+                e.printStackTrace();
+            }
 
             try {
                 switch (choice) {

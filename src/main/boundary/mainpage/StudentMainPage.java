@@ -12,6 +12,7 @@ import main.model.project.Project;
 import main.model.project.ProjectStatus;
 import main.model.user.*;
 import main.repository.project.ProjectRepository;
+import main.repository.user.StudentRepository;
 import main.utils.exception.repository.ModelNotFoundException;
 import main.utils.exception.ui.PageBackException;
 import main.utils.iocontrol.IntGetter;
@@ -53,9 +54,13 @@ public class StudentMainPage {
             System.out.println();
             System.out.print("Please enter your choice: ");
 
-            Scanner scanner = new Scanner(System.in);
-
             int choice = IntGetter.readInt();
+
+            try {
+                student = StudentRepository.getInstance().getByID(student.getID());
+            } catch (ModelNotFoundException e) {
+                e.printStackTrace();
+            }
 
             try {
                 switch (choice) {
