@@ -301,4 +301,12 @@ public class ProjectManager {
     public static Project getByID(String projectID) throws ModelNotFoundException {
         return ProjectRepository.getInstance().getByID(projectID);
     }
+
+    public static List<Project> getAllAvailableProject() {
+        return ProjectRepository.getInstance().findByRules(p -> p.getStatus() == ProjectStatus.AVAILABLE);
+    }
+
+    public static Project getProjectByID(String projectID) throws ModelNotFoundException {
+        return ProjectRepository.getInstance().getByID(projectID);
+    }
 }

@@ -6,6 +6,7 @@ import main.boundary.account.ViewUserProfile;
 import main.boundary.modelviewer.ProjectViewer;
 import main.boundary.modelviewer.RequestViewer;
 import main.controller.account.AccountManager;
+import main.controller.project.ProjectManager;
 import main.controller.request.StudentManager;
 import main.model.project.Project;
 import main.model.user.Student;
@@ -65,9 +66,7 @@ public class StudentMainPage {
                     case 3 -> ProjectViewer.viewAvailableProjectList();
                     case 4 -> ProjectViewer.viewStudentProject(student);
                     case 5 -> viewMySupervisor(student);
-                    case 6 -> {
-                        ProjectViewer.viewAvailableProjectList();
-                        registerProject(student);}
+                    case 6 -> registerProject(student);
                     case 7 -> deregisterForProject(student);
                     case 8 -> changeTitleForProject(student);
                     case 9 -> viewHistoryAndStatusOfMyProject(student);
@@ -204,15 +203,45 @@ public class StudentMainPage {
      */
     private static void registerProject(Student student) throws PageBackException {
         ChangePage.changePage();
-        String projectID = getProjectID();
+        System.out.println("Here is the list of available projects: ");
+        ProjectViewer.displayProjectDetails(ProjectManager.getAllAvailableProject());
+        String projectID = new Scanner(System.in).nextLine();
+        if (ProjectManager.notContainsProjectByID(projectID)) {
+            System.out.println("Project not found.");
+            System.out.println("Press Enter to go back, or enter [r] to retry.");
+            String choice = new Scanner(System.in).nextLine();
+            if (choice.equals("r")) {
+                registerProject(student);
+            }
+            throw new PageBackException();
+        }
+        Project project;
+        try {
+            project = ProjectManager.getProjectByID(projectID);
+        } catch (ModelNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        ChangePage.changePage();
+        System.out.println("Here is the project information: ");
+        ProjectViewer.viewProject(projectID);
+        System.out.print("Are you sure you want to register for this project? (y/[n]): ");
+        String choice = new Scanner(System.in).nextLine();
+        if (choice.equalsIgnoreCase("y")) {
+            System.out.println("Request submitted!");
+        } else {
+            System.out.println("Request cancelled.");
+            System.out.println("Press <Enter> to go back.");
+            new Scanner(System.in).nextLine();
+            throw new PageBackException();
+        }
         try {
             StudentManager.registerStudent(projectID, student.getID());
             System.out.println("Request submitted!");
         } catch (Exception e) {
 //            System.out.println("Error: " + e.getMessage());
             System.out.println("Enter [b] to go back, or press enter to retry.");
-            String choice = new Scanner(System.in).nextLine();
-            if (choice.equals("b")) {
+            String yNChoice = new Scanner(System.in).nextLine();
+            if (yNChoice.equals("b")) {
                 throw new PageBackException();
             } else {
                 registerProject(student);
