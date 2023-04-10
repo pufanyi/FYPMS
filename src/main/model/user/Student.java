@@ -84,9 +84,9 @@ public class Student implements User {
      */
     public Student() {
         super();
-        this.email = "";
-        this.studentID = "";
-        this.studentName = "";
+        this.email = EmptyID.EMPTY_ID;
+        this.studentID = EmptyID.EMPTY_ID;
+        this.studentName = EmptyID.EMPTY_ID;
         this.status = StudentStatus.UNREGISTERED;
     }
 
