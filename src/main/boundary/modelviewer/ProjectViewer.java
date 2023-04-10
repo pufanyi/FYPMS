@@ -4,6 +4,7 @@ import main.controller.project.ProjectManager;
 import main.model.project.Project;
 import main.model.project.ProjectStatus;
 import main.model.user.Student;
+import main.model.user.StudentStatus;
 import main.model.user.Supervisor;
 import main.repository.project.ProjectRepository;
 import main.repository.user.FacultyRepository;
@@ -296,10 +297,15 @@ public class ProjectViewer {
      *
      * @throws PageBackException if the user wants to go back
      */
-    public static void viewAvailableProjectList() throws PageBackException {
+    public static void viewAvailableProjectList(Student student) throws PageBackException {
         ChangePage.changePage();
-        System.out.println("View Available Project List");
-        displayProjectDetails(ProjectManager.viewAvailableProjects());
+        if(student.getStatus() == StudentStatus.REGISTERED){
+            System.out.println("You are not allowed to view available projects as you are registered to a project.");
+        }
+        else{
+            System.out.println("View Available Project List");
+            displayProjectDetails(ProjectManager.viewAvailableProjects());
+        }
         System.out.println("Press Enter to go back.");
         new Scanner(System.in).nextLine();
         throw new PageBackException();
