@@ -10,8 +10,11 @@ import main.controller.project.ProjectManager;
 import main.controller.request.StudentManager;
 import main.model.project.Project;
 import main.model.project.ProjectStatus;
+import main.model.request.Request;
+import main.model.request.StudentChangeTitleRequest;
 import main.model.user.*;
 import main.repository.project.ProjectRepository;
+import main.repository.request.RequestRepository;
 import main.utils.exception.repository.ModelNotFoundException;
 import main.utils.exception.ui.PageBackException;
 import main.utils.iocontrol.IntGetter;
@@ -75,7 +78,7 @@ public class StudentMainPage {
                         throw new PageBackException();
                     }
                 }
-            } catch (PageBackException e) {
+            } catch (PageBackException | ModelNotFoundException e) {
                 StudentMainPage.studentMainPage(student);
             }
 
@@ -100,10 +103,13 @@ public class StudentMainPage {
      * @param student the student.
      * @throws PageBackException if the user wants to go back.
      */
-    private static void changeTitleForProject(Student student) throws PageBackException {
+    private static void changeTitleForProject(Student student) throws PageBackException, ModelNotFoundException {
         ChangePage.changePage();
         System.out.println("Here is the history and status of your project: ");
-        RequestViewer.viewRequests(StudentManager.getStudentRequestHistory(student.getID()));
+        for (Request request: RequestRepository.getInstance().findByRules(request-> Objects.equals(request.getStudentID(), student.getID()) && (request instanceof StudentChangeTitleRequest))){
+            Project project= ProjectRepository.getInstance().getByID(request.getProjectID());
+            project.displayProject();
+        }
         String projectID = getProjectID();
         Project project;
         try {

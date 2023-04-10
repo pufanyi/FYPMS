@@ -131,6 +131,13 @@ public class RequestManager {
     }
 
     public static void approveRequest(Request request) throws ModelNotFoundException, PageBackException {
+        if (request.getStatus() != RequestStatus.PENDING) {
+            System.out.println("Request is not pending");
+            System.out.println("Press enter to go back.");
+            new Scanner(System.in).nextLine();
+            throw new PageBackException();
+            //return;
+        }
         switch (request.getRequestType()) {
             case STUDENT_CHANGE_TITLE -> approveStudentChangeTitleRequest(request);
             case SUPERVISOR_TRANSFER_STUDENT -> approveTransferStudentRequest(request);
@@ -168,9 +175,15 @@ public class RequestManager {
         }
     }
 
-    public static void rejectRequest(String requestID) {
+    public static void rejectRequest(String requestID) throws PageBackException {
         try {
             Request request = RequestRepository.getInstance().getByID(requestID);
+            if (request.getStatus()!=RequestStatus.PENDING){
+                System.out.println("Request is not pending");
+                System.out.println("Press enter to go back.");
+                new Scanner(System.in).nextLine();
+                throw new PageBackException();
+            }
             if (Objects.requireNonNull(request.getRequestType()) == RequestType.STUDENT_REGISTRATION) {
                 rejectStudentRegistrationRequest(request);
             }

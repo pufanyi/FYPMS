@@ -152,5 +152,6 @@ public class StudentDeregistrationRequest implements Request {
         System.out.println("Request ID: " + requestID);
         System.out.println("Request Type: " + requestType);
         System.out.println("Request Status: " + requestStatus);
+        System.out.println("Student ID: " + studentID);
     }
 }
