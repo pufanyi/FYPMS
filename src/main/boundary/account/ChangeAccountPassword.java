@@ -85,6 +85,11 @@ public class ChangeAccountPassword {
             }
         } while (!newPassword.equals(newPasswordAgain));
 
+        if (newPassword.length() < 8) {
+            System.out.println("Password must be at least 8 characters long.");
+            askToRetry(userType, userID);
+        }
+
         try {
             AccountManager.changePassword(userType, userID, oldPassword, newPassword);
 
