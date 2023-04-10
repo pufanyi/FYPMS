@@ -69,7 +69,7 @@ public class StudentMainPage {
                     case 6 -> registerProject(student);
                     case 7 -> deregisterForProject(student);
                     case 8 -> changeTitleForProject(student);
-                    case 9 -> viewHistoryAndStatusOfMyProject(student);
+                    case 9 -> viewHistoryAndStatusOfMyRequest(student);
                     case 10 -> Logout.logout();
                     default -> {
                         System.out.println("Invalid choice. Please press enter to try again.");
@@ -85,6 +85,15 @@ public class StudentMainPage {
         } else {
             throw new IllegalArgumentException("User is not a student.");
         }
+    }
+
+    private static void viewHistoryAndStatusOfMyRequest(Student student) throws PageBackException {
+        ChangePage.changePage();
+        System.out.println("Here is the history and status of your project: ");
+        RequestViewer.viewRequests(StudentManager.getStudentRequestHistory(student.getID()));
+        System.out.println("Press Enter to go back.");
+        new Scanner(System.in).nextLine();
+        throw new PageBackException();
     }
 
     /**
