@@ -14,7 +14,7 @@ import main.utils.ui.ChangePage;
 import java.util.Scanner;
 
 /**
- * This class provides a UI for the user to login.
+ * This class provides a user interface (UI) for the user to login.
  */
 public class LoginUI {
     /**

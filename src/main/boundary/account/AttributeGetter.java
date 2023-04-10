@@ -8,7 +8,7 @@ import main.utils.ui.PasswordReader;
 import java.util.Scanner;
 
 /**
- * This class is used to get the attributes of a user.
+ * This class is used to interact with the user and retrieve various attributes such as domain, password, UserID, and username.
  */
 public class AttributeGetter {
     /**
@@ -47,8 +47,7 @@ public class AttributeGetter {
     }
 
     /**
-     * Prompts the user to enter their password.
-     * When the user enters their password, it does not show up on the screen.
+     * Prompts the user to enter their password securely without displaying it on the screen.
      *
      * @return The password entered by the user.
      */
@@ -67,6 +66,7 @@ public class AttributeGetter {
         System.out.print("Please enter your UserID (Press enter if you forget): ");
         return scanner.nextLine();
     }
+
     /**
      * Prompts the user to enter their username.
      *
