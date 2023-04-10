@@ -96,15 +96,25 @@ public class ProjectViewer {
     /**
      * Prompts the user to enter a project ID and displays the details of the project with the matching ID using the ProjectRepository and Project object's displayProject() method.
      */
-    public static void generateDetailsByProjectID() {
+    public static void generateDetailsByProjectID() throws PageBackException {
         System.out.println("Please Enter the ProjectID to search: ");
-        String s1 = new Scanner(System.in).next();
+        String s1 = new Scanner(System.in).nextLine();
         try {
             Project p1 = ProjectRepository.getInstance().getByID(s1);
             p1.displayProject();
         } catch (ModelNotFoundException e) {
             System.out.println("Cannot find the project matching this ID");
+            System.out.println("Press enter to retry, or enter [b] to go back");
+            String input = new Scanner(System.in).nextLine().trim();
+            if (input.equals("b")) {
+                throw new PageBackException();
+            } else {
+                generateDetailsByProjectID();
+            }
         }
+        System.out.println("Enter <Enter> to continue");
+        new Scanner(System.in).nextLine();
+        throw new PageBackException();
     }
 
     /**
@@ -124,8 +134,11 @@ public class ProjectViewer {
                 return;
             }
         }
-        for (Project p : ProjectRepository.getInstance().findByRules(p -> p.getSupervisorID() == s1))
-            p.displayProject();
+        List<Project> projectList = ProjectRepository.getInstance().findByRules(p -> p.getSupervisorID().equalsIgnoreCase(s1));
+        displayProjectDetails(projectList);
+        System.out.println("Enter <Enter> to continue");
+        new Scanner(System.in).nextLine();
+        throw new PageBackException();
     }
 
 
