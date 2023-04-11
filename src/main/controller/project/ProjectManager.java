@@ -157,14 +157,14 @@ public class ProjectManager {
         } catch (ModelNotFoundException e) {
             throw new IllegalStateException("Student not found");
         }
+        String supervisorID=p1.getSupervisorID();
+        Supervisor supervisor=FacultyRepository.getInstance().getByID(supervisorID);
         student.setProjectID(EmptyID.EMPTY_ID);
         student.setSupervisorID(EmptyID.EMPTY_ID);
         student.setStatus(StudentStatus.DEREGISTERED);
         p1.setStudentID(EmptyID.EMPTY_ID);
         p1.setSupervisorID(EmptyID.EMPTY_ID);
         p1.setStatus(ProjectStatus.AVAILABLE);
-        String supervisorID=p1.getSupervisorID();
-        Supervisor supervisor=FacultyRepository.getInstance().getByID(supervisorID);
         ProjectRepository.getInstance().update(p1);
         StudentRepository.getInstance().update(student);
         FacultyRepository.getInstance().update(supervisor);
