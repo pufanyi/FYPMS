@@ -8,6 +8,7 @@ import main.boundary.modelviewer.ProjectViewer;
 import main.controller.account.AccountManager;
 import main.controller.project.ProjectManager;
 import main.controller.request.StudentManager;
+import main.model.Model;
 import main.model.project.Project;
 import main.model.project.ProjectStatus;
 import main.model.request.Request;
@@ -111,8 +112,8 @@ public class StudentMainPage {
     private static void changeTitleForProject(Student student) throws PageBackException, ModelNotFoundException {
         ChangePage.changePage();
         System.out.println("Here is the history and status of your project: ");
-        for (Request request: RequestRepository.getInstance().findByRules(request-> Objects.equals(request.getStudentID(), student.getID()) && (request instanceof StudentChangeTitleRequest))){
-            Project project= ProjectRepository.getInstance().getByID(request.getProjectID());
+        for (Request request : RequestRepository.getInstance().findByRules(request -> Objects.equals(request.getStudentID(), student.getID()) && (request instanceof StudentChangeTitleRequest))) {
+            Project project = ProjectRepository.getInstance().getByID(request.getProjectID());
             project.displayProject();
         }
         String projectID = getProjectID();
@@ -158,29 +159,41 @@ public class StudentMainPage {
      */
     private static void deregisterForProject(Student student) throws PageBackException {
         ChangePage.changePage();
-        String projectID = getProjectID();
+
+        if (EmptyID.isEmptyID(student.getProjectID())) {
+            System.out.println("You are not registered for any project.");
+            System.out.println("Press Enter to go back.");
+            new Scanner(System.in).nextLine();
+            throw new PageBackException();
+        }
+
+        System.out.println("Your current project is: ");
+
         try {
-            Project p1 = ProjectRepository.getInstance().getByID(projectID);
-            if (p1.getStatus()!=ProjectStatus.ALLOCATED){
-                System.out.println("The project is not allocated.");
-                System.out.println("Unsuccessful operation");
-                System.out.println("Press Enter to go back, or enter [r] to retry.");
-                String choice = new Scanner(System.in).nextLine();
-                if (choice.equals("r")) {
-                    deregisterForProject(student);
-                }
-                throw new PageBackException();
-            }
+            Project project = ProjectRepository.getInstance().getByID(student.getProjectID());
+            ModelViewer.displaySingleDisplayable(project);
         } catch (ModelNotFoundException e) {
             throw new IllegalArgumentException("Project not found.");
         }
+
+        System.out.println("Are you sure you want to deregister from this project? (y/[n])");
+        String choice = new Scanner(System.in).nextLine();
+        if (!choice.equals("y")) {
+            System.out.println("Deregistration cancelled.");
+            System.out.println("Press Enter to go back.");
+            new Scanner(System.in).nextLine();
+            throw new PageBackException();
+        }
+
+        String projectID = student.getProjectID();
+
         try {
             StudentManager.deregisterStudent(projectID, student.getID());
         } catch (Exception e) {
-// 
+            System.out.println("Deregistration Error: " + e.getMessage());
             System.out.println("Enter [b] to go back, or press enter to retry.");
-            String choice = new Scanner(System.in).nextLine();
-            if (!choice.equals("b")) {
+            String choice2 = new Scanner(System.in).nextLine();
+            if (!choice2.equals("b")) {
                 deregisterForProject(student);
             }
             throw new PageBackException();
@@ -241,7 +254,7 @@ public class StudentMainPage {
      */
     private static void registerProject(Student student) throws PageBackException {
         ChangePage.changePage();
-        if (student.getStatus()== StudentStatus.REGISTERED || student.getStatus()==StudentStatus.DEREGISTERED){
+        if (student.getStatus() == StudentStatus.REGISTERED || student.getStatus() == StudentStatus.DEREGISTERED) {
             System.out.println("You are already registered/deregistered for a project.");
             System.out.println("Press Enter to go back.");
             new Scanner(System.in).nextLine();
@@ -263,7 +276,7 @@ public class StudentMainPage {
         Project project;
         try {
             project = ProjectManager.getProjectByID(projectID);
-            if (project.getStatus()!= ProjectStatus.AVAILABLE) {
+            if (project.getStatus() != ProjectStatus.AVAILABLE) {
                 System.out.println("Project is not available.");
                 System.out.println("Press Enter to go back, or enter [r] to retry.");
                 String choice = new Scanner(System.in).nextLine();

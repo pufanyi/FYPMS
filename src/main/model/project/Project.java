@@ -226,8 +226,8 @@ public class Project implements Model, Displayable {
         }
         try {
             Student student = StudentRepository.getInstance().getByID(studentID);
-            return String.format("| Student Name               | %-30s |\n", student.getUserName()) +
-                    String.format("| Student Email Address      | %-30s |\n", student.getEmail());
+            return String.format("| Student Name                | %-30s |\n", student.getUserName()) +
+                    String.format("| Student Email Address       | %-30s |\n", student.getEmail());
         } catch (ModelNotFoundException e) {
             throw new IllegalStateException("Cannot find the student.");
         }
