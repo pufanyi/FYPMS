@@ -1,9 +1,5 @@
 package main.model.request;
 
-import main.model.request.Request;
-import main.model.request.RequestStatus;
-import main.model.request.RequestType;
-
 import java.util.Map;
 
 public class TransferStudentRequest implements Request {
@@ -178,5 +174,24 @@ public class TransferStudentRequest implements Request {
         System.out.println("Request ID: " + requestID);
         System.out.println("Request Type: " + requestType);
         System.out.println("Request Status: " + requestStatus);
+    }
+
+    final String splitter = "===================================";
+
+    @Override
+    public String getDisplayableString() {
+        return "Request ID: " + requestID + "\n" +
+                "Request Type: " + requestType + "\n" +
+                "Request Status: " + requestStatus + "\n" +
+                "Project ID: " + projectID + "\n" +
+                "Supervisor ID: " + supervisorID + "\n" +
+                "New Supervisor ID: " + newSupervisorID + "\n" +
+                "Student ID: " + studentID + "\n" +
+                "Coordinator ID: " + coordinatorID + "\n";
+    }
+
+    @Override
+    public String getSplitter() {
+        return splitter;
     }
 }

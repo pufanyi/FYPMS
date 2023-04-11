@@ -1,8 +1,9 @@
 package main.model.request;
 
+import main.model.Displayable;
 import main.model.Model;
 
-public interface Request extends Model {
+public interface Request extends Model, Displayable {
     /**
      * Get the ID of the request.
      */

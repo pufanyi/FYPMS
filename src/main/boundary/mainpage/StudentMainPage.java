@@ -5,7 +5,6 @@ import main.boundary.account.Logout;
 import main.boundary.account.ViewUserProfile;
 import main.boundary.modelviewer.ModelViewer;
 import main.boundary.modelviewer.ProjectViewer;
-import main.boundary.modelviewer.RequestViewer;
 import main.controller.account.AccountManager;
 import main.controller.project.ProjectManager;
 import main.controller.request.StudentManager;
@@ -97,7 +96,7 @@ public class StudentMainPage {
     private static void viewHistoryAndStatusOfMyRequest(Student student) throws PageBackException {
         ChangePage.changePage();
         System.out.println("Here is the history and status of your project: ");
-        RequestViewer.viewRequests(StudentManager.getStudentRequestHistory(student.getID()));
+        ModelViewer.displayListOfDisplayable(StudentManager.getStudentRequestHistory(student.getID()));
         System.out.println("Press Enter to go back.");
         new Scanner(System.in).nextLine();
         throw new PageBackException();
@@ -228,7 +227,7 @@ public class StudentMainPage {
     private static void viewHistoryAndStatusOfMyProject(Student student) throws PageBackException {
         ChangePage.changePage();
         System.out.println("Here is the history and status of your project: ");
-        RequestViewer.viewRequests(StudentManager.getStudentRequestHistory(student.getID()));
+        ModelViewer.displayListOfDisplayable(StudentManager.getStudentRequestHistory(student.getID()));
         System.out.println("Press Enter to go back.");
         new Scanner(System.in).nextLine();
         throw new PageBackException();

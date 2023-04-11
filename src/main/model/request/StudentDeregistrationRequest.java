@@ -154,4 +154,19 @@ public class StudentDeregistrationRequest implements Request {
         System.out.println("Request Status: " + requestStatus);
         System.out.println("Student ID: " + studentID);
     }
+
+    @Override
+    public String getDisplayableString() {
+        return "Request ID: " + requestID + "\n" +
+                "Request Type: " + requestType + "\n" +
+                "Request Status: " + requestStatus + "\n" +
+                "Student ID: " + studentID + "\n";
+    }
+
+    final String splitter = "===================================";
+
+    @Override
+    public String getSplitter() {
+        return splitter;
+    }
 }

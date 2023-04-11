@@ -142,4 +142,18 @@ public class StudentChangeTitleRequest implements Request {
         System.out.println("Request Type: " + requestType);
         System.out.println("Request Status: " + requestStatus);
     }
+
+    @Override
+    public String getDisplayableString() {
+        return "Request ID: " + requestID + "\n" +
+                "Request Type: " + requestType + "\n" +
+                "Request Status: " + requestStatus + "\n";
+    }
+
+    final String splitter = "===============================";
+
+    @Override
+    public String getSplitter() {
+        return splitter;
+    }
 }

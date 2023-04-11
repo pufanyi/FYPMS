@@ -3,7 +3,7 @@ package main.boundary.mainpage;
 import main.boundary.account.ChangeAccountPassword;
 import main.boundary.account.Logout;
 import main.boundary.account.ViewUserProfile;
-import main.boundary.modelviewer.RequestViewer;
+import main.boundary.modelviewer.ModelViewer;
 import main.controller.project.ProjectManager;
 import main.controller.request.RequestManager;
 import main.controller.request.SupervisorManager;
@@ -294,7 +294,7 @@ public class SupervisorMainPage {
         ChangePage.changePage();
         System.out.println("Displaying all pending requests by students...");
         List<Request> requests = SupervisorManager.getPendingRequestsBySupervisor(supervisor.getID());
-        RequestViewer.viewRequests(requests);
+        ModelViewer.displayListOfDisplayable(requests);
 //        if (requests.isEmpty()) {
 //            System.out.println("Enter any key to continue");
 //            new Scanner(System.in).next();
