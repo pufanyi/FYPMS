@@ -221,12 +221,15 @@ public class Project implements Model, Displayable {
      * Display the information of the student.
      */
     private String getProjectStudentInformationString() {
+        if (EmptyID.isEmptyID(studentID)) {
+            return "";
+        }
         try {
             Student student = StudentRepository.getInstance().getByID(studentID);
             return String.format("| Student Name               | %-30s |\n", student.getUserName()) +
                     String.format("| Student Email Address      | %-30s |\n", student.getEmail());
         } catch (ModelNotFoundException e) {
-            return "No Student Yet";
+            throw new IllegalStateException("Cannot find the student.");
         }
     }
 
@@ -282,7 +285,8 @@ public class Project implements Model, Displayable {
         }
 
         return titleLine1 + titleLine2 +
-                String.format("| Project ID:                 | %-30s |\n", getID()) +
+                "|--------------------------------------------------------------|\n" +
+                String.format("| Project ID                  | %-30s |\n", getID()) +
                 getProjectSupervisorInformationString() +
                 getProjectStudentInformationString() +
                 getProjectInformationString();
@@ -293,8 +297,10 @@ public class Project implements Model, Displayable {
         return getSingleProjectString();
     }
 
+    final String splitter = "================================================================";
+
     @Override
     public String getSplitter() {
-        return "================================================================";
+        return splitter;
     }
 }

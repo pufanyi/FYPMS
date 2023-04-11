@@ -8,7 +8,7 @@ import java.util.Objects;
 public class ModelViewer {
     public static void displaySingleDisplayable(Displayable displayable) {
         System.out.println(displayable.getSplitter());
-        System.out.println(displayable.getDisplayableString());
+        System.out.print(displayable.getDisplayableString());
         System.out.println(displayable.getSplitter());
     }
 
@@ -19,7 +19,7 @@ public class ModelViewer {
         }
         System.out.println(displayableList.get(0).getSplitter());
         for (Displayable displayable : displayableList) {
-            System.out.println(displayable.getDisplayableString());
+            System.out.print(displayable.getDisplayableString());
             System.out.println(displayable.getSplitter());
         }
     }
