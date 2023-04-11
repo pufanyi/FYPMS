@@ -14,6 +14,7 @@ import main.utils.exception.ui.PageBackException;
 import main.utils.iocontrol.IntGetter;
 import main.utils.ui.BoundaryStrings;
 import main.utils.ui.ChangePage;
+import org.junit.jupiter.params.provider.EnumSource;
 
 import java.util.List;
 import java.util.Objects;
@@ -23,132 +24,6 @@ import java.util.Scanner;
  * Displays the project details.
  */
 public class ProjectViewer {
-    /**
-     * Display the information of the supervisor.
-     *
-     * @param supervisorID the supervisor ID.
-     */
-    private static void displayProjectSupervisorInformation(String supervisorID) {
-        try {
-            Supervisor supervisor = FacultyRepository.getInstance().getByID(supervisorID);
-            System.out.printf("| Supervisor Name             | %-30s |\n", supervisor.getUserName());
-            System.out.printf("| Supervisor Email Address    | %-30s |\n", supervisor.getEmail());
-        } catch (ModelNotFoundException e) {
-            System.out.println("No Supervisor Yet");
-        }
-    }
-
-    /**
-     * Display the information of the student.
-     *
-     * @param studentID the student ID.
-     */
-    private static void displayProjectStudentInformation(String studentID) {
-        try {
-            Student student = StudentRepository.getInstance().getByID(studentID);
-            System.out.printf("| Student Name               | %-30s |\n", student.getUserName());
-            System.out.printf("| Student Email Address      | %-30s |\n", student.getEmail());
-        } catch (ModelNotFoundException e) {
-            System.out.println("No Student Yet");
-        }
-    }
-
-    /**
-     * Display the details of a project with the given project ID. It retrieves the project from the ProjectRepository and calls the {@link displaySingleProject(Project project)} method to display the project details.
-     *
-     * @param projectID the project ID.
-     */
-    public static void viewProject(String projectID) {
-        try {
-            Project project = ProjectRepository.getInstance().getByID(projectID);
-            displaySingleProject(project);
-        } catch (ModelNotFoundException e) {
-            System.out.println("Project not found.");
-        }
-    }
-
-    /**
-     * Display the information of the project.
-     *
-     * @param project the project object.
-     */
-    private static void displayProjectInformation(Project project) {
-        System.out.printf("| Project Status              | %-30s |\n", project.getStatus());
-    }
-
-    /**
-     * Display the complete information of the project.
-     *
-     * @param project the project object.
-     */
-    public static void displaySingleProject(Project project) {
-        String projectTitle = project.getProjectTitle();
-        int maxTitleLength = 60;
-        String titleLine1;
-        String titleLine2;
-
-        if (projectTitle.length() <= maxTitleLength) {
-            int leftPadding = (maxTitleLength - projectTitle.length()) / 2;
-            int rightPadding = maxTitleLength - projectTitle.length() - leftPadding;
-            titleLine1 = String.format("| %-" + leftPadding + "s%-"+ projectTitle.length() + "s%-" + rightPadding + "s |\n", "", projectTitle, "");
-            titleLine2 = "";
-        } else {
-            String[] words = projectTitle.split("\\s+");
-            String firstLine = "";
-            String secondLine = "";
-            int remainingLength = maxTitleLength;
-            int i = 0;
-            while (i < words.length) {
-                if (firstLine.length() + words[i].length() + 1 <= maxTitleLength) {
-                    firstLine += words[i] + " ";
-                    remainingLength = maxTitleLength - firstLine.length();
-                    i++;
-                } else {
-                    break;
-                }
-            }
-            for (; i < words.length; i++) {
-                if (secondLine.length() + words[i].length() + 1 <= maxTitleLength) {
-                    secondLine += words[i] + " ";
-                } else {
-                    break;
-                }
-            }
-            int leftPadding1 = (maxTitleLength - firstLine.length()) / 2;
-            int leftPadding2 = (maxTitleLength - secondLine.length()) / 2;
-            int rightPadding1 = maxTitleLength - firstLine.length() - leftPadding1;
-            int rightPadding2 = maxTitleLength - secondLine.length() - leftPadding2;
-            titleLine1 = String.format("| %-" + leftPadding1 + "s%-"+ firstLine.length() + "s%-" + rightPadding1 + "s |\n", "", firstLine.trim(), "");
-            titleLine2 = String.format("| %-" + leftPadding2 + "s%-"+ secondLine.length() + "s%-" + rightPadding2 + "s |\n", "", secondLine.trim(), "");
-        }
-
-        System.out.print(titleLine1);
-        System.out.print(titleLine2);
-        System.out.printf("| Project ID:                 | %-30s |\n", project.getID());
-        displayProjectSupervisorInformation(project.getSupervisorID());
-        if (project.getStatus() == ProjectStatus.ALLOCATED) {
-            displayProjectStudentInformation(project.getStudentID());
-        }
-        displayProjectInformation(project);
-    }
-
-    /**
-     * Displays the details of a list of projects. It takes a list of Project objects as input and iterates through the list to call the displayProject() method on each project, displaying their details.
-     *
-     * @param projectList the list of projects.
-     */
-    public static void displayProjectDetails(List<Project> projectList) {
-        if (projectList.isEmpty()) {
-            System.out.println("No project found.");
-            return;
-        }
-        System.out.println("================================================================");
-        for (Project p : projectList) {
-            displaySingleProject(p);
-            System.out.println("================================================================");
-        }
-    }
-
 
     /**
      * Displays a menu to the user to select a project status and returns the selected ProjectStatus enum value. If an invalid option is selected, it prompts the user to retry or go back, and throws a PageBackException if the user chooses to go back.
@@ -222,7 +97,7 @@ public class ProjectViewer {
             }
         }
         List<Project> projectList = ProjectRepository.getInstance().findByRules(p -> p.getSupervisorID().equalsIgnoreCase(s1));
-        displayProjectDetails(projectList);
+        ModelViewer.displayListOfDisplayable(projectList);
         System.out.println("Enter <Enter> to continue");
         new Scanner(System.in).nextLine();
         throw new PageBackException();
@@ -235,7 +110,7 @@ public class ProjectViewer {
     public static void generateDetailsByStudentID() throws PageBackException {
         System.out.println("Enter the StudentID to search");
         String s1 = new Scanner(System.in).next();
-        displayProjectDetails(ProjectRepository.getInstance().findByRules(p -> Objects.equals(p.getStudentID(), s1)));
+        ModelViewer.displayListOfDisplayable(ProjectRepository.getInstance().findByRules(p -> Objects.equals(p.getStudentID(), s1)));
         System.out.println("Enter <Enter> to continue");
         new Scanner(System.in).nextLine();
         throw new PageBackException();
@@ -248,7 +123,7 @@ public class ProjectViewer {
      */
     public static void generateDetailsByStatus() throws PageBackException {
         ProjectStatus status = getProjectStatus();
-        displayProjectDetails(ProjectRepository.getInstance().findByRules(p -> Objects.equals(p.getStatus(), status)));
+        ModelViewer.displayListOfDisplayable(ProjectRepository.getInstance().findByRules(p -> Objects.equals(p.getStatus(), status)));
         System.out.println("Enter <Enter> to continue");
         new Scanner(System.in).nextLine();
         throw new PageBackException();
@@ -304,7 +179,7 @@ public class ProjectViewer {
         }
         else{
             System.out.println("View Available Project List");
-            displayProjectDetails(ProjectManager.viewAvailableProjects());
+            ModelViewer.displayListOfDisplayable(ProjectManager.viewAvailableProjects());
         }
         System.out.println("Press Enter to go back.");
         new Scanner(System.in).nextLine();
@@ -319,7 +194,7 @@ public class ProjectViewer {
     public static void viewAllProject() throws PageBackException {
         ChangePage.changePage();
         System.out.println("View All Project List");
-        displayProjectDetails(ProjectManager.viewAllProject());
+        ModelViewer.displayListOfDisplayable(ProjectManager.viewAllProject());
         System.out.println("Press Enter to go back.");
         new Scanner(System.in).nextLine();
         throw new PageBackException();
@@ -338,7 +213,7 @@ public class ProjectViewer {
         if (p == null) {
             System.out.println("Student has no project yet.");
         } else {
-            displaySingleProject(p);
+            ModelViewer.displaySingleDisplayable(p);
         }
         System.out.println("Press Enter to go back.");
         new Scanner(System.in).nextLine();

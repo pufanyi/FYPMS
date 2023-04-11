@@ -3,6 +3,7 @@ package main.boundary.mainpage;
 import main.boundary.account.ChangeAccountPassword;
 import main.boundary.account.Logout;
 import main.boundary.account.ViewUserProfile;
+import main.boundary.modelviewer.ModelViewer;
 import main.boundary.modelviewer.ProjectViewer;
 import main.boundary.modelviewer.RequestViewer;
 import main.controller.account.AccountManager;
@@ -203,7 +204,12 @@ public class StudentMainPage {
         if (ProjectRepository.getInstance().contains(projectID)) {
             System.out.println("Project found.");
             System.out.println("Here is the project information: ");
-            ProjectViewer.viewProject(projectID);
+            try {
+                Project project = ProjectRepository.getInstance().getByID(projectID);
+                ModelViewer.displaySingleDisplayable(project);
+            } catch (ModelNotFoundException e) {
+                e.printStackTrace();
+            }
         } else {
             System.out.println("Project not found.");
             System.out.println("Press Enter to go back.");
@@ -243,7 +249,7 @@ public class StudentMainPage {
             throw new PageBackException();
         }
         System.out.println("Here is the list of available projects: ");
-        ProjectViewer.displayProjectDetails(ProjectManager.getAllAvailableProject());
+        ModelViewer.displayListOfDisplayable(ProjectManager.getAllAvailableProject());
         System.out.println("================================================================================================= ");
         System.out.println("Please enter the project ID: ");
         String projectID = new Scanner(System.in).nextLine();
@@ -274,7 +280,12 @@ public class StudentMainPage {
         }
         ChangePage.changePage();
         System.out.println("Here is the project information: ");
-        ProjectViewer.viewProject(projectID);
+        try {
+            Project project1 = ProjectRepository.getInstance().getByID(projectID);
+            ModelViewer.displaySingleDisplayable(project1);
+        } catch (ModelNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         System.out.print("Are you sure you want to register for this project? (y/[n]): ");
         String choice = new Scanner(System.in).nextLine();
         if (choice.equalsIgnoreCase("y")) {

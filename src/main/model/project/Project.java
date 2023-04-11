@@ -1,5 +1,6 @@
 package main.model.project;
 
+import main.model.Displayable;
 import main.model.Model;
 import main.model.user.Student;
 import main.model.user.Supervisor;
@@ -13,7 +14,7 @@ import java.util.Map;
 /**
  * The class of the project
  */
-public class Project implements Model {
+public class Project implements Model, Displayable {
     /**
      * the status of the project
      */
@@ -201,5 +202,99 @@ public class Project implements Model {
     @Override
     public String getID() {
         return projectID;
+    }
+
+    /**
+     * Display the information of the supervisor.
+     */
+    private String getProjectSupervisorInformationString() {
+        try {
+            Supervisor supervisor = FacultyRepository.getInstance().getByID(supervisorID);
+            return String.format("| Supervisor Name             | %-30s |\n", supervisor.getUserName()) +
+                    String.format("| Supervisor Email Address    | %-30s |\n", supervisor.getEmail());
+        } catch (ModelNotFoundException e) {
+            return "No Supervisor Yet";
+        }
+    }
+
+    /**
+     * Display the information of the student.
+     */
+    private String getProjectStudentInformationString() {
+        try {
+            Student student = StudentRepository.getInstance().getByID(studentID);
+            return String.format("| Student Name               | %-30s |\n", student.getUserName()) +
+                    String.format("| Student Email Address      | %-30s |\n", student.getEmail());
+        } catch (ModelNotFoundException e) {
+            return "No Student Yet";
+        }
+    }
+
+    /**
+     * Display the information of the project.
+     */
+    private String getProjectInformationString() {
+        return String.format("| Project Status              | %-30s |\n", getStatus());
+    }
+
+    /**
+     * Display the complete information of the project.
+     */
+    private String getSingleProjectString() {
+        String projectTitle = getProjectTitle();
+        int maxTitleLength = 60;
+        String titleLine1;
+        String titleLine2;
+
+        if (projectTitle.length() <= maxTitleLength) {
+            int leftPadding = (maxTitleLength - projectTitle.length()) / 2;
+            int rightPadding = maxTitleLength - projectTitle.length() - leftPadding;
+            titleLine1 = String.format("| %-" + leftPadding + "s%-" + projectTitle.length() + "s%-" + rightPadding + "s |\n", "", projectTitle, "");
+            titleLine2 = "";
+        } else {
+            String[] words = projectTitle.split("\\s+");
+            String firstLine = "";
+            String secondLine = "";
+            int remainingLength = maxTitleLength;
+            int i = 0;
+            while (i < words.length) {
+                if (firstLine.length() + words[i].length() + 1 <= maxTitleLength) {
+                    firstLine += words[i] + " ";
+                    remainingLength = maxTitleLength - firstLine.length();
+                    i++;
+                } else {
+                    break;
+                }
+            }
+            for (; i < words.length; i++) {
+                if (secondLine.length() + words[i].length() + 1 <= maxTitleLength) {
+                    secondLine += words[i] + " ";
+                } else {
+                    break;
+                }
+            }
+            int leftPadding1 = (maxTitleLength - firstLine.length()) / 2;
+            int leftPadding2 = (maxTitleLength - secondLine.length()) / 2;
+            int rightPadding1 = maxTitleLength - firstLine.length() - leftPadding1;
+            int rightPadding2 = maxTitleLength - secondLine.length() - leftPadding2;
+            titleLine1 = String.format("| %-" + leftPadding1 + "s%-" + firstLine.length() + "s%-" + rightPadding1 + "s |\n", "", firstLine.trim(), "");
+            titleLine2 = String.format("| %-" + leftPadding2 + "s%-" + secondLine.length() + "s%-" + rightPadding2 + "s |\n", "", secondLine.trim(), "");
+        }
+
+        return titleLine1 + titleLine2 +
+                String.format("| Project ID:                 | %-30s |\n", getID()) +
+                getProjectSupervisorInformationString() +
+                getProjectStudentInformationString() +
+                getProjectInformationString();
+    }
+
+    @Override
+    public String getDisplayableString() {
+        return getSingleProjectString();
+    }
+
+    @Override
+    public String getSplitter() {
+        return "================================================================";
     }
 }
