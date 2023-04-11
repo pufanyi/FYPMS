@@ -78,7 +78,11 @@ public class SupervisorMainPage {
                     case 8 -> supervisorViewAllRequestHistory(supervisor);
                     case 9 -> Logout.logout();
 
-                    default -> System.out.println("Invalid choice. Please try again.");
+                    default -> {
+                        System.out.println("Invalid choice. Please press <enter> to try again.");
+                        new Scanner(System.in).nextLine();
+                        throw new PageBackException();
+                    }
                 }
             } catch (PageBackException e) {
                 supervisorMainPage(supervisor);
@@ -96,10 +100,14 @@ public class SupervisorMainPage {
      *
      * @param supervisor the supervisor.
      */
-    private static void supervisorViewAllRequestHistory(Supervisor supervisor) {
+    private static void supervisorViewAllRequestHistory(Supervisor supervisor) throws PageBackException {
         ChangePage.changePage();
         System.out.println("Viewing all request history....");
         List<Request> requests = SupervisorManager.getAllRequestHistory(supervisor);
+        ModelViewer.displayListOfDisplayable(requests);
+        System.out.println("Enter enter to go back");
+        new Scanner(System.in).nextLine();
+        throw new PageBackException();
     }
 
     /**
@@ -111,8 +119,14 @@ public class SupervisorMainPage {
     private static void supervisorApproveOrRejectRequest(Supervisor supervisor) throws PageBackException {
         ChangePage.changePage();
         System.out.println("Approving or rejecting a request....");
-        System.out.println("Enter the request ID to approve or reject");
-        String requestID = new Scanner(System.in).next();
+        System.out.println("Here are all pending requests:");
+        List<Request> requests = SupervisorManager.getPendingRequestsBySupervisor(supervisor.getID());
+        ModelViewer.displayListOfDisplayable(requests);
+        System.out.print("Enter the request ID to approve or reject (or [0] to go back): ");
+        String requestID = new Scanner(System.in).nextLine();
+        if (requestID.equals("0")) {
+            throw new PageBackException();
+        }
         Request request;
         try {
             request = RequestRepository.getInstance().getByID(requestID);
@@ -142,6 +156,9 @@ public class SupervisorMainPage {
             new Scanner(System.in).nextLine();
             throw new PageBackException();
         }
+        ChangePage.changePage();
+        System.out.println("Here is the request:");
+        ModelViewer.displaySingleDisplayable(request);
         System.out.println("Enter the status to change to APPROVED (A) / REJECTED (R)");
         String status = new Scanner(System.in).next();
         if (status.equalsIgnoreCase("A") ||
@@ -169,14 +186,34 @@ public class SupervisorMainPage {
      * This method allows the supervisor to create a project by entering the required details such as project title, project description, and project capacity.
      *
      * @param supervisor the supervisor.
-     * @throws ModelAlreadyExistsException if the project already exists.
-     * @throws PageBackException           if the user wants to go back to the previous page.
+     * @throws PageBackException if the user wants to go back to the previous page.
      */
-    private static void supervisorCreateProject(Supervisor supervisor) throws ModelAlreadyExistsException, PageBackException {
+    private static void supervisorCreateProject(Supervisor supervisor) throws PageBackException {
+        ChangePage.changePage();
         System.out.println("Creating a project....");
-        System.out.println("Please enter the Project Title");
+        System.out.println("Please enter the Project Title:");
         String projectTitle = new Scanner(System.in).nextLine();
-        ProjectManager.createProject(projectTitle, supervisor.getID());
+        Project p;
+        try {
+            p = ProjectManager.createProject(projectTitle, supervisor.getID());
+        } catch (ModelAlreadyExistsException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("The project details are as follows:");
+        ModelViewer.displaySingleDisplayable(p);
+        System.out.println("Are you sure you want to create this project? (Y/N)");
+        String input = new Scanner(System.in).nextLine();
+        if (!input.equalsIgnoreCase("Y")) {
+            System.out.println("Project creation cancelled!");
+            try {
+                ProjectRepository.getInstance().remove(p.getID());
+            } catch (ModelNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println("Enter enter to continue");
+            new Scanner(System.in).nextLine();
+            throw new PageBackException();
+        }
         System.out.println("Project created successfully!");
         System.out.println("Enter enter to continue");
         new Scanner(System.in).nextLine();

@@ -297,10 +297,8 @@ public class Project implements Model, Displayable {
         return getSingleProjectString();
     }
 
-    final String splitter = "================================================================";
-
     @Override
     public String getSplitter() {
-        return splitter;
+        return "================================================================";
     }
 }

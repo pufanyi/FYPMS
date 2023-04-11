@@ -8,6 +8,7 @@ import main.boundary.modelviewer.ProjectViewer;
 import main.controller.request.CoordinatorManager;
 import main.controller.request.RequestManager;
 import main.model.request.Request;
+import main.model.request.RequestStatus;
 import main.model.request.RequestType;
 import main.model.user.Coordinator;
 import main.model.user.User;
@@ -109,7 +110,11 @@ public class CoordinatorMainPage {
                     case 6 -> acceptOrRejectRequest();
                     case 7 -> generateProjectDetails();
                     case 8 -> Logout.logout();
-                    default -> System.out.println("Invalid choice. Please try again.");
+                    default -> {
+                        System.out.println("Invalid choice. Please press <enter> to try again.");
+                        new Scanner(System.in).nextLine();
+                        throw new PageBackException();
+                    }
                 }
             } catch (PageBackException e) {
                 CoordinatorMainPage.coordinatorMainPage(coordinator);
@@ -145,6 +150,16 @@ public class CoordinatorMainPage {
 
             if (Objects.isNull(request)) {
                 throw new ModelNotFoundException();
+            }
+
+            if (request.getStatus() != RequestStatus.PENDING) {
+                System.out.println("Request is not pending.");
+                System.out.println("Press enter to go back, or enter [0] to try again.");
+                String choice = new Scanner(System.in).nextLine();
+                if (choice.equals("0")) {
+                    acceptOrRejectRequest();
+                }
+                throw new PageBackException();
             }
         } catch (ModelNotFoundException e) {
             System.out.println("Request not found.");

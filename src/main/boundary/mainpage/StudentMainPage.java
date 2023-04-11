@@ -111,36 +111,42 @@ public class StudentMainPage {
      */
     private static void changeTitleForProject(Student student) throws PageBackException, ModelNotFoundException {
         ChangePage.changePage();
-        System.out.println("Here is the history and status of your project: ");
-        for (Request request : RequestRepository.getInstance().findByRules(request -> Objects.equals(request.getStudentID(), student.getID()) && (request instanceof StudentChangeTitleRequest))) {
-            Project project = ProjectRepository.getInstance().getByID(request.getProjectID());
-            project.displayProject();
-        }
-        String projectID = getProjectID();
         Project project;
         try {
-            project = ProjectRepository.getInstance().getByID(projectID);
+            project = ProjectRepository.getInstance().getByID(student.getProjectID());
         } catch (ModelNotFoundException e) {
-            throw new IllegalArgumentException("Project not found.");
+            System.out.println("You are not registered for any project.");
+            System.out.println("Press Enter to go back.");
+            new Scanner(System.in).nextLine();
+            throw new PageBackException();
         }
-        if (!Objects.equals(student.getProjectID(), projectID)) {
-            System.out.println("You are not registered for this project.");
-            System.out.println("Press Enter to go back, or enter [r] to retry.");
-            String choice = new Scanner(System.in).nextLine();
-            if (choice.equals("r")) {
-                changeTitleForProject(student);
-            }
+        System.out.println("Here is your project: ");
+        ModelViewer.displaySingleDisplayable(project);
+        System.out.println("Are you sure you want to change the title of this project?");
+        System.out.println("Enter [y] to confirm, or press enter to go back.");
+        String choice = new Scanner(System.in).nextLine();
+        if (!choice.equalsIgnoreCase("y")) {
             throw new PageBackException();
         }
         System.out.println("Please enter the new title: ");
         String newTitle = new Scanner(System.in).nextLine();
+        project.setProjectTitle(newTitle);
+        ChangePage.changePage();
+        System.out.println("Your new project is: ");
+        ModelViewer.displaySingleDisplayable(project);
+        System.out.println("Are you sure you want to change the title of this project?");
+        System.out.println("Enter [y] to confirm, or press enter to go back.");
+        String choice1 = new Scanner(System.in).nextLine();
+        if (!choice1.equalsIgnoreCase("y")) {
+            throw new PageBackException();
+        }
         try {
-            StudentManager.changeProjectTitle(projectID, newTitle, student.getID());
+            StudentManager.changeProjectTitle(project.getID(), newTitle, student.getID());
         } catch (Exception e) {
-//            System.out.println("Error: " + e.getMessage());
+            System.out.println("Change Title Error: " + e.getMessage());
             System.out.println("Enter [b] to go back, or press enter to retry.");
-            String choice = new Scanner(System.in).nextLine();
-            if (!choice.equals("b")) {
+            String choice2 = new Scanner(System.in).nextLine();
+            if (!choice2.equals("b")) {
                 changeTitleForProject(student);
             }
             throw new PageBackException();

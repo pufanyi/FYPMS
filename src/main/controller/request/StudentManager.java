@@ -91,7 +91,7 @@ public class StudentManager {
     public static String changeProjectTitle(String projectID, String newTitle, String studentID) throws ModelAlreadyExistsException, ModelNotFoundException {
         String requestID = RequestManager.getNewRequestID();
         String supervisorID = ProjectRepository.getInstance().getByID(projectID).getSupervisorID();
-        Request request = new StudentChangeTitleRequest(requestID, projectID, newTitle, studentID, supervisorID);
+        Request request = new StudentChangeTitleRequest(requestID, studentID, supervisorID, projectID, newTitle);
         RequestRepository.getInstance().add(request);
         return requestID;
     }

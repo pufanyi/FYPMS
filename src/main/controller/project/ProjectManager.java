@@ -1,5 +1,6 @@
 package main.controller.project;
 
+import main.boundary.modelviewer.ModelViewer;
 import main.model.project.Project;
 import main.model.project.ProjectStatus;
 import main.model.user.Student;
@@ -74,9 +75,10 @@ public class ProjectManager {
      * @param supervisorID the ID of the supervisor
      * @throws ModelAlreadyExistsException if the project already exists
      */
-    public static void createProject(String projectTitle, String supervisorID) throws ModelAlreadyExistsException {
+    public static Project createProject(String projectTitle, String supervisorID) throws ModelAlreadyExistsException {
         Project p1 = new Project(getNewProjectID(), projectTitle, supervisorID);
         ProjectRepository.getInstance().add(p1);
+        return p1;
     }
 
     /**
