@@ -90,7 +90,7 @@ public class ProjectViewer {
             System.out.println("Supervisor Not Found.");
             System.out.println("Press enter to retry, or enter [b] to go back");
             String input = new Scanner(System.in).nextLine().trim();
-            if (input.equals("0")) {
+            if (input.equalsIgnoreCase("b")) {
                 throw new PageBackException();
             } else {
                 generateDetailsBySupervisorID();
