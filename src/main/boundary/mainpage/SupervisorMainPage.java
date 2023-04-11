@@ -58,9 +58,13 @@ public class SupervisorMainPage {
             System.out.println();
             System.out.print("Please enter your choice: ");
 
-            Scanner scanner = new Scanner(System.in);
-
             int choice = IntGetter.readInt();
+
+            try {
+                supervisor = FacultyRepository.getInstance().getByID(supervisor.getID());
+            } catch (ModelNotFoundException e) {
+                throw new RuntimeException(e);
+            }
 
             try {
                 switch (choice) {
