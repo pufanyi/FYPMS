@@ -1,5 +1,7 @@
 package main.model.request;
 
+import main.utils.parameters.EmptyID;
+
 import java.util.Map;
 
 public class TransferStudentRequest implements Request {
@@ -166,32 +168,15 @@ public class TransferStudentRequest implements Request {
         return requestType;
     }
 
-    /**
-     * Display the information of the request
-     */
-    @Override
-    public void display() {
-        System.out.println("Request ID: " + requestID);
-        System.out.println("Request Type: " + requestType);
-        System.out.println("Request Status: " + requestStatus);
-    }
-
-    final String splitter = "===================================";
-
     @Override
     public String getDisplayableString() {
-        return "Request ID: " + requestID + "\n" +
-                "Request Type: " + requestType + "\n" +
-                "Request Status: " + requestStatus + "\n" +
-                "Project ID: " + projectID + "\n" +
-                "Supervisor ID: " + supervisorID + "\n" +
-                "New Supervisor ID: " + newSupervisorID + "\n" +
-                "Student ID: " + studentID + "\n" +
-                "Coordinator ID: " + coordinatorID + "\n";
-    }
-
-    @Override
-    public String getSplitter() {
-        return splitter;
+        return String.format("| %-18s | %-25s |\n", "Request ID", requestID) +
+                String.format("| %-18s | %-25s |\n", "Request Type", requestType) +
+                String.format("| %-18s | %-25s |\n", "Request Status", requestStatus) +
+                String.format("| %-18s | %-25s |\n", "Project ID", projectID) +
+                String.format("| %-18s | %-25s |\n", "Supervisor ID", supervisorID) +
+                String.format("| %-18s | %-25s |\n", "New Supervisor ID", newSupervisorID) +
+                String.format("| %-18s | %-25s |\n", "Student ID", studentID) +
+                String.format("| %-18s | %-25s |\n", "Coordinator ID", EmptyID.isEmptyID(coordinatorID) ? "N/A" : coordinatorID);
     }
 }

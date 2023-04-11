@@ -44,7 +44,9 @@ public interface Request extends Model, Displayable {
      */
     RequestType getRequestType();
 
-    void display();
-
     String getSupervisorID();
+
+    default String getSplitter() {
+        return "==================================================";
+    }
 }

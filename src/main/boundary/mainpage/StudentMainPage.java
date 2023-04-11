@@ -249,8 +249,7 @@ public class StudentMainPage {
         }
         System.out.println("Here is the list of available projects: ");
         ModelViewer.displayListOfDisplayable(ProjectManager.getAllAvailableProject());
-        System.out.println("================================================================================================= ");
-        System.out.println("Please enter the project ID: ");
+        System.out.print("Please enter the project ID: ");
         String projectID = new Scanner(System.in).nextLine();
         if (ProjectManager.notContainsProjectByID(projectID)) {
             System.out.println("Project not found.");

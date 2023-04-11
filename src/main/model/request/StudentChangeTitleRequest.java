@@ -133,27 +133,14 @@ public class StudentChangeTitleRequest implements Request {
         this.requestStatus = status;
     }
 
-    /**
-     * display the information of the request.
-     */
-    @Override
-    public void display() {
-        System.out.println("Request ID: " + requestID);
-        System.out.println("Request Type: " + requestType);
-        System.out.println("Request Status: " + requestStatus);
-    }
-
     @Override
     public String getDisplayableString() {
-        return "Request ID: " + requestID + "\n" +
-                "Request Type: " + requestType + "\n" +
-                "Request Status: " + requestStatus + "\n";
-    }
-
-    final String splitter = "===============================";
-
-    @Override
-    public String getSplitter() {
-        return splitter;
+        return String.format("| %-18s | %-25s |\n", "Request ID", requestID) +
+                String.format("| %-18s | %-25s |\n", "Request Type", requestType) +
+                String.format("| %-18s | %-25s |\n", "Request Status", requestStatus) +
+                String.format("| %-18s | %-25s |\n", "Project ID", projectID) +
+                String.format("| %-18s | %-25s |\n", "Supervisor ID", supervisorID) +
+                String.format("| %-18s | %-25s |\n", "Student ID", studentID) +
+                String.format("| %-18s | %-25s |\n", "New Title", newTitle);
     }
 }

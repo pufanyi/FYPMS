@@ -80,17 +80,6 @@ public class StudentManager {
     }
 
     /**
-     * display all requests made by a student
-     *
-     * @param studentID the student ID of the student that made the requests
-     */
-    public static void viewAllRequestByStudent(String studentID) {
-        for (Request request : RequestRepository.getInstance().findByRules(request -> request.getStudentID().equals(studentID))) {
-            request.display();
-        }
-    }
-
-    /**
      * student request to change the title of a project
      *
      * @param projectID    the project ID of the project that the student is going to change the title of

@@ -127,10 +127,11 @@ public class CoordinatorMainPage {
      */
     private static void acceptOrRejectRequest() throws PageBackException {
         ChangePage.changePage();
-        System.out.println(BoundaryStrings.separator);
+//        System.out.println(BoundaryStrings.separator);
         System.out.println("Accept or Reject Requests");
+        ModelViewer.displayListOfDisplayable(CoordinatorManager.getPendingRequests());
         System.out.println("Please enter the ID of the request you want to accept or reject. (Enter 0 to go back.)");
-        System.out.println(BoundaryStrings.separator);
+//        System.out.println(BoundaryStrings.separator);
         System.out.print("Please enter your choice: ");
 
         String requestID = new Scanner(System.in).nextLine();
@@ -162,6 +163,12 @@ public class CoordinatorMainPage {
             throw new PageBackException();
         }
 
+        ChangePage.changePage();
+
+        System.out.println("Accept or Reject Requests");
+
+        ModelViewer.displaySingleDisplayable(request);
+
         System.out.println("\t1. Approve");
         System.out.println("\t2. Reject");
         System.out.println("\t3. Go back");
@@ -176,7 +183,10 @@ public class CoordinatorMainPage {
                 RequestManager.rejectRequest(requestID);
                 System.out.println("Request processed successfully.");
             }
-            case 3 -> throw new PageBackException();
+            case 3 -> {
+                acceptOrRejectRequest();
+                throw new PageBackException();
+            }
             default -> {
                 System.out.println("Invalid choice. Please try again.");
                 System.out.println("Press enter to go back, or enter [0] to try again.");
