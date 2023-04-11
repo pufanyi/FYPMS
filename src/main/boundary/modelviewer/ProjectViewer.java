@@ -36,6 +36,7 @@ public class ProjectViewer {
         System.out.println("\t2. Unavailable");
         System.out.println("\t3. Reserved");
         System.out.println("\t4. Allocated");
+        System.out.print("Please enter your choice: ");
         int option = IntGetter.readInt();
         return switch (option) {
             case 1 -> ProjectStatus.AVAILABLE;
