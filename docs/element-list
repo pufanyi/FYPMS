@@ -26,9 +26,6 @@ main.utils.parameters
 main.utils.ui
 test
 test.boundary
-test.boundary.account
-test.boundary.student
-test.boundary.student.details
 test.controller
 test.model.project
 test.model.user

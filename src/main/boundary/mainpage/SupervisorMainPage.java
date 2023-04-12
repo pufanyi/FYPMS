@@ -172,7 +172,7 @@ public class SupervisorMainPage {
         System.out.println("Here is the request:");
         ModelViewer.displaySingleDisplayable(request);
         System.out.println("Enter the status to change to APPROVED (A) / REJECTED (R)");
-        String status = new Scanner(System.in).next();
+        String status = new Scanner(System.in).nextLine();
         if (status.equalsIgnoreCase("A") ||
                 status.equalsIgnoreCase("APPROVED")) {
             RequestManager.approveRequest(requestID);
@@ -249,7 +249,7 @@ public class SupervisorMainPage {
         System.out.println("Here are all your projects:");
         ModelViewer.displayListOfDisplayable(projects);
         System.out.print("Enter the project ID to change: ");
-        String projectID = new Scanner(System.in).next();
+        String projectID = new Scanner(System.in).nextLine();
         Project p = ProjectRepository.getInstance().getByID(projectID);
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -259,7 +259,7 @@ public class SupervisorMainPage {
                 System.out.println("Project created by other supervisor! No access! Enter again or Enter b to exit");
             } else break;
             System.out.print("Enter the project ID to change: ");
-            projectID = scanner.next();
+            projectID = scanner.nextLine();
             if (projectID.equals("b")) {
                 throw new PageBackException();
             }
@@ -268,7 +268,7 @@ public class SupervisorMainPage {
         System.out.println("Here is the project:");
         ModelViewer.displaySingleDisplayable(p);
         System.out.println("Enter the new title:");
-        String newTitle = new Scanner(System.in).next();
+        String newTitle = new Scanner(System.in).nextLine();
         p.setProjectTitle(newTitle);
         ChangePage.changePage();
         System.out.println("Here is the new project after changing the title:");
@@ -300,19 +300,19 @@ public class SupervisorMainPage {
         System.out.println("Processing to transfer....");
         System.out.println("Enter the project ID to transfer");
         Scanner scanner = new Scanner(System.in);
-        String projectID = scanner.next();
+        String projectID = scanner.nextLine();
         while (ProjectManager.notContainsProjectByID(projectID)) {
             System.out.println("Project Not Found! Enter again or Enter b to exit");
-            projectID = scanner.next();
+            projectID = scanner.nextLine();
             if (projectID.equals("b")) {
                 throw new PageBackException();
             }
         }
         System.out.println("Enter the new supervisor transfer to");
-        String newSupervisor = scanner.next();
+        String newSupervisor = scanner.nextLine();
         while (!FacultyRepository.getInstance().contains(newSupervisor)) {
             System.out.println("User Not Found! Enter again or Enter b to exit");
-            newSupervisor = scanner.next();
+            newSupervisor = scanner.nextLine();
             if (newSupervisor.equals("b")) {
                 throw new PageBackException();
             }
@@ -337,7 +337,7 @@ public class SupervisorMainPage {
         System.out.println("==================================");
         System.out.println("Enter the request ID to process");
         Scanner scanner = new Scanner(System.in);
-        String requestID = scanner.next();
+        String requestID = scanner.nextLine();
         boolean found = false;
         for (Request r : requests) {
             if (r.getID().equals(requestID)) {
@@ -367,11 +367,11 @@ public class SupervisorMainPage {
         ModelViewer.displayListOfDisplayable(requests);
 //        if (requests.isEmpty()) {
 //            System.out.println("Enter any key to continue");
-//            new Scanner(System.in).next();
+//            new Scanner(System.in).nextLine();
 //            throw new PageBackException();
 //        }
 //        System.out.println("Enter Y to process the requests OR Enter any other key to exit");
-//        String c = new Scanner(System.in).next();
+//        String c = new Scanner(System.in).nextLine();
 //        if (!c.equalsIgnoreCase("Y")) {
 //            throw new PageBackException();
 //        }
@@ -384,14 +384,14 @@ public class SupervisorMainPage {
 //        }
 //        System.out.println("Press Y to confirm to process the following request");
 //        r1.display();
-//        String choice = new Scanner(System.in).next();
+//        String choice = new Scanner(System.in).nextLine();
 //        if (!choice.equalsIgnoreCase("Y")) {
 //            System.out.println("Ending request processing, press any key to continue");
-//            new Scanner(System.in).next();
+//            new Scanner(System.in).nextLine();
 //            throw new PageBackException();
 //        }
 //        System.out.println("Enter A to approve / R to reject");
-//        char process = new Scanner(System.in).next().charAt(0);
+//        char process = new Scanner(System.in).nextLine().charAt(0);
 //
 //        if (r1 instanceof StudentChangeTitleRequest req) {
 //            if (req.getSupervisorID().equals(supervisor.getID()) && req.getStatus() == RequestStatus.PENDING) {

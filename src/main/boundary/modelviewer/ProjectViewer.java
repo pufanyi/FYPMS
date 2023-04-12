@@ -85,7 +85,7 @@ public class ProjectViewer {
      */
     public static void generateDetailsBySupervisorID() throws PageBackException {
         System.out.println("Please enter the SupervisorID to search: ");
-        String s1 = new Scanner(System.in).next();
+        String s1 = new Scanner(System.in).nextLine();
         if (!FacultyRepository.getInstance().contains(s1)) {
             System.out.println("Supervisor Not Found.");
             System.out.println("Press enter to retry, or enter [b] to go back");
@@ -110,7 +110,7 @@ public class ProjectViewer {
      */
     public static void generateDetailsByStudentID() throws PageBackException {
         System.out.println("Enter the StudentID to search");
-        String s1 = new Scanner(System.in).next();
+        String s1 = new Scanner(System.in).nextLine();
         ModelViewer.displayListOfDisplayable(ProjectRepository.getInstance().findByRules(p -> Objects.equals(p.getStudentID(), s1)));
         System.out.println("Enter <Enter> to continue");
         new Scanner(System.in).nextLine();
