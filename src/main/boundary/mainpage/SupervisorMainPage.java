@@ -47,12 +47,13 @@ public class SupervisorMainPage {
             System.out.println("\t1. View my profile");
             System.out.println("\t2. Change my password");
             System.out.println("\t3. Create a project ");
-            System.out.println("\t4. Modify title of projects");
-            System.out.println("\t5. View all pending student requests");
-            System.out.println("\t6. Approve/Reject student requests");
-            System.out.println("\t7. Submit request for transferring");
-            System.out.println("\t8. View all incoming/outgoing requests' history and status");
-            System.out.println("\t9. Logout");
+            System.out.println("\t4. View all my projects");
+            System.out.println("\t5. Modify title of projects");
+            System.out.println("\t6. View all pending student requests");
+            System.out.println("\t7. Approve/Reject student requests");
+            System.out.println("\t8. Submit request for transferring");
+            System.out.println("\t9. View all incoming/outgoing requests' history and status");
+            System.out.println("\t10. Logout");
             System.out.println(BoundaryStrings.separator);
 
             System.out.println();
@@ -71,12 +72,13 @@ public class SupervisorMainPage {
                     case 1 -> ViewUserProfile.viewUserProfilePage(supervisor);
                     case 2 -> ChangeAccountPassword.changePassword(UserType.FACULTY, supervisor.getID());
                     case 3 -> supervisorCreateProject(supervisor);
-                    case 4 -> supervisorChangeProjectTitle(supervisor);
-                    case 5 -> supervisorViewAllPendingRequest(supervisor);
-                    case 6 -> supervisorApproveOrRejectRequest(supervisor);
-                    case 7 -> supervisorRequestForTransfer(supervisor);
-                    case 8 -> supervisorViewAllRequestHistory(supervisor);
-                    case 9 -> Logout.logout();
+                    case 4 -> supervisorViewAllProjects(supervisor);
+                    case 5 -> supervisorChangeProjectTitle(supervisor);
+                    case 6 -> supervisorViewAllPendingRequest(supervisor);
+                    case 7 -> supervisorApproveOrRejectRequest(supervisor);
+                    case 8 -> supervisorRequestForTransfer(supervisor);
+                    case 9 -> supervisorViewAllRequestHistory(supervisor);
+                    case 10 -> Logout.logout();
 
                     default -> {
                         System.out.println("Invalid choice. Please press <enter> to try again.");
@@ -93,6 +95,16 @@ public class SupervisorMainPage {
         } else {
             throw new IllegalArgumentException("User is not a supervisor.");
         }
+    }
+
+    private static void supervisorViewAllProjects(Supervisor supervisor) throws PageBackException {
+        ChangePage.changePage();
+        System.out.println("Viewing all projects....");
+        List<Project> projects = ProjectManager.getAllProjectsBySupervisor(supervisor.getID());
+        ModelViewer.displayListOfDisplayable(projects);
+        System.out.println("Enter enter to go back");
+        new Scanner(System.in).nextLine();
+        throw new PageBackException();
     }
 
     /**
@@ -231,7 +243,12 @@ public class SupervisorMainPage {
     private static void supervisorChangeProjectTitle(Supervisor supervisor) throws ModelAlreadyExistsException, ModelNotFoundException, PageBackException {
         ChangePage.changePage();
         System.out.println("Changing the title of project....");
-        System.out.println("Enter the project ID to change");
+        List<Project> projects = ProjectRepository.getInstance().findByRules(
+                project -> Objects.equals(project.getSupervisorID(), supervisor.getID())
+        );
+        System.out.println("Here are all your projects:");
+        ModelViewer.displayListOfDisplayable(projects);
+        System.out.print("Enter the project ID to change: ");
         String projectID = new Scanner(System.in).next();
         Project p = ProjectRepository.getInstance().getByID(projectID);
         Scanner scanner = new Scanner(System.in);
@@ -241,13 +258,29 @@ public class SupervisorMainPage {
             } else if (!Objects.equals(p.getSupervisorID(), supervisor.getID())) {
                 System.out.println("Project created by other supervisor! No access! Enter again or Enter b to exit");
             } else break;
+            System.out.print("Enter the project ID to change: ");
             projectID = scanner.next();
             if (projectID.equals("b")) {
                 throw new PageBackException();
             }
         }
-        System.out.println("Enter the new title");
+        ChangePage.changePage();
+        System.out.println("Here is the project:");
+        ModelViewer.displaySingleDisplayable(p);
+        System.out.println("Enter the new title:");
         String newTitle = new Scanner(System.in).next();
+        p.setProjectTitle(newTitle);
+        ChangePage.changePage();
+        System.out.println("Here is the new project after changing the title:");
+        ModelViewer.displaySingleDisplayable(p);
+        System.out.println("Are you sure you want to change the title? (Y/[N])");
+        String input = new Scanner(System.in).nextLine();
+        if (!input.equalsIgnoreCase("Y")) {
+            System.out.println("Project title change cancelled!");
+            System.out.println("Enter enter to continue");
+            new Scanner(System.in).nextLine();
+            throw new PageBackException();
+        }
         ProjectManager.changeProjectTitle(projectID, newTitle);
         System.out.println("Project title changed successfully!");
         System.out.println("Enter enter to continue");

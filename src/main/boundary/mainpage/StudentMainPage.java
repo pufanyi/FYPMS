@@ -96,7 +96,7 @@ public class StudentMainPage {
 
     private static void viewHistoryAndStatusOfMyRequest(Student student) throws PageBackException {
         ChangePage.changePage();
-        System.out.println("Here is the history and status of your project: ");
+        System.out.println("Here is the history and status of your request: ");
         ModelViewer.displayListOfDisplayable(StudentManager.getStudentRequestHistory(student.getID()));
         System.out.println("Press Enter to go back.");
         new Scanner(System.in).nextLine();
