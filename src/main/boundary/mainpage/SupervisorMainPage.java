@@ -8,6 +8,7 @@ import main.controller.project.ProjectManager;
 import main.controller.request.RequestManager;
 import main.controller.request.SupervisorManager;
 import main.model.project.Project;
+import main.model.project.ProjectStatus;
 import main.model.request.Request;
 import main.model.request.RequestStatus;
 import main.model.request.RequestType;
@@ -21,6 +22,7 @@ import main.utils.exception.repository.ModelAlreadyExistsException;
 import main.utils.exception.repository.ModelNotFoundException;
 import main.utils.exception.ui.PageBackException;
 import main.utils.iocontrol.IntGetter;
+import main.utils.parameters.EmptyID;
 import main.utils.ui.BoundaryStrings;
 import main.utils.ui.ChangePage;
 
@@ -298,7 +300,13 @@ public class SupervisorMainPage {
     private static void supervisorRequestForTransfer(Supervisor supervisor) throws PageBackException {
         ChangePage.changePage();
         System.out.println("Processing to transfer....");
-        System.out.println("Enter the project ID to transfer");
+        System.out.println("Below are all your projects ready for transfer:");
+        List<Project> projects = ProjectRepository.getInstance().findByRules(
+                project -> Objects.equals(project.getSupervisorID(), supervisor.getID()),
+                project -> project.getStatus() == ProjectStatus.ALLOCATED
+        );
+        ModelViewer.displayListOfDisplayable(projects);
+        System.out.println("Enter the project ID to transfer: ");
         Scanner scanner = new Scanner(System.in);
         String projectID = scanner.nextLine();
         while (ProjectManager.notContainsProjectByID(projectID)) {
@@ -308,7 +316,36 @@ public class SupervisorMainPage {
                 throw new PageBackException();
             }
         }
-        System.out.println("Enter the new supervisor transfer to");
+        Project project;
+        try {
+            project = ProjectRepository.getInstance().getByID(projectID);
+        } catch (ModelNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        if (!Objects.equals(project.getSupervisorID(), supervisor.getID())) {
+            System.out.println("Project created by other supervisor! No access!");
+            System.out.println("Enter enter to continue, or enter b to exit");
+            String input = scanner.nextLine();
+            if (input.equals("b")) {
+                throw new PageBackException();
+            }
+            supervisorRequestForTransfer(supervisor);
+            throw new PageBackException();
+        }
+        if (project.getStatus() != ProjectStatus.ALLOCATED) {
+            System.out.println("Project not allocated!");
+            System.out.println("Enter enter to continue, or enter b to exit");
+            String input = scanner.nextLine();
+            if (input.equals("b")) {
+                throw new PageBackException();
+            }
+            supervisorRequestForTransfer(supervisor);
+            throw new PageBackException();
+        }
+        ChangePage.changePage();
+        System.out.println("Here is the project:");
+        ModelViewer.displaySingleDisplayable(project);
+        System.out.println("Enter the new supervisor ID transfer to: ");
         String newSupervisor = scanner.nextLine();
         while (!FacultyRepository.getInstance().contains(newSupervisor)) {
             System.out.println("User Not Found! Enter again or Enter b to exit");
@@ -317,12 +354,27 @@ public class SupervisorMainPage {
                 throw new PageBackException();
             }
         }
-        try {
-            ProjectManager.transferToNewSupervisor(projectID, newSupervisor);
-            System.out.println("Transfer done!");
-        } catch (ModelNotFoundException e) {
-            throw new RuntimeException(e);
+        String oldStudentID = project.getStudentID();
+        String oldSupervisorID = project.getSupervisorID();
+
+        ChangePage.changePage();
+
+        project.setSupervisorID(newSupervisor);
+        System.out.println("Here is the new project after changing the supervisor:");
+        ModelViewer.displaySingleDisplayable(project);
+        System.out.println("Are you sure you want to change the supervisor? (Y/[N])");
+        String input = new Scanner(System.in).nextLine();
+        if (!input.equalsIgnoreCase("Y")) {
+            System.out.println("Project supervisor change cancelled!");
+            System.out.println("Enter enter to continue");
+            new Scanner(System.in).nextLine();
+            throw new PageBackException();
         }
+
+        SupervisorManager.transferToNewSupervisor(projectID, oldSupervisorID, newSupervisor, oldStudentID);
+        System.out.println("Successfully sent request for transfer!");
+        System.out.println("Enter enter to continue");
+        new Scanner(System.in).nextLine();
         throw new PageBackException();
     }
 

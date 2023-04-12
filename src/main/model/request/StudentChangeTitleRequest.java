@@ -135,12 +135,12 @@ public class StudentChangeTitleRequest implements Request {
 
     @Override
     public String getDisplayableString() {
-        return String.format("| %-18s | %-25s |\n", "Request ID", requestID) +
-                String.format("| %-18s | %-25s |\n", "Request Type", requestType) +
-                String.format("| %-18s | %-25s |\n", "Request Status", requestStatus) +
-                String.format("| %-18s | %-25s |\n", "Project ID", projectID) +
-                String.format("| %-18s | %-25s |\n", "Supervisor ID", supervisorID) +
-                String.format("| %-18s | %-25s |\n", "Student ID", studentID) +
-                String.format("| %-18s | %-25s |\n", "New Title", newTitle);
+        return String.format("| %-18s | %-27s |\n", "Request ID", requestID) +
+                String.format("| %-18s | %-27s |\n", "Request Type", requestType) +
+                String.format("| %-18s | %-27s |\n", "Request Status", requestStatus) +
+                String.format("| %-18s | %-27s |\n", "Project ID", projectID) +
+                String.format("| %-18s | %-27s |\n", "Supervisor ID", supervisorID) +
+                String.format("| %-18s | %-27s |\n", "Student ID", studentID) +
+                String.format("| %-18s | %-27s |\n", "New Title", newTitle);
     }
 }
