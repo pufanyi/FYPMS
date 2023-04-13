@@ -1,17 +1,22 @@
 package main.controller.request;
 
+import main.model.project.ProjectStatus;
 import main.model.request.Request;
 import main.model.request.RequestStatus;
 import main.model.request.TransferStudentRequest;
 import main.model.user.Supervisor;
+import main.repository.project.ProjectRepository;
 import main.repository.request.RequestRepository;
 import main.repository.user.FacultyRepository;
 import main.utils.exception.repository.ModelAlreadyExistsException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class SupervisorManager {
+    public static int MAX_NUM_OF_STUDENTS_PER_SUPERVISOR = 2;
+
     /**
      * Transfer a student to a new supervisor
      *
@@ -53,5 +58,23 @@ public class SupervisorManager {
         return RequestRepository.getInstance().findByRules(
                 request -> Objects.equals(request.getSupervisorID(), supervisor.getID())
         );
+    }
+
+    public static int getNumOfStudents(String supervisorID) {
+        return ProjectRepository.getInstance().findByRules(
+                project -> project.getSupervisorID().equals(supervisorID),
+                project -> project.getStatus() == ProjectStatus.ALLOCATED ||
+                        project.getStatus() == ProjectStatus.RESERVED
+        ).size();
+    }
+
+    public static List<Supervisor> getAllUnavailableSupervisors() {
+        List<Supervisor> supervisors = new ArrayList<>();
+        for (Supervisor supervisor : FacultyRepository.getInstance()) {
+            if (getNumOfStudents(supervisor.getID()) >= MAX_NUM_OF_STUDENTS_PER_SUPERVISOR) {
+                supervisors.add(supervisor);
+            }
+        }
+        return supervisors;
     }
 }

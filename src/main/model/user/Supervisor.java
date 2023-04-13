@@ -24,8 +24,6 @@ public class Supervisor implements User {
     private String email;
     private String hashedPassword;
 
-    private Integer numOfSupervisingProject;
-
     /**
      * Constructs a new Supervisor object with the specified supervisor ID.
      *
@@ -37,7 +35,6 @@ public class Supervisor implements User {
         this.supervisorID = supervisorID;
         this.supervisorName = supervisorName;
         this.email = email;
-        this.numOfSupervisingProject = 0;
     }
 
     /**
@@ -53,7 +50,6 @@ public class Supervisor implements User {
         this.supervisorID = supervisorID;
         this.supervisorName = supervisorName;
         this.email = email;
-        this.numOfSupervisingProject = 0;
     }
 
     /**
@@ -72,7 +68,6 @@ public class Supervisor implements User {
         this.supervisorID = EmptyID.EMPTY_ID;
         this.supervisorName = EmptyID.EMPTY_ID;
         this.email = EmptyID.EMPTY_ID;
-        this.numOfSupervisingProject = 0;
     }
 
     public static User getUser(Map<String, String> map) {
@@ -117,17 +112,5 @@ public class Supervisor implements User {
     @Override
     public String getEmail() {
         return this.email;
-    }
-
-    public void incNumOfSupervisingProject(){
-        this.numOfSupervisingProject++;
-    }
-
-    public void decNumOfSupervisingProject(){
-        this.numOfSupervisingProject++;
-    }
-
-    public int getNumOfSupervisingProject(){
-        return this.numOfSupervisingProject;
     }
 }

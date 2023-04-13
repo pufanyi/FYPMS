@@ -1,5 +1,6 @@
 package main.controller.request;
 
+import main.controller.project.ProjectManager;
 import main.model.project.Project;
 import main.model.project.ProjectStatus;
 import main.model.request.*;
@@ -77,6 +78,7 @@ public class StudentManager {
         student.setStatus(StudentStatus.PENDING);
         StudentRepository.getInstance().update(student);
         RequestRepository.getInstance().add(request);
+        ProjectManager.updateProjectsStatus();
         return requestID;
     }
 

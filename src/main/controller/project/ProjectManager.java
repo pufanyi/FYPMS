@@ -1,6 +1,6 @@
 package main.controller.project;
 
-import main.boundary.modelviewer.ModelViewer;
+import main.controller.request.SupervisorManager;
 import main.model.project.Project;
 import main.model.project.ProjectStatus;
 import main.model.user.Student;
@@ -12,12 +12,12 @@ import main.repository.user.StudentRepository;
 import main.utils.config.Location;
 import main.utils.exception.repository.ModelAlreadyExistsException;
 import main.utils.exception.repository.ModelNotFoundException;
-import main.utils.exception.ui.PageBackException;
 import main.utils.iocontrol.CSVReader;
 import main.utils.parameters.EmptyID;
 
+import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
+import java.util.Set;
 
 /**
  * A class manages the project
@@ -35,6 +35,7 @@ public class ProjectManager {
         Project p1 = ProjectRepository.getInstance().getByID(projectID);
         p1.setProjectTitle(newTitle);
         ProjectRepository.getInstance().update(p1);
+        ProjectManager.updateProjectsStatus();
     }
 
     /**
@@ -66,6 +67,7 @@ public class ProjectManager {
     public static void createProject(String projectID, String projectTitle, String supervisorID) throws ModelAlreadyExistsException {
         Project p1 = new Project(projectID, projectTitle, supervisorID);
         ProjectRepository.getInstance().add(p1);
+        ProjectManager.updateProjectsStatus();
     }
 
     /**
@@ -78,6 +80,7 @@ public class ProjectManager {
     public static Project createProject(String projectTitle, String supervisorID) throws ModelAlreadyExistsException {
         Project p1 = new Project(getNewProjectID(), projectTitle, supervisorID);
         ProjectRepository.getInstance().add(p1);
+        ProjectManager.updateProjectsStatus();
         return p1;
     }
 
@@ -128,17 +131,16 @@ public class ProjectManager {
         if (!FacultyRepository.getInstance().contains(supervisorID)) {
             throw new IllegalStateException("Supervisor Not Found!");
         }
-        Supervisor oldsupervisor=FacultyRepository.getInstance().getByID(p1.getSupervisorID());
-        Supervisor newsupervisor=FacultyRepository.getInstance().getByID(supervisorID);
-        oldsupervisor.decNumOfSupervisingProject();
-        newsupervisor.incNumOfSupervisingProject();
+        Supervisor oldsupervisor = FacultyRepository.getInstance().getByID(p1.getSupervisorID());
+        Supervisor newsupervisor = FacultyRepository.getInstance().getByID(supervisorID);
+        Student student = StudentRepository.getInstance().getByID(p1.getStudentID());
+        student.setSupervisorID(supervisorID);
         p1.setSupervisorID(supervisorID);
         ProjectRepository.getInstance().update(p1);
         FacultyRepository.getInstance().update(oldsupervisor);
         FacultyRepository.getInstance().update(newsupervisor);
-        if (oldsupervisor.getNumOfSupervisingProject()==1) controlProjectStatus(oldsupervisor);
-        if (newsupervisor.getNumOfSupervisingProject()==2) controlProjectStatus(newsupervisor);
-
+        StudentRepository.getInstance().update(student);
+        ProjectManager.updateProjectsStatus();
     }
 
 
@@ -159,8 +161,8 @@ public class ProjectManager {
         } catch (ModelNotFoundException e) {
             throw new IllegalStateException("Student not found");
         }
-        String supervisorID=p1.getSupervisorID();
-        Supervisor supervisor=FacultyRepository.getInstance().getByID(supervisorID);
+        String supervisorID = p1.getSupervisorID();
+        Supervisor supervisor = FacultyRepository.getInstance().getByID(supervisorID);
         student.setProjectID(EmptyID.EMPTY_ID);
         student.setSupervisorID(EmptyID.EMPTY_ID);
         student.setStatus(StudentStatus.DEREGISTERED);
@@ -170,7 +172,7 @@ public class ProjectManager {
         ProjectRepository.getInstance().update(p1);
         StudentRepository.getInstance().update(student);
         FacultyRepository.getInstance().update(supervisor);
-        if (supervisor.getNumOfSupervisingProject()==1) controlProjectStatus(supervisor);
+        ProjectManager.updateProjectsStatus();
     }
 
     /**
@@ -199,28 +201,12 @@ public class ProjectManager {
         student.setProjectID(projectID);
         student.setSupervisorID(p1.getSupervisorID());
         student.setStatus(StudentStatus.REGISTERED);
-        String supervisorID=p1.getSupervisorID();
-        Supervisor supervisor=FacultyRepository.getInstance().getByID(supervisorID);
-        supervisor.incNumOfSupervisingProject();
+        String supervisorID = p1.getSupervisorID();
+        Supervisor supervisor = FacultyRepository.getInstance().getByID(supervisorID);
         ProjectRepository.getInstance().update(p1);
         StudentRepository.getInstance().update(student);
         FacultyRepository.getInstance().update(supervisor);
-        if (supervisor.getNumOfSupervisingProject()==2) controlProjectStatus(supervisor);
-    }
-
-    public static void controlProjectStatus(Supervisor supervisor) throws ModelNotFoundException {
-        if (supervisor.getNumOfSupervisingProject()>=2){
-            for (Project p:ProjectRepository.getInstance().findByRules(p1->(p1.getSupervisorID().equals(supervisor.getID()) && EmptyID.isEmptyID(p1.getStudentID())))){
-                p.setStatus(ProjectStatus.UNAVAILABLE);
-                ProjectRepository.getInstance().update(p);
-            }
-        }
-        else {
-            for (Project p:ProjectRepository.getInstance().findByRules(p1->p1.getSupervisorID().equals(supervisor.getID())&& EmptyID.isEmptyID(p1.getStudentID()))){
-                p.setStatus(ProjectStatus.AVAILABLE);
-                ProjectRepository.getInstance().update(p);
-            }
-        }
+        ProjectManager.updateProjectsStatus();
     }
 
     /**
@@ -314,5 +300,23 @@ public class ProjectManager {
 
     public static List<Project> getAllProjectsBySupervisor(String supervisorID) {
         return ProjectRepository.getInstance().findByRules(p -> p.getSupervisorID().equalsIgnoreCase(supervisorID));
+    }
+
+    public static void updateProjectsStatus() {
+        List<Supervisor> supervisors = SupervisorManager.getAllUnavailableSupervisors();
+        Set<String> supervisorIDs = new HashSet<>();
+        for (Supervisor supervisor : supervisors) {
+            supervisorIDs.add(supervisor.getID());
+        }
+        List<Project> projects = ProjectRepository.getInstance().getList();
+        for (Project project : projects) {
+            if (supervisorIDs.contains(project.getSupervisorID()) && project.getStatus() == ProjectStatus.AVAILABLE) {
+                project.setStatus(ProjectStatus.UNAVAILABLE);
+            }
+            if (!supervisorIDs.contains(project.getSupervisorID()) && project.getStatus() == ProjectStatus.UNAVAILABLE) {
+                project.setStatus(ProjectStatus.AVAILABLE);
+            }
+        }
+        ProjectRepository.getInstance().updateAll(projects);
     }
 }

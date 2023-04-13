@@ -39,14 +39,6 @@ public class RequestManager {
         }
     }
 
-    public static void ctrlNumOfRequest(String sid) throws ModelNotFoundException {
-        Supervisor s=FacultyRepository.getInstance().getByID(sid);
-        if (s.getNumOfSupervisingProject() >= 2)
-            for (Request r : RequestRepository.getInstance().findByRules(p ->p.getStatus().equals(RequestStatus.PENDING) && (p instanceof StudentRegistrationRequest) && p.getSupervisorID().equals(sid))) {
-                rejectRequestForStatus(r.getID());
-            }
-        //p.getSupervisorID().equals(sid)
-    }
     public static void rejectRequestForStatus(String requestID) throws ModelNotFoundException {
         Request r1 = RequestRepository.getInstance().getByID(requestID);
         try {
@@ -75,17 +67,11 @@ public class RequestManager {
         if (request instanceof TransferStudentRequest transferStudentRequest) {
             String projectID = transferStudentRequest.getProjectID();
             String newSupervisorID = transferStudentRequest.getNewSupervisorID();
-            Supervisor newsupervisor=FacultyRepository.getInstance().getByID(newSupervisorID);
-            if (newsupervisor.getNumOfSupervisingProject()<2) {
-                try {
-                    ProjectManager.transferToNewSupervisor(projectID, newSupervisorID);
-                } catch (ModelNotFoundException e) {
-                    e.printStackTrace();
-                }
-            }
-            else {
-                System.out.println("The new supervisor has reached max number of supervising project");
-
+            Supervisor newsupervisor = FacultyRepository.getInstance().getByID(newSupervisorID);
+            try {
+                ProjectManager.transferToNewSupervisor(projectID, newSupervisorID);
+            } catch (ModelNotFoundException e) {
+                e.printStackTrace();
             }
         } else {
             throw new IllegalArgumentException("Request is not a TransferStudentRequest");
@@ -105,39 +91,24 @@ public class RequestManager {
         }
     }
 
-    private static void approveStudentRegistrationRequest(Request request) throws ModelNotFoundException, PageBackException {
+    private static void approveStudentRegistrationRequest(Request request) throws ModelNotFoundException {
         if (request instanceof StudentRegistrationRequest studentRegistrationRequest) {
             String projectID = studentRegistrationRequest.getProjectID();
             String studentID = studentRegistrationRequest.getStudentID();
             String supervisorID = studentRegistrationRequest.getSupervisorID();
             Supervisor supervisor = FacultyRepository.getInstance().getByID(supervisorID);
-            if (supervisor.getNumOfSupervisingProject()>=2){
-                System.out.println("The supervisor who create this project has reached the maximum number of supervising project");
-                System.out.println("Press <Enter> to continue");
-                new Scanner(System.in).nextLine();
-                throw new PageBackException();
-            }
-
             try {
                 ProjectManager.allocateProject(projectID, studentID);
             } catch (ModelNotFoundException e) {
                 e.printStackTrace();
             }
-            ctrlNumOfRequest(supervisorID);
 
         } else {
             throw new IllegalArgumentException("Request is not a StudentRegistrationRequest");
         }
     }
 
-    public static void approveRequest(Request request) throws ModelNotFoundException, PageBackException {
-        if (request.getStatus() != RequestStatus.PENDING) {
-            System.out.println("Request is not pending");
-            System.out.println("Press enter to go back.");
-            new Scanner(System.in).nextLine();
-            throw new PageBackException();
-            //return;
-        }
+    public static void approveRequest(Request request) throws ModelNotFoundException {
         switch (request.getRequestType()) {
             case STUDENT_CHANGE_TITLE -> approveStudentChangeTitleRequest(request);
             case SUPERVISOR_TRANSFER_STUDENT -> approveTransferStudentRequest(request);
@@ -151,7 +122,7 @@ public class RequestManager {
             Request request = RequestRepository.getInstance().getByID(requestID);
             approveRequest(request);
             approveRequestForStatus(requestID);
-        } catch (ModelNotFoundException | PageBackException e) {
+        } catch (ModelNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -167,6 +138,7 @@ public class RequestManager {
                 Project project = ProjectManager.getByID(projectID);
                 project.setStatus(ProjectStatus.AVAILABLE);
                 ProjectRepository.getInstance().update(project);
+                ProjectManager.updateProjectsStatus();
             } catch (ModelNotFoundException e) {
                 e.printStackTrace();
             }
@@ -178,7 +150,7 @@ public class RequestManager {
     public static void rejectRequest(String requestID) throws PageBackException {
         try {
             Request request = RequestRepository.getInstance().getByID(requestID);
-            if (request.getStatus()!=RequestStatus.PENDING){
+            if (request.getStatus() != RequestStatus.PENDING) {
                 System.out.println("Request is not pending");
                 System.out.println("Press enter to go back.");
                 new Scanner(System.in).nextLine();

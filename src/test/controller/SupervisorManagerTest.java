@@ -1,5 +1,6 @@
 package test.controller;
 
+import main.controller.project.ProjectManager;
 import main.model.project.Project;
 import main.model.user.Student;
 import main.model.user.Supervisor;
@@ -33,6 +34,7 @@ public class SupervisorManagerTest {
         ProjectRepository.getInstance().add(project1);
         FacultyRepository.getInstance().add(supervisor1);
         FacultyRepository.getInstance().add(supervisor2);
+        ProjectManager.updateProjectsStatus();
     }
 
 }
