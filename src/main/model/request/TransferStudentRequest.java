@@ -176,7 +176,7 @@ public class TransferStudentRequest implements Request {
                 String.format("| %-18s | %-27s |\n", "Project ID", projectID) +
                 String.format("| %-18s | %-27s |\n", "Supervisor ID", supervisorID) +
                 String.format("| %-18s | %-27s |\n", "New Supervisor ID", newSupervisorID) +
-                String.format("| %-18s | %-27s |\n", "Student ID", studentID) +
-                String.format("| %-18s | %-27s |\n", "Coordinator ID", EmptyID.isEmptyID(coordinatorID) ? "N/A" : coordinatorID);
+                String.format("| %-18s | %-27s |\n", "Student ID", studentID);
+//                String.format("| %-18s | %-27s |\n", "Coordinator ID", EmptyID.isEmptyID(coordinatorID) ? "N/A" : coordinatorID);
     }
 }

@@ -1,5 +1,6 @@
 package test.controller;
 
+import main.controller.project.ProjectManager;
 import main.controller.request.CoordinatorManager;
 import main.controller.request.RequestManager;
 import main.controller.request.StudentManager;
@@ -43,6 +44,7 @@ public class StudentRegistrationMangerTest {
         StudentRepository.getInstance().add(student2);
         ProjectRepository.getInstance().add(project1);
         FacultyRepository.getInstance().add(supervisor1);
+        ProjectManager.updateProjectsStatus();
     }
 
     @Test

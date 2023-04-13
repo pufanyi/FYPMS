@@ -22,7 +22,6 @@ import main.utils.exception.repository.ModelAlreadyExistsException;
 import main.utils.exception.repository.ModelNotFoundException;
 import main.utils.exception.ui.PageBackException;
 import main.utils.iocontrol.IntGetter;
-import main.utils.parameters.EmptyID;
 import main.utils.ui.BoundaryStrings;
 import main.utils.ui.ChangePage;
 
@@ -221,6 +220,7 @@ public class SupervisorMainPage {
             System.out.println("Project creation cancelled!");
             try {
                 ProjectRepository.getInstance().remove(p.getID());
+                ProjectManager.updateProjectsStatus();
             } catch (ModelNotFoundException e) {
                 throw new RuntimeException(e);
             }

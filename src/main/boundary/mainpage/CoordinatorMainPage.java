@@ -191,7 +191,11 @@ public class CoordinatorMainPage {
         int choice = IntGetter.readInt();
         switch (choice) {
             case 1 -> {
-                RequestManager.approveRequest(requestID);
+                try {
+                    RequestManager.approveRequest(requestID);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 System.out.println("Request processed successfully.");
             }
             case 2 -> {
