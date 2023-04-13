@@ -7,8 +7,6 @@ import main.utils.iocontrol.IntGetter;
 import main.utils.ui.BoundaryStrings;
 import main.utils.ui.ChangePage;
 
-import java.util.Scanner;
-
 /**
  * This class provides a UI for the user to enter the system.
  */
@@ -18,10 +16,8 @@ public class Welcome {
      */
     public static void welcome() {
         ChangePage.changePage();
-        System.out.println(BoundaryStrings.separator);
-        System.out.println("Welcome to the Final Year Project Management System!");
-        System.out.println(BoundaryStrings.logo);
-        Scanner scanner = new Scanner(System.in);
+        System.out.println(BoundaryStrings.WELCOME_LOGO);
+        System.out.println("Welcome to the Final Year Project Management System!\n");
         System.out.println(BoundaryStrings.separator);
         System.out.println("Please enter your choice to continue.");
         System.out.println("\t1. Login");
