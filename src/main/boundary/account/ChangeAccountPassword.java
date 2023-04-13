@@ -22,7 +22,7 @@ public class ChangeAccountPassword {
      * go back.
      *
      * @param userType the type of user who wants to change their password
-     * @param userID the ID of the user who wants to change their password
+     * @param userID   the ID of the user who wants to change their password
      * @throws PageBackException if the user chooses to go back
      */
     public static void askToRetry(UserType userType, String userID) throws PageBackException {
@@ -44,7 +44,7 @@ public class ChangeAccountPassword {
      * {@code PageBackException} to return to the previous page.
      *
      * @param userType the type of user who wants to change their password
-     * @param userID the ID of the user who wants to change their password
+     * @param userID   the ID of the user who wants to change their password
      * @throws PageBackException if the user chooses to go back
      */
     public static void changePassword(UserType userType, String userID) throws PageBackException {

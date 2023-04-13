@@ -1,7 +1,5 @@
 package main.model.request;
 
-import main.utils.parameters.EmptyID;
-
 import java.util.Map;
 
 public class StudentRegistrationRequest implements Request {

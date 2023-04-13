@@ -8,14 +8,10 @@ import main.boundary.modelviewer.ProjectViewer;
 import main.controller.account.AccountManager;
 import main.controller.project.ProjectManager;
 import main.controller.request.StudentManager;
-import main.model.Model;
 import main.model.project.Project;
 import main.model.project.ProjectStatus;
-import main.model.request.Request;
-import main.model.request.StudentChangeTitleRequest;
 import main.model.user.*;
 import main.repository.project.ProjectRepository;
-import main.repository.request.RequestRepository;
 import main.repository.user.StudentRepository;
 import main.utils.exception.repository.ModelNotFoundException;
 import main.utils.exception.ui.PageBackException;
@@ -24,7 +20,6 @@ import main.utils.parameters.EmptyID;
 import main.utils.ui.BoundaryStrings;
 import main.utils.ui.ChangePage;
 
-import java.util.Objects;
 import java.util.Scanner;
 
 /**

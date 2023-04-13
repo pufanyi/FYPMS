@@ -13,6 +13,7 @@ import java.util.Scanner;
 public class ViewUserProfile {
     /**
      * Displays the user's profile.
+     *
      * @param user the user whose profile is to be displayed.
      */
     public static void viewUserProfile(User user) {

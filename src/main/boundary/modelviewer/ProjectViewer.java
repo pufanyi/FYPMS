@@ -5,16 +5,13 @@ import main.model.project.Project;
 import main.model.project.ProjectStatus;
 import main.model.user.Student;
 import main.model.user.StudentStatus;
-import main.model.user.Supervisor;
 import main.repository.project.ProjectRepository;
 import main.repository.user.FacultyRepository;
-import main.repository.user.StudentRepository;
 import main.utils.exception.repository.ModelNotFoundException;
 import main.utils.exception.ui.PageBackException;
 import main.utils.iocontrol.IntGetter;
 import main.utils.ui.BoundaryStrings;
 import main.utils.ui.ChangePage;
-import org.junit.jupiter.params.provider.EnumSource;
 
 import java.util.List;
 import java.util.Objects;
@@ -175,10 +172,9 @@ public class ProjectViewer {
      */
     public static void viewAvailableProjectList(Student student) throws PageBackException {
         ChangePage.changePage();
-        if(student.getStatus() == StudentStatus.REGISTERED){
+        if (student.getStatus() == StudentStatus.REGISTERED) {
             System.out.println("You are not allowed to view available projects as you are registered to a project.");
-        }
-        else{
+        } else {
             System.out.println("View Available Project List");
             ModelViewer.displayListOfDisplayable(ProjectManager.viewAvailableProjects());
         }
