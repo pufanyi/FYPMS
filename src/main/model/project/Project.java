@@ -237,7 +237,7 @@ public class Project implements Model, Displayable {
      * Display the information of the project.
      */
     private String getProjectInformationString() {
-        return String.format("| Project Status              | %-30s |\n", getStatus());
+        return String.format("| Project Status              | %-39s |\n", getStatus().showColorfulString());
     }
 
     /**

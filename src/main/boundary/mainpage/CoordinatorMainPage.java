@@ -200,11 +200,9 @@ public class CoordinatorMainPage {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                System.out.println("Request processed successfully.");
             }
             case 2 -> {
                 RequestManager.rejectRequest(requestID);
-                System.out.println("Request processed successfully.");
             }
             case 3 -> {
                 acceptOrRejectRequest();
@@ -220,6 +218,14 @@ public class CoordinatorMainPage {
                 throw new PageBackException();
             }
         }
+        ChangePage.changePage();
+        try {
+            request = RequestManager.getRequest(requestID);
+        } catch (ModelNotFoundException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Here is the updated request:");
+        ModelViewer.displaySingleDisplayable(request);
         System.out.println("Press enter to go back.");
         new Scanner(System.in).nextLine();
         throw new PageBackException();

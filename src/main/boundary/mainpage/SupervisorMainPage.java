@@ -182,11 +182,9 @@ public class SupervisorMainPage {
         if (status.equalsIgnoreCase("A") ||
                 status.equalsIgnoreCase("APPROVED")) {
             RequestManager.approveRequest(requestID);
-            System.out.println("Request approved successfully!");
         } else if (status.equalsIgnoreCase("REJECTED") ||
                 status.equalsIgnoreCase("R")) {
             RequestManager.rejectRequest(requestID);
-            System.out.println("Request rejected successfully!");
         } else {
             System.out.println("Invalid status!");
             System.out.println("Enter enter to go back, or enter 0 to retry");
@@ -195,6 +193,14 @@ public class SupervisorMainPage {
                 supervisorApproveOrRejectRequest(supervisor);
             }
         }
+        try {
+            request = RequestRepository.getInstance().getByID(requestID);
+        } catch (ModelNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        ChangePage.changePage();
+        System.out.println("Here is the updated request:");
+        ModelViewer.displaySingleDisplayable(request);
         System.out.println("Enter enter to continue");
         new Scanner(System.in).nextLine();
         throw new PageBackException();

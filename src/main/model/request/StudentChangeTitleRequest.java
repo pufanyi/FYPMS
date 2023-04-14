@@ -133,7 +133,7 @@ public class StudentChangeTitleRequest implements Request {
     public String getDisplayableString() {
         return String.format("| %-18s | %-27s |\n", "Request ID", requestID) +
                 String.format("| %-18s | %-27s |\n", "Request Type", requestType) +
-                String.format("| %-18s | %-27s |\n", "Request Status", requestStatus) +
+                String.format("| %-18s | %-36s |\n", "Request Status", requestStatus.showColorfulStatus()) +
                 String.format("| %-18s | %-27s |\n", "Project ID", projectID) +
                 String.format("| %-18s | %-27s |\n", "Supervisor ID", supervisorID) +
                 String.format("| %-18s | %-27s |\n", "Student ID", studentID) +
