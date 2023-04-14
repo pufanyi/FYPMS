@@ -1,7 +1,7 @@
 package main.boundary.account;
 
 import main.model.user.User;
-import main.utils.exception.ui.PageBackException;
+import main.utils.exception.PageBackException;
 import main.utils.ui.ChangePage;
 import main.utils.ui.UserTypeGetter;
 

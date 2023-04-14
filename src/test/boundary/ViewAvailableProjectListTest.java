@@ -4,8 +4,8 @@ import main.boundary.modelviewer.ProjectViewer;
 import main.controller.project.ProjectManager;
 import main.model.user.Student;
 import main.repository.project.ProjectRepository;
-import main.utils.exception.repository.ModelAlreadyExistsException;
-import main.utils.exception.ui.PageBackException;
+import main.utils.exception.ModelAlreadyExistsException;
+import main.utils.exception.PageBackException;
 
 public class ViewAvailableProjectListTest {
     public static void main(String[] args) throws ModelAlreadyExistsException, PageBackException {

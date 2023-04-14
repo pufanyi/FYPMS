@@ -6,7 +6,7 @@ import main.model.user.Student;
 import main.model.user.Supervisor;
 import main.repository.user.FacultyRepository;
 import main.repository.user.StudentRepository;
-import main.utils.exception.repository.ModelNotFoundException;
+import main.utils.exception.ModelNotFoundException;
 import main.utils.parameters.EmptyID;
 
 import java.util.Map;

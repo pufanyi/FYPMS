@@ -14,8 +14,9 @@ import main.model.user.Coordinator;
 import main.model.user.User;
 import main.model.user.UserType;
 import main.repository.user.CoordinatorRepository;
-import main.utils.exception.repository.ModelNotFoundException;
-import main.utils.exception.ui.PageBackException;
+import main.utils.exception.ModelNotFoundException;
+import main.utils.exception.PageBackException;
+import main.utils.exception.SupervisorStudentsLimitExceedException;
 import main.utils.iocontrol.IntGetter;
 import main.utils.ui.BoundaryStrings;
 import main.utils.ui.ChangePage;
@@ -197,8 +198,14 @@ public class CoordinatorMainPage {
             case 1 -> {
                 try {
                     RequestManager.approveRequest(requestID);
-                } catch (Exception e) {
-                    e.printStackTrace();
+                } catch (SupervisorStudentsLimitExceedException e) {
+                    System.out.println("Supervisor's students limit exceeded.");
+                    System.out.println("Press enter to go back, or enter [0] to try again.");
+                    String choice2 = new Scanner(System.in).nextLine();
+                    if (choice2.equals("0")) {
+                        acceptOrRejectRequest();
+                    }
+                    throw new PageBackException();
                 }
             }
             case 2 -> {

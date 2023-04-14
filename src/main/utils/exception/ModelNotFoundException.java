@@ -1,4 +1,4 @@
-package main.utils.exception.repository;
+package main.utils.exception;
 
 /**
  * The {@link ModelNotFoundException} class is a custom exception that is thrown when a requested model cannot be found

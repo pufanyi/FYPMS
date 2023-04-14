@@ -9,7 +9,7 @@ import main.repository.request.RequestRepository;
 import main.repository.user.CoordinatorRepository;
 import main.repository.user.FacultyRepository;
 import main.repository.user.StudentRepository;
-import main.utils.exception.repository.ModelAlreadyExistsException;
+import main.utils.exception.ModelAlreadyExistsException;
 import org.junit.jupiter.api.BeforeEach;
 
 public class SupervisorManagerTest {

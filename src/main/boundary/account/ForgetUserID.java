@@ -2,7 +2,7 @@ package main.boundary.account;
 
 import main.controller.account.AccountManager;
 import main.model.user.User;
-import main.utils.exception.ui.PageBackException;
+import main.utils.exception.PageBackException;
 import main.utils.ui.ChangePage;
 
 import java.io.IOException;

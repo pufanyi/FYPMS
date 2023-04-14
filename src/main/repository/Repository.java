@@ -1,8 +1,8 @@
 package main.repository;
 
 import main.model.Model;
-import main.utils.exception.repository.ModelAlreadyExistsException;
-import main.utils.exception.repository.ModelNotFoundException;
+import main.utils.exception.ModelAlreadyExistsException;
+import main.utils.exception.ModelNotFoundException;
 import main.utils.iocontrol.Savable;
 
 import java.util.ArrayList;

@@ -5,7 +5,7 @@ import main.model.user.UserType;
 import main.repository.user.CoordinatorRepository;
 import main.repository.user.FacultyRepository;
 import main.repository.user.StudentRepository;
-import main.utils.exception.repository.ModelNotFoundException;
+import main.utils.exception.ModelNotFoundException;
 
 /**
  * A class that provides a utility for finding users in the database.

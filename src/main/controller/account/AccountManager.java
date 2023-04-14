@@ -9,9 +9,9 @@ import main.repository.user.CoordinatorRepository;
 import main.repository.user.FacultyRepository;
 import main.repository.user.StudentRepository;
 import main.utils.config.Location;
-import main.utils.exception.model.PasswordIncorrectException;
-import main.utils.exception.repository.ModelAlreadyExistsException;
-import main.utils.exception.repository.ModelNotFoundException;
+import main.utils.exception.PasswordIncorrectException;
+import main.utils.exception.ModelAlreadyExistsException;
+import main.utils.exception.ModelNotFoundException;
 import main.utils.iocontrol.CSVReader;
 
 import java.util.ArrayList;

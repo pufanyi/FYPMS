@@ -1,4 +1,4 @@
-package main.utils.exception.ui;
+package main.utils.exception;
 
 /**
  * The {@link PageBackException} class is a custom exception that is thrown when a user attempts to navigate back from a UI page

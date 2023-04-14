@@ -1,4 +1,4 @@
-package main.utils.exception.model;
+package main.utils.exception;
 
 /**
  * The PasswordIncorrectException class represents an exception that is thrown when a password entered by the user is incorrect.

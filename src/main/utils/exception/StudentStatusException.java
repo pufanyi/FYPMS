@@ -1,4 +1,4 @@
-package main.utils.exception.model;
+package main.utils.exception;
 
 import main.model.user.StudentStatus;
 

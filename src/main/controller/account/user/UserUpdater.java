@@ -7,7 +7,7 @@ import main.model.user.User;
 import main.repository.user.CoordinatorRepository;
 import main.repository.user.FacultyRepository;
 import main.repository.user.StudentRepository;
-import main.utils.exception.repository.ModelNotFoundException;
+import main.utils.exception.ModelNotFoundException;
 
 /**
  * The UserUpdater class provides a utility for updating users in the database.

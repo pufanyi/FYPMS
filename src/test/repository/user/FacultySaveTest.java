@@ -2,7 +2,7 @@ package test.repository.user;
 
 import main.model.user.Supervisor;
 import main.repository.user.FacultyRepository;
-import main.utils.exception.repository.ModelAlreadyExistsException;
+import main.utils.exception.ModelAlreadyExistsException;
 
 /**
  * This class is used to test saving the faculty repository.

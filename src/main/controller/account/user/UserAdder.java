@@ -7,7 +7,7 @@ import main.model.user.User;
 import main.repository.user.CoordinatorRepository;
 import main.repository.user.FacultyRepository;
 import main.repository.user.StudentRepository;
-import main.utils.exception.repository.ModelAlreadyExistsException;
+import main.utils.exception.ModelAlreadyExistsException;
 
 /**
  * The UserAdder class provides a utility for adding users to the database.

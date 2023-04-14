@@ -2,7 +2,7 @@ package main.boundary.welcome;
 
 import main.boundary.account.ForgetUserID;
 import main.boundary.account.LoginUI;
-import main.utils.exception.ui.PageBackException;
+import main.utils.exception.PageBackException;
 import main.utils.iocontrol.IntGetter;
 import main.utils.ui.BoundaryStrings;
 import main.utils.ui.ChangePage;

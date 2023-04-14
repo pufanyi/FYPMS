@@ -2,8 +2,8 @@ package test.repository.user;
 
 import main.model.user.Supervisor;
 import main.repository.user.FacultyRepository;
-import main.utils.exception.repository.ModelAlreadyExistsException;
-import main.utils.exception.repository.ModelNotFoundException;
+import main.utils.exception.ModelAlreadyExistsException;
+import main.utils.exception.ModelNotFoundException;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;

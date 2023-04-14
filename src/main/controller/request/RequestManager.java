@@ -11,8 +11,9 @@ import main.repository.project.ProjectRepository;
 import main.repository.request.RequestRepository;
 import main.repository.user.FacultyRepository;
 import main.repository.user.StudentRepository;
-import main.utils.exception.repository.ModelNotFoundException;
-import main.utils.exception.ui.PageBackException;
+import main.utils.exception.ModelNotFoundException;
+import main.utils.exception.PageBackException;
+import main.utils.exception.SupervisorStudentsLimitExceedException;
 
 import java.util.Objects;
 import java.util.Scanner;
@@ -63,11 +64,13 @@ public class RequestManager {
         }
     }
 
-    private static void approveTransferStudentRequest(Request request) throws ModelNotFoundException {
+    private static void approveTransferStudentRequest(Request request) throws SupervisorStudentsLimitExceedException {
         if (request instanceof TransferStudentRequest transferStudentRequest) {
             String projectID = transferStudentRequest.getProjectID();
             String newSupervisorID = transferStudentRequest.getNewSupervisorID();
-            Supervisor newsupervisor = FacultyRepository.getInstance().getByID(newSupervisorID);
+            if (SupervisorManager.getNumOfStudents(newSupervisorID) >= SupervisorManager.MAX_NUM_OF_STUDENTS_PER_SUPERVISOR) {
+                throw new SupervisorStudentsLimitExceedException();
+            }
             try {
                 ProjectManager.transferToNewSupervisor(projectID, newSupervisorID);
             } catch (ModelNotFoundException e) {
@@ -108,7 +111,7 @@ public class RequestManager {
         }
     }
 
-    public static void approveRequest(Request request) throws ModelNotFoundException {
+    public static void approveRequest(Request request) throws ModelNotFoundException, SupervisorStudentsLimitExceedException {
         switch (request.getRequestType()) {
             case STUDENT_CHANGE_TITLE -> approveStudentChangeTitleRequest(request);
             case SUPERVISOR_TRANSFER_STUDENT -> approveTransferStudentRequest(request);
@@ -117,7 +120,7 @@ public class RequestManager {
         }
     }
 
-    public static void approveRequest(String requestID) {
+    public static void approveRequest(String requestID) throws SupervisorStudentsLimitExceedException {
         try {
             Request request = RequestRepository.getInstance().getByID(requestID);
             approveRequest(request);

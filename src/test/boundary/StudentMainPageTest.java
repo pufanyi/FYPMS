@@ -5,7 +5,7 @@ import main.controller.account.AccountManager;
 import main.model.user.User;
 import main.model.user.UserType;
 import main.repository.user.StudentRepository;
-import main.utils.exception.repository.ModelAlreadyExistsException;
+import main.utils.exception.ModelAlreadyExistsException;
 
 public class StudentMainPageTest {
     public static void main(String[] args) throws ModelAlreadyExistsException {

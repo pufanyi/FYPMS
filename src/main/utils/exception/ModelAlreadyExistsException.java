@@ -1,4 +1,4 @@
-package main.utils.exception.repository;
+package main.utils.exception;
 
 /**
  * The {@link ModelAlreadyExistsException} class is a custom exception that is thrown when an attempt is made to add a

@@ -4,8 +4,8 @@ import main.boundary.account.LoginUI;
 import main.controller.account.AccountManager;
 import main.model.user.UserType;
 import main.repository.user.StudentRepository;
-import main.utils.exception.repository.ModelAlreadyExistsException;
-import main.utils.exception.ui.PageBackException;
+import main.utils.exception.ModelAlreadyExistsException;
+import main.utils.exception.PageBackException;
 
 public class LoginUITest {
     public static void main(String[] args) throws PageBackException, ModelAlreadyExistsException {

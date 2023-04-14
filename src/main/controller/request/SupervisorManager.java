@@ -8,7 +8,7 @@ import main.model.user.Supervisor;
 import main.repository.project.ProjectRepository;
 import main.repository.request.RequestRepository;
 import main.repository.user.FacultyRepository;
-import main.utils.exception.repository.ModelAlreadyExistsException;
+import main.utils.exception.ModelAlreadyExistsException;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -6,9 +6,9 @@ import main.boundary.mainpage.SupervisorMainPage;
 import main.controller.account.AccountManager;
 import main.model.user.User;
 import main.model.user.UserType;
-import main.utils.exception.model.PasswordIncorrectException;
-import main.utils.exception.repository.ModelNotFoundException;
-import main.utils.exception.ui.PageBackException;
+import main.utils.exception.PasswordIncorrectException;
+import main.utils.exception.ModelNotFoundException;
+import main.utils.exception.PageBackException;
 import main.utils.ui.ChangePage;
 
 import java.util.Scanner;

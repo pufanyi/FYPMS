@@ -18,9 +18,10 @@ import main.model.user.UserType;
 import main.repository.project.ProjectRepository;
 import main.repository.request.RequestRepository;
 import main.repository.user.FacultyRepository;
-import main.utils.exception.repository.ModelAlreadyExistsException;
-import main.utils.exception.repository.ModelNotFoundException;
-import main.utils.exception.ui.PageBackException;
+import main.utils.exception.ModelAlreadyExistsException;
+import main.utils.exception.ModelNotFoundException;
+import main.utils.exception.PageBackException;
+import main.utils.exception.SupervisorStudentsLimitExceedException;
 import main.utils.iocontrol.IntGetter;
 import main.utils.ui.BoundaryStrings;
 import main.utils.ui.ChangePage;
@@ -180,7 +181,11 @@ public class SupervisorMainPage {
         String status = new Scanner(System.in).nextLine();
         if (status.equalsIgnoreCase("A") ||
                 status.equalsIgnoreCase("APPROVED")) {
-            RequestManager.approveRequest(requestID);
+            try {
+                RequestManager.approveRequest(requestID);
+            } catch (SupervisorStudentsLimitExceedException e) {
+                throw new RuntimeException(e);
+            }
         } else if (status.equalsIgnoreCase("REJECTED") ||
                 status.equalsIgnoreCase("R")) {
             RequestManager.rejectRequest(requestID);
