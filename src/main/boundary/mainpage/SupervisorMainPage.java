@@ -320,6 +320,12 @@ public class SupervisorMainPage {
                 project -> Objects.equals(project.getSupervisorID(), supervisor.getID()),
                 project -> project.getStatus() == ProjectStatus.ALLOCATED
         );
+        if (projects.isEmpty()) {
+            System.out.println("No project available for transfer!");
+            System.out.println("Enter enter to continue");
+            new Scanner(System.in).nextLine();
+            throw new PageBackException();
+        }
         ModelViewer.displayListOfDisplayable(projects);
         System.out.println("Enter the project ID to transfer: ");
         Scanner scanner = new Scanner(System.in);
