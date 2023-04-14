@@ -50,12 +50,12 @@ public class SupervisorMainPage {
             System.out.println("\t3. Create a project ");
             System.out.println("\t4. View all my projects");
             System.out.println("\t5. Modify title of projects");
+            System.out.println("\t6. View all pending student requests");
             if (SupervisorManager.getPendingRequestsBySupervisor(supervisor.getID()).size() > 0) {
-                System.out.println("\t6. View all pending student requests " + BoundaryStrings.NEW);
+                System.out.println("\t7. Approve/Reject student requests " + BoundaryStrings.NEW);
             } else {
-                System.out.println("\t6. View all pending student requests");
+                System.out.println("\t7. Approve/Reject student requests");
             }
-            System.out.println("\t7. Approve/Reject student requests");
             System.out.println("\t8. Submit request for transferring");
             System.out.println("\t9. View all incoming/outgoing requests' history and status");
             System.out.println("\t10. Logout");
