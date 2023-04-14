@@ -172,7 +172,7 @@ public class ProjectViewer {
      */
     public static void viewAvailableProjectList(Student student) throws PageBackException {
         ChangePage.changePage();
-        if (student.getStatus() == StudentStatus.REGISTERED) {
+        if (student.getStatus() != StudentStatus.UNREGISTERED) {
             System.out.println("You are not allowed to view available projects as you are registered to a project.");
         } else {
             System.out.println("View Available Project List");
