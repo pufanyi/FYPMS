@@ -5,6 +5,7 @@ import main.model.project.Project;
 import main.model.project.ProjectStatus;
 import main.model.request.Request;
 import main.model.request.RequestStatus;
+import main.model.request.RequestType;
 import main.model.user.Student;
 import main.model.user.StudentStatus;
 import main.model.user.Supervisor;
@@ -120,5 +121,11 @@ public class CoordinatorManager {
      */
     public static List<Request> getPendingRequests() {
         return RequestRepository.getInstance().findByRules(request -> request.getStatus() == RequestStatus.PENDING);
+    }
+
+    public static List<Request> getAllPendingRequestsCoordinatorCanManage() {
+        return RequestRepository.getInstance().findByRules(
+                request -> request.getStatus() == RequestStatus.PENDING,
+                request -> request.getRequestType() != RequestType.STUDENT_CHANGE_TITLE);
     }
 }

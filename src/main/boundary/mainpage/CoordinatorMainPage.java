@@ -85,7 +85,7 @@ public class CoordinatorMainPage {
             System.out.println("\t3. View all projects");
             System.out.println("\t4. View pending requests");
             System.out.println("\t5. View all requests' history and status");
-            if (CoordinatorManager.getPendingRequests().size() > 0) {
+            if (CoordinatorManager.getAllPendingRequestsCoordinatorCanManage().size() > 0) {
                 System.out.println("\t6. Accept or reject requests " + BoundaryStrings.NEW);
             } else {
                 System.out.println("\t6. Accept or reject requests");
