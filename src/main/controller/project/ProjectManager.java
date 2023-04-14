@@ -167,7 +167,6 @@ public class ProjectManager {
         student.setSupervisorID(EmptyID.EMPTY_ID);
         student.setStatus(StudentStatus.DEREGISTERED);
         p1.setStudentID(EmptyID.EMPTY_ID);
-        p1.setSupervisorID(EmptyID.EMPTY_ID);
         p1.setStatus(ProjectStatus.AVAILABLE);
         ProjectRepository.getInstance().update(p1);
         StudentRepository.getInstance().update(student);
