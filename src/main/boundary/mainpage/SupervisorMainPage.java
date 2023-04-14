@@ -55,7 +55,6 @@ public class SupervisorMainPage {
             } else {
                 System.out.println("\t6. View all pending student requests");
             }
-            System.out.println("\t6. View all pending student requests");
             System.out.println("\t7. Approve/Reject student requests");
             System.out.println("\t8. Submit request for transferring");
             System.out.println("\t9. View all incoming/outgoing requests' history and status");
