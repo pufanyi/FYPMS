@@ -1,5 +1,8 @@
 package main.model.project;
 
+/**
+ * This enum represents the status of a project
+ */
 public enum ProjectStatus {
     /**
      * The project is available for allocation
