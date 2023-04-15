@@ -1,5 +1,5 @@
 ### IntelliJ IDEA ###
-out/
+out/production
 !**/src/main/**/out/
 !**/src/test/**/out/
 .idea/workspace.xml
@@ -31,9 +31,6 @@ bin/
 
 ### Mac OS ###
 .DS_Store
-
-### JAR Files ###
-*.jar
 
 ### LaTeX Build Files ###
 *.aux
