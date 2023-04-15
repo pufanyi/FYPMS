@@ -67,6 +67,24 @@ Also, you can also use JetBrains IntelliJ IDEA to run the project.
 
 The main class is `src/main/Main.java`.
 
+## UML Class Diagram
+
+### Main Diagram
+
+![Main Diagram](UMLClassDiagram/main.svg)
+
+### Entity Sub-Diagram
+
+![Entity Sub-Diagram](UMLClassDiagram/entity.svg)
+
+### Controller Sub-Diagram
+
+![Controller Sub-Diagram](UMLClassDiagram/controller.svg)
+
+### Boundary Sub-Diagram
+
+![Boundary Sub-Diagram](UMLClassDiagram/boundary.svg)
+
 ## Team Members
 
 | Name         | Github Account                                  | Email                 |
