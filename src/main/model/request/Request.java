@@ -47,6 +47,10 @@ public interface Request extends Model, Displayable {
      */
     RequestType getRequestType();
 
+    /**
+     * Get the ID of the supervisor.
+     * @return the ID of the supervisor.
+     */
     String getSupervisorID();
 
     default String getSplitter() {

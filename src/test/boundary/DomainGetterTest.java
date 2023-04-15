@@ -11,6 +11,8 @@ public class DomainGetterTest {
     /**
      * The main method that calls AttributeGetter class to get the user type/domain of the user.
      * It prints the retrieved user type/domain of the user.
+     *
+     * @param args command line arguments
      */
     public static void main(String[] args) {
         UserType userType = AttributeGetter.getDomain();

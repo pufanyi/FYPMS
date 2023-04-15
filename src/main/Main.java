@@ -6,6 +6,9 @@ package main;
 
 import main.boundary.UIEntry;
 
+/**
+ * The Main class is the entry point of the program.
+ */
 public class Main {
 
     /**

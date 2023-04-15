@@ -20,6 +20,7 @@ public class LoginUITest {
      It clears the student repository, registers a new student with a userID of "FPU001",
      a name of "Pu Fanyi", and an email of "FPU001@e.ntu.edu.sg". Then it calls the LoginUI
      login function to test if the login functionality works correctly.
+     @param args command line arguments
      @throws PageBackException if the user navigates back to the previous page
      @throws ModelAlreadyExistsException if the model to be registered already exists in the repository
      */

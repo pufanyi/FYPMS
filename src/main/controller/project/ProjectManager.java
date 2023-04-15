@@ -76,6 +76,8 @@ public class ProjectManager {
      * @param projectTitle the title of the project
      * @param supervisorID the ID of the supervisor
      * @throws ModelAlreadyExistsException if the project already exists
+     *
+     * @return the new project
      */
     public static Project createProject(String projectTitle, String supervisorID) throws ModelAlreadyExistsException {
         Project p1 = new Project(getNewProjectID(), projectTitle, supervisorID);

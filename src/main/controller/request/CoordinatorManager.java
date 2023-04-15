@@ -112,6 +112,8 @@ public class CoordinatorManager {
 
     /**
      * display all the requests
+     *
+     * @return a list of requests
      */
     public static List<Request> getAllRequests() {
         return RequestRepository.getInstance().getList();

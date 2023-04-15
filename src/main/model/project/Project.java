@@ -53,6 +53,10 @@ public class Project implements Model, Displayable {
         this.status = ProjectStatus.AVAILABLE;
     }
 
+    /**
+     * Get the ID of the project
+     * @param map the map of the project
+     */
     public Project(Map<String, String> map) {
         fromMap(map);
     }

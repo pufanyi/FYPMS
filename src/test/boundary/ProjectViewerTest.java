@@ -12,6 +12,7 @@ public class ProjectViewerTest {
     /**
      * The main method is used to test the viewAllProject method from the ProjectViewer class.
      * It calls the viewAllProject method to display all projects stored in the system.
+     * @param args command line arguments
      * @throws PageBackException if the user chooses to go back to the previous page
      */
     public static void main(String[] args) throws PageBackException {

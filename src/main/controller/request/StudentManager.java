@@ -62,6 +62,7 @@ public class StudentManager {
      * @throws ModelNotFoundException if the project or student is not found
      * @throws StudentStatusException if the student is not unregistered
      * @throws IllegalStateException  if the project is not available
+     * @throws ModelAlreadyExistsException if the request already exists
      */
     public static String registerStudent(String projectID, String studentID) throws ModelNotFoundException, StudentStatusException, IllegalStateException, ModelAlreadyExistsException {
 
@@ -95,6 +96,8 @@ public class StudentManager {
      * @param newTitle  the new title of the project
      * @param studentID the student ID of the student that is going to change the title of the project
      * @throws ModelAlreadyExistsException if the request already exists
+     * @throws ModelNotFoundException      if the project or student is not found
+     * @return the ID of the new Request
      */
     public static String changeProjectTitle(String projectID, String newTitle, String studentID) throws ModelAlreadyExistsException, ModelNotFoundException {
         String requestID = RequestManager.getNewRequestID();

@@ -231,6 +231,12 @@ public abstract class Repository<ModelObject extends Model> extends Savable<Mode
      * @param <ModelObject> the type of model object stored in the repository
      */
     public interface RepositoryRule<ModelObject> {
+        /**
+         * Checks whether the specified model object matches the rule.
+         *
+         * @param modelObject the model object to check
+         * @return true if the model object matches the rule, false otherwise
+         */
         boolean isMatch(ModelObject modelObject);
     }
 }

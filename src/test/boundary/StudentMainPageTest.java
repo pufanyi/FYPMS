@@ -15,6 +15,8 @@ public class StudentMainPageTest {
     /**
      * Tests the StudentMainPage class by creating a new student user and opening the main page for that user.
      *
+     * @param args command line arguments
+     *
      * @throws ModelAlreadyExistsException if the student already exists in the system.
      */
     public static void main(String[] args) throws ModelAlreadyExistsException {
