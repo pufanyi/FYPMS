@@ -18,9 +18,7 @@ main.repository.project
 main.repository.request
 main.repository.user
 main.utils.config
-main.utils.exception.model
-main.utils.exception.repository
-main.utils.exception.ui
+main.utils.exception
 main.utils.iocontrol
 main.utils.parameters
 main.utils.ui
