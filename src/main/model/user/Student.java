@@ -90,6 +90,14 @@ public class Student implements User {
         this.status = StudentStatus.UNREGISTERED;
     }
 
+    /**
+
+     Creates a new Student object based on the information in the provided map.
+     The map should contain the necessary information to construct the Student object,
+     such as the student's name, email, and ID.
+     @param informationMap a map containing the information required to create a new Student object
+     @return a new Student object with the information provided in the map
+     */
     public static User getUser(Map<String, String> informationMap) {
         return new Student(informationMap);
     }

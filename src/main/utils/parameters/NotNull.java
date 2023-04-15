@@ -26,10 +26,22 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * This is a custom annotation that can be used to mark methods, fields, parameters,
+ * local variables, and type usages as not nullable.
+ */
 @Retention(RetentionPolicy.CLASS)
 @Target({ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER, ElementType.LOCAL_VARIABLE, ElementType.TYPE_USE})
 public @interface NotNull {
+    /**
+     * A description of why the annotated element cannot be null.
+     */
     String value() default "";
 
+    /**
+     * The exception to be thrown if the annotated element is null.
+     *
+     * @return the exception to be thrown if the annotated element is null
+     */
     Class<? extends Exception> exception() default Exception.class;
 }

@@ -12,6 +12,9 @@ import main.repository.user.StudentRepository;
 import main.utils.exception.ModelAlreadyExistsException;
 import org.junit.jupiter.api.BeforeEach;
 
+/**
+ * A test class that tests the functionality of the SupervisorManager class.
+ */
 public class SupervisorManagerTest {
     /**
      * Before all test, clear all data in the database

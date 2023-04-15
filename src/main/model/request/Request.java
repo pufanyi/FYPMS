@@ -3,6 +3,9 @@ package main.model.request;
 import main.model.Displayable;
 import main.model.Model;
 
+/**
+ * This interface represents a request.
+ */
 public interface Request extends Model, Displayable {
     /**
      * Get the ID of the request.
@@ -44,6 +47,10 @@ public interface Request extends Model, Displayable {
      */
     RequestType getRequestType();
 
+    /**
+     * Get the ID of the supervisor.
+     * @return the ID of the supervisor.
+     */
     String getSupervisorID();
 
     default String getSplitter() {

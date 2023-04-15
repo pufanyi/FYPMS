@@ -40,6 +40,11 @@ public class Coordinator implements User {
 
     /**
      * constructor of a new Coordinator object with the specified coordinator ID and password
+     *
+     * @param coordinatorID   the ID of the coordinator
+     * @param coordinatorName the name of the coordinator
+     * @param email           the email of the coordinator
+     * @param password        the password of the coordinator
      */
     public Coordinator(String coordinatorID, String coordinatorName, String email, @NotNull String password) {
         this.coordinatorID = coordinatorID;
@@ -66,6 +71,13 @@ public class Coordinator implements User {
         this.email = "";
     }
 
+    /**
+     * Returns a User object representing a Coordinator, created from the given map of key-value pairs.
+     * The map should contain the necessary data to construct a Coordinator object.
+     *
+     * @param map a Map object containing key-value pairs of user data
+     * @return a User object representing a Coordinator
+     */
     public static User getUser(Map<String, String> map) {
         return new Coordinator(map);
     }
@@ -88,11 +100,21 @@ public class Coordinator implements User {
         return this.coordinatorName;
     }
 
+    /**
+     * gets the hashed password of the user
+     *
+     * @return the hashed password of the user
+     */
     @Override
     public String getHashedPassword() {
         return this.hashedPassword;
     }
 
+    /**
+     * sets the hashed password of the user
+     *
+     * @param hashedPassword the hashed password of the user
+     */
     @Override
     public void setHashedPassword(String hashedPassword) {
         this.hashedPassword = hashedPassword;

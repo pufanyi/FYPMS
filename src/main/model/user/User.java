@@ -20,8 +20,18 @@ public interface User extends Model {
      */
     String getUserName();
 
+    /**
+     * Gets the hashed password of the user
+     *
+     * @return the hashed password of the user
+     */
     String getHashedPassword();
 
+    /**
+     * Sets the hashed password of the user
+     *
+     * @param hashedPassword the hashed password of the user
+     */
     void setHashedPassword(String hashedPassword);
 
     /**
@@ -35,6 +45,8 @@ public interface User extends Model {
      * The function to check if username is equal to the user's username regardless of case
      *
      * @param username the username to be checked
+     *
+     * @return true if the username is equal to the user's username regardless of case
      */
     default boolean checkUsername(String username) {
         return this.getUserName().equalsIgnoreCase(username);

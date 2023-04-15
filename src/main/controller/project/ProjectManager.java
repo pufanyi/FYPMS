@@ -76,6 +76,8 @@ public class ProjectManager {
      * @param projectTitle the title of the project
      * @param supervisorID the ID of the supervisor
      * @throws ModelAlreadyExistsException if the project already exists
+     *
+     * @return the new project
      */
     public static Project createProject(String projectTitle, String supervisorID) throws ModelAlreadyExistsException {
         Project p1 = new Project(getNewProjectID(), projectTitle, supervisorID);
@@ -289,18 +291,38 @@ public class ProjectManager {
         return ProjectRepository.getInstance().getByID(projectID);
     }
 
+    /**
+     * get all available projects
+     *
+     * @return all available projects
+     */
     public static List<Project> getAllAvailableProject() {
         return ProjectRepository.getInstance().findByRules(p -> p.getStatus() == ProjectStatus.AVAILABLE);
     }
 
+    /**
+     * get project by the project ID
+     * @param projectID the ID of the project
+     * @return the project
+     * @throws ModelNotFoundException if the project is not found
+     */
     public static Project getProjectByID(String projectID) throws ModelNotFoundException {
         return ProjectRepository.getInstance().getByID(projectID);
     }
 
+    /**
+     * get all projects by supervisor
+     *
+     * @param supervisorID the ID of the supervisor
+     * @return all projects by supervisor
+     */
     public static List<Project> getAllProjectsBySupervisor(String supervisorID) {
         return ProjectRepository.getInstance().findByRules(p -> p.getSupervisorID().equalsIgnoreCase(supervisorID));
     }
 
+    /**
+     * update the status of all projects
+     */
     public static void updateProjectsStatus() {
         List<Supervisor> supervisors = SupervisorManager.getAllUnavailableSupervisors();
         Set<String> supervisorIDs = new HashSet<>();

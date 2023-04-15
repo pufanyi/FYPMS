@@ -19,6 +19,9 @@ import main.utils.exception.ModelNotFoundException;
 
 import java.util.List;
 
+/**
+ * CoordinatorManager class
+ */
 public class CoordinatorManager {
     /**
      * approve a student deregistration request
@@ -109,6 +112,8 @@ public class CoordinatorManager {
 
     /**
      * display all the requests
+     *
+     * @return a list of requests
      */
     public static List<Request> getAllRequests() {
         return RequestRepository.getInstance().getList();
@@ -123,6 +128,11 @@ public class CoordinatorManager {
         return RequestRepository.getInstance().findByRules(request -> request.getStatus() == RequestStatus.PENDING && request.getRequestType() != RequestType.STUDENT_CHANGE_TITLE);
     }
 
+    /**
+     * get all the pending requests that the coordinator can manage
+     *
+     * @return a list of pending requests
+     */
     public static List<Request> getAllPendingRequestsCoordinatorCanManage() {
         return RequestRepository.getInstance().findByRules(
                 request -> request.getStatus() == RequestStatus.PENDING,

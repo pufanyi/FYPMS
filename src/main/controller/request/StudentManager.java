@@ -18,6 +18,9 @@ import main.utils.exception.ModelNotFoundException;
 
 import java.util.List;
 
+/**
+ * StudentManager class
+ */
 public class StudentManager {
     /**
      * student request to deregister from a project
@@ -44,7 +47,7 @@ public class StudentManager {
             throw new StudentStatusException(student.getStatus());
         }
         String supervisorID = project.getSupervisorID();
-        System.err.println("supervisorID = " + supervisorID);
+//        System.err.println("supervisorID = " + supervisorID);
         Request request = new StudentDeregistrationRequest(requestID, studentID, supervisorID, projectID);
         RequestRepository.getInstance().add(request);
         return requestID;
@@ -59,6 +62,7 @@ public class StudentManager {
      * @throws ModelNotFoundException if the project or student is not found
      * @throws StudentStatusException if the student is not unregistered
      * @throws IllegalStateException  if the project is not available
+     * @throws ModelAlreadyExistsException if the request already exists
      */
     public static String registerStudent(String projectID, String studentID) throws ModelNotFoundException, StudentStatusException, IllegalStateException, ModelAlreadyExistsException {
 
@@ -92,6 +96,8 @@ public class StudentManager {
      * @param newTitle  the new title of the project
      * @param studentID the student ID of the student that is going to change the title of the project
      * @throws ModelAlreadyExistsException if the request already exists
+     * @throws ModelNotFoundException      if the project or student is not found
+     * @return the ID of the new Request
      */
     public static String changeProjectTitle(String projectID, String newTitle, String studentID) throws ModelAlreadyExistsException, ModelNotFoundException {
         String requestID = RequestManager.getNewRequestID();
@@ -101,11 +107,22 @@ public class StudentManager {
         return requestID;
     }
 
+    /**
+     * get the student request history
+     * @param studentID the student ID
+     * @return the list of requests
+     */
     public static List<Request> getStudentRequestHistory(String studentID) {
 //        System.err.println("StudentRequestManager.getStudentRequestHistory studentID = " + studentID);
         return RequestRepository.getInstance().findByRules(request -> request.getStudentID().equals(studentID));
     }
 
+    /**
+     * get the student by ID
+     * @param studentID the student ID
+     * @return the student
+     * @throws ModelNotFoundException if the student is not found
+     */
     public static Student getByID(String studentID) throws ModelNotFoundException {
         return StudentRepository.getInstance().getByID(studentID);
     }

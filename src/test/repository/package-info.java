@@ -1,4 +1,4 @@
 /**
- * This package contains the repository classes for the test application.
+ * This package tests the repository classes.
  */
 package test.repository;

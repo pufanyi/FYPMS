@@ -55,6 +55,8 @@ public class ProjectViewer {
 
     /**
      * Prompts the user to enter a project ID and displays the details of the project with the matching ID using the ProjectRepository and Project object's displayProject() method.
+     *
+     * @throws PageBackException if the user chooses to go back to the previous page.
      */
     public static void generateDetailsByProjectID() throws PageBackException {
         System.out.println("Please Enter the ProjectID to search: ");
@@ -79,6 +81,7 @@ public class ProjectViewer {
 
     /**
      * Prompts the user to enter a supervisor ID and displays the details of projects supervised by the supervisor with the matching ID. It checks if the supervisor ID is valid using the FacultyRepository and handles cases where the supervisor is not found or the user wants to go back by throwing a PageBackException.
+     * @throws PageBackException if the user wants to go back
      */
     public static void generateDetailsBySupervisorID() throws PageBackException {
         System.out.println("Please enter the SupervisorID to search: ");
@@ -104,6 +107,7 @@ public class ProjectViewer {
 
     /**
      * Prompts the user to enter a student ID and displays the details of projects that require the student with the matching ID. It uses the ProjectRepository to find projects that match the student ID and calls the displayProject() method on each project to display their details. It also handles cases where no projects are found and prompts the user to go back using a PageBackException.
+     * @throws PageBackException if the user wants to go back
      */
     public static void generateDetailsByStudentID() throws PageBackException {
         System.out.println("Enter the StudentID to search");
@@ -167,7 +171,7 @@ public class ProjectViewer {
 
     /**
      * Displays the project details.
-     *
+     * @param student the student to display the project details for
      * @throws PageBackException if the user wants to go back
      */
     public static void viewAvailableProjectList(Student student) throws PageBackException {

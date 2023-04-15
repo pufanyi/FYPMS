@@ -12,6 +12,12 @@ import main.repository.user.StudentRepository;
  * This is used to test the whole application.
  */
 public class HardReload {
+    /**
+     * Clears the data from all repositories and reloads the main class.
+     * This is used for testing the whole application.
+     *
+     * @param args The command-line arguments passed to the main method.
+     */
     public static void main(String[] args) {
         StudentRepository.getInstance().clear();
         FacultyRepository.getInstance().clear();

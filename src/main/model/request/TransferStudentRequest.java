@@ -2,6 +2,9 @@ package main.model.request;
 
 import java.util.Map;
 
+/**
+ * A class that represents a transfer student request
+ */
 public class TransferStudentRequest implements Request {
     /**
      * The type of the request
@@ -166,6 +169,11 @@ public class TransferStudentRequest implements Request {
         return requestType;
     }
 
+    /**
+
+     Returns a formatted string representation of the request details for display purposes.
+     @return a string with formatted request details
+     */
     @Override
     public String getDisplayableString() {
         return String.format("| %-18s | %-27s |\n", "Request ID", requestID) +

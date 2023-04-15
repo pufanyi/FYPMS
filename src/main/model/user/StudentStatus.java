@@ -1,5 +1,8 @@
 package main.model.user;
 
+/**
+ * This enum represents the status of a student
+ */
 public enum StudentStatus {
     /**
      * the student has submitted a  request that is pending to be processed
