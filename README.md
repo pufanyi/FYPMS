@@ -6,7 +6,7 @@ NTU 2023 Semester 2 SC2002 Group Project - Final Year Project Management System 
 
 [GitHub Repository](https://github.com/pufanyi/FYPMS)
 
-[Documentation](https://pufanyi.github.io/FYPMS/)
+[Documentation](https://pufanyi.github.io/FYPMS/docs)
 
 ## Description
 
