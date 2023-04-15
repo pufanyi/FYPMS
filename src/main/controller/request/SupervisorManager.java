@@ -65,7 +65,7 @@ public class SupervisorManager {
 
     public static int getNumOfStudents(String supervisorID) {
         return ProjectRepository.getInstance().findByRules(
-                project -> project.getSupervisorID().equals(supervisorID),
+                project -> project.getSupervisorID().equalsIgnoreCase(supervisorID),
                 project -> project.getStatus() == ProjectStatus.ALLOCATED ||
                         project.getStatus() == ProjectStatus.RESERVED
         ).size();
