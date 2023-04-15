@@ -37,22 +37,6 @@ FYPMS is a web or mobile application designed for students, supervisors, and coo
   - [x] Accept or Reject Requests
   - [x] Generate Project Details
 
-
-[//]: # ([x] Read My Profile)
-
-[//]: # ([x] Change My Password)
-
-[//]: # ([x] View All Projects)
-
-[//]: # ([x] View Pending Requests)
-
-[//]: # ([x] View All Requests' History and Status)
-
-[//]: # ([x] Accept or Reject Requests)
-
-[//]: # ([x] Generate Project Details)
-
-
 ## Documentation
 
 Here is the link to the [documentation](https://pufanyi.github.io/FYPMS/).
