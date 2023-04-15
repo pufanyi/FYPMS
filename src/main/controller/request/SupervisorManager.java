@@ -3,6 +3,7 @@ package main.controller.request;
 import main.model.project.ProjectStatus;
 import main.model.request.Request;
 import main.model.request.RequestStatus;
+import main.model.request.RequestType;
 import main.model.request.TransferStudentRequest;
 import main.model.user.Supervisor;
 import main.repository.project.ProjectRepository;
@@ -56,7 +57,9 @@ public class SupervisorManager {
 
     public static List<Request> getAllRequestHistory(Supervisor supervisor) {
         return RequestRepository.getInstance().findByRules(
-                request -> Objects.equals(request.getSupervisorID(), supervisor.getID())
+                request -> Objects.equals(request.getSupervisorID(), supervisor.getID()),
+                request -> request.getRequestType() != RequestType.STUDENT_REGISTRATION,
+                request -> request.getRequestType() != RequestType.STUDENT_DEREGISTRATION
         );
     }
 
