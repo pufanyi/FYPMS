@@ -16,6 +16,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+/**
+ * AccountManagerTest class
+ */
 public class AccountManagerTest {
     /**
      * Before all test, clear all data in the database

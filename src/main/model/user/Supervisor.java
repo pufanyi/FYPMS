@@ -94,11 +94,21 @@ public class Supervisor implements User {
         return this.supervisorName;
     }
 
+    /**
+     * Gets the hashed password of the user
+     *
+     * @return the hashed password of the user
+     */
     @Override
     public String getHashedPassword() {
         return this.hashedPassword;
     }
 
+    /**
+     * Sets the hashed password of the user
+     *
+     * @param hashedPassword the hashed password of the user
+     */
     @Override
     public void setHashedPassword(String hashedPassword) {
         this.hashedPassword = hashedPassword;

@@ -15,7 +15,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * SupervisorManager class
+ */
 public class SupervisorManager {
+    /**
+     * The maximum number of students that a supervisor can supervise
+     */
     public static int MAX_NUM_OF_STUDENTS_PER_SUPERVISOR = 2;
 
     /**
@@ -45,6 +51,11 @@ public class SupervisorManager {
         return RequestRepository.getInstance().findByRules(request -> request.getID().equals(supervisorID));
     }
 
+    /**
+     * get all pending requests by supervisor
+     * @param supervisorID the supervisor ID of the supervisor that is going to view all pending requests
+     * @return list of pending requests
+     */
     public static List<Request> getPendingRequestsBySupervisor(String supervisorID) {
         if (!FacultyRepository.getInstance().contains(supervisorID)) {
             throw new IllegalArgumentException("Supervisor does not exist");
@@ -56,6 +67,12 @@ public class SupervisorManager {
         );
     }
 
+    /**
+     * get all request history by supervisor
+     * @param supervisor the supervisor that is going to view all request history
+     *
+     * @return list of request history
+     */
     public static List<Request> getAllRequestHistory(Supervisor supervisor) {
         return RequestRepository.getInstance().findByRules(
                 request -> Objects.equals(request.getSupervisorID(), supervisor.getID()),
@@ -64,6 +81,12 @@ public class SupervisorManager {
         );
     }
 
+    /**
+     * get number of students that a supervisor is supervising
+     * @param supervisorID the supervisor ID of the supervisor
+     *
+     * @return number of students that a supervisor is supervising
+     */
     public static int getNumOfStudents(String supervisorID) {
         return ProjectRepository.getInstance().findByRules(
                 project -> project.getSupervisorID().equals(supervisorID),
@@ -72,6 +95,11 @@ public class SupervisorManager {
         ).size();
     }
 
+    /**
+     * get all supervisors that are not available
+     *
+     * @return list of supervisors that are not available
+     */
     public static List<Supervisor> getAllUnavailableSupervisors() {
         List<Supervisor> supervisors = new ArrayList<>();
         for (Supervisor supervisor : FacultyRepository.getInstance()) {

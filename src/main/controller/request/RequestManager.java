@@ -18,7 +18,15 @@ import main.utils.exception.SupervisorStudentsLimitExceedException;
 import java.util.Objects;
 import java.util.Scanner;
 
+/**
+ * RequestManager class
+ */
 public class RequestManager {
+    /**
+     * get the request ID of the next request
+     *
+     * @return the request ID of the next request
+     */
     public static String getNewRequestID() {
         int max = 0;
         for (Request p : RequestRepository.getInstance()) {
@@ -30,6 +38,11 @@ public class RequestManager {
         return "R" + (max + 1);
     }
 
+    /**
+     * approve a request
+     * @param requestID the request ID
+     * @throws ModelNotFoundException if the request is not found
+     */
     public static void approveRequestForStatus(String requestID) throws ModelNotFoundException {
         Request r1 = RequestRepository.getInstance().getByID(requestID);
         try {
@@ -40,6 +53,11 @@ public class RequestManager {
         }
     }
 
+    /**
+     * reject a request
+     * @param requestID the request ID
+     * @throws ModelNotFoundException if the request is not found
+     */
     public static void rejectRequestForStatus(String requestID) throws ModelNotFoundException {
         Request r1 = RequestRepository.getInstance().getByID(requestID);
         try {
@@ -50,6 +68,12 @@ public class RequestManager {
         }
     }
 
+    /**
+     * approve the request of student change title
+     *
+     * @param request the request of student change title
+     * @throws IllegalArgumentException if the request is not a StudentChangeTitleRequest
+     */
     private static void approveStudentChangeTitleRequest(Request request) {
         if (request instanceof StudentChangeTitleRequest studentChangeTitleRequest) {
             String projectID = studentChangeTitleRequest.getProjectID();
@@ -64,6 +88,13 @@ public class RequestManager {
         }
     }
 
+    /**
+     * approve the request of supervisor to transfer student
+     * @param request the request of supervisor to transfer student
+     *
+     * @throws SupervisorStudentsLimitExceedException if the supervisor has reached the maximum number of students
+     * @throws IllegalArgumentException if the request is not a TransferStudentRequest
+     */
     private static void approveTransferStudentRequest(Request request) throws SupervisorStudentsLimitExceedException {
         if (request instanceof TransferStudentRequest transferStudentRequest) {
             String projectID = transferStudentRequest.getProjectID();
@@ -81,6 +112,12 @@ public class RequestManager {
         }
     }
 
+    /**
+     * approve the request of student deregistration
+     *
+     * @param request the request of student deregistration
+     * @throws IllegalArgumentException if the request is not a StudentDeregistrationRequest
+     */
     private static void approveStudentDeregistrationRequest(Request request) {
         if (request instanceof StudentDeregistrationRequest studentDeregistrationRequest) {
             String projectID = studentDeregistrationRequest.getProjectID();
@@ -94,6 +131,13 @@ public class RequestManager {
         }
     }
 
+    /**
+     * approve the request of student registration
+     * @param request the request of student registration
+     *
+     * @throws ModelNotFoundException if the project or supervisor is not found
+     * @throws IllegalArgumentException if the request is not a StudentRegistrationRequest
+     */
     private static void approveStudentRegistrationRequest(Request request) throws ModelNotFoundException {
         if (request instanceof StudentRegistrationRequest studentRegistrationRequest) {
             String projectID = studentRegistrationRequest.getProjectID();
@@ -111,6 +155,13 @@ public class RequestManager {
         }
     }
 
+    /**
+     * approve a request
+     * @param request the request to be approved
+     *
+     * @throws ModelNotFoundException if the request is not found
+     * @throws SupervisorStudentsLimitExceedException if the supervisor has reached the maximum number of students
+     */
     public static void approveRequest(Request request) throws ModelNotFoundException, SupervisorStudentsLimitExceedException {
         switch (request.getRequestType()) {
             case STUDENT_CHANGE_TITLE -> approveStudentChangeTitleRequest(request);
@@ -120,6 +171,12 @@ public class RequestManager {
         }
     }
 
+    /**
+     * approve a request
+     * @param requestID the request ID
+     *
+     * @throws SupervisorStudentsLimitExceedException if the supervisor has reached the maximum number of students
+     */
     public static void approveRequest(String requestID) throws SupervisorStudentsLimitExceedException {
         try {
             Request request = RequestRepository.getInstance().getByID(requestID);
@@ -130,6 +187,11 @@ public class RequestManager {
         }
     }
 
+    /**
+     * reject the request of student registration
+     * @param request the request of student registration
+     *
+     */
     private static void rejectStudentRegistrationRequest(Request request) {
         if (request instanceof StudentRegistrationRequest studentRegistrationRequest) {
             String projectID = studentRegistrationRequest.getProjectID();
@@ -150,6 +212,11 @@ public class RequestManager {
         }
     }
 
+    /**
+     * reject a request
+     * @param requestID the request ID
+     * @throws PageBackException if the request is not pending
+     */
     public static void rejectRequest(String requestID) throws PageBackException {
         try {
             Request request = RequestRepository.getInstance().getByID(requestID);
@@ -168,6 +235,12 @@ public class RequestManager {
         }
     }
 
+    /**
+     * get a request by ID
+     * @param requestID the request ID
+     * @return the request
+     * @throws ModelNotFoundException if the request is not found
+     */
     public static Request getRequest(String requestID) throws ModelNotFoundException {
         return RequestRepository.getInstance().getByID(requestID);
     }

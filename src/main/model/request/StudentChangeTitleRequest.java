@@ -2,6 +2,9 @@ package main.model.request;
 
 import java.util.Map;
 
+/**
+ * This class represents a student request to change the title of a project
+ */
 public class StudentChangeTitleRequest implements Request {
     /**
      * The type of the request
@@ -58,35 +61,67 @@ public class StudentChangeTitleRequest implements Request {
         fromMap(map);
     }
 
+    /**
+     * Get the id of the student
+     * @return the id of the student
+     */
     public String getStudentID() {
         return studentID;
     }
 
+    /**
+     * Set the id of the student
+     * @param studentID the id of the student
+     */
     public void setStudentID(String studentID) {
         this.studentID = studentID;
     }
 
+    /**
+     * Get the id of the supervisor
+     * @return the id of the supervisor
+     */
     @Override
     public String getSupervisorID() {
         return supervisorID;
     }
 
+    /**
+     * Set the id of the supervisor
+     * @param supervisorID the id of the supervisor
+     */
     public void setSupervisorID(String supervisorID) {
         this.supervisorID = supervisorID;
     }
 
+    /**
+     * Get the id of the project
+     * @return the id of the project
+     */
     public String getProjectID() {
         return projectID;
     }
 
+    /**
+     * Set the id of the project
+     * @param projectID the id of the project
+     */
     public void setProjectID(String projectID) {
         this.projectID = projectID;
     }
 
+    /**
+     * Get the new title of the project
+     * @return the new title of the project
+     */
     public String getNewTitle() {
         return newTitle;
     }
 
+    /**
+     * Set the new title of the project
+     * @param newTitle the new title of the project
+     */
     public void setNewTitle(String newTitle) {
         this.newTitle = newTitle;
     }
@@ -129,6 +164,13 @@ public class StudentChangeTitleRequest implements Request {
         this.requestStatus = status;
     }
 
+
+    /**
+     Returns a string representation of the object suitable for display purposes.
+     The string includes the request ID, request type, request status (with colorful formatting),
+     project ID, supervisor ID, student ID, and new title.
+     @return a formatted string representing the object for display purposes.
+     */
     @Override
     public String getDisplayableString() {
         return String.format("| %-18s | %-27s |\n", "Request ID", requestID) +

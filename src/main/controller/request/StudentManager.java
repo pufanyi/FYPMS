@@ -18,6 +18,9 @@ import main.utils.exception.ModelNotFoundException;
 
 import java.util.List;
 
+/**
+ * StudentManager class
+ */
 public class StudentManager {
     /**
      * student request to deregister from a project
@@ -101,11 +104,22 @@ public class StudentManager {
         return requestID;
     }
 
+    /**
+     * get the student request history
+     * @param studentID the student ID
+     * @return the list of requests
+     */
     public static List<Request> getStudentRequestHistory(String studentID) {
 //        System.err.println("StudentRequestManager.getStudentRequestHistory studentID = " + studentID);
         return RequestRepository.getInstance().findByRules(request -> request.getStudentID().equals(studentID));
     }
 
+    /**
+     * get the student by ID
+     * @param studentID the student ID
+     * @return the student
+     * @throws ModelNotFoundException if the student is not found
+     */
     public static Student getByID(String studentID) throws ModelNotFoundException {
         return StudentRepository.getInstance().getByID(studentID);
     }

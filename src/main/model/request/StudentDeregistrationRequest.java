@@ -2,6 +2,9 @@ package main.model.request;
 
 import java.util.Map;
 
+/**
+ * A request for a student to deregister from a project
+ */
 public class StudentDeregistrationRequest implements Request {
     /**
      * The type of the request
@@ -140,6 +143,10 @@ public class StudentDeregistrationRequest implements Request {
         this.requestStatus = status;
     }
 
+    /**
+     This method returns a formatted string representation of the request's information.
+     @return a string with all request information formatted in a table
+     */
     @Override
     public String getDisplayableString() {
         return String.format("| %-18s | %-27s |\n", "Request ID", requestID) +
