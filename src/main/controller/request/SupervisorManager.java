@@ -51,7 +51,8 @@ public class SupervisorManager {
         }
         return RequestRepository.getInstance().findByRules(
                 request -> request.getSupervisorID().equals(supervisorID),
-                request -> request.getStatus() == RequestStatus.PENDING
+                request -> request.getStatus() == RequestStatus.PENDING,
+                request -> request.getRequestType() != RequestType.SUPERVISOR_TRANSFER_STUDENT
         );
     }
 
