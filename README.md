@@ -2,6 +2,12 @@
 
 NTU 2023 Semester 2 SC2002 Group Project - Final Year Project Management System (FYPMS)
 
+## Links
+
+[GitHub Repository](https://github.com/pufanyi/FYPMS)
+
+[Documentation](https://pufanyi.github.io/FYPMS/)
+
 ## Description
 
 FYPMS (Final Year Project Management System) is a Java console application that utilizes object-oriented concepts to efficiently manage final year project settings. The program is designed with a focus on reusability, extensibility, and maintainability, allowing for easy upgrades and future development. It provides flexibility to accommodate different user types and their requirements.
@@ -60,10 +66,6 @@ Or there is a shell script `run.sh` and a Windows command script `run.cmd` to ru
 Also, you can also use JetBrains IntelliJ IDEA to run the project.
 
 The main class is `src/main/Main.java`.
-
-## Documentation
-
-Here is the link to the [documentation](https://pufanyi.github.io/FYPMS/docs).
 
 ## Team Members
 
