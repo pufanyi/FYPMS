@@ -7,6 +7,12 @@ import main.repository.project.ProjectRepository;
 import main.utils.exception.ModelAlreadyExistsException;
 import main.utils.exception.PageBackException;
 
+/**
+
+ This class tests the {@link ProjectViewer#viewAvailableProjectList(Student)} method
+ by creating a new project, registering a student, and displaying the list of available projects
+ for the student to choose from.
+ */
 public class ViewAvailableProjectListTest {
     public static void main(String[] args) throws ModelAlreadyExistsException, PageBackException {
         ProjectRepository.getInstance().clear();
