@@ -120,7 +120,7 @@ public class CoordinatorManager {
      * @return a list of pending requests
      */
     public static List<Request> getPendingRequests() {
-        return RequestRepository.getInstance().findByRules(request -> request.getStatus() == RequestStatus.PENDING);
+        return RequestRepository.getInstance().findByRules(request -> request.getStatus() == RequestStatus.PENDING && request.getRequestType() != RequestType.STUDENT_CHANGE_TITLE);
     }
 
     public static List<Request> getAllPendingRequestsCoordinatorCanManage() {
