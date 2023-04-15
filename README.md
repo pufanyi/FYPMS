@@ -37,9 +37,33 @@ FYPMS is a web or mobile application designed for students, supervisors, and coo
   - [x] Accept or Reject Requests
   - [x] Generate Project Details
 
+## Build
+
+Use JetBrains IntelliJ IDEA to build the project.
+
+The project is built with Java 17.
+
+The MANIFEST.MF file is located at `src/META-INF/MANIFEST.MF`.
+
+## Run
+
+The built jar file is located at `out/artifacts/FYPMS_jar/FYPMS.jar`.
+
+Run the jar file with the following command:
+
+```bash
+java -jar ./out/artifacts/FYPMS_jar/FYPMS.jar
+```
+
+Or there is a shell script `run.sh` and a Windows command script `run.cmd` to run the jar file.
+
+Also, you can also use JetBrains IntelliJ IDEA to run the project.
+
+The main class is `src/main/Main.java`.
+
 ## Documentation
 
-Here is the link to the [documentation](https://pufanyi.github.io/FYPMS/).
+Here is the link to the [documentation](https://pufanyi.github.io/FYPMS/docs).
 
 ## Team Members
 
