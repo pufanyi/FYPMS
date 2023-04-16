@@ -101,17 +101,17 @@ The java class `src/test/HardReload.java` is used to hard reload the database.
 
 ### Main Diagram
 
-![Main Diagram](UMLClassDiagram/main.svg)
+[![Main Diagram](UMLClassDiagram/main.svg)](UMLClassDiagram/main.svg)
 
 ### Entity Sub-Diagram
 
-![Entity Sub-Diagram](UMLClassDiagram/entity.svg)
+[![Entity Sub-Diagram](UMLClassDiagram/entity.svg)](UMLClassDiagram/entity.svg)
 
 ### Controller Sub-Diagram
 
-![Controller Sub-Diagram](UMLClassDiagram/controller.svg)
+[![Controller Sub-Diagram](UMLClassDiagram/controller.svg)](UMLClassDiagram/controller.svg)
 
 ### Boundary Sub-Diagram
 
-![Boundary Sub-Diagram](UMLClassDiagram/boundary.svg)
+[![Boundary Sub-Diagram](UMLClassDiagram/boundary.svg)](UMLClassDiagram/boundary.svg)
 
