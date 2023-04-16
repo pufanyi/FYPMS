@@ -8,6 +8,17 @@ NTU 2023 Semester 2 SC2002 Group Project - Final Year Project Management System 
 
 [Documentation](https://pufanyi.github.io/FYPMS/docs)
 
+[Presentation Video](https://youtu.be/8FikWzfHlLA)
+
+## Team Members
+
+| Name         | Github Account                                  | Email                 |
+|--------------|-------------------------------------------------|-----------------------|
+| Pu Fanyi     | [pufanyi](https://github.com/pufanyi)           | FPU001@e.ntu.edu.sg   |
+| Jin Qingyang | [jin-qingyang](https://github.com/jin-qingyang) | JINQ0003@e.ntu.edu.sg |
+| Jiang Jinyi  | [Jinyi087](https://github.com/Jinyi087)         | D220006@e.ntu.edu.sg  |
+| Soo Ying Xi  | [niyaojiayou](https://github.com/niyaojiayou)   | D220001@e.ntu.edu.sg  |
+
 ## Description
 
 FYPMS (Final Year Project Management System) is a Java console application that utilizes object-oriented concepts to efficiently manage final year project settings. The program is designed with a focus on reusability, extensibility, and maintainability, allowing for easy upgrades and future development. It provides flexibility to accommodate different user types and their requirements.
@@ -85,11 +96,3 @@ The main class is `src/main/Main.java`.
 
 ![Boundary Sub-Diagram](UMLClassDiagram/boundary.svg)
 
-## Team Members
-
-| Name         | Github Account                                  | Email                 |
-|--------------|-------------------------------------------------|-----------------------|
-| Pu Fanyi     | [pufanyi](https://github.com/pufanyi)           | FPU001@e.ntu.edu.sg   |
-| Jin Qingyang | [jin-qingyang](https://github.com/jin-qingyang) | JINQ0003@e.ntu.edu.sg |
-| Jiang Jinyi  | [Jinyi087](https://github.com/Jinyi087)         | D220006@e.ntu.edu.sg  |
-| Soo Ying Xi  | [niyaojiayou](https://github.com/niyaojiayou)   | D220001@e.ntu.edu.sg  |
