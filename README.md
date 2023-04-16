@@ -1,6 +1,8 @@
 # FYPMS
 
-NTU 2023 Semester 2 SC2002 Group Project - Final Year Project Management System (FYPMS)
+NTU 2022 Semester 2 SC2002 Group Project - Final Year Project Management System (FYPMS).
+
+FYPMS (Final Year Project Management System) is a Java console application that utilizes object-oriented concepts to efficiently manage final year project settings. The program is designed with a focus on reusability, extensibility, and maintainability, allowing for easy upgrades and future development. It provides flexibility to accommodate different user types and their requirements.
 
 ## Links
 
@@ -12,16 +14,14 @@ NTU 2023 Semester 2 SC2002 Group Project - Final Year Project Management System 
 
 ## Team Members
 
+We are a group 6 from tutorial group A50, Nanyang Technological University, Singapore. There are 4 members in our group:
+
 | Name         | Github Account                                  | Email                 |
 |--------------|-------------------------------------------------|-----------------------|
 | Pu Fanyi     | [pufanyi](https://github.com/pufanyi)           | FPU001@e.ntu.edu.sg   |
 | Jin Qingyang | [jin-qingyang](https://github.com/jin-qingyang) | JINQ0003@e.ntu.edu.sg |
 | Jiang Jinyi  | [Jinyi087](https://github.com/Jinyi087)         | D220006@e.ntu.edu.sg  |
 | Soo Ying Xi  | [niyaojiayou](https://github.com/niyaojiayou)   | D220001@e.ntu.edu.sg  |
-
-## Description
-
-FYPMS (Final Year Project Management System) is a Java console application that utilizes object-oriented concepts to efficiently manage final year project settings. The program is designed with a focus on reusability, extensibility, and maintainability, allowing for easy upgrades and future development. It provides flexibility to accommodate different user types and their requirements.
 
 ## Features
 
@@ -55,6 +55,12 @@ FYPMS (Final Year Project Management System) is a Java console application that 
   - [x] Generate Project Details
 
 ## Build
+
+Download the project from GitHub.
+
+```bash
+git clone https://github.com/pufanyi/FYPMS.git
+```
 
 Use JetBrains IntelliJ IDEA to build the project.
 
