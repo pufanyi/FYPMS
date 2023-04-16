@@ -23,6 +23,15 @@ We are a group 6 from tutorial group A50, Nanyang Technological University, Sing
 | Jiang Jinyi  | [Jinyi087](https://github.com/Jinyi087)         | D220006@e.ntu.edu.sg  |
 | Soo Ying Xi  | [niyaojiayou](https://github.com/niyaojiayou)   | D220001@e.ntu.edu.sg  |
 
+## Highlights
+- Reflection: The interface `Model` uses reflection to convert between classes and strings, enabling dynamic handling of model data without manual mapping.
+- Generic Repository Class: `Repository<Model>` class with generics allows for flexible data storage and retrieval for any model type, reducing duplication and improving maintainability.
+- SHA-3 Password Encryption: User passwords are encrypted using the SHA-3 algorithm for enhanced
+security.
+- Batch CSV Data Import: The system supports batch importing of initial data from CSV files, making it convenient to process large datasets in chunks.
+- Factory Design Pattern: The factory pattern is used to quickly generate requests based on different requirements, enhancing system scalability and adaptability.
+- JUnit 5: We used JUnit 5 to test our classes, it helps to ensure the correctness and robustness of our code.
+
 ## Features
 
 - [x] Student
