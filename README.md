@@ -81,13 +81,13 @@ The MANIFEST.MF file is located at `src/META-INF/MANIFEST.MF`.
 
 The built jar file is located at `out/artifacts/FYPMS_jar/FYPMS.jar`.
 
-Run the jar file with the following command:
+There is a shell script `run.sh` and a Windows command script `run.cmd` to run the program.
+
+Or you could run the jar file with the following command:
 
 ```bash
 java -jar ./out/artifacts/FYPMS_jar/FYPMS.jar
 ```
-
-Or there is a shell script `run.sh` and a Windows command script `run.cmd` to run the jar file.
 
 Also, you can also use JetBrains IntelliJ IDEA to run the project.
 
