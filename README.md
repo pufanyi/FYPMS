@@ -84,6 +84,10 @@ Also, you can also use JetBrains IntelliJ IDEA to run the project.
 
 The main class is `src/main/Main.java`.
 
+## Test
+
+The java class `src/test/HardReload.java` is used to hard reload the database.
+
 ## UML Class Diagram
 
 ### Main Diagram
