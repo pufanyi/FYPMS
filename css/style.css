@@ -1,87 +1,178 @@
-/* Set page background */
-body {
-  background-color: #000;
-  font-family: 'Courier New', monospace;
+.body-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
 }
 
-/* Set container for page content */
+.image-container {
+	position: relative;
+	max-width: 100%;
+	height: auto;
+	text-align: center;
+}
+
 .container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
 }
 
-/* Set title font and color */
-h1 {
-  color: #0f0;
-  text-align: center;
-  margin-top: 0;
-  margin-bottom: 20px;
-  font-size: 48px;
-  text-transform: uppercase;
+/* Style the image */
+.container .img {
+	max-width: 100%;
+	max-height: 100%;
+	object-fit: contain;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-/* Set paragraph text color and line height */
-p {
-  color: #0f0;
-  line-height: 1.6;
-  font-size: 18px;
+.img {
+	max-width: 100%;
+	height: auto;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
-/* Set link styles */
-a {
-  color: #0f0;
-  text-decoration: none;
-  transition: color 0.3s ease;
+.responsive-image {
+	max-width: 100%;
+	height: auto;
 }
 
-a:hover {
-  color: #f0f;
+.image-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	max-width: 800px;
+	margin: 0 auto;
+	margin-bottom: 20px;
 }
 
-/* Set code block styles */
-pre {
-  background-color: #222;
-  border: 1px solid #0f0;
-  border-radius: 5px;
-  padding: 10px;
-  overflow: auto;
-  color: #0f0;
-  font-size: 14px;
-}
-
-/* Set code styles */
-code {
-  font-family: 'Courier New', monospace;
-  color: #0f0;
-}
-
-/* Set image styles */
+        /* Style for image */
 img {
-  max-width: 100%;
-  height: auto;
+	max-width: 100%;
+	max-height: 100%;
+	object-fit: contain;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-/* Set list styles */
-ul, ol {
-  padding-left: 20px;
+/* Style for link */
+a {
+	color: #007bff;
+	text-decoration: none;
+	transition: color 0.3s ease;
 }
 
-/* Set table styles */
+/* Style for link on hover */
+a:hover {
+	color: #0056b3;
+	text-decoration: underline;
+}
+
+/* Style for link when active */
+a:active {
+	color: #007bff;
+}
+
+/* Style for link when visited */
+a:visited {
+	color: #551a8b;
+}
+
+body {
+	font-family: 'Roboto', sans-serif;
+	margin: 40px auto;
+	max-width: 800px;
+}
+
+h1 {
+	color: #4285F4;
+	font-weight: 700;
+	margin-bottom: 20px;
+}
+
+h2 {
+	color: #4285F4;
+	font-weight: 500;
+	margin: 30px 0 10px;
+}
+
+p {
+	margin-bottom: 20px;
+}
+
+ul {
+	list-style-type: none;
+	padding-left: 20px;
+	margin: 0;
+	margin-bottom: 20px;
+}
+
+ul li {
+	margin-bottom: 10px;
+}
+
+ul li a {
+	color: #4285F4;
+	text-decoration: none;
+	transition: color 0.3s ease;
+}
+
+ul li a:hover {
+	color: #3367D6;
+}
+
 table {
-  width: 100%;
-  border-collapse: collapse;
-  border-spacing: 0;
+	border-collapse: collapse;
+	width: 100%;
+	table-layout: fixed;
 }
 
-th, td {
-  border: 1px solid #0f0;
-  padding: 8px;
-  text-align: left;
+th,
+td {
+	border: 1px solid #ddd;
+	padding: 8px;
+	text-align: left;
 }
 
 th {
-  background-color: #222;
-  color: #0f0;
-  text-transform: uppercase;
+	background-color: #f2f2f2;
+	font-weight: 500;
+}
+
+.todo-list {
+	list-style-type: none;
+	padding-left: 20px;
+}
+
+.todo-list input[type="checkbox"] {
+	margin-right: 10px;
+}
+
+.card {
+	margin: 0 auto;
+	padding: 20px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.body-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
 }
