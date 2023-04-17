@@ -1,66 +1,73 @@
-/* 设置页面背景 */
+/* Set page background */
 body {
-  background-color: #f7f7f7;
+  background-color: #000;
+  font-family: 'Courier New', monospace;
 }
 
-/* 设置页面内容容器的样式 */
+/* Set container for page content */
 .container {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
 }
 
-/* 设置标题字体和颜色 */
+/* Set title font and color */
 h1 {
-  font-family: "Arial", sans-serif;
-  color: #333333;
+  color: #0f0;
   text-align: center;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 48px;
+  text-transform: uppercase;
 }
 
-/* 设置段落文本的颜色和行高 */
+/* Set paragraph text color and line height */
 p {
-  color: #666666;
+  color: #0f0;
   line-height: 1.6;
+  font-size: 18px;
 }
 
-/* 设置链接的样式 */
+/* Set link styles */
 a {
-  color: #007BFF;
+  color: #0f0;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 a:hover {
-  color: #0056b3;
+  color: #f0f;
 }
 
-/* 设置代码块的样式 */
+/* Set code block styles */
 pre {
-  background-color: #f8f8f8;
-  border: 1px solid #ddd;
-  border-radius: 3px;
+  background-color: #222;
+  border: 1px solid #0f0;
+  border-radius: 5px;
   padding: 10px;
   overflow: auto;
+  color: #0f0;
+  font-size: 14px;
 }
 
-/* 设置代码的样式 */
+/* Set code styles */
 code {
-  font-family: Consolas, Monaco, monospace;
-  color: #333333;
+  font-family: 'Courier New', monospace;
+  color: #0f0;
 }
 
-/* 设置图片的样式 */
+/* Set image styles */
 img {
   max-width: 100%;
   height: auto;
 }
 
-/* 设置列表的样式 */
+/* Set list styles */
 ul, ol {
   padding-left: 20px;
 }
 
-/* 设置表格的样式 */
+/* Set table styles */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -68,11 +75,13 @@ table {
 }
 
 th, td {
-  border: 1px solid #ddd;
+  border: 1px solid #0f0;
   padding: 8px;
   text-align: left;
 }
 
 th {
-  background-color: #f8f8f8;
+  background-color: #222;
+  color: #0f0;
+  text-transform: uppercase;
 }
