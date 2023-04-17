@@ -53,7 +53,7 @@
 	margin-bottom: 20px;
 }
 
-        /* Style for image */
+/* Style for image */
 img {
 	max-width: 100%;
 	max-height: 100%;
@@ -90,6 +90,10 @@ body {
 	font-family: 'Roboto', sans-serif;
 	margin: 40px auto;
 	max-width: 800px;
+  background-image: url("../img/background.jpg");
+    background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
 }
 
 h1 {
@@ -163,6 +167,8 @@ th {
 	border-radius: 5px;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 	transition: box-shadow 0.3s ease;
+  background-color: white;
+/*  opacity: 0.98;*/
 }
 
 .card:hover {
