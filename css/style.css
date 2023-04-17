@@ -1,0 +1,78 @@
+/* 设置页面背景 */
+body {
+  background-color: #f7f7f7;
+}
+
+/* 设置页面内容容器的样式 */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* 设置标题字体和颜色 */
+h1 {
+  font-family: "Arial", sans-serif;
+  color: #333333;
+  text-align: center;
+}
+
+/* 设置段落文本的颜色和行高 */
+p {
+  color: #666666;
+  line-height: 1.6;
+}
+
+/* 设置链接的样式 */
+a {
+  color: #007BFF;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #0056b3;
+}
+
+/* 设置代码块的样式 */
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 10px;
+  overflow: auto;
+}
+
+/* 设置代码的样式 */
+code {
+  font-family: Consolas, Monaco, monospace;
+  color: #333333;
+}
+
+/* 设置图片的样式 */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 设置列表的样式 */
+ul, ol {
+  padding-left: 20px;
+}
+
+/* 设置表格的样式 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f8f8f8;
+}
