@@ -114,4 +114,3 @@ The java class `src/test/HardReload.java` is used to hard reload the database.
 ### Boundary Sub-Diagram
 
 [![Boundary Sub-Diagram](UMLClassDiagram/boundary.svg)](UMLClassDiagram/boundary.svg)
-
