@@ -1,14 +1,3 @@
-<style>
-  .markdown-body {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #333;
-    background-color: #fff;
-  }
-</style>
-
-
 # FYPMS
 
 NTU AY2022/23 Semester 2 SC2002 Group Project - Final Year Project Management System (FYPMS).
