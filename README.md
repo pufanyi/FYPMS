@@ -4,6 +4,8 @@ NTU AY2022/23 Semester 2 SC2002 Group Project - Final Year Project Management Sy
 
 Final Year Project Management System (FYPMS) is a Java console application that utilizes object-oriented concepts to efficiently manage final year project settings. The program is designed with a focus on reusability, extensibility, and maintainability, allowing for easy upgrades and future development. It provides flexibility to accommodate different user types and their requirements.
 
+The initial password for every user is `password`.
+
 ## Links
 
 - [Main Page](https://pufanyi.github.io/FYPMS)
