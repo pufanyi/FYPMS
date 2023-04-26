@@ -31,6 +31,7 @@ We are a group 6 from tutorial group A50, Nanyang Technological University, Sing
 security.
 - Batch CSV Data Import: The system supports batch importing of initial data from CSV files, making it convenient to process large datasets in chunks.
 - Factory Design Pattern: The factory pattern is used to quickly generate requests based on different requirements, enhancing system scalability and adaptability.
+- Data Syncing: The system automatically saves data and synchronizes it with the database, ensuring that data is not lost in the event of a crash. You can even open multiple instances of the program and they will all be synchronized.
 - JUnit 5: We used JUnit 5 to test our classes, it helps to ensure the correctness and robustness of our code.
 
 ## Features
