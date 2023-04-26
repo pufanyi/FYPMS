@@ -10,7 +10,6 @@ The initial password for every user is `password`.
 
 - [Main Page](https://pufanyi.github.io/FYPMS)
 - [GitHub Repository](https://github.com/pufanyi/FYPMS)
-- [Report](https://pufanyi.github.io/FYPMS/report/A50-grp6_report.pdf)
 - [Documentation](https://pufanyi.github.io/FYPMS/docs)
 - [Presentation Video](https://youtu.be/8FikWzfHlLA)
 
