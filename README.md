@@ -19,10 +19,10 @@ We are a group 6 from tutorial group A50, Nanyang Technological University, Sing
 
 | Name         | Github Account                                  | Email                 |
 |--------------|-------------------------------------------------|-----------------------|
-| Pu Fanyi     | [pufanyi](https://github.com/pufanyi)           | FPU001@e.ntu.edu.sg   |
-| Jin Qingyang | [jin-qingyang](https://github.com/jin-qingyang) | JINQ0003@e.ntu.edu.sg |
-| Jiang Jinyi  | [Jinyi087](https://github.com/Jinyi087)         | D220006@e.ntu.edu.sg  |
-| Soo Ying Xi  | [niyaojiayou](https://github.com/niyaojiayou)   | D220001@e.ntu.edu.sg  |
+| Pu Fanyi     | [pufanyi](https://github.com/pufanyi)           | [FPU001@e.ntu.edu.sg](mailto:FPU001@e.ntu.edu.sg) |
+| Jin Qingyang | [jin-qingyang](https://github.com/jin-qingyang) | [JINQ0003@e.ntu.edu.sg](mailto:JINQ0003@e.ntu.edu.sg) |
+| Jiang Jinyi  | [Jinyi087](https://github.com/Jinyi087)         | [D220006@e.ntu.edu.sg](mailto:D220006@e.ntu.edu.sg) |
+| Soo Ying Xi  | [niyaojiayou](https://github.com/niyaojiayou)   | [D220001@e.ntu.edu.sg](mailto:D220001@e.ntu.edu.sg)  |
 
 ## Highlights
 - **Reflection**: The interface `Model` uses reflection to convert between classes and strings, enabling dynamic handling of model data without manual mapping.
