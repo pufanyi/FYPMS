@@ -26,3 +26,11 @@ jobs:
         echo "sitemap-path = ${{ steps.sitemap.outputs.sitemap-path }}"
         echo "url-count = ${{ steps.sitemap.outputs.url-count }}"
         echo "excluded-count = ${{ steps.sitemap.outputs.excluded-count }}"
+    - name: Modify repository
+      run: |
+        git config user.name "Pu Fanyi"
+        git config user.email "pufanyi@gmail.com"
+        git add .
+        git commit -m "Update Sitemap.xml"
+        git push
+
