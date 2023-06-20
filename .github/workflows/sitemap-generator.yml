@@ -2,7 +2,7 @@ name: Generate xml sitemap
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   sitemap_job:
@@ -17,7 +17,7 @@ jobs:
 
     - name: Generate the sitemap
       id: sitemap
-      uses: cicirello/generate-sitemap@v1
+      uses: cicirello/generate-sitemap@v1.9.1
       with:
         base-url-path: https://pufanyi.github.io/FYPMS
 
