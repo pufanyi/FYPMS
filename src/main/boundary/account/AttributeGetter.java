@@ -17,26 +17,26 @@ public class AttributeGetter {
      * @return The UserType chosen by the user.
      */
     public static UserType getDomain() {
-        System.out.println(BoundaryStrings.separator);
+        System.out.println(BoundaryStrings.separator); // ### UI DISPLAY FROM UTILS
         System.out.println("\t1. Student");
-        System.out.println("\t2. Supervisor");
-        System.out.println("\t3. FYP Coordinator");
-        System.out.println(BoundaryStrings.separator);
+        System.out.println("\t2. Staff"); // ### CHANGE MADE: Supervisor -> Staff
+        System.out.println("\t3. FYP Coordinator"); // ### NEEDS CHANGE/REMOVAL
+        System.out.println(BoundaryStrings.separator); // ### UI DISPLAY FROM UTILS
         System.out.print("Please select your domain (1-3): ");
         UserType userType = null;
         while (userType == null) {
             Scanner scanner = new Scanner(System.in);
             int domain;
             try {
-                domain = IntGetter.readInt();
+                domain = IntGetter.readInt(); // ### CLASS FROM UTILS
             } catch (Exception e) {
                 System.out.println("Please enter a number.");
                 continue;
             }
             userType = switch (domain) {
                 case 1 -> UserType.STUDENT;
-                case 2 -> UserType.FACULTY;
-                case 3 -> UserType.COORDINATOR;
+                case 2 -> UserType.STAFF; // ### NEEDS CHANGE: UserType.STAFF
+                //case 3 -> UserType.COORDINATOR;  // ### NEEDS CHANGE/REMOVAL ################################################
                 default -> null;
             };
             if (userType == null) {
