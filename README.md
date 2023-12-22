@@ -26,6 +26,7 @@ We are a group 6 from tutorial group A50, Nanyang Technological University, Sing
 | Soo Ying Xi  | [niyaojiayou](https://github.com/niyaojiayou)   | [D220001@e.ntu.edu.sg](mailto:D220001@e.ntu.edu.sg)  |
 
 ## Highlights
+
 - **Reflection**: The interface `Model` uses reflection to convert between classes and strings, enabling dynamic handling of model data without manual mapping.
 - **Generic Repository Class**: `Repository<Model>` class with generics allows for flexible data storage and retrieval for any model type, reducing duplication and improving maintainability.
 - **SHA-3 Password Encryption**: User passwords are encrypted using the SHA-3 algorithm for enhanced
@@ -108,13 +109,13 @@ You can refer to the [project main page](https://pufanyi.github.io/FYPMS) for th
 
 [Here](umls) is the source code of the UML class diagram.
 
-## Cite
+## BibTeX
 
 ```bibtex
-@misc{pu2022fypms,
+@misc{pu2023fypms,
   author       = {Fanyi, Pu and Qingyang, Jin and Ying Xi, Soo and Jinyi, Jiang},
   title        = {FYPMS: Final Year Project Management System},
-  year         = {2022},
+  year         = {2023},
   howpublished = {\url{https://github.com/pufanyi/FYPMS}},
   note         = {Accessed: \today},
 }
