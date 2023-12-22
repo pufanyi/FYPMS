@@ -11,7 +11,7 @@ The initial password for every user is `password`.
 - [Main Page](https://pufanyi.github.io/FYPMS)
 - [GitHub Repository](https://github.com/pufanyi/FYPMS)
 - [Documentation](https://pufanyi.github.io/FYPMS/docs)
-- [Report](report)
+- [Report](docs/report)
 - [Presentation Video](https://youtu.be/8FikWzfHlLA)
 
 ## Team Members
