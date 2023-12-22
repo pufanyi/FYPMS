@@ -1,0 +1,145 @@
+<mxfile host="app.diagrams.net" modified="2023-12-22T14:12:12.577Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" etag="PkbryCujKp1Tyi4ySNCo" version="21.7.4" type="google">
+  <diagram name="第 1 页" id="3EXGMyzDNQ1ODNzzHE60">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="2339" pageHeight="3300" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="UCZBR5be5SbQQ8EgUX2j-1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;ProjectManager&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ getByID(String): Project&lt;br/&gt;+ viewAllProject(): List&amp;lt;Project&amp;gt;&lt;br/&gt;+ repositoryIsEmpty(): boolean&lt;br/&gt;+ containsProjectByID(String): boolean&lt;br/&gt;+ deallocateProject(String): void&lt;br/&gt;+ changeProjectTitle(String, String): void&lt;br/&gt;+ getNewProjectID(): String&lt;br/&gt;+ getAllProject(): List&amp;lt;Project&amp;gt;&lt;br/&gt;+ transferToNewSupervisor(String, String): void&lt;br/&gt;+ allocateProject(String, String): void&lt;br/&gt;+ getAllProjectByStatus(ProjectStatus): List&amp;lt;Project&amp;gt;&lt;br/&gt;+ createProject(String, String, String): void&lt;br/&gt;+ getStudentProject(Student): Project?&lt;br/&gt;+ viewAvailableProjects(): List&amp;lt;Project&amp;gt;&lt;br/&gt;+ notContainsProjectByID(String): boolean&lt;br/&gt;+ loadProjects(): void&lt;br/&gt;+ createProject(String, String): void&lt;br/&gt;+ controlProjectStatus(Supervisor): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fillColor=#dae8fc;strokeColor=#6c8ebf;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="450" y="440" width="340" height="442" as="geometry" />
+        </mxCell>
+        <mxCell id="UCZBR5be5SbQQ8EgUX2j-2" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;PasswordHashManager&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- HASH_ALGORITHM: String&lt;br/&gt;- messageDigest: MessageDigest&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ hashPassword(String): String&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fillColor=#dae8fc;strokeColor=#6c8ebf;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="870" y="-13.5" width="215" height="122" as="geometry" />
+        </mxCell>
+        <mxCell id="UCZBR5be5SbQQ8EgUX2j-3" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;PasswordManager&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ checkPassword(User, String): boolean&lt;br/&gt;+ changePassword(User, String, String): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fillColor=#dae8fc;strokeColor=#6c8ebf;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="430" y="6" width="295" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="UCZBR5be5SbQQ8EgUX2j-4" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;UserAdder&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ addUser(User): void&lt;br/&gt;- addStudent(Student): void&lt;br/&gt;- addSupervisor(Supervisor): void&lt;br/&gt;- addCoordinator(Coordinator): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fillColor=#dae8fc;strokeColor=#6c8ebf;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="430" y="159" width="230" height="128" as="geometry" />
+        </mxCell>
+        <mxCell id="UCZBR5be5SbQQ8EgUX2j-5" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;UserDomainGetter&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ getUserDomain(User): UserType&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fillColor=#dae8fc;strokeColor=#6c8ebf;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="-490" y="192" width="221" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="UCZBR5be5SbQQ8EgUX2j-6" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;UserFinder&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- findStudent(String): User&lt;br/&gt;- findFaculty(String): User&lt;br/&gt;- findCoordinator(String): User&lt;br/&gt;+ findUser(String, UserType): User&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fillColor=#dae8fc;strokeColor=#6c8ebf;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="-35.75" y="350" width="222.5" height="124" as="geometry" />
+        </mxCell>
+        <mxCell id="UCZBR5be5SbQQ8EgUX2j-7" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;UserUpdater&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- updateSupervisor(Supervisor): void&lt;br/&gt;+ updateUser(User): void&lt;br/&gt;- updateCoordinator(Coordinator): void&lt;br/&gt;- updateStudent(Student): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fillColor=#dae8fc;strokeColor=#6c8ebf;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="-510" y="-13.5" width="250" height="122" as="geometry" />
+        </mxCell>
+        <mxCell id="UCZBR5be5SbQQ8EgUX2j-8" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" source="UCZBR5be5SbQQ8EgUX2j-3" target="UCZBR5be5SbQQ8EgUX2j-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="740" y="140" as="sourcePoint" />
+            <mxPoint x="790" y="90" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UCZBR5be5SbQQ8EgUX2j-9" value="&amp;lt;&amp;lt; use &amp;gt;&amp;gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" connectable="0" vertex="1" parent="UCZBR5be5SbQQ8EgUX2j-8">
+          <mxGeometry x="0.312" y="-1" relative="1" as="geometry">
+            <mxPoint x="-20" y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UCZBR5be5SbQQ8EgUX2j-10" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;" edge="1" parent="1" source="UCZBR5be5SbQQ8EgUX2j-20" target="UCZBR5be5SbQQ8EgUX2j-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="280" as="sourcePoint" />
+            <mxPoint x="180" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UCZBR5be5SbQQ8EgUX2j-11" value="&amp;lt;&amp;lt; use &amp;gt;&amp;gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" connectable="0" vertex="1" parent="UCZBR5be5SbQQ8EgUX2j-10">
+          <mxGeometry x="0.2769" y="1" relative="1" as="geometry">
+            <mxPoint x="-21" y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UCZBR5be5SbQQ8EgUX2j-12" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;" edge="1" parent="1" source="UCZBR5be5SbQQ8EgUX2j-20" target="UCZBR5be5SbQQ8EgUX2j-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="270" y="110" as="sourcePoint" />
+            <mxPoint x="430" y="174" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UCZBR5be5SbQQ8EgUX2j-13" value="&amp;lt;&amp;lt; use &amp;gt;&amp;gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" connectable="0" vertex="1" parent="UCZBR5be5SbQQ8EgUX2j-12">
+          <mxGeometry x="0.1777" y="-1" relative="1" as="geometry">
+            <mxPoint x="-12" y="-11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UCZBR5be5SbQQ8EgUX2j-14" value="" style="endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;dashed=1;exitX=0;exitY=0.25;exitDx=0;exitDy=0;" edge="1" parent="1" source="UCZBR5be5SbQQ8EgUX2j-20" target="UCZBR5be5SbQQ8EgUX2j-7">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-150" y="-20" as="sourcePoint" />
+            <mxPoint x="-120" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UCZBR5be5SbQQ8EgUX2j-15" value="&amp;lt;&amp;lt; use &amp;gt;&amp;gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" connectable="0" vertex="1" parent="UCZBR5be5SbQQ8EgUX2j-14">
+          <mxGeometry x="-0.2074" y="2" relative="1" as="geometry">
+            <mxPoint x="-19" y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UCZBR5be5SbQQ8EgUX2j-16" value="" style="endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;dashed=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;" edge="1" parent="1" source="UCZBR5be5SbQQ8EgUX2j-20" target="UCZBR5be5SbQQ8EgUX2j-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-160" y="90" as="sourcePoint" />
+            <mxPoint x="60" y="90" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UCZBR5be5SbQQ8EgUX2j-17" value="&amp;lt;&amp;lt; use &amp;gt;&amp;gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" connectable="0" vertex="1" parent="UCZBR5be5SbQQ8EgUX2j-16">
+          <mxGeometry x="0.2632" y="3" relative="1" as="geometry">
+            <mxPoint x="18" y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UCZBR5be5SbQQ8EgUX2j-18" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="UCZBR5be5SbQQ8EgUX2j-20" target="UCZBR5be5SbQQ8EgUX2j-6">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-150" y="200" as="sourcePoint" />
+            <mxPoint x="-370" y="90" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UCZBR5be5SbQQ8EgUX2j-19" value="&amp;lt;&amp;lt; use &amp;gt;&amp;gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" connectable="0" vertex="1" parent="UCZBR5be5SbQQ8EgUX2j-18">
+          <mxGeometry x="-0.2368" y="-1" relative="1" as="geometry">
+            <mxPoint x="32" y="4" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UCZBR5be5SbQQ8EgUX2j-20" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;AccountManager&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ AccountManager(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ changePassword(UserType, String, String, String): void&lt;br/&gt;+ getUsersByUserName(String): List&amp;lt;User&amp;gt;&lt;br/&gt;- getID(String): String&lt;br/&gt;+ register(UserType, String, String, String, String): User&lt;br/&gt;- loadCoordinators(): void&lt;br/&gt;+ register(UserType, String, String, String): User&lt;br/&gt;+ repositoryIsEmpty(): boolean&lt;br/&gt;+ login(UserType, String, String): User&lt;br/&gt;- loadFaculties(): void&lt;br/&gt;- loadStudents(): void&lt;br/&gt;+ getByDomainAndID(UserType, String): User&lt;br/&gt;+ loadUsers(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fillColor=#dae8fc;strokeColor=#6c8ebf;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="-120" y="-40" width="391" height="352" as="geometry" />
+        </mxCell>
+        <mxCell id="UCZBR5be5SbQQ8EgUX2j-21" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;CoordinatorManager&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ approveDeregisterStudent(String, String, String): void&lt;br/&gt;+ approveRegisterStudent(String, String, String): void&lt;br/&gt;+ rejectRegisterStudent(String, String, String): void&lt;br/&gt;+ getAllRequests(): List&amp;lt;Request&amp;gt;&lt;br/&gt;+ changeProjectTitle(String, String): void&lt;br/&gt;+ getPendingRequests(): List&amp;lt;Request&amp;gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fillColor=#dae8fc;strokeColor=#6c8ebf;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="-549" y="785" width="350" height="172" as="geometry" />
+        </mxCell>
+        <mxCell id="UCZBR5be5SbQQ8EgUX2j-22" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;RequestManager&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- approveStudentChangeTitleRequest(Request): void&lt;br/&gt;+ approveRequestForStatus(String): void&lt;br/&gt;+ rejectRequestForStatus(String): void&lt;br/&gt;- approveStudentDeregistrationRequest(Request): void&lt;br/&gt;- approveTransferStudentRequest(Request): void&lt;br/&gt;+ getRequest(String): Request&lt;br/&gt;+ getNewRequestID(): String&lt;br/&gt;- rejectStudentRegistrationRequest(Request): void&lt;br/&gt;+ approveRequest(String): void&lt;br/&gt;- approveStudentRegistrationRequest(Request): void&lt;br/&gt;+ approveRequest(Request): void&lt;br/&gt;+ rejectRequest(String): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fillColor=#dae8fc;strokeColor=#6c8ebf;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="-102" y="720" width="356" height="302" as="geometry" />
+        </mxCell>
+        <mxCell id="UCZBR5be5SbQQ8EgUX2j-23" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;StudentManager&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ changeProjectTitle(String, String, String): String&lt;br/&gt;+ deregisterStudent(String, String): String&lt;br/&gt;+ viewAllRequestByStudent(String): void&lt;br/&gt;+ getStudentRequestHistory(String): List&amp;lt;Request&amp;gt;&lt;br/&gt;+ getByID(String): Student&lt;br/&gt;+ registerStudent(String, String): String&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fillColor=#dae8fc;strokeColor=#6c8ebf;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="-87" y="1070" width="326" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="UCZBR5be5SbQQ8EgUX2j-24" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;SupervisorManager&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ transferToNewSupervisor(String, String, String, String): void&lt;br/&gt;+ getPendingRequestsBySupervisor(String): List&amp;lt;Request&amp;gt;&lt;br/&gt;+ viewRequest(String): List&amp;lt;Request&amp;gt;&lt;br/&gt;+ getAllRequestHistory(Supervisor): List&amp;lt;Request&amp;gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fillColor=#dae8fc;strokeColor=#6c8ebf;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="-119" y="540" width="390" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="UCZBR5be5SbQQ8EgUX2j-25" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" source="UCZBR5be5SbQQ8EgUX2j-22" target="UCZBR5be5SbQQ8EgUX2j-24">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-9" y="950" as="sourcePoint" />
+            <mxPoint x="41" y="900" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UCZBR5be5SbQQ8EgUX2j-26" value="&amp;lt;&amp;lt; use &amp;gt;&amp;gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" connectable="0" vertex="1" parent="UCZBR5be5SbQQ8EgUX2j-25">
+          <mxGeometry x="0.2595" y="-2" relative="1" as="geometry">
+            <mxPoint x="34" y="12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UCZBR5be5SbQQ8EgUX2j-27" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;dashed=1;" edge="1" parent="1" source="UCZBR5be5SbQQ8EgUX2j-22" target="UCZBR5be5SbQQ8EgUX2j-23">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="401" y="1070" as="sourcePoint" />
+            <mxPoint x="401.59" y="1118" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UCZBR5be5SbQQ8EgUX2j-28" value="&amp;lt;&amp;lt; use &amp;gt;&amp;gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" connectable="0" vertex="1" parent="UCZBR5be5SbQQ8EgUX2j-27">
+          <mxGeometry x="0.2566" relative="1" as="geometry">
+            <mxPoint x="33" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UCZBR5be5SbQQ8EgUX2j-29" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;dashed=1;" edge="1" parent="1" source="UCZBR5be5SbQQ8EgUX2j-22" target="UCZBR5be5SbQQ8EgUX2j-21">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-9" y="950" as="sourcePoint" />
+            <mxPoint x="41" y="900" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UCZBR5be5SbQQ8EgUX2j-30" value="&amp;lt;&amp;lt; use &amp;gt;&amp;gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" connectable="0" vertex="1" parent="UCZBR5be5SbQQ8EgUX2j-29">
+          <mxGeometry x="-0.3608" y="1" relative="1" as="geometry">
+            <mxPoint x="-11" y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

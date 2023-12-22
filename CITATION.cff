@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use or build on this work, please cite it as below."
+authors:
+  - family-names: Pu
+    given-names: Fanyi
+  - family-names: Jin
+    given-names: Qingyang
+  - family-names: Soo
+    given-names: Ying Xi
+  - family-names: Jiang
+    given-names: Jinyi
+title: "FYPMS: Final Year Project Management System"
+date-released: 2023-04-16
