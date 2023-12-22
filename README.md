@@ -113,10 +113,10 @@ You can refer to the [project main page](https://pufanyi.github.io/FYPMS) for th
 
 ```bibtex
 @software{Pu_FYPMS_Final_Year_2023,
-  author       = {Pu, Fanyi and Jin, Qingyang and Soo, Ying Xi and Jiang, Jinyi},
-  month        = apr,
-  title        = {{FYPMS: Final Year Project Management System}},
-  year         = {2023}
+  author  = {Pu, Fanyi and Jin, Qingyang and Soo, Ying Xi and Jiang, Jinyi},
+  month   = apr,
+  title   = {{FYPMS: Final Year Project Management System}},
+  year    = {2023}
 }
 ```
 
