@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
-  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+    content="NTU SC2002 Project FYPMS: Final Year Project Management System">
+  <meta name="keywords" content="NTU, SC2002, FYPMS, Project, Java, OOP">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>FYPMS</title>
 
@@ -22,15 +23,13 @@
     gtag('config', 'G-PYVRSFMDRL');
   </script>
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
 
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -39,98 +38,95 @@
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
 </head>
+
 <body>
 
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-</nav>
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+  </nav>
 
 
-<section class="hero">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">FYPMS: Final Year Project Management System</h2>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              <a href="https://pufanyi.github.io">Pu Fanyi</a>,</span>
-            <span class="author-block">
-              <a href="https://github.com/jin-qingyang">Jin Qingyang</a>,</span>
-            <span class="author-block">
-              <a href="https://github.com/niyaojiayou">Soo Ying Xi</a>,
-            </span>
-            <span class="author-block">
-              <a href="https://github.com/Jinyi087">Jiang Jinyi</a>
-            </span>
-          </div>
-
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">Nanyang Technological University, Singapore</span>
-          </div>
-
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
           <div class="column has-text-centered">
-            <div class="publication-links">
-              <!-- PDF Link. -->
-              <span class="link-block">
-                <a href="./report/A50-grp6_report.pdf"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
+            <h1 class="title is-1 publication-title">FYPMS: Final Year Project Management System</h2>
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <a href="https://pufanyi.github.io">Pu Fanyi</a>,</span>
+                <span class="author-block">
+                  <a href="https://github.com/jin-qingyang">Jin Qingyang</a>,</span>
+                <span class="author-block">
+                  <a href="https://github.com/niyaojiayou">Soo Ying Xi</a>,
+                </span>
+                <span class="author-block">
+                  <a href="https://github.com/Jinyi087">Jiang Jinyi</a>
+                </span>
+              </div>
+
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">Nanyang Technological University, Singapore</span>
+              </div>
+
+              <div class="column has-text-centered">
+                <div class="publication-links">
+                  <!-- PDF Link. -->
+                  <span class="link-block">
+                    <a href="./report/A50-grp6_report.pdf" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>Report</span>
+                    </a>
                   </span>
-                  <span>Report</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="https://youtu.be/8FikWzfHlLA"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-youtube"></i>
+                  <span class="link-block">
+                    <a href="https://youtu.be/8FikWzfHlLA" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fab fa-youtube"></i>
+                      </span>
+                      <span>Video</span>
+                    </a>
                   </span>
-                  <span>Video</span>
-                </a>
-              </span>
-              <!-- Code Link. -->
-              <span class="link-block">
-                <a href="https://github.com/pufanyi/FYPMS"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-github"></i>
+                  <!-- Code Link. -->
+                  <span class="link-block">
+                    <a href="https://github.com/pufanyi/FYPMS"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fab fa-github"></i>
+                      </span>
+                      <span>Code</span>
+                    </a>
                   </span>
-                  <span>Code</span>
-                  </a>
-              </span>
-              <span class="link-block">
-                <a href="./docs"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-readme">
-                      </i>
+                  <span class="link-block">
+                    <a href="./docs" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fab fa-readme">
+                        </i>
+                      </span>
+                      <span>
+                        Documentation
+                      </span>
+                    </a>
                   </span>
-                  <span>
-                    Documentation
+                  <!-- Assignment Link. -->
+                  <span class="link-block">
+                    <a href="./assignments/Assignment.pdf" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-file-alt"></i>
+                      </span>
+                      <span>
+                        Assignment
+                      </span>
+                    </a>
                   </span>
-                  </a>
-              </span>
-              <!-- Assignment Link. -->
-              <span class="link-block">
-                <a href="./assignments/Assignment.pdf"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-alt"></i>
-                  </span>
-                  <span>
-                    Assignment
-                  </span>
-                  </a>
-              </span>
-              <!-- <span class="link-block">
+                  <!-- <span class="link-block">
                 <a href="https://github.com/google/nerfies/releases/tag/0.1"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -138,36 +134,39 @@
                   </span>
                   <span>Data</span>
                   </a> -->
-            </div>
+                </div>
 
+              </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <!-- <video id="teaser" autoplay muted loop playsinline height="100%">
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <!-- <video id="teaser" autoplay muted loop playsinline height="100%">
         <source src="./static/videos/teaser.mp4"
                 type="video/mp4">
       </video> -->
-      <h2 class="subtitle has-text-centered">
-        <b>F</b>inal <b>Y</b>ear <b>P</b>roject <b>M</b>anagement <b>S</b>ystem (FYPMS) is a Java console application that utilizes object-oriented concepts to efficiently manage final year project settings. The program is designed with a focus on reusability, extensibility, and maintainability, allowing for easy upgrades and future development. It provides flexibility to accommodate different user types and their requirements.
-        <p>
-        <i>This project is for the course SC2002 Object Oriented Programming, AY2022/23 Semester 2.</i>
-      </h2>
+        <h2 class="subtitle has-text-centered">
+          <b>F</b>inal <b>Y</b>ear <b>P</b>roject <b>M</b>anagement <b>S</b>ystem (FYPMS) is a Java console application
+          that utilizes object-oriented concepts to efficiently manage final year project settings. The program is
+          designed with a focus on reusability, extensibility, and maintainability, allowing for easy upgrades and
+          future development. It provides flexibility to accommodate different user types and their requirements.
+          <p>
+            <i>This project is for the course SC2002 Object Oriented Programming, AY2022/23 Semester 2.</i>
+        </h2>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
 
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Abstract. -->
-    <!-- <div class="columns is-centered has-text-centered">
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <!-- <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
@@ -177,126 +176,151 @@
         </div>
       </div>
     </div> -->
-    <!--/ Abstract. -->
+      <!--/ Abstract. -->
 
-    <!-- Paper video. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Video</h2>
-        <div class="publication-video">
-          <iframe src="https://www.youtube.com/embed/8FikWzfHlLA?rel=0&amp;showinfo=0"
-                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      <!-- Paper video. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Video</h2>
+          <div class="publication-video">
+            <iframe src="https://www.youtube.com/embed/8FikWzfHlLA?rel=0&amp;showinfo=0" frameborder="0"
+              allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+      <!--/ Paper video. -->
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Highlights</h2>
+          <ul>
+            <li><strong>Reflection:</strong> The interface <code>Model</code> uses reflection to convert between classes
+              and
+              strings, enabling dynamic handling of model data without manual mapping.</li>
+            <li><strong>Generic Repository Class:</strong> <code>Repository&lt;Model&gt;</code> class with generics
+              allows for
+              flexible data storage and retrieval for any model type, reducing duplication and improving
+              maintainability.</li>
+            <li><strong>SHA-3 Password Encryption:</strong> User passwords are encrypted using the SHA-3 algorithm for
+              enhanced
+              security.</li>
+            <li><strong>Batch CSV Data Import:</strong> The system supports batch importing of initial data from CSV
+              files,
+              making
+              it convenient to process large datasets in chunks.</li>
+            <li><strong>Factory Design Pattern:</strong> The factory pattern is used to quickly generate requests based
+              on
+              different requirements, enhancing system scalability and adaptability.</li>
+            <li><strong>Data Syncing:</strong> The system automatically saves data and synchronizes it with the
+              database,
+              ensuring
+              that data is not lost in the event of a crash. You can even open multiple instances of the program and
+              they will
+              all
+              be synchronized.</li>
+            <li><strong>JUnit 5:</strong> We used JUnit 5 to test our classes; it helps to ensure the correctness and
+              robustness
+              of our code.</li>
+          </ul>
         </div>
       </div>
     </div>
-    <!--/ Paper video. -->
-  </div>
-</section>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+
+      <!-- Animation. -->
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">UMLs</h2>
+
+          The UML diagrams are generated using <a href="https://draw.io">draw.io</a>. You can download the source files
+          <a href="https://github.com/pufanyi/FYPMS/umls">here</a>.
+
+          <br />
+          <br />
+          <div>
+
+            <h3 class="title is-4">
+              Main Diagram
+            </h3>
+            <div class="content has-text-centered">
+              <a href="./static/img/umls/main.svg">
+                <img src="./static/img/umls/main.svg" alt="Main UML diagram." class="uml-diagram" />
+              </a>
+            </div>
+
+            <h3 class="title is-4">
+              Entity Sub Diagram
+            </h3>
+            <div class="content has-text-centered">
+              <a href="./static/img/umls/entity.svg">
+                <img src="./static/img/umls/entity.svg" alt="Entity UML diagram." class="uml-diagram" />
+              </a>
+            </div>
+
+            <h3 class="title is-4">
+              Controller Sub Diagram
+            </h3>
+            <div class="content has-text-centered">
+              <a href="./static/img/umls/controller.svg">
+                <img src="./static/img/umls/controller.svg" alt="Controller UML diagram." class="uml-diagram" />
+              </a>
+            </div>
+
+            <h3 class="title is-4">
+              Boundary Sub Diagram
+            </h3>
+            <div class="content has-text-centered">
+              <a href="./static/img/umls/boundary.svg">
+                <img src="./static/img/umls/boundary.svg" alt="Boundary UML diagram." class="uml-diagram" />
+              </a>
+            </div>
+
+          </div>
+
+          <br />
 
 
-<section class="section">
-  <div class="container is-max-desktop">
-
-    <!-- Animation. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">UMLs</h2>
-
-        The UML diagrams are generated using <a href="https://draw.io">draw.io</a>. You can download the source files <a href="https://github.com/pufanyi/FYPMS/umls">here</a>.
-
-        <br/>
-        <br/>
-        <div>
-
-        <h3 class="title is-4">
-          Main Diagram
-        </h3>
-        <div class="content has-text-centered">
-          <a href="./static/img/umls/main.svg">
-            <img src="./static/img/umls/main.svg" alt="Main UML diagram." class="uml-diagram"/>
-          </a>
-        </div>
-
-        <h3 class="title is-4">
-          Entity Sub Diagram
-        </h3>
-        <div class="content has-text-centered">
-          <a href="./static/img/umls/entity.svg">
-            <img src="./static/img/umls/entity.svg" alt="Entity UML diagram." class="uml-diagram"/>
-          </a>
-        </div>
-
-        <h3 class="title is-4">
-          Controller Sub Diagram
-        </h3>
-        <div class="content has-text-centered">
-          <a href="./static/img/umls/controller.svg">
-            <img src="./static/img/umls/controller.svg" alt="Controller UML diagram." class="uml-diagram"/>
-          </a>
-        </div>
-
-        <h3 class="title is-4">
-          Boundary Sub Diagram
-        </h3>
-        <div class="content has-text-centered">
-          <a href="./static/img/umls/boundary.svg">
-            <img src="./static/img/umls/boundary.svg" alt="Boundary UML diagram." class="uml-diagram"/>
-          </a>
-        </div>
-
-        </div>
-
-        <br/>
-    <!--/ Animation. -->
+  </section>
 
 
-</section>
-
-
-<!-- <section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@article{park2021nerfies,
-  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
-  title     = {Nerfies: Deformable Neural Radiance Fields},
-  journal   = {ICCV},
-  year      = {2021},
-}</code></pre>
-  </div>
-</section> -->
-
-
-<footer class="footer">
-  <div class="container">
-    <div class="content has-text-centered">
-      <a class="icon-link"
-         href="./report/A50-grp6_report.pdf">
-        <i class="fas fa-file-pdf"></i>
-      </a>
-      <a class="icon-link" href="https://github.com/pufanyi/FYPMS" class="external-link" disabled>
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-          <p>
-            This website is licensed under a <a rel="license"
-                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-          <p>
-            This means you are free to borrow the <a
-              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
-            we just ask that you link back to this page in the footer.
-            Please remember to remove the analytics code included in the header of the website which
-            you do not want on your website.
-          </p>
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <a class="icon-link" href="./report/A50-grp6_report.pdf">
+          <i class="fas fa-file-pdf"></i>
+        </a>
+        <a class="icon-link" href="https://github.com/pufanyi/FYPMS" class="external-link" disabled>
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This website is licensed under a <a rel="license"
+                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+            <p>
+              This means you are free to borrow the <a href="https://github.com/nerfies/nerfies.github.io">source
+                code</a> of this website,
+              we just ask that you link back to this page in the footer.
+              Please remember to remove the analytics code included in the header of the website which
+              you do not want on your website.
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
 </body>
+
 </html>
